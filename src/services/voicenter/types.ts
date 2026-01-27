@@ -55,6 +55,9 @@ export interface VoicenterCDR {
 
   /** URL to call recording (if recorded) */
   RecordURL?: string;
+
+  /** Index signature for compatibility with Record<string, unknown> */
+  [key: string]: unknown;
 }
 
 /**
