@@ -121,6 +121,9 @@ Recent decisions affecting current work:
 | google-token-validation at 3:30 AM | 04-03 | 30-minute offset from WhatsApp validation (3:00 AM) |
 | 100ms delay between token operations | 04-03 | Rate limit protection matching WhatsApp validation pattern |
 | TenantId as token identifier | 04-03 | Consistent with oauth.ts token storage pattern |
+| Direct HTTP for reviews API | 04-02 | googleapis mybusiness v4 types incomplete |
+| 4096 byte reply limit validation | 04-02 | Hebrew 2-3 bytes per char, fail fast on oversized |
+| Star rating enum to number | 04-02 | Cleaner for business logic comparisons |
 
 ### Pending Todos
 
