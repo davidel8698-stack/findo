@@ -5,9 +5,12 @@ import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
 import { webhookRoutes } from './routes/webhooks';
 import { healthRoutes } from './routes/health';
+import { activityRoutes } from './routes/activity';
 import { tenantContext } from './middleware/tenant-context';
 import { startWebhookWorker } from './queue/workers/webhook.worker';
 import { startScheduledWorker } from './queue/workers/test.worker';
+import { startActivityWorker } from './queue/workers/activity.worker';
+import { initializeScheduler } from './scheduler/index';
 import { closeRedisConnections } from './lib/redis';
 
 // Create main app
@@ -37,6 +40,9 @@ api.get('/me', (c) => {
   });
 });
 
+// Activity feed routes (REST + SSE)
+api.route('/activity', activityRoutes);
+
 // Mount API under /api
 app.route('/api', api);
 
@@ -55,6 +61,7 @@ const port = parseInt(process.env.PORT || '3000', 10);
 // Track workers for cleanup
 let webhookWorker: ReturnType<typeof startWebhookWorker> | null = null;
 let scheduledWorker: ReturnType<typeof startScheduledWorker> | null = null;
+let activityWorker: ReturnType<typeof startActivityWorker> | null = null;
 
 // Graceful shutdown
 async function shutdown() {
@@ -68,6 +75,10 @@ async function shutdown() {
   if (scheduledWorker) {
     await scheduledWorker.close();
     console.log('[server] Scheduled worker stopped');
+  }
+  if (activityWorker) {
+    await activityWorker.close();
+    console.log('[server] Activity worker stopped');
   }
 
   // Close Redis connections
@@ -88,6 +99,11 @@ async function start() {
   // Start workers
   webhookWorker = startWebhookWorker();
   scheduledWorker = startScheduledWorker();
+  activityWorker = startActivityWorker();
+
+  // Initialize scheduler (include test jobs in development)
+  const includeTestJobs = process.env.NODE_ENV !== 'production';
+  await initializeScheduler(includeTestJobs);
 
   // Start HTTP server
   serve({
