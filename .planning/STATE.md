@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 3 of 10 (Lead Capture)
-Plan: 0 of TBD in current phase
-Status: Ready for planning
-Last activity: 2026-01-27 - Completed 02-06-PLAN.md (WhatsApp Connection Frontend UI)
+Plan: 1 of TBD in current phase
+Status: In progress
+Last activity: 2026-01-27 - Completed 03-01-PLAN.md (Lead Capture Schema)
 
-Progress: [██████████] 100% of Phase 2 (6/6 plans)
+Progress: [█░░░░░░░░░] ~10% of Phase 3 (1/? plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
-- Average duration: 6.6 min
-- Total execution time: 1.53 hours
+- Total plans completed: 15
+- Average duration: 6.4 min
+- Total execution time: 1.6 hours
 
 **By Phase:**
 
@@ -29,10 +29,11 @@ Progress: [██████████] 100% of Phase 2 (6/6 plans)
 |-------|-------|-------|----------|
 | 01-foundation | 8 | 39.5 min | 4.9 min |
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
+| 03-lead-capture | 1 | 3.6 min | 3.6 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (4 min), 02-03 (5 min), 02-04 (6.5 min), 02-05 (5 min), 02-06 (27 min)
-- Trend: 02-06 longer due to human verification checkpoint
+- Last 5 plans: 02-03 (5 min), 02-04 (6.5 min), 02-05 (5 min), 02-06 (27 min), 03-01 (3.6 min)
+- Trend: 03-01 fast schema-only plan
 
 *Updated after each plan completion*
 
@@ -94,6 +95,10 @@ Recent decisions affecting current work:
 | Server-side HTML rendering with Hono | 02-06 | Simple MVP stack, no frontend framework needed |
 | Hebrew UI with RTL layout | 02-06 | Israeli market focus |
 | Pre-flight credential check | 02-06 | Prevents confusing infinite loading when META env vars missing |
+| Lead status 7-state lifecycle | 03-01 | Covers full funnel from capture to outcome |
+| Missed call idempotency via callId | 03-01 | Voicenter CallID prevents duplicate leads |
+| One conversation per lead (1:1) | 03-01 | Each lead has exactly one chatbot flow |
+| Phone normalization to +972 format | 03-01 | Consistent format for lookups and deduplication |
 
 ### Pending Todos
 
@@ -121,16 +126,9 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-27T18:18:08Z
-Stopped at: Completed 02-06-PLAN.md - Phase 2 complete
-Resume file: None - ready for Phase 3
+Last session: 2026-01-27T19:24:26Z
+Stopped at: Completed 03-01-PLAN.md
+Resume file: None
 
-**Phase 2 Progress:**
-- 02-01: WhatsApp schema and Graph API client complete
-- 02-02: Embedded Signup OAuth callback complete
-- 02-03: Webhook handlers complete
-- 02-04: Message workers complete
-- 02-05: Token validation job complete
-- 02-06: Frontend UI complete
-
-**Phase 2 COMPLETE - Ready for Phase 3: Lead Capture**
+**Phase 3 Progress:**
+- 03-01: Lead capture schema complete (leads, lead_conversations, missed_calls tables + Voicenter types + phone utils)
