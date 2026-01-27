@@ -12,26 +12,26 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 Phase: 2 of 10 (WhatsApp Integration)
 Plan: 5 of 6 in current phase
 Status: In progress
-Last activity: 2026-01-27 - Completed 02-05-PLAN.md (Token Validation Job)
+Last activity: 2026-01-27 - Completed 02-04-PLAN.md (WhatsApp Message Workers)
 
-Progress: [████======] 67% of Phase 2 (4/6 plans - 02-04 pending)
+Progress: [█████=====] 83% of Phase 2 (5/6 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
-- Average duration: 4.9 min
-- Total execution time: 0.90 hours
+- Total plans completed: 13
+- Average duration: 5.0 min
+- Total execution time: 1.08 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 8 | 39.5 min | 4.9 min |
-| 02-whatsapp-integration | 3 | 14 min | 4.7 min |
+| 02-whatsapp-integration | 5 | 25.5 min | 5.1 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-08 (3 min), 02-01 (5 min), 02-02 (4 min), 02-03 (5 min)
+- Last 5 plans: 02-01 (5 min), 02-02 (4 min), 02-03 (5 min), 02-04 (6.5 min), 02-05 (5 min)
 - Trend: Consistent execution pace
 
 *Updated after each plan completion*
@@ -88,6 +88,9 @@ Recent decisions affecting current work:
 | Daily validation at 3:00 AM Israel time | 02-05 | Off-peak hours, minimal business impact |
 | Graph API /me endpoint for validation | 02-05 | Low cost, no quota impact |
 | 100ms delay between tenant checks | 02-05 | Rate limit protection for bulk validation |
+| Upsert pattern for conversations | 02-04 | Check existing first, then update or create |
+| Status timestamp backfill | 02-04 | If read but no sent/delivered, set those too |
+| Auto-reply best-effort | 02-04 | Failure logged but job continues |
 
 ### Pending Todos
 
@@ -115,14 +118,14 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-27
-Stopped at: Completed 02-05-PLAN.md
-Resume file: None - ready for remaining plans
+Last session: 2026-01-27T17:57:36Z
+Stopped at: Completed 02-04-PLAN.md
+Resume file: None - ready for 02-06-PLAN.md
 
 **Phase 2 Progress:**
 - 02-01: WhatsApp schema and Graph API client complete
 - 02-02: Embedded Signup OAuth callback complete
 - 02-03: Webhook handlers complete
-- 02-04: Pending (Message workers)
+- 02-04: Message workers complete
 - 02-05: Token validation job complete
 - 02-06: Pending (Frontend UI)
