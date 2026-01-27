@@ -153,79 +153,79 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| LEAD-01 | TBD | Pending |
-| LEAD-02 | TBD | Pending |
-| LEAD-03 | TBD | Pending |
-| LEAD-04 | TBD | Pending |
-| LEAD-05 | TBD | Pending |
-| LEAD-06 | TBD | Pending |
-| LEAD-07 | TBD | Pending |
-| REVW-01 | TBD | Pending |
-| REVW-02 | TBD | Pending |
-| REVW-03 | TBD | Pending |
-| REVW-04 | TBD | Pending |
-| REVW-05 | TBD | Pending |
-| REVW-06 | TBD | Pending |
-| REVW-07 | TBD | Pending |
-| GBPR-01 | TBD | Pending |
-| GBPR-02 | TBD | Pending |
-| GBPR-03 | TBD | Pending |
-| GBPR-04 | TBD | Pending |
-| GBPR-05 | TBD | Pending |
-| GBPR-06 | TBD | Pending |
-| GBPC-01 | TBD | Pending |
-| GBPC-02 | TBD | Pending |
-| GBPC-03 | TBD | Pending |
-| GBPC-04 | TBD | Pending |
-| GBPC-05 | TBD | Pending |
-| GBPO-01 | TBD | Pending |
-| GBPO-02 | TBD | Pending |
-| GBPO-03 | TBD | Pending |
-| GBPO-04 | TBD | Pending |
-| GBPO-05 | TBD | Pending |
-| GBPO-06 | TBD | Pending |
-| GBPO-07 | TBD | Pending |
-| SETUP-01 | TBD | Pending |
-| SETUP-02 | TBD | Pending |
-| SETUP-03 | TBD | Pending |
-| SETUP-04 | TBD | Pending |
-| SETUP-05 | TBD | Pending |
-| SETUP-06 | TBD | Pending |
-| DASH-01 | TBD | Pending |
-| DASH-02 | TBD | Pending |
-| DASH-03 | TBD | Pending |
-| DASH-04 | TBD | Pending |
-| DASH-05 | TBD | Pending |
-| DASH-06 | TBD | Pending |
-| DASH-07 | TBD | Pending |
-| DASH-08 | TBD | Pending |
-| NOTF-01 | TBD | Pending |
-| NOTF-02 | TBD | Pending |
-| NOTF-03 | TBD | Pending |
-| NOTF-04 | TBD | Pending |
-| NOTF-05 | TBD | Pending |
-| INTG-01 | TBD | Pending |
-| INTG-02 | TBD | Pending |
-| INTG-03 | TBD | Pending |
-| INTG-04 | TBD | Pending |
-| INTG-05 | TBD | Pending |
-| INTG-06 | TBD | Pending |
-| INTG-07 | TBD | Pending |
-| INFR-01 | TBD | Pending |
-| INFR-02 | TBD | Pending |
-| INFR-03 | TBD | Pending |
-| INFR-04 | TBD | Pending |
-| INFR-05 | TBD | Pending |
-| INFR-06 | TBD | Pending |
-| BILL-01 | TBD | Pending |
-| BILL-02 | TBD | Pending |
-| BILL-03 | TBD | Pending |
+| LEAD-01 | Phase 3 | Pending |
+| LEAD-02 | Phase 3 | Pending |
+| LEAD-03 | Phase 3 | Pending |
+| LEAD-04 | Phase 3 | Pending |
+| LEAD-05 | Phase 3 | Pending |
+| LEAD-06 | Phase 3 | Pending |
+| LEAD-07 | Phase 3 | Pending |
+| REVW-01 | Phase 6 | Pending |
+| REVW-02 | Phase 6 | Pending |
+| REVW-03 | Phase 6 | Pending |
+| REVW-04 | Phase 6 | Pending |
+| REVW-05 | Phase 6 | Pending |
+| REVW-06 | Phase 6 | Pending |
+| REVW-07 | Phase 6 | Pending |
+| GBPR-01 | Phase 5 | Pending |
+| GBPR-02 | Phase 5 | Pending |
+| GBPR-03 | Phase 5 | Pending |
+| GBPR-04 | Phase 5 | Pending |
+| GBPR-05 | Phase 5 | Pending |
+| GBPR-06 | Phase 5 | Pending |
+| GBPC-01 | Phase 7 | Pending |
+| GBPC-02 | Phase 7 | Pending |
+| GBPC-03 | Phase 7 | Pending |
+| GBPC-04 | Phase 7 | Pending |
+| GBPC-05 | Phase 7 | Pending |
+| GBPO-01 | Phase 8 | Pending |
+| GBPO-02 | Phase 8 | Pending |
+| GBPO-03 | Phase 8 | Pending |
+| GBPO-04 | Phase 8 | Pending |
+| GBPO-05 | Phase 8 | Pending |
+| GBPO-06 | Phase 8 | Pending |
+| GBPO-07 | Phase 8 | Pending |
+| SETUP-01 | Phase 10 | Pending |
+| SETUP-02 | Phase 10 | Pending |
+| SETUP-03 | Phase 10 | Pending |
+| SETUP-04 | Phase 10 | Pending |
+| SETUP-05 | Phase 10 | Pending |
+| SETUP-06 | Phase 10 | Pending |
+| DASH-01 | Phase 9 | Pending |
+| DASH-02 | Phase 9 | Pending |
+| DASH-03 | Phase 9 | Pending |
+| DASH-04 | Phase 9 | Pending |
+| DASH-05 | Phase 9 | Pending |
+| DASH-06 | Phase 9 | Pending |
+| DASH-07 | Phase 9 | Pending |
+| DASH-08 | Phase 9 | Pending |
+| NOTF-01 | Phase 9 | Pending |
+| NOTF-02 | Phase 5 | Pending |
+| NOTF-03 | Phase 3 | Pending |
+| NOTF-04 | Phase 7 | Pending |
+| NOTF-05 | Phase 8 | Pending |
+| INTG-01 | Phase 2 | Pending |
+| INTG-02 | Phase 2 | Pending |
+| INTG-03 | Phase 4 | Pending |
+| INTG-04 | Phase 4 | Pending |
+| INTG-05 | Phase 3 | Pending |
+| INTG-06 | Phase 6 | Pending |
+| INTG-07 | Phase 6 | Pending |
+| INFR-01 | Phase 1 | Pending |
+| INFR-02 | Phase 1 | Pending |
+| INFR-03 | Phase 1 | Pending |
+| INFR-04 | Phase 1 | Pending |
+| INFR-05 | Phase 1 | Pending |
+| INFR-06 | Phase 1 | Pending |
+| BILL-01 | Phase 10 | Pending |
+| BILL-02 | Phase 10 | Pending |
+| BILL-03 | Phase 10 | Pending |
 
 **Coverage:**
 - v1 requirements: 56 total
-- Mapped to phases: 0
-- Unmapped: 56 (pending roadmap creation)
+- Mapped to phases: 56
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-27*
-*Last updated: 2026-01-27 after initial definition*
+*Last updated: 2026-01-27 after roadmap creation*
