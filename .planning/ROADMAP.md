@@ -35,12 +35,16 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Encrypted token storage accepts and retrieves test credentials without exposing plaintext
   4. Background job scheduler runs hourly, daily, and weekly test jobs on schedule
   5. Activity feed receives real-time updates when test events are published
-**Plans**: TBD
+**Plans**: 7 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md - Initialize project with TypeScript, Hono, and database schema
+- [ ] 01-02-PLAN.md - Row-Level Security and tenant context middleware
+- [ ] 01-03-PLAN.md - Encrypted token vault for credentials
+- [ ] 01-04-PLAN.md - BullMQ queue infrastructure
+- [ ] 01-05-PLAN.md - Webhook endpoints and activity service
+- [ ] 01-06-PLAN.md - Background job scheduler
+- [ ] 01-07-PLAN.md - Activity feed SSE and verification scripts
 
 **Research flag**: None (standard patterns)
 
@@ -242,7 +246,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/7 | Planned | - |
 | 2. WhatsApp Integration | 0/TBD | Not started | - |
 | 3. Lead Capture | 0/TBD | Not started | - |
 | 4. Google Integration | 0/TBD | Not started | - |
