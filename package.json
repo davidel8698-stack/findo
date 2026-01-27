@@ -13,7 +13,8 @@
     "db:studio": "drizzle-kit studio",
     "test": "vitest",
     "seed:test": "tsx scripts/seed-test-tenants.ts",
-    "verify:phase1": "tsx scripts/verify-phase1.ts"
+    "verify:phase1": "tsx scripts/verify-phase1.ts",
+    "db:rls": "tsx scripts/apply-rls.ts"
   },
   "keywords": [
     "saas",

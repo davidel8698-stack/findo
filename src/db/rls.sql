@@ -47,3 +47,33 @@ BEGIN
   RETURN current_setting('app.current_tenant', true)::uuid;
 END;
 $$ LANGUAGE plpgsql;
+
+-- =============================================================================
+-- APPLICATION USER SETUP
+-- =============================================================================
+-- The application must connect as 'findo_app' user (NOT the table owner/superuser)
+-- to enforce RLS policies. The table owner bypasses RLS even with FORCE ROW LEVEL SECURITY.
+--
+-- Run these commands as the database superuser/owner:
+
+-- Grant schema usage
+GRANT USAGE ON SCHEMA public TO findo_app;
+
+-- Grant table permissions (SELECT, INSERT, UPDATE, DELETE on all current tables)
+GRANT SELECT, INSERT, UPDATE, DELETE ON tenants TO findo_app;
+GRANT SELECT, INSERT, UPDATE, DELETE ON activity_events TO findo_app;
+GRANT SELECT, INSERT, UPDATE, DELETE ON token_vault TO findo_app;
+
+-- Grant sequence permissions (for auto-generated IDs if any)
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO findo_app;
+
+-- Grant execute on helper functions
+GRANT EXECUTE ON FUNCTION set_tenant_context(uuid) TO findo_app;
+GRANT EXECUTE ON FUNCTION get_current_tenant() TO findo_app;
+
+-- DEFAULT PRIVILEGES: Grant permissions on future tables created by owner
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO findo_app;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT USAGE, SELECT ON SEQUENCES TO findo_app;
