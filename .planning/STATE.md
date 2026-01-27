@@ -5,32 +5,32 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 1 - Foundation (Complete)
+**Current focus:** Phase 1 - Foundation (Gap Closure Complete)
 
 ## Current Position
 
 Phase: 1 of 10 (Foundation)
-Plan: 7 of 7 in current phase
-Status: Phase 1 Complete
-Last activity: 2026-01-27 - Completed 01-07-PLAN.md (Activity Feed SSE and Verification Scripts)
+Plan: 8 of 8 in current phase
+Status: Phase 1 Complete (including gap closure)
+Last activity: 2026-01-27 - Completed 01-08-PLAN.md (Gap Closure - Redis warm-up and RLS GRANT statements)
 
 Progress: [==========] 100% of Phase 1
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: 5.0 min
-- Total execution time: 0.58 hours
+- Total plans completed: 8
+- Average duration: 4.9 min
+- Total execution time: 0.66 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 7 | 36.5 min | 5.2 min |
+| 01-foundation | 8 | 39.5 min | 4.9 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-03 (5 min), 01-04 (4.5 min), 01-06 (4 min), 01-05 (4 min), 01-07 (5 min)
+- Last 5 plans: 01-04 (4.5 min), 01-06 (4 min), 01-05 (4 min), 01-07 (5 min), 01-08 (3 min)
 - Trend: Consistent execution pace
 
 *Updated after each plan completion*
@@ -72,6 +72,9 @@ Recent decisions affecting current work:
 | SSE headers via c.header() before stream() | 01-07 | Hono streaming API compatibility |
 | 30-second SSE heartbeat | 01-07 | Standard interval to prevent timeout |
 | Test domain @test.findo.local | 01-07 | Easy test tenant identification and cleanup |
+| Warm up Redis via PING before accepting requests | 01-08 | Eliminates cold start latency on first webhook |
+| findo_app role with explicit GRANT statements | 01-08 | Non-superuser role for RLS enforcement |
+| Default privileges for future tables | 01-08 | findo_app auto-receives permissions on new tables |
 
 ### Pending Todos
 
@@ -94,9 +97,10 @@ None yet.
 - ENCRYPTION_SECRET environment variable must be set before using token vault
 - REDIS_URL environment variable must be set for queue infrastructure
 - DATABASE_URL environment variable must be set for PostgreSQL connection
+- findo_app database user must be created for RLS enforcement (see docs/rls-setup.md)
 
 ## Session Continuity
 
-Last session: 2026-01-27T14:53:00Z
-Stopped at: Completed 01-07-PLAN.md (Phase 1 Foundation complete with verification scripts)
+Last session: 2026-01-27T16:09:00Z
+Stopped at: Completed 01-08-PLAN.md (Gap Closure - Redis warm-up and RLS GRANT statements)
 Resume file: None - ready for Phase 2
