@@ -12,16 +12,16 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 Phase: 3 of 10 (Lead Capture)
 Plan: 4 of TBD in current phase
 Status: In progress
-Last activity: 2026-01-27 - Completed 03-02-PLAN.md (Voicenter CDR Webhook)
+Last activity: 2026-01-27 - Completed 03-03-PLAN.md (Lead Outreach Worker)
 
-Progress: [████░░░░░░] ~40% of Phase 3 (4/? plans)
+Progress: [█████░░░░░] ~50% of Phase 3 (5/? plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 17
-- Average duration: 6.2 min
-- Total execution time: 1.8 hours
+- Total plans completed: 18
+- Average duration: 6.1 min
+- Total execution time: 1.85 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [████░░░░░░] ~40% of Phase 3 (4/? plans)
 |-------|-------|-------|----------|
 | 01-foundation | 8 | 39.5 min | 4.9 min |
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
-| 03-lead-capture | 3 | 13.6 min | 4.5 min |
+| 03-lead-capture | 4 | 18.6 min | 4.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-05 (5 min), 02-06 (27 min), 03-01 (3.6 min), 03-04 (4.5 min), 03-02 (5.5 min)
+- Last 5 plans: 02-06 (27 min), 03-01 (3.6 min), 03-04 (4.5 min), 03-02 (5.5 min), 03-03 (5 min)
 - Trend: Consistent fast execution for Phase 3 plans
 
 *Updated after each plan completion*
@@ -103,6 +103,9 @@ Recent decisions affecting current work:
 | Claude Haiku 4.5 for intent extraction | 03-04 | Cost-effective, good Hebrew support |
 | CDR worker on webhooks queue | 03-02 | Reuses infrastructure, filters by job name |
 | 2-minute delayed lead outreach | 03-02 | Per CONTEXT.md, gives owner time to call back |
+| Warm personal message tone | 03-03 | Per CONTEXT.md, messages feel like owner wrote them |
+| Qualifying status for new leads | 03-03 | Chatbot collecting info, not yet qualified |
+| Reminder schedule at creation | 03-03 | 2h and 24h reminders queued when lead created |
 
 ### Pending Todos
 
@@ -131,11 +134,12 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-27T19:35:29Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-01-27T19:37:25Z
+Stopped at: Completed 03-03-PLAN.md
 Resume file: None
 
 **Phase 3 Progress:**
 - 03-01: Lead capture schema complete (leads, lead_conversations, missed_calls tables + Voicenter types + phone utils)
 - 03-02: Voicenter CDR webhook + lead queues (endpoint, leadOutreachQueue, leadReminderQueue, CDR worker)
+- 03-03: Lead outreach worker + Hebrew messages (warm personal messages, BullMQ worker, reminder scheduling)
 - 03-04: Chatbot state machine + AI intent extraction (conversation states, Claude Haiku 4.5 Hebrew intent extraction)
