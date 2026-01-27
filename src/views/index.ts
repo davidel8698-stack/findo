@@ -5,3 +5,4 @@
  */
 
 export { renderWhatsAppConnectPage } from './whatsapp-connect';
+export { renderGoogleConnectPage } from './google-connect';
