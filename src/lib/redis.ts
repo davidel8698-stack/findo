@@ -66,5 +66,22 @@ export async function closeRedisConnections(): Promise<void> {
   }
 }
 
+/**
+ * Warm up Redis connections by executing a PING command.
+ * Call this during startup to avoid cold start latency on first request.
+ *
+ * This establishes TCP+TLS connections eagerly instead of on first command.
+ */
+export async function warmUpConnections(): Promise<void> {
+  const redis = getRedis();
+
+  // Force connection establishment with PING
+  const startTime = Date.now();
+  await redis.ping();
+  const elapsed = Date.now() - startTime;
+
+  console.log(`[redis] Connection warmed up in ${elapsed}ms`);
+}
+
 // Export for direct access (used by BullMQ)
 export { Redis };

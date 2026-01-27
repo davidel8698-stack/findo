@@ -11,7 +11,7 @@ import { startWebhookWorker } from './queue/workers/webhook.worker';
 import { startScheduledWorker } from './queue/workers/test.worker';
 import { startActivityWorker } from './queue/workers/activity.worker';
 import { initializeScheduler } from './scheduler/index';
-import { closeRedisConnections } from './lib/redis';
+import { closeRedisConnections, warmUpConnections } from './lib/redis';
 
 // Create main app
 const app = new Hono();
@@ -95,6 +95,10 @@ process.on('SIGTERM', shutdown);
 // Start everything
 async function start() {
   console.log('[server] Starting Findo...');
+
+  // Warm up Redis connections BEFORE accepting requests
+  console.log('[server] Warming up Redis connections...');
+  await warmUpConnections();
 
   // Start workers
   webhookWorker = startWebhookWorker();
