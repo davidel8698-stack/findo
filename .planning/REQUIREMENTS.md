@@ -94,12 +94,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Infrastructure (INFR)
 
-- [ ] **INFR-01**: Multi-tenant architecture (one account = one business)
-- [ ] **INFR-02**: Secure tenant data isolation (Row-Level Security)
-- [ ] **INFR-03**: Encrypted storage for all tokens and credentials
-- [ ] **INFR-04**: Queue-based webhook processing (respond fast, process async)
-- [ ] **INFR-05**: Background job scheduling (hourly, daily, weekly, monthly)
-- [ ] **INFR-06**: Real-time activity feed updates
+- [x] **INFR-01**: Multi-tenant architecture (one account = one business)
+- [x] **INFR-02**: Secure tenant data isolation (Row-Level Security)
+- [x] **INFR-03**: Encrypted storage for all tokens and credentials
+- [x] **INFR-04**: Queue-based webhook processing (respond fast, process async)
+- [x] **INFR-05**: Background job scheduling (hourly, daily, weekly, monthly)
+- [x] **INFR-06**: Real-time activity feed updates
 
 ### Billing (BILL)
 
@@ -211,12 +211,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INTG-05 | Phase 3 | Pending |
 | INTG-06 | Phase 6 | Pending |
 | INTG-07 | Phase 6 | Pending |
-| INFR-01 | Phase 1 | Pending |
-| INFR-02 | Phase 1 | Pending |
-| INFR-03 | Phase 1 | Pending |
-| INFR-04 | Phase 1 | Pending |
-| INFR-05 | Phase 1 | Pending |
-| INFR-06 | Phase 1 | Pending |
+| INFR-01 | Phase 1 | Complete |
+| INFR-02 | Phase 1 | Complete |
+| INFR-03 | Phase 1 | Complete |
+| INFR-04 | Phase 1 | Complete |
+| INFR-05 | Phase 1 | Complete |
+| INFR-06 | Phase 1 | Complete |
 | BILL-01 | Phase 10 | Pending |
 | BILL-02 | Phase 10 | Pending |
 | BILL-03 | Phase 10 | Pending |
