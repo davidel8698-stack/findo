@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 2 of 10 (WhatsApp Integration)
-Plan: 3 of 6 in current phase
+Plan: 5 of 6 in current phase
 Status: In progress
-Last activity: 2026-01-27 - Completed 02-03-PLAN.md (WhatsApp Webhook Handlers)
+Last activity: 2026-01-27 - Completed 02-05-PLAN.md (Token Validation Job)
 
-Progress: [███=======] 50% of Phase 2 (3/6 plans)
+Progress: [████======] 67% of Phase 2 (4/6 plans - 02-04 pending)
 
 ## Performance Metrics
 
@@ -85,6 +85,9 @@ Recent decisions affecting current work:
 | Timing-safe signature comparison | 02-03 | Prevents timing attacks on HMAC verification |
 | Raw body verification before parsing | 02-03 | Preserves byte representation for signature |
 | Separate queues for messages vs statuses | 02-03 | Different processing patterns per CONTEXT.md |
+| Daily validation at 3:00 AM Israel time | 02-05 | Off-peak hours, minimal business impact |
+| Graph API /me endpoint for validation | 02-05 | Low cost, no quota impact |
+| 100ms delay between tenant checks | 02-05 | Rate limit protection for bulk validation |
 
 ### Pending Todos
 
@@ -112,14 +115,14 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-27T17:45:06Z
-Stopped at: Completed 02-03-PLAN.md
-Resume file: None - ready for 02-04-PLAN.md
+Last session: 2026-01-27
+Stopped at: Completed 02-05-PLAN.md
+Resume file: None - ready for remaining plans
 
 **Phase 2 Progress:**
 - 02-01: WhatsApp schema and Graph API client complete
 - 02-02: Embedded Signup OAuth callback complete
 - 02-03: Webhook handlers complete
 - 02-04: Pending (Message workers)
-- 02-05: Pending (Connection status)
-- 02-06: Pending (Integration testing)
+- 02-05: Token validation job complete
+- 02-06: Pending (Frontend UI)
