@@ -16,6 +16,7 @@ import { startWhatsAppMessageWorker } from './queue/workers/whatsapp-message.wor
 import { startWhatsAppStatusWorker } from './queue/workers/whatsapp-status.worker';
 import { startLeadOutreachWorker } from './queue/workers/lead-outreach.worker';
 import { startLeadReminderWorker } from './queue/workers/lead-reminder.worker';
+import { startVoicenterCDRWorker } from './queue/workers/voicenter-cdr.worker';
 import { initializeScheduler } from './scheduler/index';
 import { closeRedisConnections, warmUpConnections } from './lib/redis';
 
@@ -79,6 +80,7 @@ let whatsappMessageWorker: ReturnType<typeof startWhatsAppMessageWorker> | null 
 let whatsappStatusWorker: ReturnType<typeof startWhatsAppStatusWorker> | null = null;
 let leadOutreachWorker: ReturnType<typeof startLeadOutreachWorker> | null = null;
 let leadReminderWorker: ReturnType<typeof startLeadReminderWorker> | null = null;
+let voicenterCDRWorker: ReturnType<typeof startVoicenterCDRWorker> | null = null;
 
 // Graceful shutdown
 async function shutdown() {
@@ -113,6 +115,10 @@ async function shutdown() {
     await leadReminderWorker.close();
     console.log('[server] Lead reminder worker stopped');
   }
+  if (voicenterCDRWorker) {
+    await voicenterCDRWorker.close();
+    console.log('[server] Voicenter CDR worker stopped');
+  }
 
   // Close Redis connections
   await closeRedisConnections();
@@ -141,6 +147,7 @@ async function start() {
   whatsappStatusWorker = startWhatsAppStatusWorker();
   leadOutreachWorker = startLeadOutreachWorker();
   leadReminderWorker = startLeadReminderWorker();
+  voicenterCDRWorker = startVoicenterCDRWorker();
 
   // Initialize scheduler (include test jobs in development)
   const includeTestJobs = process.env.NODE_ENV !== 'production';
