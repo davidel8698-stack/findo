@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 3 of 10 (Lead Capture)
-Plan: 4 of TBD in current phase
+Plan: 5 of TBD in current phase
 Status: In progress
-Last activity: 2026-01-27 - Completed 03-03-PLAN.md (Lead Outreach Worker)
+Last activity: 2026-01-27 - Completed 03-05-PLAN.md (Lead Conversation Worker & Owner Notifications)
 
-Progress: [█████░░░░░] ~50% of Phase 3 (5/? plans)
+Progress: [██████░░░░] ~60% of Phase 3 (6/? plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
-- Average duration: 6.1 min
-- Total execution time: 1.85 hours
+- Total plans completed: 19
+- Average duration: 6.0 min
+- Total execution time: 1.92 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [█████░░░░░] ~50% of Phase 3 (5/? plans)
 |-------|-------|-------|----------|
 | 01-foundation | 8 | 39.5 min | 4.9 min |
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
-| 03-lead-capture | 4 | 18.6 min | 4.7 min |
+| 03-lead-capture | 5 | 22.6 min | 4.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-06 (27 min), 03-01 (3.6 min), 03-04 (4.5 min), 03-02 (5.5 min), 03-03 (5 min)
+- Last 5 plans: 03-01 (3.6 min), 03-04 (4.5 min), 03-02 (5.5 min), 03-03 (5 min), 03-05 (4 min)
 - Trend: Consistent fast execution for Phase 3 plans
 
 *Updated after each plan completion*
@@ -106,6 +106,9 @@ Recent decisions affecting current work:
 | Warm personal message tone | 03-03 | Per CONTEXT.md, messages feel like owner wrote them |
 | Qualifying status for new leads | 03-03 | Chatbot collecting info, not yet qualified |
 | Reminder schedule at creation | 03-03 | 2h and 24h reminders queued when lead created |
+| Use tenant.ownerPhone for notifications | 03-05 | Existing schema field, no migration needed |
+| Don't throw on notification failure | 03-05 | Notification non-critical, lead flow must continue |
+| Cancel reminders on customer response | 03-05 | Customer engaged, reminders not needed |
 
 ### Pending Todos
 
@@ -134,8 +137,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-27T19:37:25Z
-Stopped at: Completed 03-03-PLAN.md
+Last session: 2026-01-27T20:05:00Z
+Stopped at: Completed 03-05-PLAN.md
 Resume file: None
 
 **Phase 3 Progress:**
@@ -143,3 +146,4 @@ Resume file: None
 - 03-02: Voicenter CDR webhook + lead queues (endpoint, leadOutreachQueue, leadReminderQueue, CDR worker)
 - 03-03: Lead outreach worker + Hebrew messages (warm personal messages, BullMQ worker, reminder scheduling)
 - 03-04: Chatbot state machine + AI intent extraction (conversation states, Claude Haiku 4.5 Hebrew intent extraction)
+- 03-05: Lead conversation worker + owner notifications (WhatsApp worker extended, Hebrew structured summaries)
