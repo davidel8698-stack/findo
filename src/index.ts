@@ -6,6 +6,7 @@ import { logger } from 'hono/logger';
 import { webhookRoutes } from './routes/webhooks';
 import { healthRoutes } from './routes/health';
 import { activityRoutes } from './routes/activity';
+import { whatsappCallbackRoutes } from './routes/whatsapp/index';
 import { tenantContext } from './middleware/tenant-context';
 import { startWebhookWorker } from './queue/workers/webhook.worker';
 import { startScheduledWorker } from './queue/workers/test.worker';
@@ -42,6 +43,9 @@ api.get('/me', (c) => {
 
 // Activity feed routes (REST + SSE)
 api.route('/activity', activityRoutes);
+
+// WhatsApp routes (Embedded Signup callback, status, disconnect)
+api.route('/whatsapp', whatsappCallbackRoutes);
 
 // Mount API under /api
 app.route('/api', api);

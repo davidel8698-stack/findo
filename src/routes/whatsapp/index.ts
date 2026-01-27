@@ -1,0 +1,1 @@
+export { whatsappCallbackRoutes } from './callback';
