@@ -63,7 +63,7 @@ Set confidence to:
 
   try {
     const response = await anthropic.messages.create({
-      model: 'claude-haiku-4-5-20250929',
+      model: 'claude-3-haiku-20240307',
       max_tokens: 256,
       system: systemPrompt,
       messages: [
