@@ -40,3 +40,10 @@ export type {
   ParsedMessage,
   ParsedStatus,
 } from './webhooks';
+
+// Token Validation
+export {
+  validateTenantToken,
+  validateWhatsAppTokens,
+  notifyTokenInvalid,
+} from './validation';
