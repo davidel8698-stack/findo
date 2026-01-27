@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 2 of 10 (WhatsApp Integration)
-Plan: 2 of 6 in current phase
+Plan: 3 of 6 in current phase
 Status: In progress
-Last activity: 2026-01-27 - Completed 02-02-PLAN.md (Embedded Signup OAuth Callback)
+Last activity: 2026-01-27 - Completed 02-03-PLAN.md (WhatsApp Webhook Handlers)
 
-Progress: [██========] 27% of Phase 2 (2/6 plans)
+Progress: [███=======] 50% of Phase 2 (3/6 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
+- Total plans completed: 11
 - Average duration: 4.9 min
-- Total execution time: 0.82 hours
+- Total execution time: 0.90 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 8 | 39.5 min | 4.9 min |
-| 02-whatsapp-integration | 2 | 9 min | 4.5 min |
+| 02-whatsapp-integration | 3 | 14 min | 4.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-07 (5 min), 01-08 (3 min), 02-01 (5 min), 02-02 (4 min)
+- Last 5 plans: 01-08 (3 min), 02-01 (5 min), 02-02 (4 min), 02-03 (5 min)
 - Trend: Consistent execution pace
 
 *Updated after each plan completion*
@@ -82,6 +82,9 @@ Recent decisions affecting current work:
 | Phone Number ID as api_key type | 02-01 | Static identifier, not rotating token |
 | Token stored with wabaId identifier | 02-02 | Support future multi-WABA scenarios |
 | displayPhoneNumber defaults to empty string | 02-02 | Schema requires non-null, Meta may not provide |
+| Timing-safe signature comparison | 02-03 | Prevents timing attacks on HMAC verification |
+| Raw body verification before parsing | 02-03 | Preserves byte representation for signature |
+| Separate queues for messages vs statuses | 02-03 | Different processing patterns per CONTEXT.md |
 
 ### Pending Todos
 
@@ -109,14 +112,14 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-27T18:44:00Z
-Stopped at: Completed 02-02-PLAN.md
-Resume file: None - ready for 02-03-PLAN.md
+Last session: 2026-01-27T17:45:06Z
+Stopped at: Completed 02-03-PLAN.md
+Resume file: None - ready for 02-04-PLAN.md
 
 **Phase 2 Progress:**
 - 02-01: WhatsApp schema and Graph API client complete
 - 02-02: Embedded Signup OAuth callback complete
-- 02-03: Pending (Webhook handlers)
+- 02-03: Webhook handlers complete
 - 02-04: Pending (Message workers)
 - 02-05: Pending (Connection status)
 - 02-06: Pending (Integration testing)
