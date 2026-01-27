@@ -18,3 +18,25 @@ export type {
   TemplateComponent,
   TemplateParameter,
 } from './messages';
+
+// Embedded Signup (OAuth flow)
+export {
+  processEmbeddedSignup,
+  getConnectionStatus,
+  disconnectWhatsApp,
+} from './embedded-signup';
+
+// Webhooks
+export {
+  verifyWebhookSignature,
+  parseWebhookPayload,
+  isSupportedMessageType,
+} from './webhooks';
+export type {
+  WhatsAppWebhookPayload,
+  WhatsAppWebhookValue,
+  WhatsAppIncomingMessage,
+  WhatsAppStatusUpdate,
+  ParsedMessage,
+  ParsedStatus,
+} from './webhooks';
