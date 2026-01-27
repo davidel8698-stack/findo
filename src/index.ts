@@ -15,6 +15,7 @@ import { startActivityWorker } from './queue/workers/activity.worker';
 import { startWhatsAppMessageWorker } from './queue/workers/whatsapp-message.worker';
 import { startWhatsAppStatusWorker } from './queue/workers/whatsapp-status.worker';
 import { startLeadOutreachWorker } from './queue/workers/lead-outreach.worker';
+import { startLeadReminderWorker } from './queue/workers/lead-reminder.worker';
 import { initializeScheduler } from './scheduler/index';
 import { closeRedisConnections, warmUpConnections } from './lib/redis';
 
@@ -77,6 +78,7 @@ let activityWorker: ReturnType<typeof startActivityWorker> | null = null;
 let whatsappMessageWorker: ReturnType<typeof startWhatsAppMessageWorker> | null = null;
 let whatsappStatusWorker: ReturnType<typeof startWhatsAppStatusWorker> | null = null;
 let leadOutreachWorker: ReturnType<typeof startLeadOutreachWorker> | null = null;
+let leadReminderWorker: ReturnType<typeof startLeadReminderWorker> | null = null;
 
 // Graceful shutdown
 async function shutdown() {
@@ -107,6 +109,10 @@ async function shutdown() {
     await leadOutreachWorker.close();
     console.log('[server] Lead outreach worker stopped');
   }
+  if (leadReminderWorker) {
+    await leadReminderWorker.close();
+    console.log('[server] Lead reminder worker stopped');
+  }
 
   // Close Redis connections
   await closeRedisConnections();
@@ -134,6 +140,7 @@ async function start() {
   whatsappMessageWorker = startWhatsAppMessageWorker();
   whatsappStatusWorker = startWhatsAppStatusWorker();
   leadOutreachWorker = startLeadOutreachWorker();
+  leadReminderWorker = startLeadReminderWorker();
 
   // Initialize scheduler (include test jobs in development)
   const includeTestJobs = process.env.NODE_ENV !== 'production';
