@@ -7,10 +7,12 @@ import { webhookRoutes } from './routes/webhooks';
 import { healthRoutes } from './routes/health';
 import { activityRoutes } from './routes/activity';
 import { whatsappCallbackRoutes } from './routes/whatsapp/index';
+import { pagesRoutes } from './routes/pages';
 import { tenantContext } from './middleware/tenant-context';
 import { startWebhookWorker } from './queue/workers/webhook.worker';
 import { startScheduledWorker } from './queue/workers/test.worker';
 import { startActivityWorker } from './queue/workers/activity.worker';
+import { startWhatsAppMessageWorker } from './queue/workers/whatsapp-message.worker';
 import { initializeScheduler } from './scheduler/index';
 import { closeRedisConnections, warmUpConnections } from './lib/redis';
 
@@ -26,6 +28,10 @@ app.route('/health', healthRoutes);
 
 // Webhook routes (no tenant auth - they bring their own auth)
 app.route('/webhook', webhookRoutes);
+
+// Pages routes (HTML views with static file serving)
+// Tenant context is applied per-route as needed
+app.route('/', pagesRoutes);
 
 // API routes (require tenant context)
 const api = new Hono();
@@ -66,6 +72,7 @@ const port = parseInt(process.env.PORT || '3000', 10);
 let webhookWorker: ReturnType<typeof startWebhookWorker> | null = null;
 let scheduledWorker: ReturnType<typeof startScheduledWorker> | null = null;
 let activityWorker: ReturnType<typeof startActivityWorker> | null = null;
+let whatsappMessageWorker: ReturnType<typeof startWhatsAppMessageWorker> | null = null;
 
 // Graceful shutdown
 async function shutdown() {
@@ -83,6 +90,10 @@ async function shutdown() {
   if (activityWorker) {
     await activityWorker.close();
     console.log('[server] Activity worker stopped');
+  }
+  if (whatsappMessageWorker) {
+    await whatsappMessageWorker.close();
+    console.log('[server] WhatsApp message worker stopped');
   }
 
   // Close Redis connections
@@ -108,6 +119,7 @@ async function start() {
   webhookWorker = startWebhookWorker();
   scheduledWorker = startScheduledWorker();
   activityWorker = startActivityWorker();
+  whatsappMessageWorker = startWhatsAppMessageWorker();
 
   // Initialize scheduler (include test jobs in development)
   const includeTestJobs = process.env.NODE_ENV !== 'production';

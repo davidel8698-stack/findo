@@ -8,3 +8,6 @@ export {
   type NotificationJobData,
   type ActivityJobData,
 } from './queues';
+
+// Workers
+export { startWhatsAppMessageWorker } from './workers/whatsapp-message.worker';
