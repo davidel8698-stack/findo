@@ -85,14 +85,17 @@ Plans:
   4. Lead is saved with organized summary viewable in system
   5. Business owner receives WhatsApp notification with complete lead details and can respond
   6. All three phone options work: new Voicenter number, transfer existing, use current mobile
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
-- [ ] 03-03: TBD
+- [ ] 03-01-PLAN.md - Lead database schema and Voicenter types
+- [ ] 03-02-PLAN.md - Voicenter webhook endpoint and CDR processing worker
+- [ ] 03-03-PLAN.md - Lead outreach worker (2-minute delayed WhatsApp)
+- [ ] 03-04-PLAN.md - Chatbot state machine and AI intent extraction
+- [ ] 03-05-PLAN.md - Lead message handler and owner notifications
+- [ ] 03-06-PLAN.md - Reminder system (2h and 24h follow-ups)
 
-**Research flag**: NEEDS PHASE RESEARCH - Voicenter API integration (no official SDK), conversation state machine design
+**Research flag**: Completed (03-RESEARCH.md)
 
 ---
 
@@ -253,7 +256,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 |-------|----------------|--------|-----------|
 | 1. Foundation | 8/8 | Complete | 2026-01-27 |
 | 2. WhatsApp Integration | 6/6 | Complete | 2026-01-27 |
-| 3. Lead Capture | 0/TBD | Not started | - |
+| 3. Lead Capture | 0/6 | Ready | - |
 | 4. Google Integration | 0/TBD | Not started | - |
 | 5. Review Management | 0/TBD | Not started | - |
 | 6. Review Requests | 0/TBD | Not started | - |
