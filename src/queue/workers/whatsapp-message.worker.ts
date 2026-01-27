@@ -4,13 +4,20 @@ import { db } from '../../db/index';
 import {
   whatsappConnections,
   whatsappMessages,
+  leads,
+  leadConversations,
+  tenants,
   type NewWhatsAppMessage,
 } from '../../db/schema/index';
 import { eq } from 'drizzle-orm';
 import { openConversationWindow } from '../../services/whatsapp/conversations';
-import { activityQueue, type ActivityJobData } from '../queues';
+import { activityQueue, leadReminderQueue, type ActivityJobData } from '../queues';
 import { createWhatsAppClient, sendTextMessage } from '../../services/whatsapp';
 import type { ParsedMessage } from '../../services/whatsapp/webhooks';
+import { extractLeadInfo } from '../../services/lead-capture/intent';
+import { getNextState, isTerminalState, type ExtractedLeadInfo } from '../../services/lead-capture/chatbot';
+import { getChatbotResponse } from '../../services/lead-capture/messages';
+import { notifyOwnerOfLead, createLeadActivity } from '../../services/lead-capture/notifications';
 
 /**
  * Job data structure for whatsapp-messages jobs.
@@ -31,6 +38,145 @@ interface WhatsAppMessageJobData {
 // Hebrew auto-reply for unsupported message types
 const UNSUPPORTED_MESSAGE_REPLY = `שלום! קיבלנו את ההודעה שלך, אך אנו תומכים כרגע רק בהודעות טקסט ותמונות.
 אנא שלח/י הודעת טקסט או תמונה ונשמח לעזור.`;
+
+/**
+ * Handle incoming message that's part of a lead conversation.
+ *
+ * Process flow:
+ * 1. Check if conversation is in terminal state (skip if so)
+ * 2. Extract info using AI
+ * 3. Update lead with extracted info
+ * 4. Determine next state based on what's collected
+ * 5. Send chatbot response if appropriate
+ * 6. Cancel pending reminders (customer responded)
+ * 7. Notify owner of lead update
+ */
+async function handleLeadConversation(
+  message: { text?: string; from: string },
+  leadConvo: typeof leadConversations.$inferSelect,
+  lead: typeof leads.$inferSelect,
+  tenantId: string,
+): Promise<void> {
+  console.log(`[whatsapp-message] Processing lead conversation for ${message.from}`);
+
+  // Skip if conversation is in terminal state
+  if (isTerminalState(leadConvo.state as any)) {
+    console.log(`[whatsapp-message] Lead conversation ${leadConvo.id} is in terminal state ${leadConvo.state}`);
+    return;
+  }
+
+  // Extract info using AI
+  const messageText = message.text || '';
+  const existingInfo: ExtractedLeadInfo = {
+    name: lead.customerName,
+    need: lead.need,
+    contactPreference: lead.contactPreference,
+  };
+
+  const extractedInfo = await extractLeadInfo(
+    messageText,
+    [], // Conversation history not tracked in DB yet
+    leadConvo.state as any
+  );
+
+  console.log(`[whatsapp-message] Extracted info:`, extractedInfo);
+
+  // Merge with existing info
+  const mergedInfo: ExtractedLeadInfo = {
+    name: existingInfo.name || extractedInfo.name,
+    need: existingInfo.need || extractedInfo.need,
+    contactPreference: existingInfo.contactPreference || extractedInfo.contactPreference,
+  };
+
+  // Update lead with new info
+  const updates: Partial<typeof leads.$inferInsert> = {
+    updatedAt: new Date(),
+  };
+
+  if (extractedInfo.name && !lead.customerName) {
+    updates.customerName = extractedInfo.name;
+  }
+  if (extractedInfo.need && !lead.need) {
+    updates.need = extractedInfo.need;
+  }
+  if (extractedInfo.contactPreference && !lead.contactPreference) {
+    updates.contactPreference = extractedInfo.contactPreference;
+  }
+
+  // Check if any meaningful updates beyond just updatedAt
+  const hasNewInfo = Object.keys(updates).length > 1;
+
+  if (hasNewInfo) {
+    await db.update(leads)
+      .set(updates)
+      .where(eq(leads.id, lead.id));
+    console.log(`[whatsapp-message] Updated lead ${lead.id} with new info`);
+  }
+
+  // Determine next state based on what's now collected
+  const nextState = getNextState(leadConvo.state as any, mergedInfo);
+
+  // Update conversation state
+  if (nextState !== leadConvo.state) {
+    await db.update(leadConversations)
+      .set({ state: nextState, updatedAt: new Date() })
+      .where(eq(leadConversations.id, leadConvo.id));
+    console.log(`[whatsapp-message] Lead conversation ${leadConvo.id} transitioned to ${nextState}`);
+  }
+
+  // Cancel pending reminders if customer responded
+  try {
+    await leadReminderQueue.remove(`lead-reminder-1-${lead.id}`);
+    await leadReminderQueue.remove(`lead-reminder-2-${lead.id}`);
+    console.log(`[whatsapp-message] Cancelled pending reminders for lead ${lead.id}`);
+  } catch {
+    // Reminders may not exist or already processed
+  }
+
+  // Get tenant for business name
+  const tenant = await db.query.tenants.findFirst({
+    where: eq(tenants.id, tenantId),
+  });
+
+  // Send chatbot response if appropriate
+  const responseText = getChatbotResponse(nextState, {
+    businessName: tenant?.businessName || 'העסק',
+    customerName: mergedInfo.name || undefined,
+  });
+
+  if (responseText) {
+    const client = await createWhatsAppClient(tenantId);
+    if (client) {
+      try {
+        await sendTextMessage(client, lead.customerPhone, responseText);
+        console.log(`[whatsapp-message] Sent chatbot response for state ${nextState}`);
+      } catch (error) {
+        console.error(`[whatsapp-message] Failed to send chatbot response:`, error);
+      }
+    }
+  }
+
+  // Update lead status if completed
+  if (nextState === 'completed') {
+    await db.update(leads)
+      .set({ status: 'qualified', qualifiedAt: new Date(), updatedAt: new Date() })
+      .where(eq(leads.id, lead.id));
+
+    await createLeadActivity(
+      tenantId,
+      lead.id,
+      'lead.qualified',
+      'ליד מוכן',
+      `${mergedInfo.name || 'לקוח'} - ${mergedInfo.need || 'לא צוין'}`
+    );
+  }
+
+  // Notify owner of new/updated lead info
+  // Per CONTEXT.md: notify immediately, update as info comes in
+  if (hasNewInfo || nextState === 'completed') {
+    await notifyOwnerOfLead(lead.id);
+  }
+}
 
 /**
  * Process incoming WhatsApp messages.
@@ -80,6 +226,27 @@ async function processWhatsAppMessages(
         message.contactName,
         message.timestamp
       );
+
+      // 1.5 Check if this is part of a lead conversation
+      const leadConvo = await db.query.leadConversations.findFirst({
+        where: eq(leadConversations.whatsappConversationId, conversation.id),
+      });
+
+      if (leadConvo) {
+        // Get the associated lead
+        const lead = await db.query.leads.findFirst({
+          where: eq(leads.id, leadConvo.leadId),
+        });
+
+        if (lead) {
+          await handleLeadConversation(
+            { text: message.text, from: message.from },
+            leadConvo,
+            lead,
+            tenantId
+          );
+        }
+      }
 
       // 2. Save message to database
       const newMessage: NewWhatsAppMessage = {
