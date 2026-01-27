@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 1 of 10 (Foundation)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-01-27 - Completed 01-03-PLAN.md (Encrypted Token Vault)
+Plan: 4 of 4 in current phase
+Status: Phase 1 Complete
+Last activity: 2026-01-27 - Completed 01-04-PLAN.md (BullMQ Queue Infrastructure)
 
-Progress: [===-------] ~8%
+Progress: [====------] ~10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 6 min
-- Total execution time: 0.30 hours
+- Total plans completed: 4
+- Average duration: 5.5 min
+- Total execution time: 0.37 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 3 | 19 min | 6 min |
+| 01-foundation | 4 | 23.5 min | 5.9 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (7 min), 01-02 (?), 01-03 (5 min)
+- Last 5 plans: 01-01 (7 min), 01-02 (?), 01-03 (5 min), 01-04 (4.5 min)
 - Trend: Consistent execution pace
 
 *Updated after each plan completion*
@@ -53,6 +53,10 @@ Recent decisions affecting current work:
 | Per-value salt and IV | 01-03 | Same plaintext encrypts differently each time |
 | scrypt key derivation | 01-03 | Adds brute-force protection beyond master secret |
 | isValid status field for tokens | 01-03 | Health tracking without decryption |
+| maxRetriesPerRequest: null for BullMQ | 01-04 | Required for BullMQ blocking commands |
+| Separate Redis connections per queue/worker | 01-04 | BullMQ requirement for isolation |
+| Exponential backoff (1s base, 5 attempts) | 01-04 | Reasonable retry window for transient failures |
+| Four queue types (webhooks, scheduled, notifications, activity) | 01-04 | Independent scaling and monitoring |
 
 ### Pending Todos
 
@@ -73,9 +77,10 @@ None yet.
 
 **User Setup Required:**
 - ENCRYPTION_SECRET environment variable must be set before using token vault
+- REDIS_URL environment variable must be set for queue infrastructure
 
 ## Session Continuity
 
-Last session: 2026-01-27T14:38:00Z
-Stopped at: Completed 01-03-PLAN.md
-Resume file: None - ready for 01-04-PLAN.md
+Last session: 2026-01-27T14:37:27Z
+Stopped at: Completed 01-04-PLAN.md (Phase 1 Foundation complete)
+Resume file: None - ready for Phase 2
