@@ -47,3 +47,12 @@ export {
   validateWhatsAppTokens,
   notifyTokenInvalid,
 } from './validation';
+
+// Conversations (24-hour window management)
+export {
+  openConversationWindow,
+  getConversation,
+  isWindowOpen as isConversationWindowOpen,
+  incrementMessageCount,
+  getConversationById,
+} from './conversations';
