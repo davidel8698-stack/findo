@@ -151,6 +151,58 @@ export async function scheduleRecurringJobs(): Promise<void> {
     }
   );
   console.log('[scheduler] Registered: whatsapp-token-validation (daily at 3:00 AM)');
+
+  /**
+   * Google Token Refresh Job (Proactive)
+   *
+   * Runs every 5 minutes.
+   * Refreshes Google access tokens that are expiring within 10 minutes.
+   * Ensures continuous API access without interruption.
+   *
+   * Per RESEARCH.md: Google access tokens expire after ~1 hour.
+   * Proactive refresh ensures 24/7 autonomous operation.
+   */
+  await scheduledQueue.add(
+    'google-token-refresh',
+    {
+      jobType: 'token-refresh',
+      params: { provider: 'google', mode: 'proactive' },
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '*/5 * * * *', // Every 5 minutes
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'google-token-refresh',
+    }
+  );
+  console.log('[scheduler] Registered: google-token-refresh (every 5 minutes)');
+
+  /**
+   * Google Token Validation Job (Daily)
+   *
+   * Runs daily at 3:30 AM Israel time (30 min after WhatsApp validation).
+   * Validates all active Google connections against GBP API.
+   * Marks invalid tokens and notifies owners via dashboard activity.
+   *
+   * Per RESEARCH.md: ~1%/month unexplained token revocations.
+   * Daily validation catches revoked tokens proactively.
+   */
+  await scheduledQueue.add(
+    'google-token-validation',
+    {
+      jobType: 'token-refresh',
+      params: { provider: 'google', mode: 'daily-validation' },
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '30 3 * * *', // 3:30 AM daily (offset from WhatsApp at 3:00 AM)
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'google-token-validation',
+    }
+  );
+  console.log('[scheduler] Registered: google-token-validation (daily at 3:30 AM)');
 }
 
 /**

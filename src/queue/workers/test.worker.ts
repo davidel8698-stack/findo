@@ -2,6 +2,7 @@ import { Worker, Job } from 'bullmq';
 import { createRedisConnection } from '../../lib/redis';
 import type { ScheduledJobData } from '../queues';
 import { validateWhatsAppTokens } from '../../services/whatsapp/validation';
+import { refreshExpiringGoogleTokens, validateAllGoogleTokens } from '../../services/google/token-refresh';
 
 /**
  * Process scheduled test jobs.
@@ -35,16 +36,32 @@ async function processScheduledJob(job: Job<ScheduledJobData>): Promise<void> {
       break;
 
     case 'token-refresh':
-      // Check if this is the daily WhatsApp validation job
+      // WhatsApp token validation
       if (params?.provider === 'whatsapp' && params?.mode === 'daily-validation') {
         console.log(`[scheduled] Running daily WhatsApp token validation`);
-        const results = await validateWhatsAppTokens();
-        console.log(`[scheduled] WhatsApp token validation complete: ${results.valid}/${results.total} valid, ${results.invalid} invalid`);
-        if (results.invalid > 0) {
-          console.warn(`[scheduled] Invalid tokens found for tenants:`, results.errors.map(e => e.tenantId).join(', '));
+        const waResults = await validateWhatsAppTokens();
+        console.log(`[scheduled] WhatsApp token validation complete: ${waResults.valid}/${waResults.total} valid, ${waResults.invalid} invalid`);
+        if (waResults.invalid > 0) {
+          console.warn(`[scheduled] Invalid tokens found for tenants:`, waResults.errors.map(e => e.tenantId).join(', '));
         }
-      } else {
-        // General token refresh placeholder (for future Google tokens, etc.)
+      }
+      // Google proactive token refresh (every 5 minutes)
+      else if (params?.provider === 'google' && params?.mode === 'proactive') {
+        console.log(`[scheduled] Running proactive Google token refresh`);
+        const refreshResults = await refreshExpiringGoogleTokens();
+        console.log(`[scheduled] Google token refresh complete: ${refreshResults.checked} checked, ${refreshResults.refreshed} refreshed, ${refreshResults.failed} failed`);
+      }
+      // Google daily token validation
+      else if (params?.provider === 'google' && params?.mode === 'daily-validation') {
+        console.log(`[scheduled] Running daily Google token validation`);
+        const googleResults = await validateAllGoogleTokens();
+        console.log(`[scheduled] Google token validation complete: ${googleResults.valid}/${googleResults.checked} valid, ${googleResults.invalid} invalid`);
+        if (googleResults.invalid > 0) {
+          console.warn(`[scheduled] Invalid Google tokens found for tenants:`, googleResults.errors.map(e => e.tenantId).join(', '));
+        }
+      }
+      // General token refresh placeholder (for future providers)
+      else {
         console.log(`[scheduled] Token refresh job placeholder (provider: ${params?.provider || 'all'})`);
       }
       break;
