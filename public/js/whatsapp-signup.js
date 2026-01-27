@@ -21,6 +21,21 @@ window.fbAsyncInit = function() {
  * Triggered when user clicks "Connect WhatsApp" button.
  */
 function launchWhatsAppSignup() {
+  // Check if META credentials are configured
+  const config = window.FINDO_CONFIG;
+  if (!config.appId || !config.configId) {
+    console.error('[whatsapp-signup] META credentials not configured');
+    showErrorState('הגדרות Meta לא מוגדרות. אנא פנו למנהל המערכת.');
+    return;
+  }
+
+  // Check if Facebook SDK is loaded
+  if (typeof FB === 'undefined') {
+    console.error('[whatsapp-signup] Facebook SDK not loaded');
+    showErrorState('שגיאה בטעינת Facebook SDK. אנא רעננו את הדף ונסו שוב.');
+    return;
+  }
+
   // Show loading overlay
   showOverlay('פותח חלון התחברות...');
 
