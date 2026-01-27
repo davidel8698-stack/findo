@@ -1,0 +1,18 @@
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+import * as schema from './schema/index.js';
+
+const connectionString = process.env.DATABASE_URL;
+
+if (!connectionString) {
+  throw new Error('DATABASE_URL environment variable is required');
+}
+
+// For query purposes
+const queryClient = postgres(connectionString);
+export const db = drizzle(queryClient, { schema });
+
+// For migrations (uses different connection settings)
+export const createMigrationClient = () => {
+  return postgres(connectionString, { max: 1 });
+};
