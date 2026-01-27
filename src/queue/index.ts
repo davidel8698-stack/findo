@@ -11,3 +11,4 @@ export {
 
 // Workers
 export { startWhatsAppMessageWorker } from './workers/whatsapp-message.worker';
+export { startWhatsAppStatusWorker } from './workers/whatsapp-status.worker';

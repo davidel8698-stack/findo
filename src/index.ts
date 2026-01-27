@@ -13,6 +13,7 @@ import { startWebhookWorker } from './queue/workers/webhook.worker';
 import { startScheduledWorker } from './queue/workers/test.worker';
 import { startActivityWorker } from './queue/workers/activity.worker';
 import { startWhatsAppMessageWorker } from './queue/workers/whatsapp-message.worker';
+import { startWhatsAppStatusWorker } from './queue/workers/whatsapp-status.worker';
 import { initializeScheduler } from './scheduler/index';
 import { closeRedisConnections, warmUpConnections } from './lib/redis';
 
@@ -73,6 +74,7 @@ let webhookWorker: ReturnType<typeof startWebhookWorker> | null = null;
 let scheduledWorker: ReturnType<typeof startScheduledWorker> | null = null;
 let activityWorker: ReturnType<typeof startActivityWorker> | null = null;
 let whatsappMessageWorker: ReturnType<typeof startWhatsAppMessageWorker> | null = null;
+let whatsappStatusWorker: ReturnType<typeof startWhatsAppStatusWorker> | null = null;
 
 // Graceful shutdown
 async function shutdown() {
@@ -94,6 +96,10 @@ async function shutdown() {
   if (whatsappMessageWorker) {
     await whatsappMessageWorker.close();
     console.log('[server] WhatsApp message worker stopped');
+  }
+  if (whatsappStatusWorker) {
+    await whatsappStatusWorker.close();
+    console.log('[server] WhatsApp status worker stopped');
   }
 
   // Close Redis connections
@@ -120,6 +126,7 @@ async function start() {
   scheduledWorker = startScheduledWorker();
   activityWorker = startActivityWorker();
   whatsappMessageWorker = startWhatsAppMessageWorker();
+  whatsappStatusWorker = startWhatsAppStatusWorker();
 
   // Initialize scheduler (include test jobs in development)
   const includeTestJobs = process.env.NODE_ENV !== 'production';
