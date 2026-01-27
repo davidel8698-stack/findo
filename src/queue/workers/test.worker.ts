@@ -1,6 +1,7 @@
 import { Worker, Job } from 'bullmq';
 import { createRedisConnection } from '../../lib/redis';
 import type { ScheduledJobData } from '../queues';
+import { validateWhatsAppTokens } from '../../services/whatsapp/validation';
 
 /**
  * Process scheduled test jobs.
@@ -34,8 +35,18 @@ async function processScheduledJob(job: Job<ScheduledJobData>): Promise<void> {
       break;
 
     case 'token-refresh':
-      // TODO: Implement proactive token refresh
-      console.log(`[scheduled] Token refresh job placeholder`);
+      // Check if this is the daily WhatsApp validation job
+      if (params?.provider === 'whatsapp' && params?.mode === 'daily-validation') {
+        console.log(`[scheduled] Running daily WhatsApp token validation`);
+        const results = await validateWhatsAppTokens();
+        console.log(`[scheduled] WhatsApp token validation complete: ${results.valid}/${results.total} valid, ${results.invalid} invalid`);
+        if (results.invalid > 0) {
+          console.warn(`[scheduled] Invalid tokens found for tenants:`, results.errors.map(e => e.tenantId).join(', '));
+        }
+      } else {
+        // General token refresh placeholder (for future Google tokens, etc.)
+        console.log(`[scheduled] Token refresh job placeholder (provider: ${params?.provider || 'all'})`);
+      }
       break;
 
     default:

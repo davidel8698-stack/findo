@@ -126,6 +126,31 @@ export async function scheduleRecurringJobs(): Promise<void> {
     }
   );
   console.log('[scheduler] Scheduled daily digest (10:00 AM Israel)');
+
+  /**
+   * WhatsApp Token Validation Job
+   *
+   * Runs daily at 3:00 AM Israel time.
+   * Checks all active WhatsApp connections for token validity.
+   * Marks invalid tokens and notifies owners via dashboard activity.
+   *
+   * Per CONTEXT.md: Daily validation - check token validity every 24 hours proactively.
+   */
+  await scheduledQueue.add(
+    'whatsapp-token-validation',
+    {
+      jobType: 'token-refresh',
+      params: { provider: 'whatsapp', mode: 'daily-validation' },
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '0 3 * * *', // 3:00 AM daily
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'whatsapp-token-validation',
+    }
+  );
+  console.log('[scheduler] Registered: whatsapp-token-validation (daily at 3:00 AM)');
 }
 
 /**
