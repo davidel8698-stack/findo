@@ -1,7 +1,8 @@
 import { Hono } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { renderWhatsAppConnectPage } from '../views/index';
+import { renderWhatsAppConnectPage, renderGoogleConnectPage } from '../views/index';
 import { tenantContext } from '../middleware/tenant-context';
+import { getGoogleConnection } from '../services/google/oauth';
 
 /**
  * Pages Router
@@ -50,3 +51,87 @@ pagesRoutes.get('/connect/whatsapp', tenantContext, async (c) => {
 
   return c.html(html);
 });
+
+/**
+ * Google Connection Page
+ *
+ * GET /connect/google
+ *
+ * Renders the Google Business Profile connection UI.
+ * Handles success/error states from OAuth callback redirect.
+ * Requires tenant context (X-Tenant-ID header or future auth).
+ */
+pagesRoutes.get('/connect/google', tenantContext, async (c) => {
+  const tenant = c.get('tenant');
+  const tenantId = tenant?.tenantId;
+
+  if (!tenantId) {
+    return c.text('Tenant context required', 401);
+  }
+
+  // Parse query parameters for OAuth callback states
+  const success = c.req.query('success');
+  const error = c.req.query('error');
+
+  let state: 'initial' | 'success' | 'error' = 'initial';
+  let businessName: string | undefined;
+  let errorMessage: string | undefined;
+
+  if (success === 'true') {
+    // OAuth completed successfully - fetch connection details
+    state = 'success';
+    try {
+      const connection = await getGoogleConnection(tenantId);
+      if (connection.connected && connection.accountName) {
+        businessName = connection.accountName;
+      }
+    } catch (err) {
+      console.warn('[pages] Failed to fetch Google connection details:', err);
+      // Still show success, just without business name
+      businessName = 'העסק שלך';
+    }
+  } else if (error) {
+    state = 'error';
+    // Decode and translate common error messages
+    errorMessage = decodeGoogleError(error);
+  }
+
+  // Render the Google connection page
+  const html = renderGoogleConnectPage({
+    tenantId,
+    state,
+    businessName,
+    errorMessage,
+  });
+
+  return c.html(html);
+});
+
+/**
+ * Decode Google OAuth error to Hebrew user message.
+ */
+function decodeGoogleError(error: string): string {
+  const errorMap: Record<string, string> = {
+    'access_denied': 'הגישה נדחתה. אנא אשרו את ההרשאות הנדרשות.',
+    'invalid_scope': 'ההרשאות הנדרשות לא אושרו.',
+    'server_error': 'שגיאה בשרת Google. אנא נסו שוב מאוחר יותר.',
+    'temporarily_unavailable': 'השירות לא זמין כרגע. אנא נסו שוב מאוחר יותר.',
+    'No GBP accounts found': 'לא נמצאו פרופילים עסקיים בחשבון Google שלכם.',
+    'Google OAuth not configured': 'חיבור Google לא מוגדר במערכת. אנא פנו לתמיכה.',
+  };
+
+  // Check for exact match first
+  if (errorMap[error]) {
+    return errorMap[error];
+  }
+
+  // Check for partial match
+  for (const [key, value] of Object.entries(errorMap)) {
+    if (error.toLowerCase().includes(key.toLowerCase())) {
+      return value;
+    }
+  }
+
+  // Return the original error if no translation found
+  return error;
+}

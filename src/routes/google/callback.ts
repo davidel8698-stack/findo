@@ -77,13 +77,13 @@ googleRoutes.get(
 
     if (!result.success) {
       // For OAuth callback, redirect to error page with message
-      const errorUrl = new URL(process.env.GOOGLE_REDIRECT_SUCCESS_URI || '/setup/google');
+      const errorUrl = new URL(process.env.GOOGLE_REDIRECT_SUCCESS_URI || '/connect/google');
       errorUrl.searchParams.set('error', result.error || 'Unknown error');
       return c.redirect(errorUrl.toString());
     }
 
     // Redirect to success page
-    const successUrl = new URL(process.env.GOOGLE_REDIRECT_SUCCESS_URI || '/setup/google');
+    const successUrl = new URL(process.env.GOOGLE_REDIRECT_SUCCESS_URI || '/connect/google');
     successUrl.searchParams.set('success', 'true');
     return c.redirect(successUrl.toString());
   }
