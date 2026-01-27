@@ -60,13 +60,16 @@ Plans:
   2. System stores WABA ID, Phone Number ID, and tokens encrypted in Token Vault
   3. System can send a WhatsApp message to a test number and message is delivered
   4. System receives incoming WhatsApp messages via webhook and queues them for processing
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md - WhatsApp database schema and Graph API client service
+- [ ] 02-02-PLAN.md - Embedded Signup callback endpoint for token exchange
+- [ ] 02-03-PLAN.md - Webhook handler with signature verification
+- [ ] 02-04-PLAN.md - Message and status processing workers
+- [ ] 02-05-PLAN.md - Daily token validation job
 
-**Research flag**: NEEDS PHASE RESEARCH - WhatsApp template approval process for Hebrew, Meta Embedded Signup phone number eligibility
+**Research flag**: Completed (02-RESEARCH.md)
 
 ---
 
@@ -248,7 +251,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 8/8 | Complete | 2026-01-27 |
-| 2. WhatsApp Integration | 0/TBD | Not started | - |
+| 2. WhatsApp Integration | 0/5 | Planned | - |
 | 3. Lead Capture | 0/TBD | Not started | - |
 | 4. Google Integration | 0/TBD | Not started | - |
 | 5. Review Management | 0/TBD | Not started | - |
