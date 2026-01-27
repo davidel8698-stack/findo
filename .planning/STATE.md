@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 3 of 10 (Lead Capture)
-Plan: 1 of TBD in current phase
+Plan: 4 of TBD in current phase
 Status: In progress
-Last activity: 2026-01-27 - Completed 03-01-PLAN.md (Lead Capture Schema)
+Last activity: 2026-01-27 - Completed 03-04-PLAN.md (Chatbot State Machine + AI Intent)
 
-Progress: [█░░░░░░░░░] ~10% of Phase 3 (1/? plans)
+Progress: [████░░░░░░] ~40% of Phase 3 (4/? plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 15
-- Average duration: 6.4 min
-- Total execution time: 1.6 hours
+- Total plans completed: 16
+- Average duration: 6.3 min
+- Total execution time: 1.7 hours
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [█░░░░░░░░░] ~10% of Phase 3 (1/? plans)
 |-------|-------|-------|----------|
 | 01-foundation | 8 | 39.5 min | 4.9 min |
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
-| 03-lead-capture | 1 | 3.6 min | 3.6 min |
+| 03-lead-capture | 2 | 8.1 min | 4.1 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (5 min), 02-04 (6.5 min), 02-05 (5 min), 02-06 (27 min), 03-01 (3.6 min)
-- Trend: 03-01 fast schema-only plan
+- Last 5 plans: 02-04 (6.5 min), 02-05 (5 min), 02-06 (27 min), 03-01 (3.6 min), 03-04 (4.5 min)
+- Trend: Consistent fast execution for Phase 3 plans
 
 *Updated after each plan completion*
 
@@ -99,6 +99,8 @@ Recent decisions affecting current work:
 | Missed call idempotency via callId | 03-01 | Voicenter CallID prevents duplicate leads |
 | One conversation per lead (1:1) | 03-01 | Each lead has exactly one chatbot flow |
 | Phone normalization to +972 format | 03-01 | Consistent format for lookups and deduplication |
+| Simple object-based state machine | 03-04 | XState overkill for linear chatbot flow |
+| Claude Haiku 4.5 for intent extraction | 03-04 | Cost-effective, good Hebrew support |
 
 ### Pending Todos
 
@@ -123,12 +125,14 @@ None yet.
 - DATABASE_URL environment variable must be set for PostgreSQL connection
 - findo_app database user must be created for RLS enforcement (see docs/rls-setup.md)
 - META_APP_ID, META_APP_SECRET, WHATSAPP_WEBHOOK_VERIFY_TOKEN, META_CONFIG_ID for WhatsApp integration
+- ANTHROPIC_API_KEY for AI intent extraction (Claude Haiku 4.5)
 
 ## Session Continuity
 
-Last session: 2026-01-27T19:24:26Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-01-27T19:33:36Z
+Stopped at: Completed 03-04-PLAN.md
 Resume file: None
 
 **Phase 3 Progress:**
 - 03-01: Lead capture schema complete (leads, lead_conversations, missed_calls tables + Voicenter types + phone utils)
+- 03-04: Chatbot state machine + AI intent extraction (conversation states, Claude Haiku 4.5 Hebrew intent extraction)
