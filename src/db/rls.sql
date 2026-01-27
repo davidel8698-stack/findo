@@ -17,6 +17,12 @@ ALTER TABLE activity_events ENABLE ROW LEVEL SECURITY;
 CREATE POLICY activity_events_isolation ON activity_events
   USING (tenant_id = current_setting('app.current_tenant', true)::uuid);
 
+-- Enable RLS on token_vault table
+ALTER TABLE token_vault ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY token_vault_isolation ON token_vault
+  USING (tenant_id = current_setting('app.current_tenant', true)::uuid);
+
 -- Grant permissions for application user
 -- Note: Replace 'findo_app' with your actual database user
 -- GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO findo_app;
@@ -24,6 +30,7 @@ CREATE POLICY activity_events_isolation ON activity_events
 -- Force RLS for table owner (important for security)
 ALTER TABLE tenants FORCE ROW LEVEL SECURITY;
 ALTER TABLE activity_events FORCE ROW LEVEL SECURITY;
+ALTER TABLE token_vault FORCE ROW LEVEL SECURITY;
 
 -- Helper function to set tenant context (used by application)
 CREATE OR REPLACE FUNCTION set_tenant_context(tenant_uuid uuid)
