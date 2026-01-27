@@ -84,8 +84,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Integrations (INTG)
 
-- [ ] **INTG-01**: WhatsApp Business API via Meta Embedded Signup
-- [ ] **INTG-02**: Store WABA ID, Phone Number ID, tokens encrypted
+- [x] **INTG-01**: WhatsApp Business API via Meta Embedded Signup
+- [x] **INTG-02**: Store WABA ID, Phone Number ID, tokens encrypted
 - [ ] **INTG-03**: Google Business Profile API via OAuth 2.0
 - [ ] **INTG-04**: Store access + refresh tokens encrypted, handle refresh
 - [ ] **INTG-05**: Voicenter webhook for unanswered calls
@@ -204,8 +204,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NOTF-03 | Phase 3 | Pending |
 | NOTF-04 | Phase 7 | Pending |
 | NOTF-05 | Phase 8 | Pending |
-| INTG-01 | Phase 2 | Pending |
-| INTG-02 | Phase 2 | Pending |
+| INTG-01 | Phase 2 | Complete |
+| INTG-02 | Phase 2 | Complete |
 | INTG-03 | Phase 4 | Pending |
 | INTG-04 | Phase 4 | Pending |
 | INTG-05 | Phase 3 | Pending |
