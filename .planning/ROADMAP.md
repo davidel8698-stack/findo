@@ -108,13 +108,15 @@ Plans:
   2. System stores access and refresh tokens encrypted with proactive refresh before expiry
   3. System can read business profile details and existing reviews from GBP API
   4. System can post a reply to a review via GBP API
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md - Google OAuth foundation (schema, OAuth service, callback routes)
+- [ ] 04-02-PLAN.md - Google API services (profile and reviews)
+- [ ] 04-03-PLAN.md - Token refresh worker (proactive refresh every 5 minutes)
+- [ ] 04-04-PLAN.md - Google connection frontend UI (Hebrew, RTL)
 
-**Research flag**: NEEDS PHASE RESEARCH - GBP API quotas, polling optimization for multiple tenants
+**Research flag**: Completed (04-RESEARCH.md)
 
 ---
 
@@ -257,7 +259,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 1. Foundation | 8/8 | Complete | 2026-01-27 |
 | 2. WhatsApp Integration | 6/6 | Complete | 2026-01-27 |
 | 3. Lead Capture | 6/6 | Complete | 2026-01-27 |
-| 4. Google Integration | 0/TBD | Not started | - |
+| 4. Google Integration | 0/4 | Planned | - |
 | 5. Review Management | 0/TBD | Not started | - |
 | 6. Review Requests | 0/TBD | Not started | - |
 | 7. GBP Content | 0/TBD | Not started | - |
@@ -289,4 +291,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-27*
+*Last updated: 2026-01-28*
