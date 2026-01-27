@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { nanoid } from 'nanoid';
 import { webhookQueue, type WebhookJobData } from '../queue/index';
 import { getRedis } from '../lib/redis';
+import { activityService } from '../services/activity';
 
 export const webhookRoutes = new Hono();
 
@@ -63,6 +64,16 @@ webhookRoutes.post(
         jobId: eventId, // Use event ID for deduplication
       }
     );
+
+    // Publish activity event for real-time feed
+    await activityService.createAndPublish(tenantId, {
+      eventType: 'webhook.received',
+      title: 'Webhook received',
+      description: `Test webhook ${eventId} queued for processing`,
+      source: 'webhook',
+      sourceId: eventId,
+      metadata: { source: 'test', eventType: 'test.received' },
+    });
 
     const processingTime = Date.now() - startTime;
     console.log(`[webhook] Test webhook enqueued in ${processingTime}ms`);
