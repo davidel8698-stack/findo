@@ -3,3 +3,4 @@
 export * from './tenants';
 export * from './activity-events';
 export * from './token-vault';
+export * from './whatsapp';
