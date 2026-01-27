@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Multi-tenant infrastructure with queue-first webhook processing
 - [x] **Phase 2: WhatsApp Integration** - Meta Embedded Signup and bidirectional messaging
-- [ ] **Phase 3: Lead Capture** - Missed call detection and WhatsApp chatbot lead qualification
+- [x] **Phase 3: Lead Capture** - Missed call detection and WhatsApp chatbot lead qualification
 - [ ] **Phase 4: Google Integration** - GBP OAuth and review monitoring
 - [ ] **Phase 5: Review Management** - Auto-reply to positive reviews, draft responses for negative
 - [ ] **Phase 6: Review Requests** - Invoice-triggered and manual review request flows
@@ -88,12 +88,12 @@ Plans:
 **Plans**: 6 plans
 
 Plans:
-- [ ] 03-01-PLAN.md - Lead database schema and Voicenter types
-- [ ] 03-02-PLAN.md - Voicenter webhook endpoint and CDR processing worker
-- [ ] 03-03-PLAN.md - Lead outreach worker (2-minute delayed WhatsApp)
-- [ ] 03-04-PLAN.md - Chatbot state machine and AI intent extraction
-- [ ] 03-05-PLAN.md - Lead message handler and owner notifications
-- [ ] 03-06-PLAN.md - Reminder system (2h and 24h follow-ups)
+- [x] 03-01-PLAN.md - Lead database schema and Voicenter types
+- [x] 03-02-PLAN.md - Voicenter webhook endpoint and CDR processing worker
+- [x] 03-03-PLAN.md - Lead outreach worker (2-minute delayed WhatsApp)
+- [x] 03-04-PLAN.md - Chatbot state machine and AI intent extraction
+- [x] 03-05-PLAN.md - Lead message handler and owner notifications
+- [x] 03-06-PLAN.md - Reminder system (2h and 24h follow-ups)
 
 **Research flag**: Completed (03-RESEARCH.md)
 
@@ -256,7 +256,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 |-------|----------------|--------|-----------|
 | 1. Foundation | 8/8 | Complete | 2026-01-27 |
 | 2. WhatsApp Integration | 6/6 | Complete | 2026-01-27 |
-| 3. Lead Capture | 0/6 | Ready | - |
+| 3. Lead Capture | 6/6 | Complete | 2026-01-27 |
 | 4. Google Integration | 0/TBD | Not started | - |
 | 5. Review Management | 0/TBD | Not started | - |
 | 6. Review Requests | 0/TBD | Not started | - |

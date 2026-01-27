@@ -9,13 +9,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Lead Capture (LEAD)
 
-- [ ] **LEAD-01**: Missed call detected via Voicenter webhook (caller number + timestamp)
-- [ ] **LEAD-02**: System waits 2 minutes before acting (in case owner calls back)
-- [ ] **LEAD-03**: WhatsApp message sent to caller: "I saw you called [business]..."
-- [ ] **LEAD-04**: Chatbot collects customer details (configurable questions per business type)
-- [ ] **LEAD-05**: Customer saved as lead with organized summary
-- [ ] **LEAD-06**: Business owner notified via WhatsApp with lead details
-- [ ] **LEAD-07**: Phone options supported: new number, transfer existing, use current mobile
+- [x] **LEAD-01**: Missed call detected via Voicenter webhook (caller number + timestamp)
+- [x] **LEAD-02**: System waits 2 minutes before acting (in case owner calls back)
+- [x] **LEAD-03**: WhatsApp message sent to caller: "I saw you called [business]..."
+- [x] **LEAD-04**: Chatbot collects customer details (configurable questions per business type)
+- [x] **LEAD-05**: Customer saved as lead with organized summary
+- [x] **LEAD-06**: Business owner notified via WhatsApp with lead details
+- [x] **LEAD-07**: Phone options supported: new number, transfer existing, use current mobile
 
 ### Review Requests (REVW)
 
@@ -78,7 +78,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **NOTF-01**: Most interactions via WhatsApp to business owner (not dashboard)
 - [ ] **NOTF-02**: "New negative review" notification with tap-to-respond
-- [ ] **NOTF-03**: "New lead" notification with summary
+- [x] **NOTF-03**: "New lead" notification with summary
 - [ ] **NOTF-04**: Photo request notifications
 - [ ] **NOTF-05**: Review rate alert if below target
 
@@ -88,7 +88,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INTG-02**: Store WABA ID, Phone Number ID, tokens encrypted
 - [ ] **INTG-03**: Google Business Profile API via OAuth 2.0
 - [ ] **INTG-04**: Store access + refresh tokens encrypted, handle refresh
-- [ ] **INTG-05**: Voicenter webhook for unanswered calls
+- [x] **INTG-05**: Voicenter webhook for unanswered calls
 - [ ] **INTG-06**: Greeninvoice webhook for invoice creation
 - [ ] **INTG-07**: iCount integration for invoice detection
 
