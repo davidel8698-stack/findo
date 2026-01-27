@@ -12,16 +12,16 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 Phase: 3 of 10 (Lead Capture)
 Plan: 4 of TBD in current phase
 Status: In progress
-Last activity: 2026-01-27 - Completed 03-04-PLAN.md (Chatbot State Machine + AI Intent)
+Last activity: 2026-01-27 - Completed 03-02-PLAN.md (Voicenter CDR Webhook)
 
 Progress: [████░░░░░░] ~40% of Phase 3 (4/? plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
-- Average duration: 6.3 min
-- Total execution time: 1.7 hours
+- Total plans completed: 17
+- Average duration: 6.2 min
+- Total execution time: 1.8 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [████░░░░░░] ~40% of Phase 3 (4/? plans)
 |-------|-------|-------|----------|
 | 01-foundation | 8 | 39.5 min | 4.9 min |
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
-| 03-lead-capture | 2 | 8.1 min | 4.1 min |
+| 03-lead-capture | 3 | 13.6 min | 4.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-04 (6.5 min), 02-05 (5 min), 02-06 (27 min), 03-01 (3.6 min), 03-04 (4.5 min)
+- Last 5 plans: 02-05 (5 min), 02-06 (27 min), 03-01 (3.6 min), 03-04 (4.5 min), 03-02 (5.5 min)
 - Trend: Consistent fast execution for Phase 3 plans
 
 *Updated after each plan completion*
@@ -101,6 +101,8 @@ Recent decisions affecting current work:
 | Phone normalization to +972 format | 03-01 | Consistent format for lookups and deduplication |
 | Simple object-based state machine | 03-04 | XState overkill for linear chatbot flow |
 | Claude Haiku 4.5 for intent extraction | 03-04 | Cost-effective, good Hebrew support |
+| CDR worker on webhooks queue | 03-02 | Reuses infrastructure, filters by job name |
+| 2-minute delayed lead outreach | 03-02 | Per CONTEXT.md, gives owner time to call back |
 
 ### Pending Todos
 
@@ -129,10 +131,11 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-27T19:33:36Z
-Stopped at: Completed 03-04-PLAN.md
+Last session: 2026-01-27T19:35:29Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
 
 **Phase 3 Progress:**
 - 03-01: Lead capture schema complete (leads, lead_conversations, missed_calls tables + Voicenter types + phone utils)
+- 03-02: Voicenter CDR webhook + lead queues (endpoint, leadOutreachQueue, leadReminderQueue, CDR worker)
 - 03-04: Chatbot state machine + AI intent extraction (conversation states, Claude Haiku 4.5 Hebrew intent extraction)
