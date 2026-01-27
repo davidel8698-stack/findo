@@ -12,7 +12,8 @@
     "db:migrate": "tsx src/db/migrate.ts",
     "db:studio": "drizzle-kit studio",
     "test": "vitest",
-    "seed:test": "tsx scripts/seed-test-tenants.ts"
+    "seed:test": "tsx scripts/seed-test-tenants.ts",
+    "verify:phase1": "tsx scripts/verify-phase1.ts"
   },
   "keywords": [
     "saas",
