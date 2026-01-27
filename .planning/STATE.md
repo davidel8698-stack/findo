@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 1 of 10 (Foundation)
-Plan: 4 of 4 in current phase
-Status: Phase 1 Complete
-Last activity: 2026-01-27 - Completed 01-04-PLAN.md (BullMQ Queue Infrastructure)
+Plan: 6 of 6 in current phase
+Status: In progress (01-05 pending)
+Last activity: 2026-01-27 - Completed 01-06-PLAN.md (Background Job Scheduler)
 
 Progress: [====------] ~10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 5.5 min
-- Total execution time: 0.37 hours
+- Total plans completed: 5
+- Average duration: 5.1 min
+- Total execution time: 0.43 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 4 | 23.5 min | 5.9 min |
+| 01-foundation | 5 | 27.5 min | 5.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (7 min), 01-02 (6 min), 01-03 (5 min), 01-04 (4.5 min)
+- Last 5 plans: 01-02 (6 min), 01-03 (5 min), 01-04 (4.5 min), 01-06 (4 min)
 - Trend: Consistent execution pace
 
 *Updated after each plan completion*
@@ -60,6 +60,11 @@ Recent decisions affecting current work:
 | Separate Redis connections per queue/worker | 01-04 | BullMQ requirement for isolation |
 | Exponential backoff (1s base, 5 attempts) | 01-04 | Reasonable retry window for transient failures |
 | Four queue types (webhooks, scheduled, notifications, activity) | 01-04 | Independent scaling and monitoring |
+| Activity worker concurrency: 10 | 01-06 | Lightweight pub/sub operations |
+| Tenant-specific pub/sub channels | 01-06 | activity:tenant:{id} pattern for isolation |
+| All jobs use Asia/Jerusalem timezone | 01-06 | Israeli business hours |
+| Daily/weekly jobs at 10:00 AM | 01-06 | After morning rush per CONTEXT.md |
+| Weekly jobs on Sunday | 01-06 | Start of Israeli work week |
 
 ### Pending Todos
 
@@ -84,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-27T14:37:27Z
-Stopped at: Completed 01-04-PLAN.md (Phase 1 Foundation complete)
-Resume file: None - ready for Phase 2
+Last session: 2026-01-27
+Stopped at: Completed 01-06-PLAN.md (Background Job Scheduler)
+Resume file: None - 01-05 pending for main app integration
