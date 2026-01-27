@@ -30,7 +30,7 @@ Progress: [====------] ~10%
 | 01-foundation | 4 | 23.5 min | 5.9 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (7 min), 01-02 (?), 01-03 (5 min), 01-04 (4.5 min)
+- Last 5 plans: 01-01 (7 min), 01-02 (6 min), 01-03 (5 min), 01-04 (4.5 min)
 - Trend: Consistent execution pace
 
 *Updated after each plan completion*
@@ -49,6 +49,9 @@ Recent decisions affecting current work:
 | Default timezone Asia/Jerusalem | 01-01 | Israeli market focus |
 | Soft delete with deleted_at | 01-01 | 90-day data retention requirement |
 | Drizzle imports without .js extension | 01-01 | Compatibility with drizzle-kit CJS mode |
+| RLS session variable (app.current_tenant) | 01-02 | Database-level tenant isolation |
+| Context cleanup after request | 01-02 | Connection pool safety |
+| FORCE ROW LEVEL SECURITY | 01-02 | Prevents superuser bypass |
 | AES-256-GCM for token encryption | 01-03 | Authenticated encryption prevents tampering |
 | Per-value salt and IV | 01-03 | Same plaintext encrypts differently each time |
 | scrypt key derivation | 01-03 | Adds brute-force protection beyond master secret |
