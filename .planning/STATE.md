@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 4 of 10 (Google Integration)
-Plan: 0 of TBD in current phase
-Status: Ready for planning
-Last activity: 2026-01-27 - Completed Phase 3 (Lead Capture)
+Plan: 1 of TBD in current phase
+Status: In progress
+Last activity: 2026-01-28 - Completed 04-01-PLAN.md (Google OAuth Foundation)
 
-Progress: [██████████] 100% of Phase 3 (6/6 plans)
+Progress: [█░░░░░░░░░] ~10% of Phase 4 (1/? plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
-- Average duration: 5.9 min
-- Total execution time: 1.97 hours
+- Total plans completed: 21
+- Average duration: 6.1 min
+- Total execution time: 2.12 hours
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [██████████] 100% of Phase 3 (6/6 plans)
 | 01-foundation | 8 | 39.5 min | 4.9 min |
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
 | 03-lead-capture | 6 | 27.6 min | 4.6 min |
+| 04-google-integration | 1 | 9.5 min | 9.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-04 (4.5 min), 03-02 (5.5 min), 03-03 (5 min), 03-05 (4 min), 03-06 (5 min)
-- Trend: Consistent fast execution for Phase 3 plans
+- Last 5 plans: 03-05 (4 min), 03-06 (5 min), 04-01 (9.5 min)
+- Trend: Phase 4 OAuth setup slightly longer due to googleapis library
 
 *Updated after each plan completion*
 
@@ -112,6 +113,10 @@ Recent decisions affecting current work:
 | Unresponsive timeout 24h after reminder 2 | 03-06 | Total 48h from initial message before marking unresponsive |
 | activityService for lead events | 03-06 | Consistent activity pattern across all workers |
 | Idempotent reminder checks via timestamps | 03-06 | Prevents duplicate reminders on retry |
+| business.manage scope for Google OAuth | 04-01 | Covers reviews read/reply, business info, locations |
+| TenantId in OAuth state parameter | 04-01 | Validates callback is for correct tenant, prevents CSRF |
+| prompt: consent in OAuth URL | 04-01 | Forces consent screen to ensure refresh token |
+| Fetch account info from accounts.list API | 04-01 | Get accountId/accountName programmatically |
 
 ### Pending Todos
 
@@ -137,19 +142,15 @@ None yet.
 - findo_app database user must be created for RLS enforcement (see docs/rls-setup.md)
 - META_APP_ID, META_APP_SECRET, WHATSAPP_WEBHOOK_VERIFY_TOKEN, META_CONFIG_ID for WhatsApp integration
 - ANTHROPIC_API_KEY for AI intent extraction (Claude Haiku 4.5)
+- GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI for Google OAuth
 
 ## Session Continuity
 
-Last session: 2026-01-27
-Stopped at: Completed Phase 3 - Lead Capture
-Resume file: None - ready for Phase 4
+Last session: 2026-01-28
+Stopped at: Completed 04-01-PLAN.md (Google OAuth Foundation)
+Resume file: None - ready for 04-02
 
-**Phase 3 Progress:**
-- 03-01: Lead capture schema complete (leads, lead_conversations, missed_calls tables + Voicenter types + phone utils)
-- 03-02: Voicenter CDR webhook + lead queues (endpoint, leadOutreachQueue, leadReminderQueue, CDR worker)
-- 03-03: Lead outreach worker + Hebrew messages (warm personal messages, BullMQ worker, reminder scheduling)
-- 03-04: Chatbot state machine + AI intent extraction (conversation states, Claude Haiku 4.5 Hebrew intent extraction)
-- 03-05: Lead conversation worker + owner notifications (WhatsApp worker extended, Hebrew structured summaries)
-- 03-06: Lead reminder worker (2h/24h reminders, unresponsive timeout marking, activity events)
+**Phase 4 Progress:**
+- 04-01: Google OAuth Foundation (google_connections table, OAuth service with googleapis, HTTP routes at /api/google/*)
 
-**Phase 3 COMPLETE - Ready for Phase 4: Google Integration**
+**Next:** 04-02 Reviews Polling (fetch reviews from GBP API, store in database)
