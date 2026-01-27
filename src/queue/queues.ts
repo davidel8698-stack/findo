@@ -63,6 +63,27 @@ export const activityQueue = new Queue('activity', {
   },
 });
 
+/**
+ * Lead outreach queue.
+ * Handles delayed outreach to missed call callers (2-minute delay).
+ * Sends initial WhatsApp message to start lead capture flow.
+ */
+export const leadOutreachQueue = new Queue('lead-outreach', {
+  ...defaultQueueOptions,
+  connection: createRedisConnection(),
+});
+
+/**
+ * Lead reminder queue.
+ * Handles follow-up reminders for unresponsive leads.
+ * Reminder 1: 2 hours after initial message
+ * Reminder 2: 24 hours after initial message
+ */
+export const leadReminderQueue = new Queue('lead-reminders', {
+  ...defaultQueueOptions,
+  connection: createRedisConnection(),
+});
+
 // Job type definitions for type safety
 export interface WebhookJobData {
   source: 'voicenter' | 'greeninvoice' | 'icount' | 'whatsapp' | 'google' | 'test';
@@ -95,4 +116,24 @@ export interface ActivityJobData {
   metadata?: Record<string, unknown>;
   source: string;
   sourceId?: string;
+}
+
+/**
+ * Lead outreach job data.
+ * Triggered by Voicenter CDR worker after missed call detected.
+ */
+export interface LeadOutreachJobData {
+  tenantId: string;
+  missedCallId: string;
+  callerPhone: string;
+}
+
+/**
+ * Lead reminder job data.
+ * Scheduled by lead outreach worker for follow-up reminders.
+ */
+export interface LeadReminderJobData {
+  leadId: string;
+  leadConversationId: string;
+  reminderNumber: 1 | 2; // 1 = 2h reminder, 2 = 24h reminder
 }
