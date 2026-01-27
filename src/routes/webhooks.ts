@@ -10,6 +10,7 @@ import {
   parseWebhookPayload,
   type WhatsAppWebhookPayload,
 } from '../services/whatsapp/webhooks';
+import { type VoicenterCDR } from '../services/voicenter/types';
 
 export const webhookRoutes = new Hono();
 
@@ -92,12 +93,62 @@ webhookRoutes.post(
 );
 
 /**
- * Voicenter webhook endpoint (placeholder for Phase 3).
+ * Voicenter CDR webhook endpoint.
+ * POST /webhook/voicenter/cdr
+ *
+ * Receives Call Detail Records (CDR) from Voicenter after each call.
+ * Missed calls are queued for lead capture processing.
+ */
+webhookRoutes.post('/voicenter/cdr', async (c) => {
+  const startTime = Date.now();
+
+  // Parse CDR payload - Voicenter sends JSON body
+  let cdr: VoicenterCDR;
+  try {
+    cdr = await c.req.json() as VoicenterCDR;
+  } catch (error) {
+    console.warn('[voicenter] Invalid JSON in CDR payload');
+    return c.text('Bad Request', 400);
+  }
+
+  // Validate required fields
+  if (!cdr.CallID || !cdr.caller || !cdr.DID || !cdr.DialStatus) {
+    console.warn('[voicenter] Invalid CDR payload - missing required fields', {
+      hasCallID: !!cdr.CallID,
+      hasCaller: !!cdr.caller,
+      hasDID: !!cdr.DID,
+      hasDialStatus: !!cdr.DialStatus,
+    });
+    return c.text('Bad Request', 400);
+  }
+
+  // Queue for processing (respond immediately - Voicenter expects fast 200 OK)
+  await webhookQueue.add(
+    'voicenter-cdr',
+    {
+      source: 'voicenter',
+      eventId: cdr.CallID,
+      eventType: 'cdr.received',
+      payload: cdr as unknown as Record<string, unknown>,
+      receivedAt: new Date().toISOString(),
+    } satisfies WebhookJobData
+  );
+
+  const processingTime = Date.now() - startTime;
+  console.log(`[voicenter] Queued CDR ${cdr.CallID} (${cdr.DialStatus}) in ${processingTime}ms`);
+
+  return c.text('OK', 200);
+});
+
+/**
+ * Legacy Voicenter webhook endpoint (placeholder).
  * POST /webhook/voicenter
+ *
+ * Redirects to /voicenter/cdr for backwards compatibility.
  */
 webhookRoutes.post('/voicenter', async (c) => {
-  // TODO: Implement in Phase 3
-  return c.json({ error: 'Not implemented' }, 501);
+  console.log('[voicenter] Legacy endpoint hit - use /voicenter/cdr instead');
+  return c.json({ error: 'Use /webhook/voicenter/cdr endpoint' }, 404);
 });
 
 /**
