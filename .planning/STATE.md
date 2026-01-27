@@ -5,32 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 1 - Foundation (Gap Closure Complete)
+**Current focus:** Phase 2 - WhatsApp Integration
 
 ## Current Position
 
-Phase: 1 of 10 (Foundation)
-Plan: 8 of 8 in current phase
-Status: Phase 1 Complete (including gap closure)
-Last activity: 2026-01-27 - Completed 01-08-PLAN.md (Gap Closure - Redis warm-up and RLS GRANT statements)
+Phase: 2 of 10 (WhatsApp Integration)
+Plan: 1 of 6 in current phase
+Status: In progress
+Last activity: 2026-01-27 - Completed 02-01-PLAN.md (WhatsApp Database Schema & Graph API Client)
 
-Progress: [==========] 100% of Phase 1
+Progress: [█=========] 13% of Phase 2 (1/6 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 9
 - Average duration: 4.9 min
-- Total execution time: 0.66 hours
+- Total execution time: 0.74 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 8 | 39.5 min | 4.9 min |
+| 02-whatsapp-integration | 1 | 5 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-04 (4.5 min), 01-06 (4 min), 01-05 (4 min), 01-07 (5 min), 01-08 (3 min)
+- Last 5 plans: 01-05 (4 min), 01-07 (5 min), 01-08 (3 min), 02-01 (5 min)
 - Trend: Consistent execution pace
 
 *Updated after each plan completion*
@@ -75,6 +76,10 @@ Recent decisions affecting current work:
 | Warm up Redis via PING before accepting requests | 01-08 | Eliminates cold start latency on first webhook |
 | findo_app role with explicit GRANT statements | 01-08 | Non-superuser role for RLS enforcement |
 | Default privileges for future tables | 01-08 | findo_app auto-receives permissions on new tables |
+| One WhatsApp connection per tenant | 02-01 | Per CONTEXT.md: single WhatsApp number per business |
+| Graph API v21.0 | 02-01 | Current stable version per RESEARCH.md |
+| Hebrew (he) as default language | 02-01 | Israeli market focus |
+| Phone Number ID as api_key type | 02-01 | Static identifier, not rotating token |
 
 ### Pending Todos
 
@@ -98,17 +103,18 @@ None yet.
 - REDIS_URL environment variable must be set for queue infrastructure
 - DATABASE_URL environment variable must be set for PostgreSQL connection
 - findo_app database user must be created for RLS enforcement (see docs/rls-setup.md)
+- META_APP_ID, META_APP_SECRET, WHATSAPP_WEBHOOK_VERIFY_TOKEN, META_CONFIG_ID for WhatsApp integration
 
 ## Session Continuity
 
-Last session: 2026-01-27T16:30:00Z
-Stopped at: Phase 1 verified complete - all success criteria pass
-Resume file: None - ready for Phase 2
+Last session: 2026-01-27T17:34:18Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: None - ready for 02-02-PLAN.md
 
-**UAT Final Status:**
-- Webhook response < 500ms ✓
-- Token encryption ✓
-- Scheduled jobs ✓
-- Activity feed ✓
-- RLS isolation ✓
-- Webhook activity events ✓ (fixed: d232769)
+**Phase 2 Progress:**
+- 02-01: WhatsApp schema and Graph API client complete
+- 02-02: Pending (Embedded Signup OAuth)
+- 02-03: Pending (Webhook handlers)
+- 02-04: Pending (Message workers)
+- 02-05: Pending (Connection status)
+- 02-06: Pending (Integration testing)
