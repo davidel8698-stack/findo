@@ -7,6 +7,7 @@ import { webhookRoutes } from './routes/webhooks';
 import { healthRoutes } from './routes/health';
 import { activityRoutes } from './routes/activity';
 import { whatsappCallbackRoutes } from './routes/whatsapp/index';
+import { googleRoutes } from './routes/google/index';
 import { pagesRoutes } from './routes/pages';
 import { tenantContext } from './middleware/tenant-context';
 import { startWebhookWorker } from './queue/workers/webhook.worker';
@@ -56,6 +57,9 @@ api.route('/activity', activityRoutes);
 
 // WhatsApp routes (Embedded Signup callback, status, disconnect)
 api.route('/whatsapp', whatsappCallbackRoutes);
+
+// Google routes (OAuth flow, status, disconnect)
+api.route('/google', googleRoutes);
 
 // Mount API under /api
 app.route('/api', api);
