@@ -4,6 +4,7 @@ import { db } from '../../db/index';
 import { googleConnections } from '../../db/schema/index';
 import { eq } from 'drizzle-orm';
 import { detectNewReviews, processNewReview } from '../../services/review-management';
+import { checkReviewCompletion } from '../../services/review-request/completion';
 import { type ScheduledJobData } from '../queues';
 
 /**
@@ -37,21 +38,31 @@ async function processReviewCheck(): Promise<void> {
       // Detect new reviews for this tenant
       const newReviews = await detectNewReviews(connection.tenantId, connection);
 
-      // Process each new review
-      let processedCount = 0;
+      // Process each new review and collect IDs
+      const newReviewIds: string[] = [];
       for (const review of newReviews) {
-        const result = await processNewReview(
+        const reviewId = await processNewReview(
           connection.tenantId,
           connection.id,
           review
         );
-        if (result) {
-          processedCount++;
+        if (reviewId) {
+          newReviewIds.push(reviewId);
         }
       }
 
       if (newReviews.length > 0) {
-        console.log(`[review-poll] Processed ${processedCount}/${newReviews.length} new reviews for tenant ${connection.tenantId}`);
+        console.log(`[review-poll] Processed ${newReviewIds.length}/${newReviews.length} new reviews for tenant ${connection.tenantId}`);
+      }
+
+      // Check if any pending review requests were completed by these new reviews
+      if (newReviewIds.length > 0) {
+        const completedCount = await checkReviewCompletion(connection.tenantId, newReviewIds);
+        if (completedCount > 0) {
+          console.log(
+            `[review-poll] Marked ${completedCount} review requests as completed for tenant ${connection.tenantId}`
+          );
+        }
       }
 
       // Rate limit protection - 100ms delay between tenants
