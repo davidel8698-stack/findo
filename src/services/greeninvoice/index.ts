@@ -107,5 +107,6 @@ export function createGreeninvoiceClient(
   return new GreeninvoiceClient(tenantId, credentials);
 }
 
-// Re-export types
+// Re-export types and documents
 export * from './types';
+export * from './documents';
