@@ -157,13 +157,13 @@ Plans:
 **Plans**: 7 plans
 
 Plans:
-- [ ] 06-01-PLAN.md - Review request schema and accounting connections
-- [ ] 06-02-PLAN.md - Greeninvoice API client (JWT auth, document search)
-- [ ] 06-03-PLAN.md - iCount API client (session auth, document search)
-- [ ] 06-04-PLAN.md - Invoice poll worker (hourly detection, 24h delayed jobs)
-- [ ] 06-05-PLAN.md - Review request worker (WhatsApp templates, 3-day reminder)
-- [ ] 06-06-PLAN.md - Manual trigger UI (dashboard form)
-- [ ] 06-07-PLAN.md - Review completion detection (cross-reference with review poll)
+- [x] 06-01-PLAN.md - Review request schema and accounting connections
+- [x] 06-02-PLAN.md - Greeninvoice API client (JWT auth, document search)
+- [x] 06-03-PLAN.md - iCount API client (session auth, document search)
+- [x] 06-04-PLAN.md - Invoice poll worker (hourly detection, 24h delayed jobs)
+- [x] 06-05-PLAN.md - Review request worker (WhatsApp templates, 3-day reminder)
+- [x] 06-06-PLAN.md - Manual trigger UI (dashboard form)
+- [x] 06-07-PLAN.md - Review completion detection (cross-reference with review poll)
 
 **Research flag**: Completed (06-RESEARCH.md) - CRITICAL: Neither Greeninvoice nor iCount has webhooks for invoice creation. Polling is required for both.
 
@@ -268,7 +268,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 3. Lead Capture | 6/6 | Complete | 2026-01-27 |
 | 4. Google Integration | 4/4 | Complete | 2026-01-28 |
 | 5. Review Management | 6/6 | Complete | 2026-01-28 |
-| 6. Review Requests | 0/7 | Planned | - |
+| 6. Review Requests | 7/7 | Complete | 2026-01-28 |
 | 7. GBP Content | 0/TBD | Not started | - |
 | 8. GBP Optimization | 0/TBD | Not started | - |
 | 9. Dashboard & Notifications | 0/TBD | Not started | - |

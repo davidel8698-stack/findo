@@ -19,22 +19,22 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Review Requests (REVW)
 
-- [ ] **REVW-01**: Invoice creation triggers review request flow (Greeninvoice webhook)
-- [ ] **REVW-02**: Invoice creation triggers review request flow (iCount integration)
-- [ ] **REVW-03**: Manual trigger: forward invoice to Findo or "Mark as service" button
-- [ ] **REVW-04**: System waits 24 hours after service before sending request
-- [ ] **REVW-05**: WhatsApp sent with personalized message and direct Google review link
-- [ ] **REVW-06**: If no review after 3 days, send 1 reminder
-- [ ] **REVW-07**: After reminder, stop (no spam)
+- [x] **REVW-01**: Invoice creation triggers review request flow (Greeninvoice polling)
+- [x] **REVW-02**: Invoice creation triggers review request flow (iCount polling)
+- [x] **REVW-03**: Manual trigger: forward invoice to Findo or "Mark as service" button
+- [x] **REVW-04**: System waits 24 hours after service before sending request
+- [x] **REVW-05**: WhatsApp sent with personalized message and direct Google review link
+- [x] **REVW-06**: If no review after 3 days, send 1 reminder
+- [x] **REVW-07**: After reminder, stop (no spam)
 
 ### GBP Reviews (GBPR)
 
-- [ ] **GBPR-01**: Check for new reviews every hour via GBP API polling
-- [ ] **GBPR-02**: Auto-reply to 4-5 star reviews (AI-generated, personalized, owner's voice)
-- [ ] **GBPR-03**: Reply uses reviewer's name and references their review content
-- [ ] **GBPR-04**: Alert owner for 1-3 star reviews via WhatsApp
-- [ ] **GBPR-05**: Provide ready-made reply draft for negative reviews
-- [ ] **GBPR-06**: Owner approves/edits before negative reply is posted
+- [x] **GBPR-01**: Check for new reviews every hour via GBP API polling
+- [x] **GBPR-02**: Auto-reply to 4-5 star reviews (AI-generated, personalized, owner's voice)
+- [x] **GBPR-03**: Reply uses reviewer's name and references their review content
+- [x] **GBPR-04**: Alert owner for 1-3 star reviews via WhatsApp
+- [x] **GBPR-05**: Provide ready-made reply draft for negative reviews
+- [x] **GBPR-06**: Owner approves/edits before negative reply is posted
 
 ### GBP Content (GBPC)
 
@@ -77,7 +77,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Notifications (NOTF)
 
 - [ ] **NOTF-01**: Most interactions via WhatsApp to business owner (not dashboard)
-- [ ] **NOTF-02**: "New negative review" notification with tap-to-respond
+- [x] **NOTF-02**: "New negative review" notification with tap-to-respond
 - [x] **NOTF-03**: "New lead" notification with summary
 - [ ] **NOTF-04**: Photo request notifications
 - [ ] **NOTF-05**: Review rate alert if below target
@@ -89,8 +89,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INTG-03**: Google Business Profile API via OAuth 2.0
 - [x] **INTG-04**: Store access + refresh tokens encrypted, handle refresh
 - [x] **INTG-05**: Voicenter webhook for unanswered calls
-- [ ] **INTG-06**: Greeninvoice webhook for invoice creation
-- [ ] **INTG-07**: iCount integration for invoice detection
+- [x] **INTG-06**: Greeninvoice polling for invoice creation
+- [x] **INTG-07**: iCount polling for invoice detection
 
 ### Infrastructure (INFR)
 
