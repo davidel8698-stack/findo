@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 4 Complete - Ready for Phase 5
+**Current focus:** Phase 5 - Review Management (AI replies, polling, owner approval)
 
 ## Current Position
 
-Phase: 4 of 10 (Google Integration) - COMPLETE
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-01-28 - Completed 04-04-PLAN.md (Google Connection UI)
+Phase: 5 of 10 (Review Management)
+Plan: 2 of 5 in current phase
+Status: In progress
+Last activity: 2026-01-28 - Completed 05-02-PLAN.md (AI Reply Generation)
 
-Progress: [████████░░] 100% of Phase 4 (4/4 plans)
+Progress: [█████████░] 40% of Phase 5 (2/5 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 24
-- Average duration: 5.9 min
-- Total execution time: 2.4 hours
+- Total plans completed: 26
+- Average duration: 5.6 min
+- Total execution time: 2.5 hours
 
 **By Phase:**
 
@@ -31,10 +31,11 @@ Progress: [████████░░] 100% of Phase 4 (4/4 plans)
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
 | 03-lead-capture | 6 | 27.6 min | 4.6 min |
 | 04-google-integration | 4 | 25 min | 6.3 min |
+| 05-review-management | 2 | 8 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (9.5 min), 04-02 (~5 min), 04-03 (4.5 min), 04-04 (~11 min)
-- Trend: Phase 4 complete with consistent execution times
+- Last 5 plans: 04-03 (4.5 min), 04-04 (~11 min), 05-01 (~4 min), 05-02 (~4 min)
+- Trend: Phase 5 progressing with fast execution times
 
 *Updated after each plan completion*
 
@@ -127,6 +128,10 @@ Recent decisions affecting current work:
 | Follow WhatsApp UI pattern for Google | 04-04 | Consistent UX across integration flows |
 | Client-side fetch then redirect for OAuth | 04-04 | Same pattern as WhatsApp, allows loading overlay |
 | /connect/google as callback route | 04-04 | Consistent with /connect/whatsapp pattern |
+| Claude Haiku 4.5 for review replies | 05-02 | Better Hebrew support, cost-effective for high volume |
+| Structured outputs beta for JSON | 05-02 | Guarantees JSON format, eliminates parsing failures |
+| 3-star reviews default to negative | 05-02 | Safer to alert owner than auto-reply to ambiguous reviews |
+| Hebrew fallback replies | 05-02 | Ensure reviews always get responses even if AI is down |
 
 ### Pending Todos
 
@@ -157,13 +162,11 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-28
-Stopped at: Completed 04-04-PLAN.md (Google Connection UI) - Phase 4 Complete
-Resume file: None - ready for Phase 5
+Stopped at: Completed 05-02-PLAN.md (AI Reply Generation)
+Resume file: None
 
-**Phase 4 Complete:**
-- 04-01: Google OAuth Foundation (google_connections table, OAuth service with googleapis, HTTP routes at /api/google/*)
-- 04-02: Reviews & Profile Services (profile.ts, reviews.ts services)
-- 04-03: Google Token Refresh (proactive refresh every 5 min, daily validation at 3:30 AM)
-- 04-04: Google Connection UI (Hebrew RTL page at /connect/google with OAuth redirect)
+**Phase 5 Progress:**
+- 05-01: Reviews Schema (processedReviews, reviewPollState tables with review lifecycle tracking)
+- 05-02: AI Reply Generation (Claude Haiku 4.5 structured outputs, sentiment classification)
 
-**Next:** Phase 5 - Reviews Worker (polling, AI replies, notifications)
+**Next:** 05-03 - Review Polling Worker (hourly detection, reply generation, owner notifications)
