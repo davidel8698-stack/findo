@@ -1,6 +1,7 @@
 // Review management service exports
 export * from './reply-generator';
 export * from './approval-flow';
+export * from './response-handler';
 
 import { db } from '../../db/index';
 import { eq } from 'drizzle-orm';
