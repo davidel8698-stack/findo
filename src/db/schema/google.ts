@@ -22,6 +22,7 @@ export const googleConnections = pgTable('google_connections', {
   accountName: varchar('account_name', { length: 255 }).notNull(), // Account display name
   locationId: varchar('location_id', { length: 50 }), // Primary location ID for reviews
   locationName: varchar('location_name', { length: 255 }), // Location display name (business name)
+  placeId: varchar('place_id', { length: 100 }), // Google Place ID for review link generation
 
   // Connection health
   status: googleConnectionStatusEnum('status').default('pending').notNull(),
