@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 5 - Review Management (AI replies, polling, owner approval)
+**Current focus:** Phase 6 - Review Requests (invoice detection, review request flows)
 
 ## Current Position
 
-Phase: 5 of 10 (Review Management)
-Plan: 6 of 6 in current phase
-Status: Phase complete
-Last activity: 2026-01-28 - Completed 05-06-PLAN.md (Review Reminder Worker)
+Phase: 6 of 10 (Review Requests)
+Plan: 3 of ? in current phase
+Status: In progress
+Last activity: 2026-01-28 - Completed 06-03-PLAN.md (iCount API Client)
 
-Progress: [████████████████████] 100% of Phase 5 (6/6 plans)
+Progress: [██████████████████░░] ~90% of Phases 1-5, Phase 6 in progress
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 29
-- Average duration: 5.6 min
-- Total execution time: 2.8 hours
+- Total plans completed: 32
+- Average duration: 5.4 min
+- Total execution time: 2.9 hours
 
 **By Phase:**
 
@@ -32,10 +32,11 @@ Progress: [████████████████████] 100% of
 | 03-lead-capture | 6 | 27.6 min | 4.6 min |
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
+| 06-review-requests | 3 | 12 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-02 (~4 min), 05-03 (~8 min), 05-04 (~6 min), 05-05 (~5 min), 05-06 (~5 min)
-- Trend: Phase 5 complete! Review management system fully operational.
+- Last 5 plans: 05-06 (~5 min), 06-01 (~4 min), 06-02 (~5 min), 06-03 (~3 min)
+- Trend: Phase 6 in progress. Invoice provider clients for review requests.
 
 *Updated after each plan completion*
 
@@ -141,6 +142,9 @@ Recent decisions affecting current work:
 | 48h threshold from approvalSentAt for reminder | 05-06 | Per CONTEXT.md: 48h reminder if owner doesn't respond |
 | 48h threshold from reminderSentAt for auto-post | 05-06 | Total 96h before auto-post |
 | Hour :30 for review-reminder job | 05-06 | Offset from review-check at :00 to spread load |
+| iCount session per polling cycle | 06-03 | Session IDs may not support concurrency |
+| Currency hardcoded to ILS for iCount | 06-03 | iCount is Israel-only platform |
+| Search invoice+invrec document types | 06-03 | Both types represent invoices in iCount |
 
 ### Pending Todos
 
@@ -171,15 +175,12 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-28
-Stopped at: Completed 05-06-PLAN.md (Review Reminder Worker)
+Stopped at: Completed 06-03-PLAN.md (iCount API Client)
 Resume file: None
 
-**Phase 5 Complete:**
-- 05-01: Reviews Schema (processedReviews, reviewPollState tables with review lifecycle tracking)
-- 05-02: AI Reply Generation (Claude Haiku 4.5 structured outputs, sentiment classification)
-- 05-03: Review Polling Worker (hourly detection, reply generation, integrated with approval flow)
-- 05-04: Owner Approval Flow (WhatsApp interactive buttons, text fallback, approval tracking)
-- 05-05: Owner Response Handler (webhook processing for approve/edit buttons)
-- 05-06: Review Reminder Worker (48h reminder and auto-post for pending approvals)
+**Phase 6 In Progress:**
+- 06-01: Review Requests Schema (reviewRequests, accountingConnections tables)
+- 06-02: Greeninvoice Client (JWT auth, document search for invoices)
+- 06-03: iCount Client (session auth, document search for invoices)
 
-**Next:** Phase 6 - Review Request System
+**Next:** Continue Phase 6 - Invoice polling worker, review request flow
