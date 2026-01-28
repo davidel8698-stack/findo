@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: WhatsApp Integration** - Meta Embedded Signup and bidirectional messaging
 - [x] **Phase 3: Lead Capture** - Missed call detection and WhatsApp chatbot lead qualification
 - [x] **Phase 4: Google Integration** - GBP OAuth and review monitoring
-- [ ] **Phase 5: Review Management** - Auto-reply to positive reviews, draft responses for negative
+- [x] **Phase 5: Review Management** - Auto-reply to positive reviews, draft responses for negative
 - [ ] **Phase 6: Review Requests** - Invoice-triggered and manual review request flows
 - [ ] **Phase 7: GBP Content** - Photo requests, uploads, and promotional posts
 - [ ] **Phase 8: GBP Optimization** - Metrics monitoring and autonomous tuning
@@ -133,12 +133,12 @@ Plans:
 **Plans**: 6 plans
 
 Plans:
-- [ ] 05-01-PLAN.md - Review tracking database schema
-- [ ] 05-02-PLAN.md - AI reply generator with Claude Haiku 4.5
-- [ ] 05-03-PLAN.md - Review poll worker for hourly detection and auto-reply
-- [ ] 05-04-PLAN.md - Owner notification with WhatsApp interactive buttons
-- [ ] 05-05-PLAN.md - Owner response handler for approve/edit workflow
-- [ ] 05-06-PLAN.md - 48h reminder and auto-post system
+- [x] 05-01-PLAN.md - Review tracking database schema
+- [x] 05-02-PLAN.md - AI reply generator with Claude Haiku 4.5
+- [x] 05-03-PLAN.md - Review poll worker for hourly detection and auto-reply
+- [x] 05-04-PLAN.md - Owner notification with WhatsApp interactive buttons
+- [x] 05-05-PLAN.md - Owner response handler for approve/edit workflow
+- [x] 05-06-PLAN.md - 48h reminder and auto-post system
 
 **Research flag**: Completed (05-RESEARCH.md)
 
@@ -149,19 +149,23 @@ Plans:
 **Depends on**: Phase 2, Phase 4
 **Requirements**: REVW-01, REVW-02, REVW-03, REVW-04, REVW-05, REVW-06, REVW-07, INTG-06, INTG-07
 **Success Criteria** (what must be TRUE):
-  1. Greeninvoice webhook triggers review request flow when invoice is created
-  2. iCount integration detects new invoices and triggers review request flow
-  3. Manual trigger works: forward invoice to Findo or click "Mark as service" button
+  1. Greeninvoice polling detects new invoices and triggers review request flow
+  2. iCount polling detects new invoices and triggers review request flow
+  3. Manual trigger works: dashboard "Mark as service" button creates review request
   4. System waits 24 hours after service before sending WhatsApp with direct Google review link
   5. If no review after 3 days, system sends exactly 1 reminder then stops (no spam)
-**Plans**: TBD
+**Plans**: 7 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
-- [ ] 06-03: TBD
+- [ ] 06-01-PLAN.md - Review request schema and accounting connections
+- [ ] 06-02-PLAN.md - Greeninvoice API client (JWT auth, document search)
+- [ ] 06-03-PLAN.md - iCount API client (session auth, document search)
+- [ ] 06-04-PLAN.md - Invoice poll worker (hourly detection, 24h delayed jobs)
+- [ ] 06-05-PLAN.md - Review request worker (WhatsApp templates, 3-day reminder)
+- [ ] 06-06-PLAN.md - Manual trigger UI (dashboard form)
+- [ ] 06-07-PLAN.md - Review completion detection (cross-reference with review poll)
 
-**Research flag**: NEEDS PHASE RESEARCH - Greeninvoice vs iCount API comparison, webhook reliability
+**Research flag**: Completed (06-RESEARCH.md) - CRITICAL: Neither Greeninvoice nor iCount has webhooks for invoice creation. Polling is required for both.
 
 ---
 
@@ -263,8 +267,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 2. WhatsApp Integration | 6/6 | Complete | 2026-01-27 |
 | 3. Lead Capture | 6/6 | Complete | 2026-01-27 |
 | 4. Google Integration | 4/4 | Complete | 2026-01-28 |
-| 5. Review Management | 0/6 | Planned | - |
-| 6. Review Requests | 0/TBD | Not started | - |
+| 5. Review Management | 6/6 | Complete | 2026-01-28 |
+| 6. Review Requests | 0/7 | Planned | - |
 | 7. GBP Content | 0/TBD | Not started | - |
 | 8. GBP Optimization | 0/TBD | Not started | - |
 | 9. Dashboard & Notifications | 0/TBD | Not started | - |
