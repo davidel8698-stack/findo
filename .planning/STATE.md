@@ -142,6 +142,10 @@ Recent decisions affecting current work:
 | 48h threshold from approvalSentAt for reminder | 05-06 | Per CONTEXT.md: 48h reminder if owner doesn't respond |
 | 48h threshold from reminderSentAt for auto-post | 05-06 | Total 96h before auto-post |
 | Hour :30 for review-reminder job | 05-06 | Offset from review-check at :00 to spread load |
+| 6-state review request lifecycle | 06-01 | pending/requested/reminded/completed/stopped/skipped |
+| 4-source invoice tracking | 06-01 | greeninvoice/icount/manual/forwarded |
+| credentialsVaultId without FK | 06-01 | Conceptual reference to token_vault for flexibility |
+| Unique constraint (tenantId, source, invoiceId) | 06-01 | Prevents duplicate review requests per invoice |
 | iCount session per polling cycle | 06-03 | Session IDs may not support concurrency |
 | Currency hardcoded to ILS for iCount | 06-03 | iCount is Israel-only platform |
 | Search invoice+invrec document types | 06-03 | Both types represent invoices in iCount |
