@@ -23,3 +23,4 @@ export { startVoicenterCDRWorker } from './workers/voicenter-cdr.worker';
 export { startLeadReminderWorker } from './workers/lead-reminder.worker';
 export { startReviewPollWorker } from './workers/review-poll.worker';
 export { startReviewReminderWorker } from './workers/review-reminder.worker';
+export { startInvoicePollWorker } from './workers/invoice-poll.worker';

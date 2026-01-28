@@ -65,7 +65,7 @@ export async function scheduleTestJobs(): Promise<void> {
 export async function scheduleRecurringJobs(): Promise<void> {
   console.log('[scheduler] Scheduling recurring jobs...');
 
-  // Review check - hourly (Phase 5)
+  // Review check - hourly at minute :00 (Phase 5)
   await scheduledQueue.add(
     'review-check',
     {
@@ -73,12 +73,35 @@ export async function scheduleRecurringJobs(): Promise<void> {
     } satisfies ScheduledJobData,
     {
       repeat: {
-        pattern: '0 * * * *', // Every hour
+        pattern: '0 * * * *', // Every hour at minute :00
       },
       jobId: 'review-check-hourly',
     }
   );
-  console.log('[scheduler] Scheduled review check (hourly)');
+  console.log('[scheduler] Scheduled review check (hourly at :00)');
+
+  /**
+   * Invoice Poll Job
+   *
+   * Runs every hour at minute 15 (offset from review-check at :00).
+   * Polls Greeninvoice and iCount for new invoices.
+   * Schedules 24-hour delayed review request jobs.
+   *
+   * Per REVW-04: Wait 24 hours after service before requesting review.
+   */
+  await scheduledQueue.add(
+    'invoice-poll',
+    {
+      jobType: 'invoice-poll',
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '15 * * * *', // Every hour at minute :15
+      },
+      jobId: 'invoice-poll-hourly',
+    }
+  );
+  console.log('[scheduler] Registered: invoice-poll (hourly at :15)');
 
   /**
    * Review Reminder Job
