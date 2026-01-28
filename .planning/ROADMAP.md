@@ -130,14 +130,17 @@ Plans:
   3. New 1-3 star review triggers WhatsApp alert to owner with ready-made response draft
   4. Owner can approve or edit negative review response before it posts
   5. Auto-replies match owner's voice and business type (Hebrew, professional, warm)
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
-- [ ] 05-03: TBD
+- [ ] 05-01-PLAN.md - Review tracking database schema
+- [ ] 05-02-PLAN.md - AI reply generator with Claude Haiku 4.5
+- [ ] 05-03-PLAN.md - Review poll worker for hourly detection and auto-reply
+- [ ] 05-04-PLAN.md - Owner notification with WhatsApp interactive buttons
+- [ ] 05-05-PLAN.md - Owner response handler for approve/edit workflow
+- [ ] 05-06-PLAN.md - 48h reminder and auto-post system
 
-**Research flag**: NEEDS PHASE RESEARCH - Hebrew sentiment analysis, AI response quality for SMB brand voice
+**Research flag**: Completed (05-RESEARCH.md)
 
 ---
 
@@ -260,7 +263,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 2. WhatsApp Integration | 6/6 | Complete | 2026-01-27 |
 | 3. Lead Capture | 6/6 | Complete | 2026-01-27 |
 | 4. Google Integration | 4/4 | Complete | 2026-01-28 |
-| 5. Review Management | 0/TBD | Not started | - |
+| 5. Review Management | 0/6 | Planned | - |
 | 6. Review Requests | 0/TBD | Not started | - |
 | 7. GBP Content | 0/TBD | Not started | - |
 | 8. GBP Optimization | 0/TBD | Not started | - |
