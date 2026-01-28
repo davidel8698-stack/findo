@@ -84,6 +84,15 @@ export const leadReminderQueue = new Queue('lead-reminders', {
   connection: createRedisConnection(),
 });
 
+/**
+ * Review request queue for sending review request WhatsApp messages.
+ * Jobs are delayed 24 hours from invoice detection (REVW-04).
+ */
+export const reviewRequestQueue = new Queue<ReviewRequestJobData>('review-requests', {
+  ...defaultQueueOptions,
+  connection: createRedisConnection(),
+});
+
 // Job type definitions for type safety
 export interface WebhookJobData {
   source: 'voicenter' | 'greeninvoice' | 'icount' | 'whatsapp' | 'google' | 'test';
@@ -136,4 +145,12 @@ export interface LeadReminderJobData {
   leadId: string;
   leadConversationId: string;
   reminderNumber: 1 | 2; // 1 = 2h reminder, 2 = 24h reminder
+}
+
+/**
+ * Review request job data.
+ * Created by invoice poll worker for each detected invoice.
+ */
+export interface ReviewRequestJobData {
+  reviewRequestId: string;
 }

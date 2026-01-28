@@ -5,12 +5,14 @@ export {
   activityQueue,
   leadOutreachQueue,
   leadReminderQueue,
+  reviewRequestQueue,
   type WebhookJobData,
   type ScheduledJobData,
   type NotificationJobData,
   type ActivityJobData,
   type LeadOutreachJobData,
   type LeadReminderJobData,
+  type ReviewRequestJobData,
 } from './queues';
 
 // Workers
