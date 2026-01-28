@@ -18,6 +18,7 @@ import { extractLeadInfo } from '../../services/lead-capture/intent';
 import { getNextState, isTerminalState, type ExtractedLeadInfo } from '../../services/lead-capture/chatbot';
 import { getChatbotResponse } from '../../services/lead-capture/messages';
 import { notifyOwnerOfLead, createLeadActivity } from '../../services/lead-capture/notifications';
+import { handleOwnerReviewResponse } from '../../services/review-management';
 
 /**
  * Job data structure for whatsapp-messages jobs.
@@ -227,24 +228,48 @@ async function processWhatsAppMessages(
         message.timestamp
       );
 
-      // 1.5 Check if this is part of a lead conversation
-      const leadConvo = await db.query.leadConversations.findFirst({
-        where: eq(leadConversations.whatsappConversationId, conversation.id),
+      // 1.5 Check if this is an owner review response
+      // Load tenant to get owner phone
+      const tenant = await db.query.tenants.findFirst({
+        where: eq(tenants.id, tenantId),
       });
 
-      if (leadConvo) {
-        // Get the associated lead
-        const lead = await db.query.leads.findFirst({
-          where: eq(leads.id, leadConvo.leadId),
+      const isOwner = tenant?.ownerPhone && message.from === tenant.ownerPhone;
+      let handledAsReviewResponse = false;
+
+      if (isOwner && (message.buttonId || message.text)) {
+        handledAsReviewResponse = await handleOwnerReviewResponse(
+          tenantId,
+          message.from,
+          message.text || '',
+          message.buttonId
+        );
+        if (handledAsReviewResponse) {
+          console.log(`[whatsapp-message] Processed as owner review response`);
+          // Continue to save message but skip lead processing
+        }
+      }
+
+      // 1.6 Check if this is part of a lead conversation (skip if already handled as review response)
+      if (!handledAsReviewResponse) {
+        const leadConvo = await db.query.leadConversations.findFirst({
+          where: eq(leadConversations.whatsappConversationId, conversation.id),
         });
 
-        if (lead) {
-          await handleLeadConversation(
-            { text: message.text, from: message.from },
-            leadConvo,
-            lead,
-            tenantId
-          );
+        if (leadConvo) {
+          // Get the associated lead
+          const lead = await db.query.leads.findFirst({
+            where: eq(leads.id, leadConvo.leadId),
+          });
+
+          if (lead) {
+            await handleLeadConversation(
+              { text: message.text, from: message.from },
+              leadConvo,
+              lead,
+              tenantId
+            );
+          }
         }
       }
 
