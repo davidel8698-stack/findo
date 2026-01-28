@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 4 - Google Integration
+**Current focus:** Phase 4 Complete - Ready for Phase 5
 
 ## Current Position
 
-Phase: 4 of 10 (Google Integration)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-01-28 - Completed 04-03-PLAN.md (Google Token Refresh)
+Phase: 4 of 10 (Google Integration) - COMPLETE
+Plan: 4 of 4 in current phase
+Status: Phase complete
+Last activity: 2026-01-28 - Completed 04-04-PLAN.md (Google Connection UI)
 
-Progress: [███░░░░░░░] ~75% of Phase 4 (3/4 plans)
+Progress: [████████░░] 100% of Phase 4 (4/4 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 23
+- Total plans completed: 24
 - Average duration: 5.9 min
-- Total execution time: 2.2 hours
+- Total execution time: 2.4 hours
 
 **By Phase:**
 
@@ -30,11 +30,11 @@ Progress: [███░░░░░░░] ~75% of Phase 4 (3/4 plans)
 | 01-foundation | 8 | 39.5 min | 4.9 min |
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
 | 03-lead-capture | 6 | 27.6 min | 4.6 min |
-| 04-google-integration | 3 | 14 min | 4.7 min |
+| 04-google-integration | 4 | 25 min | 6.3 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-06 (5 min), 04-01 (9.5 min), 04-03 (4.5 min)
-- Trend: Token refresh plan fast execution following established patterns
+- Last 5 plans: 04-01 (9.5 min), 04-02 (~5 min), 04-03 (4.5 min), 04-04 (~11 min)
+- Trend: Phase 4 complete with consistent execution times
 
 *Updated after each plan completion*
 
@@ -124,6 +124,9 @@ Recent decisions affecting current work:
 | Direct HTTP for reviews API | 04-02 | googleapis mybusiness v4 types incomplete |
 | 4096 byte reply limit validation | 04-02 | Hebrew 2-3 bytes per char, fail fast on oversized |
 | Star rating enum to number | 04-02 | Cleaner for business logic comparisons |
+| Follow WhatsApp UI pattern for Google | 04-04 | Consistent UX across integration flows |
+| Client-side fetch then redirect for OAuth | 04-04 | Same pattern as WhatsApp, allows loading overlay |
+| /connect/google as callback route | 04-04 | Consistent with /connect/whatsapp pattern |
 
 ### Pending Todos
 
@@ -154,12 +157,13 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-28
-Stopped at: Completed 04-03-PLAN.md (Google Token Refresh)
-Resume file: None - ready for 04-04
+Stopped at: Completed 04-04-PLAN.md (Google Connection UI) - Phase 4 Complete
+Resume file: None - ready for Phase 5
 
-**Phase 4 Progress:**
+**Phase 4 Complete:**
 - 04-01: Google OAuth Foundation (google_connections table, OAuth service with googleapis, HTTP routes at /api/google/*)
-- 04-02: Reviews & Profile Services (parallel Wave 2 - profile.ts, reviews.ts services)
+- 04-02: Reviews & Profile Services (profile.ts, reviews.ts services)
 - 04-03: Google Token Refresh (proactive refresh every 5 min, daily validation at 3:30 AM)
+- 04-04: Google Connection UI (Hebrew RTL page at /connect/google with OAuth redirect)
 
-**Next:** 04-04 Reviews Reply (reply to reviews using AI-generated responses)
+**Next:** Phase 5 - Reviews Worker (polling, AI replies, notifications)
