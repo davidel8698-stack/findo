@@ -24,3 +24,4 @@ export { startLeadReminderWorker } from './workers/lead-reminder.worker';
 export { startReviewPollWorker } from './workers/review-poll.worker';
 export { startReviewReminderWorker } from './workers/review-reminder.worker';
 export { startInvoicePollWorker } from './workers/invoice-poll.worker';
+export { startReviewRequestWorker } from './workers/review-request.worker';
