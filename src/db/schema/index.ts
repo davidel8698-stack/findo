@@ -7,3 +7,4 @@ export * from './whatsapp';
 export * from './leads';
 export * from './google';
 export * from './reviews';
+export * from './review-requests';
