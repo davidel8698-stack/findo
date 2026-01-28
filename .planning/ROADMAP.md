@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation** - Multi-tenant infrastructure with queue-first webhook processing
 - [x] **Phase 2: WhatsApp Integration** - Meta Embedded Signup and bidirectional messaging
 - [x] **Phase 3: Lead Capture** - Missed call detection and WhatsApp chatbot lead qualification
-- [ ] **Phase 4: Google Integration** - GBP OAuth and review monitoring
+- [x] **Phase 4: Google Integration** - GBP OAuth and review monitoring
 - [ ] **Phase 5: Review Management** - Auto-reply to positive reviews, draft responses for negative
 - [ ] **Phase 6: Review Requests** - Invoice-triggered and manual review request flows
 - [ ] **Phase 7: GBP Content** - Photo requests, uploads, and promotional posts
@@ -111,10 +111,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 04-01-PLAN.md - Google OAuth foundation (schema, OAuth service, callback routes)
-- [ ] 04-02-PLAN.md - Google API services (profile and reviews)
-- [ ] 04-03-PLAN.md - Token refresh worker (proactive refresh every 5 minutes)
-- [ ] 04-04-PLAN.md - Google connection frontend UI (Hebrew, RTL)
+- [x] 04-01-PLAN.md - Google OAuth foundation (schema, OAuth service, callback routes)
+- [x] 04-02-PLAN.md - Google API services (profile and reviews)
+- [x] 04-03-PLAN.md - Token refresh worker (proactive refresh every 5 minutes)
+- [x] 04-04-PLAN.md - Google connection frontend UI (Hebrew, RTL)
 
 **Research flag**: Completed (04-RESEARCH.md)
 
@@ -259,7 +259,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 1. Foundation | 8/8 | Complete | 2026-01-27 |
 | 2. WhatsApp Integration | 6/6 | Complete | 2026-01-27 |
 | 3. Lead Capture | 6/6 | Complete | 2026-01-27 |
-| 4. Google Integration | 0/4 | Planned | - |
+| 4. Google Integration | 4/4 | Complete | 2026-01-28 |
 | 5. Review Management | 0/TBD | Not started | - |
 | 6. Review Requests | 0/TBD | Not started | - |
 | 7. GBP Content | 0/TBD | Not started | - |
