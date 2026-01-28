@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 6 of 10 (Review Requests)
-Plan: 4 of 7 in current phase
+Plan: 6 of 7 in current phase
 Status: In progress
-Last activity: 2026-01-28 - Completed 06-04-PLAN.md (Invoice Poll Worker)
+Last activity: 2026-01-28 - Completed 06-06-PLAN.md (Manual Review Request Trigger)
 
 Progress: [██████████████████░░] ~90% of Phases 1-5, Phase 6 in progress
 
@@ -32,11 +32,11 @@ Progress: [██████████████████░░] ~90% of
 | 03-lead-capture | 6 | 27.6 min | 4.6 min |
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
-| 06-review-requests | 4 | 16 min | 4 min |
+| 06-review-requests | 6 | 22 min | 3.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-01 (~4 min), 06-02 (~5 min), 06-03 (~3 min), 06-04 (~4 min)
-- Trend: Phase 6 in progress. Invoice poll worker created.
+- Last 5 plans: 06-02 (~5 min), 06-03 (~3 min), 06-04 (~4 min), 06-06 (~6 min)
+- Trend: Phase 6 near completion. Manual review request trigger added.
 
 *Updated after each plan completion*
 
@@ -156,6 +156,9 @@ Recent decisions affecting current work:
 | Invoice-poll at minute :15 | 06-04 | Offset from review-check at :00 and review-reminder at :30 |
 | 24-hour delayed review request jobs | 06-04 | Per REVW-04: wait 24h after service before requesting review |
 | Error isolation per tenant in polling | 06-04 | One tenant's failure doesn't stop others |
+| Phone normalization to +972 format | 06-06 | Consistent format for lookups and deduplication |
+| 7-day duplicate detection window | 06-06 | Prevents review request spam while allowing re-requests |
+| Manual requests follow same 24h delay | 06-06 | Consistent flow for all review request sources |
 
 ### Pending Todos
 
@@ -186,7 +189,7 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-28
-Stopped at: Completed 06-04-PLAN.md (Invoice Poll Worker)
+Stopped at: Completed 06-06-PLAN.md (Manual Review Request Trigger)
 Resume file: None
 
 **Phase 6 In Progress:**
@@ -194,5 +197,7 @@ Resume file: None
 - 06-02: Greeninvoice Client (JWT auth, document search for invoices) [DONE]
 - 06-03: iCount Client (session auth, document search for invoices) [DONE]
 - 06-04: Invoice Poll Worker (hourly polling, 24h delayed jobs) [DONE]
+- 06-05: Review Request Worker (send messages, schedule reminders) [DONE]
+- 06-06: Manual Review Request Trigger (dashboard UI, API endpoint) [DONE]
 
-**Next:** Continue Phase 6 - Review request sending worker, dashboard UI
+**Next:** Complete Phase 6 - 06-07 Review completion tracking
