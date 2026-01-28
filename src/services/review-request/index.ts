@@ -4,3 +4,5 @@ export {
   sendReviewRequestMessage,
   sendReviewReminderMessage,
 } from './messages';
+
+export { checkReviewCompletion } from './completion';
