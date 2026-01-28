@@ -8,6 +8,7 @@ import { healthRoutes } from './routes/health';
 import { activityRoutes } from './routes/activity';
 import { whatsappCallbackRoutes } from './routes/whatsapp/index';
 import { googleRoutes } from './routes/google/index';
+import { reviewRequestRoutes } from './routes/review-requests';
 import { pagesRoutes } from './routes/pages';
 import { tenantContext } from './middleware/tenant-context';
 import { startWebhookWorker } from './queue/workers/webhook.worker';
@@ -60,6 +61,9 @@ api.route('/whatsapp', whatsappCallbackRoutes);
 
 // Google routes (OAuth flow, status, disconnect)
 api.route('/google', googleRoutes);
+
+// Review requests routes (manual trigger, list)
+api.route('/review-requests', reviewRequestRoutes);
 
 // Mount API under /api
 app.route('/api', api);

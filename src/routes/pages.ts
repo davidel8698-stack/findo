@@ -1,8 +1,9 @@
 import { Hono } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { renderWhatsAppConnectPage, renderGoogleConnectPage } from '../views/index';
+import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage } from '../views/index';
 import { tenantContext } from '../middleware/tenant-context';
 import { getGoogleConnection } from '../services/google/oauth';
+import { db } from '../db/index';
 
 /**
  * Pages Router
@@ -103,6 +104,35 @@ pagesRoutes.get('/connect/google', tenantContext, async (c) => {
     businessName,
     errorMessage,
   });
+
+  return c.html(html);
+});
+
+/**
+ * Review Requests Dashboard
+ *
+ * GET /review-requests
+ *
+ * Renders the review requests dashboard with manual trigger form.
+ * Requires tenant context (X-Tenant-ID header or future auth).
+ */
+pagesRoutes.get('/review-requests', tenantContext, async (c) => {
+  const tenant = c.get('tenant');
+  const tenantId = tenant?.tenantId;
+
+  if (!tenantId) {
+    return c.text('Tenant context required', 401);
+  }
+
+  // Fetch recent review requests for this tenant
+  const requests = await db.query.reviewRequests.findMany({
+    where: (t, { eq }) => eq(t.tenantId, tenantId),
+    orderBy: (t, { desc }) => [desc(t.createdAt)],
+    limit: 50,
+  });
+
+  // Render the review requests dashboard
+  const html = renderReviewRequestsPage(requests);
 
   return c.html(html);
 });
