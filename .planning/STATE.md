@@ -146,6 +146,10 @@ Recent decisions affecting current work:
 | 4-source invoice tracking | 06-01 | greeninvoice/icount/manual/forwarded |
 | credentialsVaultId without FK | 06-01 | Conceptual reference to token_vault for flexibility |
 | Unique constraint (tenantId, source, invoiceId) | 06-01 | Prevents duplicate review requests per invoice |
+| 5-minute token expiration buffer | 06-02 | Proactive Greeninvoice JWT refresh prevents failures |
+| 401 retry with cache clear | 06-02 | Handles expired token race conditions |
+| Document types 305/320 for Greeninvoice | 06-02 | Tax Invoice and Invoice/Receipt cover invoice use cases |
+| DetectedInvoice normalized format | 06-02 | Supports multi-provider (Greeninvoice, iCount) integration |
 | iCount session per polling cycle | 06-03 | Session IDs may not support concurrency |
 | Currency hardcoded to ILS for iCount | 06-03 | iCount is Israel-only platform |
 | Search invoice+invrec document types | 06-03 | Both types represent invoices in iCount |
