@@ -251,3 +251,102 @@ export function calculateWindowExpiry(customerMessageTime: Date): Date {
   expiresAt.setHours(expiresAt.getHours() + 24);
   return expiresAt;
 }
+
+/**
+ * Interactive button for WhatsApp message.
+ */
+export interface InteractiveButton {
+  /** Button callback ID (max 256 chars) */
+  id: string;
+  /** Button text (max 20 chars) */
+  title: string;
+}
+
+/**
+ * Send an interactive button message within the 24-hour customer service window.
+ *
+ * Interactive messages with reply buttons allow users to tap to respond.
+ * Maximum 3 buttons per message. Only works within the 24-hour window.
+ *
+ * @param client - WhatsApp client instance
+ * @param to - Phone number in international format
+ * @param bodyText - Main message body text (max 1024 chars)
+ * @param buttons - Array of buttons (max 3)
+ * @param headerText - Optional header text
+ * @param footerText - Optional footer text
+ * @returns Message ID and WhatsApp ID for tracking
+ *
+ * @example
+ * ```typescript
+ * await sendInteractiveButtons(
+ *   client,
+ *   '972501234567',
+ *   'Would you like to proceed?',
+ *   [
+ *     { id: 'approve', title: 'Yes' },
+ *     { id: 'reject', title: 'No' },
+ *   ],
+ *   'Confirmation',
+ *   'Reply to confirm'
+ * );
+ * ```
+ */
+export async function sendInteractiveButtons(
+  client: WhatsAppClient,
+  to: string,
+  bodyText: string,
+  buttons: InteractiveButton[],
+  headerText?: string,
+  footerText?: string
+): Promise<MessageSendResult> {
+  // Validate constraints
+  if (buttons.length > 3) {
+    throw new Error('Maximum 3 buttons allowed per interactive message');
+  }
+  if (bodyText.length > 1024) {
+    throw new Error('Body text exceeds maximum 1024 characters');
+  }
+
+  // Build interactive payload per WhatsApp Cloud API spec
+  const interactive: Record<string, unknown> = {
+    type: 'button',
+    body: { text: bodyText },
+    action: {
+      buttons: buttons.map((b) => ({
+        type: 'reply',
+        reply: { id: b.id, title: b.title },
+      })),
+    },
+  };
+
+  // Add optional header
+  if (headerText) {
+    interactive.header = { type: 'text', text: headerText };
+  }
+
+  // Add optional footer
+  if (footerText) {
+    interactive.footer = { text: footerText };
+  }
+
+  const payload = {
+    messaging_product: 'whatsapp',
+    recipient_type: 'individual',
+    to,
+    type: 'interactive',
+    interactive,
+  };
+
+  const response = await client.request<SendMessageResponse>(
+    client.messagesEndpoint,
+    {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }
+  );
+
+  return {
+    messageId: response.messages[0].id,
+    waId: response.contacts[0].wa_id,
+  };
+}

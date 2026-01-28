@@ -9,6 +9,7 @@ export {
   sendTemplateMessage,
   sendTextMessage,
   sendImageMessage,
+  sendInteractiveButtons,
   isWindowOpen,
   calculateWindowExpiry,
 } from './messages';
@@ -17,6 +18,7 @@ export type {
   MessageSendResult,
   TemplateComponent,
   TemplateParameter,
+  InteractiveButton,
 } from './messages';
 
 // Embedded Signup (OAuth flow)
