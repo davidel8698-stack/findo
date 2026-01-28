@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 6 of 10 (Review Requests)
-Plan: 3 of ? in current phase
+Plan: 4 of 7 in current phase
 Status: In progress
-Last activity: 2026-01-28 - Completed 06-03-PLAN.md (iCount API Client)
+Last activity: 2026-01-28 - Completed 06-04-PLAN.md (Invoice Poll Worker)
 
 Progress: [██████████████████░░] ~90% of Phases 1-5, Phase 6 in progress
 
@@ -32,11 +32,11 @@ Progress: [██████████████████░░] ~90% of
 | 03-lead-capture | 6 | 27.6 min | 4.6 min |
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
-| 06-review-requests | 3 | 12 min | 4 min |
+| 06-review-requests | 4 | 16 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-06 (~5 min), 06-01 (~4 min), 06-02 (~5 min), 06-03 (~3 min)
-- Trend: Phase 6 in progress. Invoice provider clients for review requests.
+- Last 5 plans: 06-01 (~4 min), 06-02 (~5 min), 06-03 (~3 min), 06-04 (~4 min)
+- Trend: Phase 6 in progress. Invoice poll worker created.
 
 *Updated after each plan completion*
 
@@ -153,6 +153,9 @@ Recent decisions affecting current work:
 | iCount session per polling cycle | 06-03 | Session IDs may not support concurrency |
 | Currency hardcoded to ILS for iCount | 06-03 | iCount is Israel-only platform |
 | Search invoice+invrec document types | 06-03 | Both types represent invoices in iCount |
+| Invoice-poll at minute :15 | 06-04 | Offset from review-check at :00 and review-reminder at :30 |
+| 24-hour delayed review request jobs | 06-04 | Per REVW-04: wait 24h after service before requesting review |
+| Error isolation per tenant in polling | 06-04 | One tenant's failure doesn't stop others |
 
 ### Pending Todos
 
@@ -183,12 +186,13 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-28
-Stopped at: Completed 06-03-PLAN.md (iCount API Client)
+Stopped at: Completed 06-04-PLAN.md (Invoice Poll Worker)
 Resume file: None
 
 **Phase 6 In Progress:**
-- 06-01: Review Requests Schema (reviewRequests, accountingConnections tables)
-- 06-02: Greeninvoice Client (JWT auth, document search for invoices)
-- 06-03: iCount Client (session auth, document search for invoices)
+- 06-01: Review Requests Schema (reviewRequests, accountingConnections tables) [DONE]
+- 06-02: Greeninvoice Client (JWT auth, document search for invoices) [DONE]
+- 06-03: iCount Client (session auth, document search for invoices) [DONE]
+- 06-04: Invoice Poll Worker (hourly polling, 24h delayed jobs) [DONE]
 
-**Next:** Continue Phase 6 - Invoice polling worker, review request flow
+**Next:** Continue Phase 6 - Review request sending worker, dashboard UI
