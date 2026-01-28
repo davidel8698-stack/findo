@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 5 of 10 (Review Management)
-Plan: 2 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-28 - Completed 05-02-PLAN.md (AI Reply Generation)
+Last activity: 2026-01-28 - Completed 05-04-PLAN.md (Owner Approval Flow)
 
-Progress: [█████████░] 40% of Phase 5 (2/5 plans)
+Progress: [████████████████░░░░] 80% of Phase 5 (4/5 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 26
+- Total plans completed: 28
 - Average duration: 5.6 min
-- Total execution time: 2.5 hours
+- Total execution time: 2.6 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [█████████░] 40% of Phase 5 (2/5 plans)
 | 02-whatsapp-integration | 6 | 52.5 min | 8.8 min |
 | 03-lead-capture | 6 | 27.6 min | 4.6 min |
 | 04-google-integration | 4 | 25 min | 6.3 min |
-| 05-review-management | 2 | 8 min | 4 min |
+| 05-review-management | 4 | 14 min | 3.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-03 (4.5 min), 04-04 (~11 min), 05-01 (~4 min), 05-02 (~4 min)
+- Last 5 plans: 05-01 (~4 min), 05-02 (~4 min), 05-03 (~pending), 05-04 (~6 min)
 - Trend: Phase 5 progressing with fast execution times
 
 *Updated after each plan completion*
@@ -132,6 +132,9 @@ Recent decisions affecting current work:
 | Structured outputs beta for JSON | 05-02 | Guarantees JSON format, eliminates parsing failures |
 | 3-star reviews default to negative | 05-02 | Safer to alert owner than auto-reply to ambiguous reviews |
 | Hebrew fallback replies | 05-02 | Ensure reviews always get responses even if AI is down |
+| Interactive button IDs approve_{id}/edit_{id} | 05-04 | Enables webhook handler to extract review ID and action |
+| Window-aware owner notifications | 05-04 | Interactive buttons for session, text fallback otherwise |
+| Hebrew instructions in fallback | 05-04 | Owner can respond with 'אשר' or custom text |
 
 ### Pending Todos
 
@@ -162,11 +165,13 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-28
-Stopped at: Completed 05-02-PLAN.md (AI Reply Generation)
+Stopped at: Completed 05-04-PLAN.md (Owner Approval Flow)
 Resume file: None
 
 **Phase 5 Progress:**
 - 05-01: Reviews Schema (processedReviews, reviewPollState tables with review lifecycle tracking)
 - 05-02: AI Reply Generation (Claude Haiku 4.5 structured outputs, sentiment classification)
+- 05-03: Review Polling Worker (hourly detection, reply generation, owner notifications)
+- 05-04: Owner Approval Flow (WhatsApp interactive buttons, text fallback, approval tracking)
 
-**Next:** 05-03 - Review Polling Worker (hourly detection, reply generation, owner notifications)
+**Next:** 05-05 - Owner Response Handler (webhook processing for approve/edit buttons)
