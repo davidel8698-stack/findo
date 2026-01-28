@@ -249,12 +249,14 @@ async function processWhatsAppMessages(
       }
 
       // 2. Save message to database
+      // Map 'interactive' to 'text' for database storage (button replies are text-like)
+      const dbMessageType = message.type === 'interactive' ? 'text' : message.type;
       const newMessage: NewWhatsAppMessage = {
         tenantId,
         conversationId: conversation.id,
         waMessageId: message.waMessageId,
         direction: 'inbound',
-        type: message.type,
+        type: dbMessageType,
         content: message.text || message.mediaCaption || null,
         mediaId: message.mediaId || null,
         recipientPhone: businessPhone, // Business receives the message

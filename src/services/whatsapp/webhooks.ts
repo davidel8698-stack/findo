@@ -51,7 +51,19 @@ export interface WhatsAppIncomingMessage {
     sha256: string;
     caption?: string;
   };
-  // Other types omitted for Phase 2 (only text and image handled)
+  interactive?: {
+    type: 'button_reply' | 'list_reply';
+    button_reply?: {
+      id: string;
+      title: string;
+    };
+    list_reply?: {
+      id: string;
+      title: string;
+      description?: string;
+    };
+  };
+  // Other types omitted for Phase 2 (only text, image, and interactive handled)
 }
 
 export interface WhatsAppStatusUpdate {
@@ -138,16 +150,26 @@ export function parseWebhookPayload(payload: WhatsAppWebhookPayload): {
       for (const msg of value.messages || []) {
         const contactName = value.contacts?.[0]?.profile.name;
 
+        // Extract button reply ID from interactive messages
+        let buttonId: string | undefined;
+        if (msg.type === 'interactive' && msg.interactive?.type === 'button_reply') {
+          buttonId = msg.interactive.button_reply?.id;
+        }
+
+        // For interactive button replies, use the button title as text
+        const text = msg.text?.body || msg.interactive?.button_reply?.title;
+
         messages.push({
           waMessageId: msg.id,
           from: msg.from,
           timestamp: new Date(parseInt(msg.timestamp) * 1000),
           type: mapMessageType(msg.type),
-          text: msg.text?.body,
+          text,
           mediaId: msg.image?.id,
           mediaCaption: msg.image?.caption,
           contactName,
           rawType: msg.type,
+          buttonId,
         });
       }
 
@@ -172,12 +194,13 @@ export interface ParsedMessage {
   waMessageId: string;
   from: string;
   timestamp: Date;
-  type: 'text' | 'image' | 'unknown';
+  type: 'text' | 'image' | 'interactive' | 'unknown';
   text?: string;
   mediaId?: string;
   mediaCaption?: string;
   contactName?: string;
   rawType: string; // Original type for logging/debugging
+  buttonId?: string; // Button reply ID from interactive messages
 }
 
 export interface ParsedStatus {
@@ -191,22 +214,24 @@ export interface ParsedStatus {
 
 /**
  * Map WhatsApp message type to our simplified types.
- * Phase 2 only handles text and image; others marked as unknown.
+ * Phase 2 handles text, image, and interactive; others marked as unknown.
  */
-function mapMessageType(waType: string): 'text' | 'image' | 'unknown' {
+function mapMessageType(waType: string): 'text' | 'image' | 'interactive' | 'unknown' {
   switch (waType) {
     case 'text':
       return 'text';
     case 'image':
       return 'image';
+    case 'interactive':
+      return 'interactive';
     default:
       return 'unknown';
   }
 }
 
 /**
- * Check if message type is supported in Phase 2.
+ * Check if message type is supported.
  */
 export function isSupportedMessageType(type: string): boolean {
-  return type === 'text' || type === 'image';
+  return type === 'text' || type === 'image' || type === 'interactive';
 }
