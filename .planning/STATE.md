@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 Phase: 6 of 10 (Review Requests)
 Plan: 6 of 7 in current phase
 Status: In progress
-Last activity: 2026-01-28 - Completed 06-06-PLAN.md (Manual Review Request Trigger)
+Last activity: 2026-01-28 - Completed 06-05-PLAN.md (Review Request Worker)
 
 Progress: [██████████████████░░] ~90% of Phases 1-5, Phase 6 in progress
 
@@ -159,6 +159,9 @@ Recent decisions affecting current work:
 | Phone normalization to +972 format | 06-06 | Consistent format for lookups and deduplication |
 | 7-day duplicate detection window | 06-06 | Prevents review request spam while allowing re-requests |
 | Manual requests follow same 24h delay | 06-06 | Consistent flow for all review request sources |
+| placeId added to googleConnections | 06-05 | Required for Google review link generation |
+| 3-day reminder then stop | 06-05 | Per REVW-06/07: exactly 1 reminder, no spam |
+| Concurrency 5 for review requests | 06-05 | Multiple review requests can process in parallel |
 
 ### Pending Todos
 
@@ -189,7 +192,7 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-28
-Stopped at: Completed 06-06-PLAN.md (Manual Review Request Trigger)
+Stopped at: Completed 06-05-PLAN.md (Review Request Worker)
 Resume file: None
 
 **Phase 6 In Progress:**
