@@ -80,6 +80,30 @@ export async function scheduleRecurringJobs(): Promise<void> {
   );
   console.log('[scheduler] Scheduled review check (hourly)');
 
+  /**
+   * Review Reminder Job
+   *
+   * Runs every hour at minute 30 (offset from review-check at :00).
+   * Checks for pending approvals older than 48h and sends reminders.
+   * Auto-posts drafts for reviews reminded 48h+ ago.
+   *
+   * Per CONTEXT.md: 48h reminder if owner doesn't respond,
+   * auto-post draft if still no response 48h after reminder.
+   */
+  await scheduledQueue.add(
+    'review-reminder',
+    {
+      jobType: 'review-reminder',
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '30 * * * *', // Every hour at minute 30 (offset from review-check at :00)
+      },
+      jobId: 'review-reminder-hourly',
+    }
+  );
+  console.log('[scheduler] Registered: review-reminder (hourly)');
+
   // Token refresh check - every 30 minutes
   await scheduledQueue.add(
     'token-refresh',
