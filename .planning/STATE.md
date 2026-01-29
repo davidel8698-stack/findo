@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 9 of 10 (Dashboard & Notifications)
-Plan: 5 of 8 in current phase (completed 09-01, 09-02, 09-03, 09-04, 09-05)
+Plan: 6 of 8 in current phase (completed 09-01, 09-02, 09-03, 09-04, 09-05, 09-06)
 Status: In progress
-Last activity: 2026-01-29 - Completed 09-05-PLAN.md (Reports Visualization)
+Last activity: 2026-01-29 - Completed 09-06-PLAN.md (Settings Pages)
 
-Progress: [███████████████████████████████░] 46/50 plans complete, ~92% of total project
+Progress: [████████████████████████████████░] 47/50 plans complete, ~94% of total project
 
 ## Performance Metrics
 
@@ -35,11 +35,11 @@ Progress: [███████████████████████
 | 06-review-requests | 7 | 25 min | 3.6 min |
 | 07-gbp-content | 8 | 53 min | 6.6 min |
 | 08-gbp-optimization | 7 | ~35 min | 5 min |
-| 09-dashboard-notifications | 5 | ~26 min | 5.2 min |
+| 09-dashboard-notifications | 6 | ~33 min | 5.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 09-02 (~5 min), 09-03 (~6 min), 09-04 (~6 min), 09-05 (~5 min)
-- Trend: Phase 9 progressing. Reports visualization complete with Chart.js trend graphs.
+- Last 5 plans: 09-03 (~6 min), 09-04 (~6 min), 09-05 (~5 min), 09-06 (~7 min)
+- Trend: Phase 9 progressing. Settings pages complete with timing/notifications/chatbot tabs.
 
 *Updated after each plan completion*
 
@@ -240,6 +240,10 @@ Recent decisions affecting current work:
 | Secondary y-axis for rating | 09-05 | Dual-axis charts separate rating (0-5) from message counts |
 | Hebrew month names array | 09-05 | Localized labels for monthly trend charts |
 | Chronological order for charts | 09-05 | Data oldest-first for proper Chart.js display |
+| Drizzle upsert pattern for settings | 09-06 | onConflictDoUpdate with tenantId constraint |
+| Validation ranges 12-72h delay, 1-7d reminder | 09-06 | Sensible bounds for review request timing |
+| notifyNegativeReview always on | 09-06 | Disabled toggle in UI, critical for approval flow |
+| Preview section for chatbot questions | 09-06 | Shows how questions appear in WhatsApp chat |
 
 ### Pending Todos
 
@@ -271,17 +275,17 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 09-05-PLAN.md (Reports Visualization)
+Stopped at: Completed 09-06-PLAN.md (Settings Pages)
 Resume file: None
 
-**Phase 9 Progress:** IN PROGRESS (5/8 plans complete)
+**Phase 9 Progress:** IN PROGRESS (6/8 plans complete)
 - 09-01: Database Schema (notificationPreferences, chatbotConfig) [DONE]
 - 09-02: Dashboard Stats & Health APIs (stats-aggregator, health-checker, dashboard routes) [DONE]
 - 09-03: Dashboard Main View (health status, stats cards, main page, routes) [DONE]
 - 09-04: Activity Feed (grouper service, feed component, API integration) [DONE]
 - 09-05: Reports Visualization (trends aggregator, Chart.js reports page) [DONE]
-- 09-06: Settings Views [PENDING]
-- 09-07: [Not defined in sequence]
+- 09-06: Settings Pages (settings service, view components, API, /dashboard/settings) [DONE]
+- 09-07: [Next in sequence]
 - 09-08: Main Dashboard Integration [PENDING]
 
-**Next:** 09-06 (Settings Views)
+**Next:** 09-07
