@@ -56,3 +56,12 @@ export {
   type GBPPhoto,
   type PhotoCategory,
 } from './media';
+
+// Hours services
+export {
+  getLocationHours,
+  setSpecialHours,
+  createSingleDayPeriod,
+  type SpecialHourPeriod,
+  type RegularHours,
+} from './hours';
