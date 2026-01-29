@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage } from '../views/index';
+import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage, renderMetricsDashboard } from '../views/index';
+import { metricsRoutes } from './metrics';
 import { tenantContext } from '../middleware/tenant-context';
 import { getGoogleConnection } from '../services/google/oauth';
 import { db } from '../db/index';
@@ -17,6 +18,30 @@ export const pagesRoutes = new Hono();
  * Static file serving for /js/* files from public directory.
  */
 pagesRoutes.use('/js/*', serveStatic({ root: './public' }));
+
+/**
+ * Metrics API Routes
+ *
+ * Mount metrics API at /api/metrics
+ */
+pagesRoutes.route('/api/metrics', metricsRoutes);
+
+/**
+ * Metrics Dashboard
+ *
+ * GET /dashboard/metrics
+ *
+ * Renders the GBP performance metrics dashboard.
+ * Requires tenantId query parameter (will use auth session in production).
+ */
+pagesRoutes.get('/dashboard/metrics', (c) => {
+  // In production, get tenantId from auth session
+  const tenantId = c.req.query('tenantId');
+  if (!tenantId) {
+    return c.text('tenantId required', 400);
+  }
+  return c.html(renderMetricsDashboard(tenantId));
+});
 
 /**
  * WhatsApp Connection Page

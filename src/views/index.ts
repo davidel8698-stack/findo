@@ -7,3 +7,4 @@
 export { renderWhatsAppConnectPage } from './whatsapp-connect';
 export { renderGoogleConnectPage } from './google-connect';
 export { renderReviewRequestsPage } from './review-requests';
+export { renderMetricsDashboard } from './metrics-dashboard';
