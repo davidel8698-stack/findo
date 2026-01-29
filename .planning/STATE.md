@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 7 - GBP Content (photo requests, uploads, promotional posts)
+**Current focus:** Phase 7 complete → Phase 8 next (GBP Optimization)
 
 ## Current Position
 
