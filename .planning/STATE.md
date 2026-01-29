@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 7 of 10 (GBP Content)
-Plan: 2 of 5 in current phase
+Plan: 4 of 6 in current phase
 Status: In progress
-Last activity: 2026-01-29 - Completed 07-02-PLAN.md (Media Services)
+Last activity: 2026-01-29 - Completed 07-04-PLAN.md (Promotional Posts)
 
-Progress: [█████████████████████░] ~97% of Phases 1-6 complete, Phase 7-02 done
+Progress: [█████████████████████░] ~97% of Phases 1-6 complete, Phase 7-04 done
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 35
+- Total plans completed: 36
 - Average duration: 5.1 min
-- Total execution time: 3.07 hours
+- Total execution time: 3.2 hours
 
 **By Phase:**
 
@@ -33,11 +33,11 @@ Progress: [█████████████████████░] ~
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
-| 07-gbp-content | 2 | 9 min | 4.5 min |
+| 07-gbp-content | 4 | 17 min | 4.3 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-06 (~6 min), 06-07 (~3 min), 07-01 (~5 min), 07-02 (~4 min)
-- Trend: Phase 7 progressing! Media services layer complete.
+- Last 5 plans: 06-07 (~3 min), 07-01 (~5 min), 07-02 (~4 min), 07-04 (~8 min)
+- Trend: Phase 7 progressing! Promotional posts ready for testing.
 
 *Updated after each plan completion*
 
@@ -174,6 +174,11 @@ Recent decisions affecting current work:
 | Laplacian variance for blur detection | 07-02 | Standard edge detection with sharp |
 | Blur threshold 50 | 07-02 | Empirical starting point, adjustable |
 | GBP sourceUrl upload | 07-02 | GBP API requires public URL, not binary upload |
+| Phone number regex validation in posts | 07-04 | Google rejects posts with phone numbers |
+| 1500 char limit for posts | 07-04 | Google policy, clear error message |
+| Hebrew language code (he) for posts | 07-04 | Israeli market focus |
+| Monthly post job on 1st at 10:00 AM | 07-04 | Per CONTEXT.md: monthly promotional posts |
+| Compelling messaging (35% stats) | 07-04 | Owner needs motivation to participate |
 
 ### Pending Todos
 
@@ -204,14 +209,15 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 07-02-PLAN.md (Media Services)
+Stopped at: Completed 07-04-PLAN.md (Promotional Posts)
 Resume file: None
 
 **Phase 7 Progress:**
-- 07-01: Photo Request Foundation (photoRequests/gbpPhotos tables, weekly worker, reminder job) [DONE]
+- 07-01: Photo Request Foundation (photoRequests/gbpPhotos/postRequests tables, weekly worker, reminder job) [DONE]
 - 07-02: Media Services (WhatsApp download, image validation, GBP upload) [DONE]
 - 07-03: Photo Category Confirmation (ask owner to confirm category) [PENDING]
-- 07-04: Promotional Posts (monthly post requests, AI content) [PENDING]
-- 07-05: Business Hours Updates (holiday reminders, hours changes) [PENDING]
+- 07-04: Promotional Posts (GBP posts service, monthly request worker) [DONE]
+- 07-05: Post Response Handler (handle owner replies, AI generation) [PENDING]
+- 07-06: Post Approval Flow (approval, publishing, reminders) [PENDING]
 
-**Next:** Continue with 07-03 - Photo Category Confirmation
+**Next:** Continue with 07-05 - Post Response Handler
