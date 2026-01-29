@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 7 of 10 (GBP Content)
-Plan: 4 of 6 in current phase
+Plan: 3 of 6 in current phase
 Status: In progress
-Last activity: 2026-01-29 - Completed 07-04-PLAN.md (Promotional Posts)
+Last activity: 2026-01-29 - Completed 07-03-PLAN.md (Photo Upload Flow)
 
-Progress: [█████████████████████░] ~97% of Phases 1-6 complete, Phase 7-04 done
+Progress: [█████████████████████░] ~97% of Phases 1-6 complete, Phase 7-03 done
 
 ## Performance Metrics
 
@@ -33,11 +33,11 @@ Progress: [█████████████████████░] ~
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
-| 07-gbp-content | 4 | 17 min | 4.3 min |
+| 07-gbp-content | 5 | 29 min | 5.8 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-07 (~3 min), 07-01 (~5 min), 07-02 (~4 min), 07-04 (~8 min)
-- Trend: Phase 7 progressing! Promotional posts ready for testing.
+- Last 5 plans: 07-01 (~5 min), 07-02 (~4 min), 07-04 (~8 min), 07-03 (~12 min)
+- Trend: Phase 7 progressing! Photo upload flow complete.
 
 *Updated after each plan completion*
 
@@ -179,6 +179,10 @@ Recent decisions affecting current work:
 | Hebrew language code (he) for posts | 07-04 | Israeli market focus |
 | Monthly post job on 1st at 10:00 AM | 07-04 | Per CONTEXT.md: monthly promotional posts |
 | Compelling messaging (35% stats) | 07-04 | Owner needs motivation to participate |
+| tokenVaultService for WhatsApp tokens | 07-03 | Access tokens in encrypted vault, not direct DB field |
+| Lazy R2 client initialization | 07-03 | Prevents startup errors when R2 not configured |
+| In-memory pending photo map | 07-03 | MVP solution; production needs Redis with TTL |
+| Photo handling after review responses | 07-03 | Priority order in message processing flow |
 
 ### Pending Todos
 
@@ -205,17 +209,18 @@ None yet.
 - META_APP_ID, META_APP_SECRET, WHATSAPP_WEBHOOK_VERIFY_TOKEN, META_CONFIG_ID for WhatsApp integration
 - ANTHROPIC_API_KEY for AI intent extraction (Claude Haiku 4.5)
 - GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI for Google OAuth
+- R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME, R2_PUBLIC_URL for Cloudflare R2 storage
 
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 07-04-PLAN.md (Promotional Posts)
+Stopped at: Completed 07-03-PLAN.md (Photo Upload Flow)
 Resume file: None
 
 **Phase 7 Progress:**
 - 07-01: Photo Request Foundation (photoRequests/gbpPhotos/postRequests tables, weekly worker, reminder job) [DONE]
 - 07-02: Media Services (WhatsApp download, image validation, GBP upload) [DONE]
-- 07-03: Photo Category Confirmation (ask owner to confirm category) [PENDING]
+- 07-03: Photo Upload Flow (photo processor, R2 storage, upload worker, message handler) [DONE]
 - 07-04: Promotional Posts (GBP posts service, monthly request worker) [DONE]
 - 07-05: Post Response Handler (handle owner replies, AI generation) [PENDING]
 - 07-06: Post Approval Flow (approval, publishing, reminders) [PENDING]
