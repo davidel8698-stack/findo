@@ -6,6 +6,10 @@ import { groupActivityEvents, filterByType, type ActivityFilter, type ActivityGr
 import { getTrendsData, type TrendsPeriod, type TrendsData } from '../../services/dashboard/trends-aggregator';
 import { activityService } from '../../services/activity';
 import type { TenantContext } from '../../types/tenant-context';
+import { db } from '../../db';
+import { processedReviews, googleConnections } from '../../db/schema';
+import { eq, and } from 'drizzle-orm';
+import { postReviewReply } from '../../services/google/reviews';
 
 // Extend Hono Variables for tenant context
 type Variables = {
@@ -216,6 +220,156 @@ app.get('/trends', async (c) => {
     console.error('[dashboard/trends] Error fetching trends:', error);
     return c.json({
       error: 'Failed to fetch trends data',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * GET /api/dashboard/pending-reviews
+ *
+ * Returns list of reviews pending owner approval.
+ *
+ * Per DASH-03: "Approve/edit negative review responses before posting"
+ *
+ * Returns:
+ * - reviews: Array of pending reviews with reviewId, reviewerName, starRating, comment, draftReply, approvalSentAt
+ */
+app.get('/pending-reviews', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  try {
+    const reviews = await db
+      .select({
+        reviewId: processedReviews.reviewId,
+        reviewerName: processedReviews.reviewerName,
+        starRating: processedReviews.starRating,
+        comment: processedReviews.comment,
+        draftReply: processedReviews.draftReply,
+        approvalSentAt: processedReviews.approvalSentAt,
+      })
+      .from(processedReviews)
+      .where(
+        and(
+          eq(processedReviews.tenantId, tenant.tenantId),
+          eq(processedReviews.status, 'pending_approval')
+        )
+      )
+      .orderBy(processedReviews.approvalSentAt);
+
+    return c.json({ reviews });
+  } catch (error) {
+    console.error('[dashboard/pending-reviews] Error fetching reviews:', error);
+    return c.json({
+      error: 'Failed to fetch pending reviews',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * POST /api/dashboard/review/:reviewId/approve
+ *
+ * Approves a pending review and posts reply to Google.
+ *
+ * Body:
+ * - customReply?: string - Optional edited reply text
+ *
+ * If customReply provided: use it, set status='edited'
+ * If no customReply: use draftReply, set status='approved'
+ *
+ * Per DASH-03: "Approve/edit negative review responses before posting"
+ */
+app.post('/review/:reviewId/approve', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  const reviewId = c.req.param('reviewId');
+  let body: { customReply?: string } = {};
+
+  try {
+    body = await c.req.json();
+  } catch {
+    // Empty body is valid - means use draft reply
+  }
+
+  try {
+    // Get the review
+    const [review] = await db
+      .select()
+      .from(processedReviews)
+      .where(
+        and(
+          eq(processedReviews.tenantId, tenant.tenantId),
+          eq(processedReviews.reviewId, reviewId),
+          eq(processedReviews.status, 'pending_approval')
+        )
+      )
+      .limit(1);
+
+    if (!review) {
+      return c.json({ error: 'Review not found or not pending approval' }, 404);
+    }
+
+    // Get Google connection for posting
+    const [googleConnection] = await db
+      .select()
+      .from(googleConnections)
+      .where(eq(googleConnections.tenantId, tenant.tenantId))
+      .limit(1);
+
+    if (!googleConnection || !googleConnection.locationId) {
+      return c.json({ error: 'No Google connection configured' }, 400);
+    }
+
+    // Determine reply text and status
+    const replyText = body.customReply || review.draftReply;
+    const newStatus = body.customReply ? 'edited' : 'approved';
+
+    if (!replyText) {
+      return c.json({ error: 'No reply text available' }, 400);
+    }
+
+    // Post reply to Google
+    const postedReply = await postReviewReply(
+      tenant.tenantId,
+      googleConnection.accountId,
+      googleConnection.locationId,
+      reviewId,
+      replyText
+    );
+
+    // Update review record
+    await db
+      .update(processedReviews)
+      .set({
+        status: 'replied',
+        postedReply: replyText,
+        repliedAt: new Date(),
+        ownerResponse: body.customReply || null,
+        updatedAt: new Date(),
+      })
+      .where(eq(processedReviews.id, review.id));
+
+    console.log(`[dashboard/approve] Review ${reviewId} approved and replied (status: ${newStatus})`);
+
+    return c.json({
+      success: true,
+      message: 'Reply posted successfully',
+      replyText,
+      repliedAt: postedReply.updateTime,
+    });
+  } catch (error) {
+    console.error('[dashboard/approve] Error approving review:', error);
+    return c.json({
+      error: 'Failed to approve and post reply',
       details: error instanceof Error ? error.message : 'Unknown error'
     }, 500);
   }
