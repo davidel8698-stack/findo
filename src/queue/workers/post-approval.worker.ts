@@ -126,26 +126,32 @@ async function handlePublish(data: { tenantId: string; postRequestId: string }) 
       : undefined,
   });
 
-  // Update request
+  // Construct Maps URL for viewing business profile
+  const searchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(tenant.businessName)}`;
+
+  // Update request with searchUrl for future reference
   await db
     .update(postRequests)
     .set({
       status: 'published',
       gbpPostId: post.postId,
       gbpPostState: post.state,
+      searchUrl,
       publishedAt: new Date(),
       updatedAt: new Date(),
     })
     .where(eq(postRequests.id, postRequestId));
 
-  // Notify owner
+  // Notify owner with link to view
   if (tenant.ownerPhone) {
     const client = await createWhatsAppClient(tenantId);
     if (client) {
       await sendTextMessage(
         client,
         tenant.ownerPhone,
-        `הפוסט פורסם בגוגל! יכול לקחת כמה שעות עד שיופיע בפרופיל.`
+        `הפוסט פורסם בגוגל!\n\n` +
+        `לצפייה בפרופיל: ${searchUrl}\n\n` +
+        `הפוסט יופיע בפרופיל תוך כמה שעות.`
       );
     }
   }
