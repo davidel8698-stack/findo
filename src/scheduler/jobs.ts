@@ -214,6 +214,33 @@ export async function scheduleRecurringJobs(): Promise<void> {
   );
   console.log('[scheduler] Registered: monthly-post (1st of month 10:00 AM Israel)');
 
+  /**
+   * Post Reminder Job
+   *
+   * Runs daily at 11:00 AM Israel time (1 hour after monthly-post).
+   * Checks for pending post requests that need reminders.
+   * Auto-publishes safe content if no response after 10 days.
+   *
+   * Per CONTEXT.md reminder sequence:
+   * - Day 3: Reminder 1
+   * - Day 7: Reminder 2 + AI draft
+   * - Day 10: Auto-publish safe content
+   */
+  await scheduledQueue.add(
+    'post-reminder',
+    {
+      jobType: 'post-reminder',
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '0 11 * * *', // Daily at 11:00 AM
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'post-reminder-daily',
+    }
+  );
+  console.log('[scheduler] Registered: post-reminder (daily 11:00 AM Israel)');
+
   // Daily digest - every day at 10:00 AM Israel (Phase 9)
   await scheduledQueue.add(
     'daily-digest',

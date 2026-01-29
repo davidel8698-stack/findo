@@ -25,3 +25,4 @@ export { startReviewPollWorker } from './workers/review-poll.worker';
 export { startReviewReminderWorker } from './workers/review-reminder.worker';
 export { startInvoicePollWorker } from './workers/invoice-poll.worker';
 export { startReviewRequestWorker } from './workers/review-request.worker';
+export { startPostApprovalWorker } from './workers/post-approval.worker';
