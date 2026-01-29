@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 8 of 10 (GBP Optimization)
-Plan: 2 of 7 in current phase (completed 08-01 and 08-02)
+Plan: 4 of 7 in current phase (completed 08-01, 08-02, 08-03, 08-04)
 Status: In progress
-Last activity: 2026-01-29 - Completed 08-01-PLAN.md (Optimization schema foundation)
+Last activity: 2026-01-29 - Completed 08-04-PLAN.md (Metrics Dashboard API and View)
 
-Progress: [████████████████████████░░░] Phase 8 started, ~75% of total project
+Progress: [█████████████████████████░░] Phase 8 in progress, ~78% of total project
 
 ## Performance Metrics
 
@@ -205,6 +205,7 @@ Recent decisions affecting current work:
 | Use Business Profile Performance API v1 for metrics | 08-02 | Separate from My Business v4, different endpoints |
 | Aggregate desktop + mobile impressions | 08-02 | Combined for total visibility score |
 | Return null on error for non-critical metrics | 08-02 | Metrics are nice-to-have, let caller handle gracefully |
+| 5% trend threshold for metrics | 08-04 | Filters noise from small fluctuations while surfacing meaningful changes |
 
 ### Pending Todos
 
@@ -236,16 +237,16 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 08-01-PLAN.md (Optimization Schema)
+Stopped at: Completed 08-04-PLAN.md (Metrics Dashboard API and View)
 Resume file: None
 
-**Phase 8 Progress:** In progress (2/7 plans complete)
+**Phase 8 Progress:** In progress (4/7 plans complete)
 - 08-01: Optimization Schema (metricSnapshots, tenantBaselines, abTestVariants, abTestAssignments, optimizationConfig) [DONE]
 - 08-02: Performance API Client (getPerformanceMetrics, getMediaMetrics, date helpers) [DONE]
-- 08-03: Scoring Algorithm [PENDING]
-- 08-04: Baseline Collection [PENDING]
+- 08-03: Metrics Collection (metricsCollectorService, metricsCollectionWorker) [DONE]
+- 08-04: Metrics Dashboard (metricsRoutes, renderMetricsDashboard) [DONE]
 - 08-05: Optimization Tips [PENDING]
-- 08-06: Dashboard API [PENDING]
+- 08-06: Dashboard Enhancements [PENDING]
 - 08-07: Worker Registration [PENDING]
 
-**Next:** Continue with 08-03 (Scoring Algorithm)
+**Next:** Continue with 08-05 (Optimization Tips)
