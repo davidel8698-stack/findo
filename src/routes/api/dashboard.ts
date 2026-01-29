@@ -7,9 +7,12 @@ import { getTrendsData, type TrendsPeriod, type TrendsData } from '../../service
 import { activityService } from '../../services/activity';
 import type { TenantContext } from '../../types/tenant-context';
 import { db } from '../../db';
-import { processedReviews, googleConnections } from '../../db/schema';
-import { eq, and } from 'drizzle-orm';
+import { processedReviews, googleConnections, photoRequests, gbpPhotos } from '../../db/schema';
+import { eq, and, desc, isNull } from 'drizzle-orm';
 import { postReviewReply } from '../../services/google/reviews';
+import { validateImage, prepareImageForUpload } from '../../services/media/image-validator';
+import { uploadToR2, isR2Configured } from '../../services/storage/r2';
+import { uploadPhotoFromUrl, type PhotoCategory } from '../../services/google/media';
 
 // Extend Hono Variables for tenant context
 type Variables = {
@@ -370,6 +373,205 @@ app.post('/review/:reviewId/approve', async (c) => {
     console.error('[dashboard/approve] Error approving review:', error);
     return c.json({
       error: 'Failed to approve and post reply',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * GET /api/dashboard/photo-request
+ *
+ * Returns current photo request status for tenant.
+ *
+ * Per DASH-04: "Upload photos when system requests"
+ *
+ * Returns:
+ * - hasPending: boolean
+ * - requestId?: string
+ * - requestedAt?: Date
+ */
+app.get('/photo-request', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  try {
+    // Get most recent pending photo request
+    const [request] = await db
+      .select({
+        id: photoRequests.id,
+        requestedAt: photoRequests.requestedAt,
+        status: photoRequests.status,
+      })
+      .from(photoRequests)
+      .where(
+        and(
+          eq(photoRequests.tenantId, tenant.tenantId),
+          eq(photoRequests.status, 'sent'),
+          isNull(photoRequests.deletedAt)
+        )
+      )
+      .orderBy(desc(photoRequests.requestedAt))
+      .limit(1);
+
+    if (request) {
+      return c.json({
+        hasPending: true,
+        requestId: request.id,
+        requestedAt: request.requestedAt,
+      });
+    }
+
+    return c.json({ hasPending: false });
+  } catch (error) {
+    console.error('[dashboard/photo-request] Error fetching request:', error);
+    return c.json({
+      error: 'Failed to fetch photo request status',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * POST /api/dashboard/photo/upload
+ *
+ * Upload a photo to R2 and GBP.
+ *
+ * Content-Type: multipart/form-data
+ * Body: photo (file)
+ *
+ * Per DASH-04: "Upload photos when system requests"
+ */
+app.post('/photo/upload', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  try {
+    // Check R2 configuration
+    if (!isR2Configured()) {
+      return c.json({ error: 'Storage not configured' }, 500);
+    }
+
+    // Get Google connection
+    const [googleConnection] = await db
+      .select()
+      .from(googleConnections)
+      .where(eq(googleConnections.tenantId, tenant.tenantId))
+      .limit(1);
+
+    if (!googleConnection || !googleConnection.locationId) {
+      return c.json({ error: 'No Google connection configured' }, 400);
+    }
+
+    // Parse multipart form
+    const formData = await c.req.formData();
+    const file = formData.get('photo');
+
+    if (!file || !(file instanceof File)) {
+      return c.json({ error: 'No photo file provided' }, 400);
+    }
+
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/png'];
+    if (!validTypes.includes(file.type)) {
+      return c.json({ error: 'Invalid file type. Must be JPEG or PNG' }, 400);
+    }
+
+    // Validate file size (max 10MB)
+    const maxSize = 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+      return c.json({ error: 'File too large. Maximum 10MB' }, 400);
+    }
+
+    // Read file to buffer
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    // Validate image (dimensions, format, blur)
+    const validation = await validateImage(buffer);
+    if (!validation.valid) {
+      return c.json({ error: validation.reason }, 400);
+    }
+
+    // Prepare image for upload (optimize, convert to JPEG)
+    const optimizedBuffer = await prepareImageForUpload(buffer);
+
+    // Generate unique filename
+    const timestamp = Date.now();
+    const filename = `${timestamp}.jpg`;
+
+    // Upload to R2
+    const { publicUrl } = await uploadToR2(
+      tenant.tenantId,
+      filename,
+      optimizedBuffer,
+      'image/jpeg'
+    );
+
+    console.log(`[dashboard/photo-upload] Uploaded to R2: ${publicUrl}`);
+
+    // Upload to GBP
+    const category: PhotoCategory = 'ADDITIONAL';
+    const gbpPhoto = await uploadPhotoFromUrl(
+      tenant.tenantId,
+      googleConnection.accountId,
+      googleConnection.locationId,
+      publicUrl,
+      category
+    );
+
+    console.log(`[dashboard/photo-upload] Uploaded to GBP: ${gbpPhoto.mediaItemId}`);
+
+    // Save to database
+    await db.insert(gbpPhotos).values({
+      tenantId: tenant.tenantId,
+      mediaItemId: gbpPhoto.mediaItemId,
+      category,
+      sourceUrl: publicUrl,
+      status: 'processing',
+      uploadedAt: new Date(),
+    });
+
+    // Update pending photo request if exists
+    const [pendingRequest] = await db
+      .select()
+      .from(photoRequests)
+      .where(
+        and(
+          eq(photoRequests.tenantId, tenant.tenantId),
+          eq(photoRequests.status, 'sent'),
+          isNull(photoRequests.deletedAt)
+        )
+      )
+      .orderBy(desc(photoRequests.requestedAt))
+      .limit(1);
+
+    if (pendingRequest) {
+      await db
+        .update(photoRequests)
+        .set({
+          status: 'uploaded',
+          uploadedAt: new Date(),
+          gbpMediaIds: [...(pendingRequest.gbpMediaIds || []), gbpPhoto.mediaItemId],
+          updatedAt: new Date(),
+        })
+        .where(eq(photoRequests.id, pendingRequest.id));
+    }
+
+    return c.json({
+      success: true,
+      publicUrl,
+      mediaItemId: gbpPhoto.mediaItemId,
+    });
+  } catch (error) {
+    console.error('[dashboard/photo-upload] Error uploading photo:', error);
+    return c.json({
+      error: 'Failed to upload photo',
       details: error instanceof Error ? error.message : 'Unknown error'
     }, 500);
   }
