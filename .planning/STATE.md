@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 7 complete → Phase 8 next (GBP Optimization)
+**Current focus:** Phase 8 (GBP Optimization) - Building visibility metrics and optimization scores
 
 ## Current Position
 
-Phase: 7 of 10 (GBP Content)
-Plan: 8 of 8 in current phase (UAT gap closure)
-Status: Phase verified ✓
-Last activity: 2026-01-29 - Completed 07-08-PLAN.md (UAT gap closure - 3 minor issues fixed)
+Phase: 8 of 10 (GBP Optimization)
+Plan: 2 of 7 in current phase (Performance API Client)
+Status: In progress
+Last activity: 2026-01-29 - Completed 08-02-PLAN.md (GBP Performance API service)
 
-Progress: [██████████████████████] Phase 7 complete, ~100% of Phases 1-7
+Progress: [████████████████████████░░░] Phase 8 started, ~75% of total project
 
 ## Performance Metrics
 
@@ -198,6 +198,9 @@ Recent decisions affecting current work:
 | postApprovalWorker dual-cleanup | 07-07 | Returns { notificationWorker, scheduledWorker } requiring separate cleanup |
 | Dynamic Maps URL from businessName | 07-08 | No searchUrl DB column needed - generate on-demand |
 | Maps search URL pattern for profile links | 07-08 | https://www.google.com/maps/search/?api=1&query={businessName} |
+| Use Business Profile Performance API v1 for metrics | 08-02 | Separate from My Business v4, different endpoints |
+| Aggregate desktop + mobile impressions | 08-02 | Combined for total visibility score |
+| Return null on error for non-critical metrics | 08-02 | Metrics are nice-to-have, let caller handle gracefully |
 
 ### Pending Todos
 
@@ -229,17 +232,16 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 07-08-PLAN.md (UAT Gap Closure - 3 minor issues fixed)
+Stopped at: Completed 08-02-PLAN.md (GBP Performance API service)
 Resume file: None
 
-**Phase 7 Progress:** VERIFIED ✓ (5/5 success criteria + UAT gaps closed)
-- 07-01: Photo Request Foundation (photoRequests/gbpPhotos/postRequests tables, weekly worker, reminder job) [DONE]
-- 07-02: Media Services (WhatsApp download, image validation, GBP upload) [DONE]
-- 07-03: Photo Upload Flow (photo processor, R2 storage, upload worker, message handler) [DONE]
-- 07-04: Promotional Posts (GBP posts service, monthly request worker) [DONE]
-- 07-05: AI Post Generation (post generator, approval worker, message handler integration) [DONE]
-- 07-06: Business Hours Updates (@hebcal/core, holiday-checker, hours service, message handler) [DONE]
-- 07-07: Worker Registration - Gap Closure (all Phase 7 workers registered in src/index.ts) [DONE]
-- 07-08: UAT Gap Closure (improved photo/post confirmations, holiday-check startup log) [DONE]
+**Phase 8 Progress:** In progress (2/7 plans complete)
+- 08-01: Schema & Types (gbpSnapshots table, optimization types) [PENDING]
+- 08-02: Performance API Client (getPerformanceMetrics, getMediaMetrics, date helpers) [DONE]
+- 08-03: Scoring Algorithm [PENDING]
+- 08-04: Baseline Collection [PENDING]
+- 08-05: Optimization Tips [PENDING]
+- 08-06: Dashboard API [PENDING]
+- 08-07: Worker Registration [PENDING]
 
-**Next:** Ready for Phase 8 (GBP Optimization)
+**Next:** Continue with 08-03 (Scoring Algorithm)
