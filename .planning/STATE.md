@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 8 (GBP Optimization) COMPLETE - Ready for Phase 9 (Owner Dashboard)
+**Current focus:** Phase 9 (Dashboard & Notifications) IN PROGRESS
 
 ## Current Position
 
-Phase: 8 of 10 (GBP Optimization) - COMPLETE
-Plan: 7 of 7 in current phase (completed 08-01 through 08-07)
-Status: Phase complete
-Last activity: 2026-01-29 - Completed 08-07-PLAN.md (Auto-Tuning Engine)
+Phase: 9 of 10 (Dashboard & Notifications)
+Plan: 1 of 8 in current phase (completed 09-01)
+Status: In progress
+Last activity: 2026-01-29 - Completed 09-01-PLAN.md (Database Schema)
 
-Progress: [████████████████████████████] Phase 8 complete, ~85% of total project
+Progress: [█████████████████████████████░] 42/50 plans complete, ~84% of total project
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 41
+- Total plans completed: 42
 - Average duration: 5.2 min
-- Total execution time: 3.6 hours
+- Total execution time: 3.67 hours
 
 **By Phase:**
 
@@ -35,10 +35,11 @@ Progress: [███████████████████████
 | 06-review-requests | 7 | 25 min | 3.6 min |
 | 07-gbp-content | 8 | 53 min | 6.6 min |
 | 08-gbp-optimization | 7 | ~35 min | 5 min |
+| 09-dashboard-notifications | 1 | ~4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 08-03 (~5 min), 08-04 (~6 min), 08-05 (~5 min), 08-06 (~5 min), 08-07 (~5 min)
-- Trend: Phase 8 COMPLETE! All optimization features implemented.
+- Last 5 plans: 08-05 (~5 min), 08-06 (~5 min), 08-07 (~5 min), 09-01 (~4 min)
+- Trend: Phase 9 started! Schema foundation laid.
 
 *Updated after each plan completion*
 
@@ -220,6 +221,9 @@ Recent decisions affecting current work:
 | 4-hour timing adjustment increments | 08-07 | Gradual changes with 12h min and 48h max bounds |
 | Monday 3:00 AM for auto-tuning | 08-07 | 1 hour after metrics collection to use fresh data |
 | Weekly summaries via text message | 08-07 | Owner likely in session window from regular interaction |
+| 10 boolean notification flags with sensible defaults | 09-01 | Per CONTEXT.md: granular notification preferences with opt-out per type |
+| JSONB for chatbot questions with ChatbotQuestion interface | 09-01 | Flexible structure for add/edit/reorder while maintaining type safety |
+| Default Hebrew questions for all business types | 09-01 | Per CONTEXT.md: defaults work for all businesses, owner customizes as needed |
 
 ### Pending Todos
 
@@ -251,16 +255,17 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 08-07-PLAN.md (Auto-Tuning Engine)
+Stopped at: Completed 09-01-PLAN.md (Database Schema)
 Resume file: None
 
-**Phase 8 Progress:** COMPLETE (7/7 plans complete)
-- 08-01: Optimization Schema (metricSnapshots, tenantBaselines, abTestVariants, abTestAssignments, optimizationConfig) [DONE]
-- 08-02: Performance API Client (getPerformanceMetrics, getMediaMetrics, date helpers) [DONE]
-- 08-03: Metrics Collection (metricsCollectorService, metricsCollectionWorker, Monday 2AM job) [DONE]
-- 08-04: Metrics Dashboard (API at /api/metrics, Hebrew RTL view at /dashboard/metrics) [DONE]
-- 08-05: Alert Detection (checkForAlerts, sendReviewRateAlert, WhatsApp alerts with 30% threshold) [DONE]
-- 08-06: A/B Testing (getActiveVariant, recordOutcome, checkForWinner, review request integration) [DONE]
-- 08-07: Auto-Tuning Engine (runAutoTuning, migrateToWinner, weekly summaries, Monday 3AM job) [DONE]
+**Phase 9 Progress:** IN PROGRESS (1/8 plans complete)
+- 09-01: Database Schema (notificationPreferences, chatbotConfig) [DONE]
+- 09-02: Settings API Endpoints [PENDING]
+- 09-03: Dashboard Stats Aggregation [PENDING]
+- 09-04: Health Status Component [PENDING]
+- 09-05: Activity Feed [PENDING]
+- 09-06: Settings Views [PENDING]
+- 09-07: Reports Visualization [PENDING]
+- 09-08: Main Dashboard Integration [PENDING]
 
-**Next:** Phase 9 (Owner Dashboard)
+**Next:** 09-02 (Settings API Endpoints)
