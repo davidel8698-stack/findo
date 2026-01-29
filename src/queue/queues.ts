@@ -104,7 +104,7 @@ export interface WebhookJobData {
 }
 
 export interface ScheduledJobData {
-  jobType: 'review-check' | 'review-reminder' | 'invoice-poll' | 'photo-request' | 'photo-reminder' | 'daily-digest' | 'token-refresh' | 'test';
+  jobType: 'review-check' | 'review-reminder' | 'invoice-poll' | 'photo-request' | 'photo-reminder' | 'monthly-post' | 'daily-digest' | 'token-refresh' | 'test';
   tenantId?: string; // Optional for tenant-specific jobs
   params?: Record<string, unknown>;
 }

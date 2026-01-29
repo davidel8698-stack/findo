@@ -190,6 +190,30 @@ export async function scheduleRecurringJobs(): Promise<void> {
   );
   console.log('[scheduler] Registered: photo-reminder (Saturday 10:00 AM Israel)');
 
+  /**
+   * Monthly Post Request Job
+   *
+   * Runs on the 1st of each month at 10:00 AM Israel time.
+   * Sends WhatsApp messages to business owners asking about promotional posts.
+   *
+   * Per CONTEXT.md: Include compelling explanation of why fresh posts matter.
+   * Owner can provide content or request AI generation.
+   */
+  await scheduledQueue.add(
+    'monthly-post',
+    {
+      jobType: 'monthly-post',
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '0 10 1 * *', // 1st of month at 10:00 AM
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'monthly-post',
+    }
+  );
+  console.log('[scheduler] Registered: monthly-post (1st of month 10:00 AM Israel)');
+
   // Daily digest - every day at 10:00 AM Israel (Phase 9)
   await scheduledQueue.add(
     'daily-digest',
