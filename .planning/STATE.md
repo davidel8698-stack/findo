@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 8 (GBP Optimization) - Building visibility metrics and optimization scores
+**Current focus:** Phase 8 (GBP Optimization) COMPLETE - Ready for Phase 9 (Owner Dashboard)
 
 ## Current Position
 
-Phase: 8 of 10 (GBP Optimization)
-Plan: 6 of 7 in current phase (completed 08-01, 08-02, 08-03, 08-04, 08-05, 08-06)
-Status: In progress
-Last activity: 2026-01-29 - Completed 08-06-PLAN.md (A/B Testing Framework)
+Phase: 8 of 10 (GBP Optimization) - COMPLETE
+Plan: 7 of 7 in current phase (completed 08-01 through 08-07)
+Status: Phase complete
+Last activity: 2026-01-29 - Completed 08-07-PLAN.md (Auto-Tuning Engine)
 
-Progress: [██████████████████████████░] Phase 8 in progress, ~82% of total project
+Progress: [████████████████████████████] Phase 8 complete, ~85% of total project
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 40
+- Total plans completed: 41
 - Average duration: 5.2 min
-- Total execution time: 3.5 hours
+- Total execution time: 3.6 hours
 
 **By Phase:**
 
@@ -34,10 +34,11 @@ Progress: [███████████████████████
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
 | 07-gbp-content | 8 | 53 min | 6.6 min |
+| 08-gbp-optimization | 7 | ~35 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-04 (~8 min), 07-05 (~10 min), 07-06 (~6 min), 07-07 (~3 min), 07-08 (~5 min)
-- Trend: Phase 7 COMPLETE! All GBP content features + UAT fixes implemented.
+- Last 5 plans: 08-03 (~5 min), 08-04 (~6 min), 08-05 (~5 min), 08-06 (~5 min), 08-07 (~5 min)
+- Trend: Phase 8 COMPLETE! All optimization features implemented.
 
 *Updated after each plan completion*
 
@@ -215,6 +216,10 @@ Recent decisions affecting current work:
 | 20% improvement with 10+ samples for A/B winner | 08-06 | Per CONTEXT.md, sufficient statistical confidence |
 | Prefer global winners in variant assignment | 08-06 | New tenants get proven approaches while allowing experimentation |
 | Track success on review completion | 08-06 | Measures actual outcome (review received) not just activity |
+| migrateToWinner deactivates losing assignments | 08-07 | Avoid duplicates when migrating to winner variant |
+| 4-hour timing adjustment increments | 08-07 | Gradual changes with 12h min and 48h max bounds |
+| Monday 3:00 AM for auto-tuning | 08-07 | 1 hour after metrics collection to use fresh data |
+| Weekly summaries via text message | 08-07 | Owner likely in session window from regular interaction |
 
 ### Pending Todos
 
@@ -246,16 +251,16 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 08-06-PLAN.md (A/B Testing Framework)
+Stopped at: Completed 08-07-PLAN.md (Auto-Tuning Engine)
 Resume file: None
 
-**Phase 8 Progress:** In progress (6/7 plans complete)
+**Phase 8 Progress:** COMPLETE (7/7 plans complete)
 - 08-01: Optimization Schema (metricSnapshots, tenantBaselines, abTestVariants, abTestAssignments, optimizationConfig) [DONE]
 - 08-02: Performance API Client (getPerformanceMetrics, getMediaMetrics, date helpers) [DONE]
 - 08-03: Metrics Collection (metricsCollectorService, metricsCollectionWorker, Monday 2AM job) [DONE]
 - 08-04: Metrics Dashboard (API at /api/metrics, Hebrew RTL view at /dashboard/metrics) [DONE]
 - 08-05: Alert Detection (checkForAlerts, sendReviewRateAlert, WhatsApp alerts with 30% threshold) [DONE]
 - 08-06: A/B Testing (getActiveVariant, recordOutcome, checkForWinner, review request integration) [DONE]
-- 08-07: Worker Registration [PENDING]
+- 08-07: Auto-Tuning Engine (runAutoTuning, migrateToWinner, weekly summaries, Monday 3AM job) [DONE]
 
-**Next:** Continue with 08-07 (Worker Registration)
+**Next:** Phase 9 (Owner Dashboard)
