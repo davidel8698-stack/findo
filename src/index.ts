@@ -178,9 +178,29 @@ async function shutdown() {
     await postApprovalWorker.scheduledWorker.close();
     console.log('[server] Post approval workers stopped');
   }
-  // holidayCheckWorker cleanup
+  if (reviewPollWorker) {
+    await reviewPollWorker.close();
+    console.log('[server] Review poll worker stopped');
+  }
+  if (reviewReminderWorker) {
+    await reviewReminderWorker.close();
+    console.log('[server] Review reminder worker stopped');
+  }
+  if (invoicePollWorker) {
+    await invoicePollWorker.close();
+    console.log('[server] Invoice poll worker stopped');
+  }
+  if (reviewRequestWorker) {
+    await reviewRequestWorker.close();
+    console.log('[server] Review request worker stopped');
+  }
+  // holidayCheckWorker, metricsCollectionWorker, autoTuningWorker cleanup
   await holidayCheckWorker.close();
   console.log('[server] Holiday check worker stopped');
+  await metricsCollectionWorker.close();
+  console.log('[server] Metrics collection worker stopped');
+  await autoTuningWorker.close();
+  console.log('[server] Auto-tuning worker stopped');
 
   // Close Redis connections
   await closeRedisConnections();
