@@ -382,6 +382,33 @@ export async function scheduleRecurringJobs(): Promise<void> {
     }
   );
   console.log('[scheduler] Registered: metrics-collection (Monday 2:00 AM Israel)');
+
+  /**
+   * Auto-Tuning Job
+   *
+   * Runs weekly on Monday at 3:00 AM Israel time.
+   * Runs 1 hour after metrics collection to use fresh data.
+   *
+   * Per CONTEXT.md autonomous optimization:
+   * - Check A/B test winners (20%+ improvement with 10+ samples)
+   * - Promote winners and migrate existing tenants
+   * - Tune review request timing based on conversion rates
+   * - Send weekly summaries to affected owners
+   */
+  await scheduledQueue.add(
+    'auto-tuning',
+    {
+      jobType: 'auto-tuning',
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '0 3 * * 1', // Monday 3:00 AM (1 hour after metrics collection)
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'auto-tuning-weekly',
+    }
+  );
+  console.log('[scheduler] Registered: auto-tuning (Monday 3:00 AM Israel)');
 }
 
 /**
