@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Google Integration** - GBP OAuth and review monitoring
 - [x] **Phase 5: Review Management** - Auto-reply to positive reviews, draft responses for negative
 - [x] **Phase 6: Review Requests** - Invoice-triggered and manual review request flows
-- [x] **Phase 7: GBP Content** - Photo requests, uploads, and promotional posts
+- [ ] **Phase 7: GBP Content** - Photo requests, uploads, and promotional posts (UAT gap closure in progress)
 - [ ] **Phase 8: GBP Optimization** - Metrics monitoring and autonomous tuning
 - [ ] **Phase 9: Dashboard & Notifications** - Confidence window and WhatsApp-first UX
 - [ ] **Phase 10: Setup & Billing** - 2-minute onboarding wizard and payment processing
@@ -179,7 +179,7 @@ Plans:
   3. Monthly promotional post is created from owner-provided content or AI-generated if none provided
   4. System checks business details (holidays, hours) and offers updates for owner approval
   5. Photo request notifications are actionable via WhatsApp reply
-**Plans**: 7 plans
+**Plans**: 8 plans
 
 Plans:
 - [x] 07-01-PLAN.md - Photo request schema and weekly worker
@@ -189,6 +189,7 @@ Plans:
 - [x] 07-05-PLAN.md - AI post generator and approval workflow
 - [x] 07-06-PLAN.md - Holiday hours checker with @hebcal/core
 - [x] 07-07-PLAN.md - Gap closure: Register Phase 7 workers in index.ts
+- [ ] 07-08-PLAN.md - Gap closure: UAT fixes (confirmation messages, worker logging)
 
 **Research flag**: Completed (07-RESEARCH.md)
 
@@ -274,7 +275,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 4. Google Integration | 4/4 | Complete | 2026-01-28 |
 | 5. Review Management | 6/6 | Complete | 2026-01-28 |
 | 6. Review Requests | 7/7 | Complete | 2026-01-28 |
-| 7. GBP Content | 7/7 | Complete | 2026-01-29 |
+| 7. GBP Content | 7/8 | UAT gap closure | - |
 | 8. GBP Optimization | 0/TBD | Not started | - |
 | 9. Dashboard & Notifications | 0/TBD | Not started | - |
 | 10. Setup & Billing | 0/TBD | Not started | - |
@@ -303,4 +304,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-29 - Phase 7 complete*
+*Last updated: 2026-01-29 - Phase 7 UAT gap closure plan created*
