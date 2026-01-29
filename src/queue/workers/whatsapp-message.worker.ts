@@ -7,11 +7,12 @@ import {
   leads,
   leadConversations,
   tenants,
+  postRequests,
   type NewWhatsAppMessage,
 } from '../../db/schema/index';
-import { eq } from 'drizzle-orm';
+import { eq, and, isNull } from 'drizzle-orm';
 import { openConversationWindow } from '../../services/whatsapp/conversations';
-import { activityQueue, leadReminderQueue, type ActivityJobData } from '../queues';
+import { activityQueue, leadReminderQueue, notificationQueue, type ActivityJobData } from '../queues';
 import { createWhatsAppClient, sendTextMessage } from '../../services/whatsapp';
 import type { ParsedMessage } from '../../services/whatsapp/webhooks';
 import { extractLeadInfo } from '../../services/lead-capture/intent';
@@ -19,6 +20,10 @@ import { getNextState, isTerminalState, type ExtractedLeadInfo } from '../../ser
 import { getChatbotResponse } from '../../services/lead-capture/messages';
 import { notifyOwnerOfLead, createLeadActivity } from '../../services/lead-capture/notifications';
 import { handleOwnerReviewResponse } from '../../services/review-management';
+import { processReceivedPhoto, handleCategorySelection, hasPendingPhoto, getISOWeek } from '../../services/gbp-content/photo-processor';
+import { photoRequests } from '../../db/schema';
+import { or } from 'drizzle-orm';
+import { tokenVaultService } from '../../services/token-vault';
 
 /**
  * Job data structure for whatsapp-messages jobs.
@@ -39,6 +44,158 @@ interface WhatsAppMessageJobData {
 // Hebrew auto-reply for unsupported message types
 const UNSUPPORTED_MESSAGE_REPLY = `שלום! קיבלנו את ההודעה שלך, אך אנו תומכים כרגע רק בהודעות טקסט ותמונות.
 אנא שלח/י הודעת טקסט או תמונה ונשמח לעזור.`;
+
+/**
+ * Handle owner response to post request.
+ *
+ * Message processing priority (within owner messages):
+ * 1. Review approval responses (button clicks, text replies)
+ * 2. Photo responses (images when photo request active)
+ * 3. Photo category selection (1-5 or Hebrew category words)
+ * 4. Post responses (when pending post request) <-- This handler
+ * 5. Lead chatbot flow (fallback for non-owner messages)
+ *
+ * @returns true if handled as post response, false otherwise
+ */
+async function handleOwnerPostResponse(
+  tenantId: string,
+  senderPhone: string,
+  messageText: string | undefined
+): Promise<boolean> {
+  if (!messageText) return false;
+
+  const now = new Date();
+  const currentMonth = now.getMonth() + 1; // 1-12
+  const currentYear = now.getFullYear();
+
+  // Find pending post request for this tenant in current month
+  const [pendingPost] = await db
+    .select()
+    .from(postRequests)
+    .where(and(
+      eq(postRequests.tenantId, tenantId),
+      eq(postRequests.month, currentMonth),
+      eq(postRequests.year, currentYear),
+      isNull(postRequests.deletedAt)
+    ))
+    .limit(1);
+
+  if (!pendingPost) return false;
+
+  // Only handle 'requested' or 'pending_approval' statuses
+  if (pendingPost.status !== 'requested' && pendingPost.status !== 'pending_approval') {
+    return false;
+  }
+
+  const normalizedText = messageText.toLowerCase().trim();
+  const client = await createWhatsAppClient(tenantId);
+
+  if (pendingPost.status === 'requested') {
+    // Owner responding to initial request
+    if (normalizedText === 'ai') {
+      // Request AI generation
+      await notificationQueue.add('post-generate', {
+        jobType: 'post-generate',
+        tenantId,
+        postRequestId: pendingPost.id,
+      });
+      if (client) {
+        await sendTextMessage(client, senderPhone, 'מעולה! מכין טיוטה...');
+      }
+      console.log(`[whatsapp-message] Post: AI generation requested for ${pendingPost.id}`);
+      return true;
+    }
+
+    if (normalizedText === 'דלג' || normalizedText === 'skip') {
+      // Skip this month
+      await db
+        .update(postRequests)
+        .set({ status: 'skipped', updatedAt: new Date() })
+        .where(eq(postRequests.id, pendingPost.id));
+      if (client) {
+        await sendTextMessage(client, senderPhone, 'בסדר, נדלג החודש. נזכיר בחודש הבא!');
+      }
+      console.log(`[whatsapp-message] Post: Skipped for ${pendingPost.id}`);
+      return true;
+    }
+
+    // Owner provided content
+    await db
+      .update(postRequests)
+      .set({ status: 'owner_content', ownerContent: messageText, updatedAt: new Date() })
+      .where(eq(postRequests.id, pendingPost.id));
+
+    await notificationQueue.add('post-generate', {
+      jobType: 'post-generate',
+      tenantId,
+      postRequestId: pendingPost.id,
+      ownerContent: messageText,
+    });
+
+    if (client) {
+      await sendTextMessage(client, senderPhone, 'קיבלתי! מכין את הפוסט...');
+    }
+    console.log(`[whatsapp-message] Post: Owner content received for ${pendingPost.id}`);
+    return true;
+  }
+
+  if (pendingPost.status === 'pending_approval') {
+    // Owner responding to draft
+    if (normalizedText === 'אשר' || normalizedText === 'approve' || normalizedText === '1') {
+      // Approve draft
+      await db
+        .update(postRequests)
+        .set({
+          status: 'approved',
+          finalContent: pendingPost.aiDraft,
+          approvedAt: new Date(),
+          updatedAt: new Date(),
+        })
+        .where(eq(postRequests.id, pendingPost.id));
+
+      await notificationQueue.add('post-publish', {
+        jobType: 'post-publish',
+        tenantId,
+        postRequestId: pendingPost.id,
+      });
+
+      if (client) {
+        await sendTextMessage(client, senderPhone, 'מפרסם!');
+      }
+      console.log(`[whatsapp-message] Post: Approved for ${pendingPost.id}`);
+      return true;
+    }
+
+    if (normalizedText === 'דלג' || normalizedText === 'skip' || normalizedText === '3') {
+      // Skip
+      await db
+        .update(postRequests)
+        .set({ status: 'skipped', updatedAt: new Date() })
+        .where(eq(postRequests.id, pendingPost.id));
+      if (client) {
+        await sendTextMessage(client, senderPhone, 'בסדר, נדלג החודש.');
+      }
+      console.log(`[whatsapp-message] Post: Skipped draft for ${pendingPost.id}`);
+      return true;
+    }
+
+    // Owner wants to edit - treat as new content
+    await notificationQueue.add('post-generate', {
+      jobType: 'post-generate',
+      tenantId,
+      postRequestId: pendingPost.id,
+      ownerContent: messageText,
+    });
+
+    if (client) {
+      await sendTextMessage(client, senderPhone, 'מעדכן את הטיוטה...');
+    }
+    console.log(`[whatsapp-message] Post: Edit requested for ${pendingPost.id}`);
+    return true;
+  }
+
+  return false;
+}
 
 /**
  * Handle incoming message that's part of a lead conversation.
@@ -182,12 +339,21 @@ async function handleLeadConversation(
 /**
  * Process incoming WhatsApp messages.
  *
+ * Message Processing Priority (owner messages):
+ * 1. Review approval responses (button clicks, text replies)
+ * 2. Photo responses (images when photo request active)
+ * 3. Photo category selection (1-5 or Hebrew category words)
+ * 4. Post responses (AI/skip/content when pending post request)
+ * 5. Lead chatbot flow (fallback for non-owner messages)
+ *
  * For each message:
  * 1. Find tenant by WABA ID from whatsappConnections
  * 2. Open/extend conversation window
- * 3. Save to whatsapp_messages table
- * 4. Create activity event
- * 5. If unsupported type, send Hebrew auto-reply
+ * 3. Check for owner-specific flows (reviews, photos, posts)
+ * 4. Fall back to lead conversation if not handled
+ * 5. Save to whatsapp_messages table
+ * 6. Create activity event
+ * 7. If unsupported type, send Hebrew auto-reply
  */
 async function processWhatsAppMessages(
   job: Job<WhatsAppMessageJobData>
@@ -250,8 +416,94 @@ async function processWhatsAppMessages(
         }
       }
 
-      // 1.6 Check if this is part of a lead conversation (skip if already handled as review response)
-      if (!handledAsReviewResponse) {
+      // 1.6 Check if this is a photo from owner (after review response, before lead chatbot)
+      // Photos have higher priority than lead chatbot when there's an active photo request
+      let handledAsPhotoResponse = false;
+
+      if (isOwner && !handledAsReviewResponse) {
+        // Check for image message
+        if (message.type === 'image' && message.mediaId) {
+          // Check if we're expecting photos (active photo request this week)
+          const { week, year } = getISOWeek(new Date());
+          const [activePhotoRequest] = await db
+            .select()
+            .from(photoRequests)
+            .where(
+              and(
+                eq(photoRequests.tenantId, tenantId),
+                eq(photoRequests.week, week),
+                eq(photoRequests.year, year),
+                // Accept photos if sent or already received (multi-photo)
+                or(eq(photoRequests.status, 'sent'), eq(photoRequests.status, 'received'))
+              )
+            )
+            .limit(1);
+
+          if (activePhotoRequest) {
+            console.log(`[whatsapp-message] Owner sent image with active photo request`);
+
+            // Get WhatsApp access token for media download from token vault
+            const tokenResult = await tokenVaultService.getAccessToken(tenantId, 'whatsapp');
+
+            if (tokenResult?.token?.value) {
+              await processReceivedPhoto(
+                tenantId,
+                message.mediaId,
+                tokenResult.token.value,
+                message.from
+              );
+              handledAsPhotoResponse = true;
+              console.log(`[whatsapp-message] Processed as photo for GBP`);
+            } else {
+              console.warn(`[whatsapp-message] No WhatsApp token found for tenant ${tenantId}`);
+            }
+          }
+        }
+
+        // Check for category response (short text after sending photo)
+        // Pattern: single digit 1-5 or short Hebrew word
+        if (!handledAsPhotoResponse && message.type === 'text' && message.text) {
+          const text = message.text.trim();
+          const isCategoryResponse = /^[1-5]$/.test(text) ||
+            ['חנות', 'מוצר', 'צוות', 'אוכל', 'אחר', 'פנים', 'חוץ'].some(cat =>
+              text.toLowerCase().includes(cat)
+            );
+
+          if (isCategoryResponse) {
+            const pendingMediaId = hasPendingPhoto(tenantId);
+            if (pendingMediaId) {
+              const handled = await handleCategorySelection(
+                tenantId,
+                pendingMediaId,
+                text,
+                message.from
+              );
+              if (handled) {
+                handledAsPhotoResponse = true;
+                console.log(`[whatsapp-message] Processed as photo category selection`);
+              }
+            }
+          }
+        }
+      }
+
+      // 1.7 Check if this is a post response from owner (after photos, before lead chatbot)
+      // Post responses: AI/skip/content when status='requested', approve/edit/skip when status='pending_approval'
+      let handledAsPostResponse = false;
+
+      if (isOwner && !handledAsReviewResponse && !handledAsPhotoResponse && message.type === 'text') {
+        handledAsPostResponse = await handleOwnerPostResponse(
+          tenantId,
+          message.from,
+          message.text
+        );
+        if (handledAsPostResponse) {
+          console.log(`[whatsapp-message] Processed as owner post response`);
+        }
+      }
+
+      // 1.8 Check if this is part of a lead conversation (skip if already handled)
+      if (!handledAsReviewResponse && !handledAsPhotoResponse && !handledAsPostResponse) {
         const leadConvo = await db.query.leadConversations.findFirst({
           where: eq(leadConversations.whatsappConversationId, conversation.id),
         });
