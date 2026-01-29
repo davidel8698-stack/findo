@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 7 of 10 (GBP Content)
-Plan: 5 of 6 in current phase
-Status: In progress
-Last activity: 2026-01-29 - Completed 07-05-PLAN.md (AI Post Generation and Approval)
+Plan: 6 of 6 in current phase
+Status: Phase complete
+Last activity: 2026-01-29 - Completed 07-06-PLAN.md (Business Hours Updates)
 
-Progress: [█████████████████████░] ~98% of Phases 1-6 complete, Phase 7-05 done
+Progress: [██████████████████████] Phase 7 complete, ~100% of Phases 1-7
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 37
+- Total plans completed: 38
 - Average duration: 5.2 min
 - Total execution time: 3.4 hours
 
@@ -33,11 +33,11 @@ Progress: [█████████████████████░] ~
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
-| 07-gbp-content | 5 | 39 min | 7.8 min |
+| 07-gbp-content | 6 | 45 min | 7.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-01 (~5 min), 07-02 (~4 min), 07-03 (~12 min), 07-04 (~8 min), 07-05 (~10 min)
-- Trend: Phase 7 nearly complete! AI post generation and approval workflow done.
+- Last 5 plans: 07-02 (~4 min), 07-03 (~12 min), 07-04 (~8 min), 07-05 (~10 min), 07-06 (~6 min)
+- Trend: Phase 7 COMPLETE! All GBP content features implemented.
 
 *Updated after each plan completion*
 
@@ -188,6 +188,12 @@ Recent decisions affecting current work:
 | Reminder sequence 3/7/10 days | 07-05 | Gradual escalation before auto-publish |
 | Dual-queue worker pattern | 07-05 | notifications for generate/publish, scheduled for reminder |
 | Post response after photos in priority | 07-05 | Owner flows take precedence over lead chatbot |
+| @hebcal/core for Israeli holidays | 07-06 | Comprehensive Hebrew calendar library with Israeli holiday support |
+| Business-affecting holiday list | 07-06 | Curated list: Rosh Hashana, Yom Kippur, Sukkot, Pesach, etc. |
+| 5-8 day reminder window | 07-06 | Gives owner time to respond before holiday arrives |
+| DD/MM: format for hours response | 07-06 | Simple pattern for Hebrew users - Israeli date format |
+| Merge special hours with conflicts | 07-06 | Don't lose existing special hours, just update conflicting dates |
+| Sunday 10:00 AM for holiday check | 07-06 | Weekly check same day as photo request (Israeli work week start) |
 
 ### Pending Todos
 
@@ -219,15 +225,15 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 07-05-PLAN.md (AI Post Generation and Approval)
+Stopped at: Completed 07-06-PLAN.md (Business Hours Updates) - Phase 7 complete
 Resume file: None
 
-**Phase 7 Progress:**
+**Phase 7 Progress:** COMPLETE
 - 07-01: Photo Request Foundation (photoRequests/gbpPhotos/postRequests tables, weekly worker, reminder job) [DONE]
 - 07-02: Media Services (WhatsApp download, image validation, GBP upload) [DONE]
 - 07-03: Photo Upload Flow (photo processor, R2 storage, upload worker, message handler) [DONE]
 - 07-04: Promotional Posts (GBP posts service, monthly request worker) [DONE]
 - 07-05: AI Post Generation (post generator, approval worker, message handler integration) [DONE]
-- 07-06: Business Hours Updates [PENDING]
+- 07-06: Business Hours Updates (@hebcal/core, holiday-checker, hours service, message handler) [DONE]
 
-**Next:** Continue with 07-06 - Business Hours Updates (final plan in phase)
+**Next:** Ready for Phase 8 (Dashboard) or Phase 9 (Analytics)
