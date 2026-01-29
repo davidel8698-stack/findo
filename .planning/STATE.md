@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 7 of 10 (GBP Content)
-Plan: 7 of 7 in current phase (gap closure plan)
+Plan: 8 of 8 in current phase (UAT gap closure)
 Status: Phase verified ✓
-Last activity: 2026-01-29 - Phase 7 GBP Content complete and verified (5/5 success criteria)
+Last activity: 2026-01-29 - Completed 07-08-PLAN.md (UAT gap closure - 3 minor issues fixed)
 
 Progress: [██████████████████████] Phase 7 complete, ~100% of Phases 1-7
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 39
+- Total plans completed: 40
 - Average duration: 5.2 min
-- Total execution time: 3.4 hours
+- Total execution time: 3.5 hours
 
 **By Phase:**
 
@@ -33,11 +33,11 @@ Progress: [██████████████████████] P
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
-| 07-gbp-content | 7 | 48 min | 6.9 min |
+| 07-gbp-content | 8 | 53 min | 6.6 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-03 (~12 min), 07-04 (~8 min), 07-05 (~10 min), 07-06 (~6 min), 07-07 (~3 min)
-- Trend: Phase 7 COMPLETE! All GBP content features implemented and workers registered.
+- Last 5 plans: 07-04 (~8 min), 07-05 (~10 min), 07-06 (~6 min), 07-07 (~3 min), 07-08 (~5 min)
+- Trend: Phase 7 COMPLETE! All GBP content features + UAT fixes implemented.
 
 *Updated after each plan completion*
 
@@ -196,6 +196,8 @@ Recent decisions affecting current work:
 | Sunday 10:00 AM for holiday check | 07-06 | Weekly check same day as photo request (Israeli work week start) |
 | holidayCheckWorker as import-time instantiation | 07-07 | Worker starts at import (not via start function) |
 | postApprovalWorker dual-cleanup | 07-07 | Returns { notificationWorker, scheduledWorker } requiring separate cleanup |
+| Dynamic Maps URL from businessName | 07-08 | No searchUrl DB column needed - generate on-demand |
+| Maps search URL pattern for profile links | 07-08 | https://www.google.com/maps/search/?api=1&query={businessName} |
 
 ### Pending Todos
 
@@ -227,10 +229,10 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 07-07-PLAN.md (Worker Registration - Gap Closure) - Phase 7 fully operational
+Stopped at: Completed 07-08-PLAN.md (UAT Gap Closure - 3 minor issues fixed)
 Resume file: None
 
-**Phase 7 Progress:** VERIFIED ✓ (5/5 success criteria)
+**Phase 7 Progress:** VERIFIED ✓ (5/5 success criteria + UAT gaps closed)
 - 07-01: Photo Request Foundation (photoRequests/gbpPhotos/postRequests tables, weekly worker, reminder job) [DONE]
 - 07-02: Media Services (WhatsApp download, image validation, GBP upload) [DONE]
 - 07-03: Photo Upload Flow (photo processor, R2 storage, upload worker, message handler) [DONE]
@@ -238,5 +240,6 @@ Resume file: None
 - 07-05: AI Post Generation (post generator, approval worker, message handler integration) [DONE]
 - 07-06: Business Hours Updates (@hebcal/core, holiday-checker, hours service, message handler) [DONE]
 - 07-07: Worker Registration - Gap Closure (all Phase 7 workers registered in src/index.ts) [DONE]
+- 07-08: UAT Gap Closure (improved photo/post confirmations, holiday-check startup log) [DONE]
 
 **Next:** Ready for Phase 8 (GBP Optimization)
