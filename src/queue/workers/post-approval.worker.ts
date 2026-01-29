@@ -127,16 +127,15 @@ async function handlePublish(data: { tenantId: string; postRequestId: string }) 
   });
 
   // Construct Maps URL for viewing business profile
-  const searchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(tenant.businessName)}`;
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(tenant.businessName)}`;
 
-  // Update request with searchUrl for future reference
+  // Update request
   await db
     .update(postRequests)
     .set({
       status: 'published',
       gbpPostId: post.postId,
       gbpPostState: post.state,
-      searchUrl,
       publishedAt: new Date(),
       updatedAt: new Date(),
     })
@@ -150,7 +149,7 @@ async function handlePublish(data: { tenantId: string; postRequestId: string }) 
         client,
         tenant.ownerPhone,
         `הפוסט פורסם בגוגל!\n\n` +
-        `לצפייה בפרופיל: ${searchUrl}\n\n` +
+        `לצפייה בפרופיל: ${mapsUrl}\n\n` +
         `הפוסט יופיע בפרופיל תוך כמה שעות.`
       );
     }
