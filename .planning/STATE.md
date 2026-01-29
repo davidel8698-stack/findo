@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 8 of 10 (GBP Optimization)
-Plan: 2 of 7 in current phase (Performance API Client)
+Plan: 2 of 7 in current phase (completed 08-01 and 08-02)
 Status: In progress
-Last activity: 2026-01-29 - Completed 08-02-PLAN.md (GBP Performance API service)
+Last activity: 2026-01-29 - Completed 08-01-PLAN.md (Optimization schema foundation)
 
 Progress: [████████████████████████░░░] Phase 8 started, ~75% of total project
 
@@ -198,6 +198,10 @@ Recent decisions affecting current work:
 | postApprovalWorker dual-cleanup | 07-07 | Returns { notificationWorker, scheduledWorker } requiring separate cleanup |
 | Dynamic Maps URL from businessName | 07-08 | No searchUrl DB column needed - generate on-demand |
 | Maps search URL pattern for profile links | 07-08 | https://www.google.com/maps/search/?api=1&query={businessName} |
+| Decimal precision 5,2 for percentages | 08-01 | Supports 0.00-100.00 range with 2 decimal places |
+| Five A/B test types | 08-01 | review_request_message, timing, reminder, photo_request, post_request per GBPO-05 |
+| Unique tenant constraint on baselines and config | 08-01 | Each tenant has exactly one baseline row and one config row |
+| Nullable visibility metrics | 08-01 | GBP API may not provide impressions/searches/actions data for all accounts |
 | Use Business Profile Performance API v1 for metrics | 08-02 | Separate from My Business v4, different endpoints |
 | Aggregate desktop + mobile impressions | 08-02 | Combined for total visibility score |
 | Return null on error for non-critical metrics | 08-02 | Metrics are nice-to-have, let caller handle gracefully |
@@ -232,11 +236,11 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 08-02-PLAN.md (GBP Performance API service)
+Stopped at: Completed 08-01-PLAN.md (Optimization Schema)
 Resume file: None
 
 **Phase 8 Progress:** In progress (2/7 plans complete)
-- 08-01: Schema & Types (gbpSnapshots table, optimization types) [PENDING]
+- 08-01: Optimization Schema (metricSnapshots, tenantBaselines, abTestVariants, abTestAssignments, optimizationConfig) [DONE]
 - 08-02: Performance API Client (getPerformanceMetrics, getMediaMetrics, date helpers) [DONE]
 - 08-03: Scoring Algorithm [PENDING]
 - 08-04: Baseline Collection [PENDING]
