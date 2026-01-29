@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 8 of 10 (GBP Optimization)
-Plan: 5 of 7 in current phase (completed 08-01, 08-02, 08-03, 08-04, 08-05)
+Plan: 6 of 7 in current phase (completed 08-01, 08-02, 08-03, 08-04, 08-05, 08-06)
 Status: In progress
-Last activity: 2026-01-29 - Completed 08-05-PLAN.md (Alert Detection)
+Last activity: 2026-01-29 - Completed 08-06-PLAN.md (A/B Testing Framework)
 
-Progress: [█████████████████████████░░] Phase 8 in progress, ~80% of total project
+Progress: [██████████████████████████░] Phase 8 in progress, ~82% of total project
 
 ## Performance Metrics
 
@@ -212,6 +212,9 @@ Recent decisions affecting current work:
 | 4+ weeks baseline for alerts | 08-05 | Statistical validity before alerting |
 | Text message over template for alerts | 08-05 | Owner messages Findo regularly, likely in session window |
 | Hebrew alerts with suggestions | 08-05 | Israeli market, owner needs clear next steps |
+| 20% improvement with 10+ samples for A/B winner | 08-06 | Per CONTEXT.md, sufficient statistical confidence |
+| Prefer global winners in variant assignment | 08-06 | New tenants get proven approaches while allowing experimentation |
+| Track success on review completion | 08-06 | Measures actual outcome (review received) not just activity |
 
 ### Pending Todos
 
@@ -243,16 +246,16 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 08-05-PLAN.md (Alert Detection)
+Stopped at: Completed 08-06-PLAN.md (A/B Testing Framework)
 Resume file: None
 
-**Phase 8 Progress:** In progress (5/7 plans complete)
+**Phase 8 Progress:** In progress (6/7 plans complete)
 - 08-01: Optimization Schema (metricSnapshots, tenantBaselines, abTestVariants, abTestAssignments, optimizationConfig) [DONE]
 - 08-02: Performance API Client (getPerformanceMetrics, getMediaMetrics, date helpers) [DONE]
 - 08-03: Metrics Collection (metricsCollectorService, metricsCollectionWorker, Monday 2AM job) [DONE]
 - 08-04: Metrics Dashboard (API at /api/metrics, Hebrew RTL view at /dashboard/metrics) [DONE]
 - 08-05: Alert Detection (checkForAlerts, sendReviewRateAlert, WhatsApp alerts with 30% threshold) [DONE]
-- 08-06: A/B Testing [PENDING]
+- 08-06: A/B Testing (getActiveVariant, recordOutcome, checkForWinner, review request integration) [DONE]
 - 08-07: Worker Registration [PENDING]
 
-**Next:** Continue with 08-06 (A/B Testing)
+**Next:** Continue with 08-07 (Worker Registration)
