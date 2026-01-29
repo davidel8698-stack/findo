@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage, renderMetricsDashboard } from '../views/index';
+import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage, renderMetricsDashboard, renderMainDashboard } from '../views/index';
 import { metricsRoutes } from './metrics';
 import { tenantContext } from '../middleware/tenant-context';
 import { getGoogleConnection } from '../services/google/oauth';
@@ -25,6 +25,22 @@ pagesRoutes.use('/js/*', serveStatic({ root: './public' }));
  * Mount metrics API at /api/metrics
  */
 pagesRoutes.route('/api/metrics', metricsRoutes);
+
+/**
+ * Main Dashboard
+ *
+ * GET /dashboard
+ *
+ * Renders the main dashboard with health status and stats cards.
+ * Requires tenant context (X-Tenant-ID header or future auth).
+ */
+pagesRoutes.get('/dashboard', tenantContext, async (c) => {
+  const tenant = c.get('tenant');
+  if (!tenant?.tenantId) {
+    return c.text('Tenant context required', 401);
+  }
+  return c.html(renderMainDashboard(tenant.tenantId));
+});
 
 /**
  * Metrics Dashboard
