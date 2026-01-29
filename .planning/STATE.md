@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 7 of 10 (GBP Content)
-Plan: 3 of 6 in current phase
+Plan: 5 of 6 in current phase
 Status: In progress
-Last activity: 2026-01-29 - Completed 07-03-PLAN.md (Photo Upload Flow)
+Last activity: 2026-01-29 - Completed 07-05-PLAN.md (AI Post Generation and Approval)
 
-Progress: [█████████████████████░] ~97% of Phases 1-6 complete, Phase 7-03 done
+Progress: [█████████████████████░] ~98% of Phases 1-6 complete, Phase 7-05 done
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 36
-- Average duration: 5.1 min
-- Total execution time: 3.2 hours
+- Total plans completed: 37
+- Average duration: 5.2 min
+- Total execution time: 3.4 hours
 
 **By Phase:**
 
@@ -33,11 +33,11 @@ Progress: [█████████████████████░] ~
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
-| 07-gbp-content | 5 | 29 min | 5.8 min |
+| 07-gbp-content | 5 | 39 min | 7.8 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-01 (~5 min), 07-02 (~4 min), 07-04 (~8 min), 07-03 (~12 min)
-- Trend: Phase 7 progressing! Photo upload flow complete.
+- Last 5 plans: 07-01 (~5 min), 07-02 (~4 min), 07-03 (~12 min), 07-04 (~8 min), 07-05 (~10 min)
+- Trend: Phase 7 nearly complete! AI post generation and approval workflow done.
 
 *Updated after each plan completion*
 
@@ -183,6 +183,11 @@ Recent decisions affecting current work:
 | Lazy R2 client initialization | 07-03 | Prevents startup errors when R2 not configured |
 | In-memory pending photo map | 07-03 | MVP solution; production needs Redis with TTL |
 | Photo handling after review responses | 07-03 | Priority order in message processing flow |
+| Claude Haiku 4.5 for posts | 07-05 | Same pattern as reply-generator.ts, cost-effective |
+| isSafe boolean for auto-publish | 07-05 | Only safe content can auto-publish after timeout |
+| Reminder sequence 3/7/10 days | 07-05 | Gradual escalation before auto-publish |
+| Dual-queue worker pattern | 07-05 | notifications for generate/publish, scheduled for reminder |
+| Post response after photos in priority | 07-05 | Owner flows take precedence over lead chatbot |
 
 ### Pending Todos
 
@@ -214,7 +219,7 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 07-03-PLAN.md (Photo Upload Flow)
+Stopped at: Completed 07-05-PLAN.md (AI Post Generation and Approval)
 Resume file: None
 
 **Phase 7 Progress:**
@@ -222,7 +227,7 @@ Resume file: None
 - 07-02: Media Services (WhatsApp download, image validation, GBP upload) [DONE]
 - 07-03: Photo Upload Flow (photo processor, R2 storage, upload worker, message handler) [DONE]
 - 07-04: Promotional Posts (GBP posts service, monthly request worker) [DONE]
-- 07-05: Post Response Handler (handle owner replies, AI generation) [PENDING]
-- 07-06: Post Approval Flow (approval, publishing, reminders) [PENDING]
+- 07-05: AI Post Generation (post generator, approval worker, message handler integration) [DONE]
+- 07-06: Business Hours Updates [PENDING]
 
-**Next:** Continue with 07-05 - Post Response Handler
+**Next:** Continue with 07-06 - Business Hours Updates (final plan in phase)
