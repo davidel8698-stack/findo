@@ -19,6 +19,11 @@ import { startWhatsAppStatusWorker } from './queue/workers/whatsapp-status.worke
 import { startLeadOutreachWorker } from './queue/workers/lead-outreach.worker';
 import { startLeadReminderWorker } from './queue/workers/lead-reminder.worker';
 import { startVoicenterCDRWorker } from './queue/workers/voicenter-cdr.worker';
+import { startPhotoRequestWorker } from './queue/workers/photo-request.worker';
+import { startPhotoUploadWorker } from './queue/workers/photo-upload.worker';
+import { startMonthlyPostWorker } from './queue/workers/monthly-post.worker';
+import { startPostApprovalWorker } from './queue/workers/post-approval.worker';
+import { holidayCheckWorker } from './queue/workers/holiday-check.worker';
 import { initializeScheduler } from './scheduler/index';
 import { closeRedisConnections, warmUpConnections } from './lib/redis';
 
@@ -89,6 +94,11 @@ let whatsappStatusWorker: ReturnType<typeof startWhatsAppStatusWorker> | null = 
 let leadOutreachWorker: ReturnType<typeof startLeadOutreachWorker> | null = null;
 let leadReminderWorker: ReturnType<typeof startLeadReminderWorker> | null = null;
 let voicenterCDRWorker: ReturnType<typeof startVoicenterCDRWorker> | null = null;
+let photoRequestWorker: ReturnType<typeof startPhotoRequestWorker> | null = null;
+let photoUploadWorker: ReturnType<typeof startPhotoUploadWorker> | null = null;
+let monthlyPostWorker: ReturnType<typeof startMonthlyPostWorker> | null = null;
+let postApprovalWorker: ReturnType<typeof startPostApprovalWorker> | null = null;
+// holidayCheckWorker is already instantiated at import time (not lazy-started)
 
 // Graceful shutdown
 async function shutdown() {
@@ -127,6 +137,26 @@ async function shutdown() {
     await voicenterCDRWorker.close();
     console.log('[server] Voicenter CDR worker stopped');
   }
+  if (photoRequestWorker) {
+    await photoRequestWorker.close();
+    console.log('[server] Photo request worker stopped');
+  }
+  if (photoUploadWorker) {
+    await photoUploadWorker.close();
+    console.log('[server] Photo upload worker stopped');
+  }
+  if (monthlyPostWorker) {
+    await monthlyPostWorker.close();
+    console.log('[server] Monthly post worker stopped');
+  }
+  if (postApprovalWorker) {
+    await postApprovalWorker.notificationWorker.close();
+    await postApprovalWorker.scheduledWorker.close();
+    console.log('[server] Post approval workers stopped');
+  }
+  // holidayCheckWorker cleanup
+  await holidayCheckWorker.close();
+  console.log('[server] Holiday check worker stopped');
 
   // Close Redis connections
   await closeRedisConnections();
@@ -156,6 +186,11 @@ async function start() {
   leadOutreachWorker = startLeadOutreachWorker();
   leadReminderWorker = startLeadReminderWorker();
   voicenterCDRWorker = startVoicenterCDRWorker();
+  photoRequestWorker = startPhotoRequestWorker();
+  photoUploadWorker = startPhotoUploadWorker();
+  monthlyPostWorker = startMonthlyPostWorker();
+  postApprovalWorker = startPostApprovalWorker();
+  // holidayCheckWorker already started at import time
 
   // Initialize scheduler (include test jobs in development)
   const includeTestJobs = process.env.NODE_ENV !== 'production';
