@@ -35,3 +35,24 @@ export {
   type ReviewReply,
   type ListReviewsOptions,
 } from './reviews';
+
+// Posts services
+export {
+  createPost,
+  listPosts,
+  deletePost,
+  type LocalPost,
+  type CreatePostInput,
+  type PostTopicType,
+  type CallToActionType,
+  type PostState,
+} from './posts';
+
+// Media services
+export {
+  uploadPhotoFromUrl,
+  listPhotos,
+  deletePhoto,
+  type GBPPhoto,
+  type PhotoCategory,
+} from './media';
