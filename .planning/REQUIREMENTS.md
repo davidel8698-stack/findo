@@ -65,18 +65,18 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Dashboard (DASH)
 
-- [ ] **DASH-01**: Main screen shows daily stats (calls, WhatsApp sent, reviews, rating)
-- [ ] **DASH-02**: Activity feed with timeline of events and timestamps
-- [ ] **DASH-03**: Approve/edit negative review responses before posting
-- [ ] **DASH-04**: Upload photos when system requests
-- [ ] **DASH-05**: Enter promotional content for monthly posts
-- [ ] **DASH-06**: View weekly/monthly reports and performance graphs
-- [ ] **DASH-07**: Settings: response templates, wait times, notification preferences
-- [ ] **DASH-08**: Settings: chatbot questions (configurable per business type)
+- [x] **DASH-01**: Main screen shows daily stats (calls, WhatsApp sent, reviews, rating)
+- [x] **DASH-02**: Activity feed with timeline of events and timestamps
+- [x] **DASH-03**: Approve/edit negative review responses before posting
+- [x] **DASH-04**: Upload photos when system requests
+- [x] **DASH-05**: Enter promotional content for monthly posts
+- [x] **DASH-06**: View weekly/monthly reports and performance graphs
+- [x] **DASH-07**: Settings: response templates, wait times, notification preferences
+- [x] **DASH-08**: Settings: chatbot questions (configurable per business type)
 
 ### Notifications (NOTF)
 
-- [ ] **NOTF-01**: Most interactions via WhatsApp to business owner (not dashboard)
+- [x] **NOTF-01**: Most interactions via WhatsApp to business owner (not dashboard)
 - [x] **NOTF-02**: "New negative review" notification with tap-to-respond
 - [x] **NOTF-03**: "New lead" notification with summary
 - [x] **NOTF-04**: Photo request notifications
