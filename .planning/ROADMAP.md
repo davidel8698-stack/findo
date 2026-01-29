@@ -233,12 +233,17 @@ Plans:
   5. Settings allow customizing: response templates, wait times, notification preferences, chatbot questions
   6. Weekly and monthly reports show performance trends with clear graphs
   7. Most interactions happen via WhatsApp; dashboard is for confidence, not daily use
-**Plans**: TBD
+**Plans**: 8 plans
 
 Plans:
-- [ ] 09-01: TBD
-- [ ] 09-02: TBD
-- [ ] 09-03: TBD
+- [ ] 09-01-PLAN.md - Notification preferences and chatbot config schema
+- [ ] 09-02-PLAN.md - Stats aggregator and health checker services
+- [ ] 09-03-PLAN.md - Main dashboard view with health status and stats
+- [ ] 09-04-PLAN.md - Activity feed with smart grouping and real-time updates
+- [ ] 09-05-PLAN.md - Reports page with Chart.js trend graphs
+- [ ] 09-06-PLAN.md - Settings pages (timing, notifications, chatbot)
+- [ ] 09-07-PLAN.md - Dashboard actions (review approval, photo upload, post content)
+- [ ] 09-08-PLAN.md - Notification preference integration into workers
 
 **Research flag**: None (standard patterns)
 
@@ -282,7 +287,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 6. Review Requests | 7/7 | Complete | 2026-01-28 |
 | 7. GBP Content | 8/8 | Complete | 2026-01-29 |
 | 8. GBP Optimization | 7/7 | Complete | 2026-01-29 |
-| 9. Dashboard & Notifications | 0/TBD | Not started | - |
+| 9. Dashboard & Notifications | 0/8 | Planned | - |
 | 10. Setup & Billing | 0/TBD | Not started | - |
 
 ---
@@ -309,4 +314,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-29 - Phase 8 GBP Optimization complete (7 plans)*
+*Last updated: 2026-01-29 - Phase 9 Dashboard & Notifications planned (8 plans)*
