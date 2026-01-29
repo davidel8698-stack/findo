@@ -7,3 +7,10 @@ export {
   type WhatsAppMediaMetadata,
   type DownloadedMedia,
 } from './whatsapp-download';
+
+// Image validation
+export {
+  validateImage,
+  prepareImageForUpload,
+  type ImageValidationResult,
+} from './image-validator';
