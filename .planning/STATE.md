@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 7 of 10 (GBP Content)
-Plan: 1 of 5 in current phase
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-29 - Completed 07-01-PLAN.md (Photo Request Foundation)
+Last activity: 2026-01-29 - Completed 07-02-PLAN.md (Media Services)
 
-Progress: [████████████████████░░] ~95% of Phases 1-6 complete, Phase 7 started
+Progress: [█████████████████████░] ~97% of Phases 1-6 complete, Phase 7-02 done
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 34
-- Average duration: 5.2 min
-- Total execution time: 3.0 hours
+- Total plans completed: 35
+- Average duration: 5.1 min
+- Total execution time: 3.07 hours
 
 **By Phase:**
 
@@ -33,11 +33,11 @@ Progress: [████████████████████░░] ~
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
-| 07-gbp-content | 1 | 5 min | 5.0 min |
+| 07-gbp-content | 2 | 9 min | 4.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-05 (~5 min), 06-06 (~6 min), 06-07 (~3 min), 07-01 (~5 min)
-- Trend: Phase 7 started! Photo request infrastructure complete.
+- Last 5 plans: 06-06 (~6 min), 06-07 (~3 min), 07-01 (~5 min), 07-02 (~4 min)
+- Trend: Phase 7 progressing! Media services layer complete.
 
 *Updated after each plan completion*
 
@@ -170,6 +170,10 @@ Recent decisions affecting current work:
 | ISO week number for photo request idempotency | 07-01 | Unique constraint on (tenantId, week, year) |
 | Require both WhatsApp AND Google connection | 07-01 | Photos need both channels to be useful |
 | 7-day expiration for photo requests | 07-01 | Skip until next week if no response |
+| Two-step WhatsApp media download | 07-02 | Graph API metadata first, then binary from lookaside URL |
+| Laplacian variance for blur detection | 07-02 | Standard edge detection with sharp |
+| Blur threshold 50 | 07-02 | Empirical starting point, adjustable |
+| GBP sourceUrl upload | 07-02 | GBP API requires public URL, not binary upload |
 
 ### Pending Todos
 
@@ -200,14 +204,14 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 07-01-PLAN.md (Photo Request Foundation)
+Stopped at: Completed 07-02-PLAN.md (Media Services)
 Resume file: None
 
 **Phase 7 Progress:**
 - 07-01: Photo Request Foundation (photoRequests/gbpPhotos tables, weekly worker, reminder job) [DONE]
-- 07-02: Photo Upload Handling (receive photos, upload to GBP) [PENDING]
+- 07-02: Media Services (WhatsApp download, image validation, GBP upload) [DONE]
 - 07-03: Photo Category Confirmation (ask owner to confirm category) [PENDING]
 - 07-04: Promotional Posts (monthly post requests, AI content) [PENDING]
 - 07-05: Business Hours Updates (holiday reminders, hours changes) [PENDING]
 
-**Next:** Continue with 07-02 - Photo Upload Handling
+**Next:** Continue with 07-03 - Photo Category Confirmation
