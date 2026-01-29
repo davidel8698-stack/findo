@@ -142,7 +142,15 @@ export async function scheduleRecurringJobs(): Promise<void> {
   );
   console.log('[scheduler] Scheduled token refresh check (every 30 min)');
 
-  // Photo request - weekly on Sunday 10:00 AM Israel (Phase 7)
+  /**
+   * Photo Request Job
+   *
+   * Runs weekly on Thursday at 10:00 AM Israel time.
+   * Sends WhatsApp messages to business owners asking for 1-2 photos.
+   *
+   * Per CONTEXT.md: Thursday is end of Israeli work week - good time to
+   * ask about photos from the week.
+   */
   await scheduledQueue.add(
     'photo-request',
     {
@@ -150,13 +158,37 @@ export async function scheduleRecurringJobs(): Promise<void> {
     } satisfies ScheduledJobData,
     {
       repeat: {
-        pattern: '0 10 * * 0', // Sunday 10:00 AM
+        pattern: '0 10 * * 4', // Thursday 10:00 AM
         tz: 'Asia/Jerusalem',
       },
       jobId: 'photo-request-weekly',
     }
   );
-  console.log('[scheduler] Scheduled photo request (Sunday 10:00 AM Israel)');
+  console.log('[scheduler] Registered: photo-request (Thursday 10:00 AM Israel)');
+
+  /**
+   * Photo Reminder Job
+   *
+   * Runs weekly on Saturday at 10:00 AM Israel time.
+   * Sends reminder to owners who haven't responded to photo request.
+   *
+   * Per CONTEXT.md: One reminder after 2 days if no response,
+   * then skip until next week.
+   */
+  await scheduledQueue.add(
+    'photo-reminder',
+    {
+      jobType: 'photo-reminder',
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '0 10 * * 6', // Saturday 10:00 AM
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'photo-reminder-weekly',
+    }
+  );
+  console.log('[scheduler] Registered: photo-reminder (Saturday 10:00 AM Israel)');
 
   // Daily digest - every day at 10:00 AM Israel (Phase 9)
   await scheduledQueue.add(
