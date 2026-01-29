@@ -21,6 +21,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 7: GBP Content** - Photo requests, uploads, and promotional posts
 - [x] **Phase 8: GBP Optimization** - Metrics monitoring and autonomous tuning
 - [x] **Phase 9: Dashboard & Notifications** - Confidence window and WhatsApp-first UX
+- [ ] **Phase 11: Worker Registration** - Gap closure: Wire missing workers to enable Phases 5, 6, 8
 - [ ] **Phase 10: Setup & Billing** - 2-minute onboarding wizard and payment processing
 
 ## Phase Details
@@ -249,6 +250,27 @@ Plans:
 
 ---
 
+### Phase 11: Worker Registration (Gap Closure)
+**Goal**: Register missing workers in src/index.ts to make Phases 5, 6, and 8 operational
+**Depends on**: Phase 5, Phase 6, Phase 8
+**Requirements**: GBPR-01, NOTF-02, REVW-01-07, INTG-06, INTG-07, GBPO-01-07, NOTF-05
+**Gap Closure**: Closes wiring gaps from v1-MILESTONE-AUDIT.md
+**Success Criteria** (what must be TRUE):
+  1. Review poll worker runs hourly and detects new reviews (GBPR-01)
+  2. Review reminder worker sends 48h reminders and auto-posts (Phase 5 complete)
+  3. Invoice poll worker detects Greeninvoice and iCount invoices hourly (REVW-01, REVW-02, INTG-06, INTG-07)
+  4. Review request worker sends WhatsApp review requests (REVW-03-07)
+  5. Metrics collection worker aggregates GBP metrics weekly (GBPO-01-03)
+  6. Auto-tuning worker optimizes review timing weekly (GBPO-04-07, NOTF-05)
+**Plans**: 1 plan
+
+Plans:
+- [ ] 11-01-PLAN.md - Register 6 missing workers in src/index.ts
+
+**Research flag**: None (wiring only)
+
+---
+
 ### Phase 10: Setup & Billing
 **Goal**: New business completes setup in 2 minutes and pays for the service
 **Depends on**: Phase 2, Phase 4, Phase 3
@@ -275,7 +297,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 11 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -288,6 +310,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 7. GBP Content | 8/8 | Complete | 2026-01-29 |
 | 8. GBP Optimization | 7/7 | Complete | 2026-01-29 |
 | 9. Dashboard & Notifications | 8/8 | Complete | 2026-01-29 |
+| 11. Worker Registration | 0/1 | Not started | - |
 | 10. Setup & Billing | 0/TBD | Not started | - |
 
 ---
@@ -314,4 +337,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-29 - Phase 9 Dashboard & Notifications complete (8 plans)*
+*Last updated: 2026-01-30 - Added Phase 11 Worker Registration (gap closure from audit)*
