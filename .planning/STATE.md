@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 6 - Review Requests COMPLETE. Ready for Phase 7.
+**Current focus:** Phase 7 - GBP Content (photo requests, uploads, promotional posts)
 
 ## Current Position
 
-Phase: 6 of 10 (Review Requests) - COMPLETE
-Plan: 7 of 7 in current phase
-Status: Phase complete
-Last activity: 2026-01-28 - Completed 06-07-PLAN.md (Review Completion Detection)
+Phase: 7 of 10 (GBP Content)
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-01-29 - Completed 07-01-PLAN.md (Photo Request Foundation)
 
-Progress: [████████████████████░] ~95% of Phases 1-6 complete
+Progress: [████████████████████░░] ~95% of Phases 1-6 complete, Phase 7 started
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 33
-- Average duration: 5.3 min
-- Total execution time: 2.95 hours
+- Total plans completed: 34
+- Average duration: 5.2 min
+- Total execution time: 3.0 hours
 
 **By Phase:**
 
@@ -33,10 +33,11 @@ Progress: [████████████████████░] ~95%
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
+| 07-gbp-content | 1 | 5 min | 5.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-04 (~4 min), 06-05 (~5 min), 06-06 (~6 min), 06-07 (~3 min)
-- Trend: Phase 6 complete! Review completion detection adds automatic tracking.
+- Last 5 plans: 06-05 (~5 min), 06-06 (~6 min), 06-07 (~3 min), 07-01 (~5 min)
+- Trend: Phase 7 started! Photo request infrastructure complete.
 
 *Updated after each plan completion*
 
@@ -164,6 +165,11 @@ Recent decisions affecting current work:
 | Concurrency 5 for review requests | 06-05 | Multiple review requests can process in parallel |
 | Three matching strategies for completion | 06-07 | Phone digits, 48h time window, name fuzzy match |
 | Best-effort reminder cancellation | 06-07 | Warn on failure, don't throw (request already complete) |
+| Thursday 10:00 AM for photo request | 07-01 | End of Israeli work week per CONTEXT.md |
+| Saturday 10:00 AM for photo reminder | 07-01 | 2 days after request per CONTEXT.md |
+| ISO week number for photo request idempotency | 07-01 | Unique constraint on (tenantId, week, year) |
+| Require both WhatsApp AND Google connection | 07-01 | Photos need both channels to be useful |
+| 7-day expiration for photo requests | 07-01 | Skip until next week if no response |
 
 ### Pending Todos
 
@@ -193,17 +199,15 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-28
-Stopped at: Completed 06-07-PLAN.md (Review Completion Detection)
+Last session: 2026-01-29
+Stopped at: Completed 07-01-PLAN.md (Photo Request Foundation)
 Resume file: None
 
-**Phase 6 Complete:**
-- 06-01: Review Requests Schema (reviewRequests, accountingConnections tables) [DONE]
-- 06-02: Greeninvoice Client (JWT auth, document search for invoices) [DONE]
-- 06-03: iCount Client (session auth, document search for invoices) [DONE]
-- 06-04: Invoice Poll Worker (hourly polling, 24h delayed jobs) [DONE]
-- 06-05: Review Request Worker (send messages, schedule reminders) [DONE]
-- 06-06: Manual Review Request Trigger (dashboard UI, API endpoint) [DONE]
-- 06-07: Review Completion Detection (multi-strategy matching, reminder cancellation) [DONE]
+**Phase 7 Progress:**
+- 07-01: Photo Request Foundation (photoRequests/gbpPhotos tables, weekly worker, reminder job) [DONE]
+- 07-02: Photo Upload Handling (receive photos, upload to GBP) [PENDING]
+- 07-03: Photo Category Confirmation (ask owner to confirm category) [PENDING]
+- 07-04: Promotional Posts (monthly post requests, AI content) [PENDING]
+- 07-05: Business Hours Updates (holiday reminders, hours changes) [PENDING]
 
-**Next:** Begin Phase 7 - GBP Content (photo requests, uploads, promotional posts)
+**Next:** Continue with 07-02 - Photo Upload Handling
