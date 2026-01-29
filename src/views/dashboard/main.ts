@@ -1,12 +1,19 @@
 /**
  * Main Dashboard View
  *
- * Composes the full dashboard page with health status and stats cards.
+ * Composes the full dashboard page with health status, stats cards, and activity feed.
  * Per CONTEXT.md: "Quick glance tells if everything is OK"
  *
- * Health status at top, stats below with time period toggle.
+ * Layout:
+ * - Health status at top (full width)
+ * - Two-column layout on desktop: stats on left, activity on right
+ * - Single column on mobile: stats above activity
+ *
  * Data loaded via JavaScript fetch from /api/dashboard/* endpoints.
+ * Activity feed has real-time SSE updates via /api/activity/stream.
  */
+
+import { renderActivityFeed } from './activity-feed';
 
 /**
  * Renders the main dashboard HTML page.
@@ -47,8 +54,8 @@ export function renderMainDashboard(tenantId: string): string {
     </div>
 
     <!-- Dashboard Content -->
-    <div id="dashboard" class="hidden space-y-8">
-      <!-- Health Status Section -->
+    <div id="dashboard" class="hidden space-y-6">
+      <!-- Health Status Section (Full Width) -->
       <section id="healthSection">
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
           <!-- Traffic Light -->
@@ -89,71 +96,81 @@ export function renderMainDashboard(tenantId: string): string {
         </div>
       </section>
 
-      <!-- Stats Section -->
-      <section id="statsSection">
-        <h2 class="text-xl font-semibold text-gray-700 mb-4">סטטיסטיקות</h2>
+      <!-- Two Column Layout: Stats (1 col) + Activity Feed (2 cols) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Stats Section (1 column on desktop) -->
+        <section id="statsSection" class="lg:col-span-1">
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">סטטיסטיקות</h2>
 
-        <!-- Period Toggle -->
-        <div class="flex gap-2 mb-4">
-          <button
-            id="todayBtn"
-            class="px-4 py-2 rounded-lg bg-blue-600 text-white transition-colors"
-            onclick="setPeriod('today')"
-          >
-            היום
-          </button>
-          <button
-            id="weekBtn"
-            class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 transition-colors"
-            onclick="setPeriod('week')"
-          >
-            השבוע
-          </button>
-          <button
-            id="monthBtn"
-            class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 transition-colors"
-            onclick="setPeriod('month')"
-          >
-            החודש
-          </button>
-        </div>
+            <!-- Period Toggle -->
+            <div class="flex gap-2 mb-4">
+              <button
+                id="todayBtn"
+                class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-sm transition-colors"
+                onclick="setPeriod('today')"
+              >
+                היום
+              </button>
+              <button
+                id="weekBtn"
+                class="px-3 py-1.5 rounded-lg bg-gray-200 text-gray-700 text-sm transition-colors"
+                onclick="setPeriod('week')"
+              >
+                השבוע
+              </button>
+              <button
+                id="monthBtn"
+                class="px-3 py-1.5 rounded-lg bg-gray-200 text-gray-700 text-sm transition-colors"
+                onclick="setPeriod('month')"
+              >
+                החודש
+              </button>
+            </div>
 
-        <!-- Metric Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <!-- Missed Calls -->
-          <div class="metric-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <p class="text-gray-500 text-sm mb-1">שיחות שלא נענו</p>
-            <p id="missedCalls" class="text-3xl font-bold text-gray-800">-</p>
-          </div>
+            <!-- Metric Cards Stack -->
+            <div class="space-y-3">
+              <!-- Missed Calls -->
+              <div class="metric-card bg-gray-50 rounded-lg p-4">
+                <p class="text-gray-500 text-sm mb-1">שיחות שלא נענו</p>
+                <p id="missedCalls" class="text-2xl font-bold text-gray-800">-</p>
+              </div>
 
-          <!-- WhatsApp Sent -->
-          <div class="metric-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <p class="text-gray-500 text-sm mb-1">הודעות WhatsApp</p>
-            <p id="whatsappSent" class="text-3xl font-bold text-gray-800">-</p>
-          </div>
+              <!-- WhatsApp Sent -->
+              <div class="metric-card bg-gray-50 rounded-lg p-4">
+                <p class="text-gray-500 text-sm mb-1">הודעות WhatsApp</p>
+                <p id="whatsappSent" class="text-2xl font-bold text-gray-800">-</p>
+              </div>
 
-          <!-- New Reviews -->
-          <div class="metric-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <p class="text-gray-500 text-sm mb-1">ביקורות חדשות</p>
-            <p id="newReviews" class="text-3xl font-bold text-gray-800">-</p>
-          </div>
+              <!-- New Reviews -->
+              <div class="metric-card bg-gray-50 rounded-lg p-4">
+                <p class="text-gray-500 text-sm mb-1">ביקורות חדשות</p>
+                <p id="newReviews" class="text-2xl font-bold text-gray-800">-</p>
+              </div>
 
-          <!-- Current Rating -->
-          <div class="metric-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <p class="text-gray-500 text-sm mb-1">דירוג נוכחי</p>
-            <div class="flex items-center gap-2">
-              <p id="currentRating" class="text-3xl font-bold text-gray-800">-</p>
-              <span id="ratingStars" class="text-yellow-500 text-xl"></span>
+              <!-- Current Rating -->
+              <div class="metric-card bg-gray-50 rounded-lg p-4">
+                <p class="text-gray-500 text-sm mb-1">דירוג נוכחי</p>
+                <div class="flex items-center gap-2">
+                  <p id="currentRating" class="text-2xl font-bold text-gray-800">-</p>
+                  <span id="ratingStars" class="text-yellow-500 text-lg"></span>
+                </div>
+              </div>
+
+              <!-- Qualified Leads -->
+              <div class="metric-card bg-gray-50 rounded-lg p-4">
+                <p class="text-gray-500 text-sm mb-1">לידים מאושרים</p>
+                <p id="qualifiedLeads" class="text-2xl font-bold text-gray-800">-</p>
+              </div>
             </div>
           </div>
+        </section>
 
-          <!-- Qualified Leads -->
-          <div class="metric-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <p class="text-gray-500 text-sm mb-1">לידים מאושרים</p>
-            <p id="qualifiedLeads" class="text-3xl font-bold text-gray-800">-</p>
-          </div>
-        </div>
-      </section>
+        <!-- Activity Feed Section (2 columns on desktop) -->
+        <section id="activitySection" class="lg:col-span-2">
+          ${renderActivityFeed(tenantId)}
+        </section>
+      </div>
     </div>
 
     <!-- Error State -->
