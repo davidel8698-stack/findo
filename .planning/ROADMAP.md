@@ -179,15 +179,16 @@ Plans:
   3. Monthly promotional post is created from owner-provided content or AI-generated if none provided
   4. System checks business details (holidays, hours) and offers updates for owner approval
   5. Photo request notifications are actionable via WhatsApp reply
-**Plans**: 6 plans
+**Plans**: 7 plans
 
 Plans:
-- [ ] 07-01-PLAN.md - Photo request schema and weekly worker
-- [ ] 07-02-PLAN.md - Media services (WhatsApp download, image validation, GBP upload)
-- [ ] 07-03-PLAN.md - Photo upload flow and message handler integration
-- [ ] 07-04-PLAN.md - Promotional posts schema and monthly worker
-- [ ] 07-05-PLAN.md - AI post generator and approval workflow
-- [ ] 07-06-PLAN.md - Holiday hours checker with @hebcal/core
+- [x] 07-01-PLAN.md - Photo request schema and weekly worker
+- [x] 07-02-PLAN.md - Media services (WhatsApp download, image validation, GBP upload)
+- [x] 07-03-PLAN.md - Photo upload flow and message handler integration
+- [x] 07-04-PLAN.md - Promotional posts schema and monthly worker
+- [x] 07-05-PLAN.md - AI post generator and approval workflow
+- [x] 07-06-PLAN.md - Holiday hours checker with @hebcal/core
+- [ ] 07-07-PLAN.md - Gap closure: Register Phase 7 workers in index.ts
 
 **Research flag**: Completed (07-RESEARCH.md)
 
