@@ -38,11 +38,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### GBP Content (GBPC)
 
-- [ ] **GBPC-01**: Weekly photo request sent to owner ("Send 1-2 photos from the week")
-- [ ] **GBPC-02**: System uploads received photos to GBP
-- [ ] **GBPC-03**: Monthly promotional post (owner provides content)
-- [ ] **GBPC-04**: AI generates promotional post if owner doesn't provide
-- [ ] **GBPC-05**: Check business details (holidays, hours) and offer updates for approval
+- [x] **GBPC-01**: Weekly photo request sent to owner ("Send 1-2 photos from the week")
+- [x] **GBPC-02**: System uploads received photos to GBP
+- [x] **GBPC-03**: Monthly promotional post (owner provides content)
+- [x] **GBPC-04**: AI generates promotional post if owner doesn't provide
+- [x] **GBPC-05**: Check business details (holidays, hours) and offer updates for approval
 
 ### GBP Optimization (GBPO)
 
@@ -79,7 +79,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **NOTF-01**: Most interactions via WhatsApp to business owner (not dashboard)
 - [x] **NOTF-02**: "New negative review" notification with tap-to-respond
 - [x] **NOTF-03**: "New lead" notification with summary
-- [ ] **NOTF-04**: Photo request notifications
+- [x] **NOTF-04**: Photo request notifications
 - [ ] **NOTF-05**: Review rate alert if below target
 
 ### Integrations (INTG)
@@ -173,11 +173,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GBPR-04 | Phase 5 | Pending |
 | GBPR-05 | Phase 5 | Pending |
 | GBPR-06 | Phase 5 | Pending |
-| GBPC-01 | Phase 7 | Pending |
-| GBPC-02 | Phase 7 | Pending |
-| GBPC-03 | Phase 7 | Pending |
-| GBPC-04 | Phase 7 | Pending |
-| GBPC-05 | Phase 7 | Pending |
+| GBPC-01 | Phase 7 | Complete |
+| GBPC-02 | Phase 7 | Complete |
+| GBPC-03 | Phase 7 | Complete |
+| GBPC-04 | Phase 7 | Complete |
+| GBPC-05 | Phase 7 | Complete |
 | GBPO-01 | Phase 8 | Pending |
 | GBPO-02 | Phase 8 | Pending |
 | GBPO-03 | Phase 8 | Pending |
@@ -202,7 +202,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NOTF-01 | Phase 9 | Pending |
 | NOTF-02 | Phase 5 | Pending |
 | NOTF-03 | Phase 3 | Pending |
-| NOTF-04 | Phase 7 | Pending |
+| NOTF-04 | Phase 7 | Complete |
 | NOTF-05 | Phase 8 | Pending |
 | INTG-01 | Phase 2 | Complete |
 | INTG-02 | Phase 2 | Complete |
@@ -228,4 +228,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-27*
-*Last updated: 2026-01-27 after roadmap creation*
+*Last updated: 2026-01-29 - Phase 7 complete*
