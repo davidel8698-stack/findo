@@ -17,6 +17,7 @@ import { postReviewReply } from '../google/reviews';
 import { createWhatsAppClient } from '../whatsapp';
 import { sendTextMessage } from '../whatsapp/messages';
 import { activityService } from '../activity';
+import { shouldNotify, NotificationType } from '../notification-gate';
 
 /**
  * Handle owner's response to a review approval request.
@@ -145,8 +146,11 @@ export async function approveReviewReply(
       })
       .where(eq(processedReviews.id, processedReviewId));
 
-    // Send confirmation to owner
-    await sendOwnerConfirmation(tenantId, 'התשובה פורסמה בהצלחה!');
+    // Send confirmation to owner (check REVIEW_POSTED preference)
+    const shouldSendPosted = await shouldNotify(tenantId, NotificationType.REVIEW_POSTED);
+    if (shouldSendPosted) {
+      await sendOwnerConfirmation(tenantId, 'התשובה פורסמה בהצלחה!');
+    }
 
     // Create activity event
     await activityService.createAndPublish(tenantId, {
@@ -285,8 +289,11 @@ export async function submitEditedReply(
       })
       .where(eq(processedReviews.id, processedReviewId));
 
-    // Send confirmation to owner
-    await sendOwnerConfirmation(tenantId, 'התשובה פורסמה בהצלחה!');
+    // Send confirmation to owner (check REVIEW_POSTED preference)
+    const shouldSendPosted = await shouldNotify(tenantId, NotificationType.REVIEW_POSTED);
+    if (shouldSendPosted) {
+      await sendOwnerConfirmation(tenantId, 'התשובה פורסמה בהצלחה!');
+    }
 
     // Create activity event
     await activityService.createAndPublish(tenantId, {

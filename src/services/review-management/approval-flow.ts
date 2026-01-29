@@ -18,6 +18,7 @@ import {
   isWindowOpen,
   type InteractiveButton,
 } from '../whatsapp/messages';
+import { shouldNotify, NotificationType } from '../notification-gate';
 
 /**
  * Get the owner's conversation window expiration.
@@ -80,13 +81,19 @@ function buildApprovalMessage(
  * Uses interactive buttons if within 24-hour session window,
  * otherwise falls back to text instructions.
  *
+ * Checks notification preferences:
+ * - NEGATIVE_REVIEW always returns true (critical for approval flow)
+ * - NEW_REVIEW for positive reviews (can be disabled)
+ *
  * @param tenantId - Tenant UUID
  * @param processedReviewId - Processed review UUID
+ * @param isNegative - Whether this is a negative review (requires approval)
  * @returns true if notification sent successfully, false otherwise
  */
 export async function sendApprovalRequest(
   tenantId: string,
-  processedReviewId: string
+  processedReviewId: string,
+  isNegative: boolean = true
 ): Promise<boolean> {
   // Load processed review
   const review = await db.query.processedReviews.findFirst({
@@ -95,6 +102,18 @@ export async function sendApprovalRequest(
 
   if (!review) {
     console.warn(`[approval-flow] Processed review ${processedReviewId} not found`);
+    return false;
+  }
+
+  // Check notification preferences
+  // NEGATIVE_REVIEW always returns true (shouldNotify handles this)
+  const notificationType = isNegative
+    ? NotificationType.NEGATIVE_REVIEW
+    : NotificationType.NEW_REVIEW;
+
+  const shouldSend = await shouldNotify(tenantId, notificationType);
+  if (!shouldSend) {
+    console.log(`[approval-flow] Skipping review notification (preference disabled)`);
     return false;
   }
 

@@ -14,6 +14,7 @@ import { leads, tenants } from '../../db/schema/index';
 import { eq } from 'drizzle-orm';
 import { createWhatsAppClient, sendTextMessage } from '../whatsapp';
 import { formatPhoneDisplay } from '../../lib/phone';
+import { shouldNotify, NotificationType } from '../notification-gate';
 
 /**
  * Lead summary for owner notification.
@@ -75,6 +76,11 @@ export function formatLeadSummary(lead: LeadSummary): string {
  * Per CONTEXT.md:
  * - Real-time updates: notify on first message, update as info comes in
  * - Incomplete leads: Yes, notify with "ליד חדש (חלקי)"
+ *
+ * Checks notification preferences before sending.
+ * Determines notification type based on lead completeness:
+ * - Complete leads: NotificationType.LEAD_QUALIFIED
+ * - Incomplete leads: NotificationType.NEW_LEAD
  */
 export async function notifyOwnerOfLead(leadId: string): Promise<void> {
   // Get lead with tenant info
@@ -97,6 +103,19 @@ export async function notifyOwnerOfLead(leadId: string): Promise<void> {
     return;
   }
 
+  // Determine notification type based on lead status
+  const isComplete = !!(lead.customerName && lead.need && lead.contactPreference);
+  const notificationType = isComplete
+    ? NotificationType.LEAD_QUALIFIED
+    : NotificationType.NEW_LEAD;
+
+  // Check notification preferences
+  const shouldSend = await shouldNotify(lead.tenantId, notificationType);
+  if (!shouldSend) {
+    console.log(`[notifications] Skipping lead notification (preference disabled)`);
+    return;
+  }
+
   // Get owner phone from tenant record
   const ownerPhone = tenant.ownerPhone;
 
@@ -113,7 +132,6 @@ export async function notifyOwnerOfLead(leadId: string): Promise<void> {
   }
 
   // Format lead summary
-  const isComplete = !!(lead.customerName && lead.need && lead.contactPreference);
   const summary = formatLeadSummary({
     id: lead.id,
     customerPhone: lead.customerPhone,
