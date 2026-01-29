@@ -21,7 +21,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 7: GBP Content** - Photo requests, uploads, and promotional posts
 - [x] **Phase 8: GBP Optimization** - Metrics monitoring and autonomous tuning
 - [x] **Phase 9: Dashboard & Notifications** - Confidence window and WhatsApp-first UX
-- [ ] **Phase 11: Worker Registration** - Gap closure: Wire missing workers to enable Phases 5, 6, 8
+- [x] **Phase 11: Worker Registration** - Gap closure: Wire missing workers to enable Phases 5, 6, 8
 - [ ] **Phase 10: Setup & Billing** - 2-minute onboarding wizard and payment processing
 
 ## Phase Details
@@ -265,7 +265,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 11-01-PLAN.md - Register 6 missing workers in src/index.ts
+- [x] 11-01-PLAN.md - Register 6 missing workers in src/index.ts
 
 **Research flag**: None (wiring only)
 
@@ -310,7 +310,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 11
 | 7. GBP Content | 8/8 | Complete | 2026-01-29 |
 | 8. GBP Optimization | 7/7 | Complete | 2026-01-29 |
 | 9. Dashboard & Notifications | 8/8 | Complete | 2026-01-29 |
-| 11. Worker Registration | 0/1 | Not started | - |
+| 11. Worker Registration | 1/1 | Complete | 2026-01-30 |
 | 10. Setup & Billing | 0/TBD | Not started | - |
 
 ---
@@ -337,4 +337,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 11
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-30 - Added Phase 11 Worker Registration (gap closure from audit)*
+*Last updated: 2026-01-30 - Phase 11 Worker Registration complete*
