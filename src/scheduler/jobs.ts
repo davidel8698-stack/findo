@@ -333,6 +333,30 @@ export async function scheduleRecurringJobs(): Promise<void> {
     }
   );
   console.log('[scheduler] Registered: google-token-validation (daily at 3:30 AM)');
+
+  /**
+   * Holiday Check Job
+   *
+   * Runs weekly on Sunday at 10:00 AM Israel time (same day as photo request).
+   * Checks for Israeli holidays in the coming week and sends reminders
+   * to business owners about updating special hours.
+   *
+   * Per CONTEXT.md: Remind 1 week before holidays.
+   */
+  await scheduledQueue.add(
+    'holiday-check',
+    {
+      jobType: 'holiday-check',
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '0 10 * * 0', // Sunday 10:00 AM
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'holiday-check-weekly',
+    }
+  );
+  console.log('[scheduler] Registered: holiday-check (Sunday 10:00 AM Israel)');
 }
 
 /**

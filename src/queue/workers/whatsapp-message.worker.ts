@@ -21,7 +21,9 @@ import { getChatbotResponse } from '../../services/lead-capture/messages';
 import { notifyOwnerOfLead, createLeadActivity } from '../../services/lead-capture/notifications';
 import { handleOwnerReviewResponse } from '../../services/review-management';
 import { processReceivedPhoto, handleCategorySelection, hasPendingPhoto, getISOWeek } from '../../services/gbp-content/photo-processor';
-import { photoRequests } from '../../db/schema';
+import { parseHoursResponse } from '../../services/gbp-content/holiday-checker';
+import { setSpecialHours, createSingleDayPeriod } from '../../services/google/hours';
+import { photoRequests, googleConnections } from '../../db/schema';
 import { or } from 'drizzle-orm';
 import { tokenVaultService } from '../../services/token-vault';
 
@@ -344,7 +346,8 @@ async function handleLeadConversation(
  * 2. Photo responses (images when photo request active)
  * 3. Photo category selection (1-5 or Hebrew category words)
  * 4. Post responses (AI/skip/content when pending post request)
- * 5. Lead chatbot flow (fallback for non-owner messages)
+ * 5. Hours responses (DD/MM: format for holiday hours)
+ * 6. Lead chatbot flow (fallback for non-owner messages)
  *
  * For each message:
  * 1. Find tenant by WABA ID from whatsappConnections
@@ -502,8 +505,79 @@ async function processWhatsAppMessages(
         }
       }
 
-      // 1.8 Check if this is part of a lead conversation (skip if already handled)
-      if (!handledAsReviewResponse && !handledAsPhotoResponse && !handledAsPostResponse) {
+      // 1.8 Check if message looks like hours response (DD/MM: format)
+      // This handles replies to holiday hours reminders
+      let handledAsHoursResponse = false;
+
+      if (isOwner && !handledAsReviewResponse && !handledAsPhotoResponse && !handledAsPostResponse && message.type === 'text' && message.text) {
+        const hoursPattern = /\d{1,2}\/\d{1,2}\s*:/;
+        const messageText = message.text;
+
+        if (hoursPattern.test(messageText)) {
+          // Try to parse as hours response
+          const parsedHours = parseHoursResponse(messageText);
+
+          if (parsedHours.length > 0) {
+            console.log(`[whatsapp-message] Parsed ${parsedHours.length} special hours`);
+
+            // Get Google connection
+            const [google] = await db
+              .select()
+              .from(googleConnections)
+              .where(and(
+                eq(googleConnections.tenantId, tenantId),
+                eq(googleConnections.status, 'active')
+              ))
+              .limit(1);
+
+            if (google && google.locationId) {
+              const currentYear = new Date().getFullYear();
+
+              // Convert parsed hours to API format
+              const periods = parsedHours.map(h => {
+                const date = new Date(currentYear, h.date.month - 1, h.date.day);
+                return createSingleDayPeriod(date, h.isClosed, h.openTime, h.closeTime);
+              });
+
+              try {
+                await setSpecialHours(tenantId, google.accountId, google.locationId, periods);
+
+                // Confirm to owner
+                const summary = parsedHours.map(h => {
+                  const dateStr = `${h.date.day}/${h.date.month}`;
+                  if (h.isClosed) return `${dateStr}: סגור`;
+                  return `${dateStr}: ${h.openTime}-${h.closeTime}`;
+                }).join('\n');
+
+                const client = await createWhatsAppClient(tenantId);
+                if (client) {
+                  await sendTextMessage(
+                    client,
+                    message.from,
+                    `עדכנתי את השעות בגוגל:\n${summary}\n\nתודה!`
+                  );
+                }
+
+                handledAsHoursResponse = true;
+                console.log(`[whatsapp-message] Processed as holiday hours response`);
+              } catch (error) {
+                console.error('[whatsapp-message] Failed to update hours:', error);
+                const client = await createWhatsAppClient(tenantId);
+                if (client) {
+                  await sendTextMessage(
+                    client,
+                    message.from,
+                    'לא הצלחתי לעדכן את השעות. נסה שוב או פנה לתמיכה.'
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // 1.9 Check if this is part of a lead conversation (skip if already handled)
+      if (!handledAsReviewResponse && !handledAsPhotoResponse && !handledAsPostResponse && !handledAsHoursResponse) {
         const leadConvo = await db.query.leadConversations.findFirst({
           where: eq(leadConversations.whatsappConversationId, conversation.id),
         });
