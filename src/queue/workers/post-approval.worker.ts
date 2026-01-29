@@ -21,6 +21,7 @@ import { eq, and, isNull } from 'drizzle-orm';
 import { createWhatsAppClient, sendTextMessage } from '../../services/whatsapp';
 import { generatePostContent, generateSafeAutoContent } from '../../services/gbp-content';
 import { createPost } from '../../services/google/posts';
+import { shouldNotify, NotificationType } from '../../services/notification-gate';
 import { notificationQueue, type ScheduledJobData } from '../queues';
 
 type NotificationPostJobData =
@@ -72,6 +73,14 @@ async function handleGenerate(data: { tenantId: string; postRequestId: string; o
       updatedAt: new Date(),
     })
     .where(eq(postRequests.id, postRequestId));
+
+  // Check notification preferences before sending
+  const shouldSend = await shouldNotify(tenantId, NotificationType.POST_APPROVAL);
+  if (!shouldSend) {
+    console.log(`[post-approval] Skipping notification for ${tenantId} (preference disabled)`);
+    // Post will auto-publish after timeout if isSafe
+    return;
+  }
 
   // Send draft to owner
   if (tenant.ownerPhone) {

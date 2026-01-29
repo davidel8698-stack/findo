@@ -9,6 +9,7 @@ import {
 } from '../../db/schema/index';
 import { createWhatsAppClient } from '../whatsapp/client';
 import { sendTextMessage } from '../whatsapp/messages';
+import { shouldNotify, NotificationType } from '../notification-gate';
 import {
   checkForWinner,
   promoteToGlobalWinner,
@@ -321,6 +322,8 @@ ${actionLines}
 /**
  * Send weekly summary to a single tenant's owner.
  *
+ * Checks WEEKLY_REPORT notification preference before sending.
+ *
  * @param tenantId - Tenant UUID
  * @param actions - Tuning actions that affected this tenant
  */
@@ -329,6 +332,13 @@ export async function sendWeeklySummary(
   actions: TuningAction[]
 ): Promise<boolean> {
   try {
+    // Check notification preferences
+    const shouldSend = await shouldNotify(tenantId, NotificationType.WEEKLY_REPORT);
+    if (!shouldSend) {
+      console.log(`[auto-tuner] Skipping weekly summary for tenant ${tenantId} (preference disabled)`);
+      return false;
+    }
+
     // Get tenant info
     const tenant = await db.query.tenants.findFirst({
       where: eq(tenants.id, tenantId),

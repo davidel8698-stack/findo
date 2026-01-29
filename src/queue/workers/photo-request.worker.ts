@@ -5,6 +5,7 @@ import { tenants, whatsappConnections, googleConnections, photoRequests } from '
 import { eq, and, isNull, lt } from 'drizzle-orm';
 import { createWhatsAppClient } from '../../services/whatsapp/client';
 import { sendTextMessage } from '../../services/whatsapp/messages';
+import { shouldNotify, NotificationType } from '../../services/notification-gate';
 import { type ScheduledJobData } from '../queues';
 
 /**
@@ -114,6 +115,22 @@ async function processPhotoRequest(): Promise<void> {
         continue;
       }
 
+      // Check notification preferences
+      const shouldSend = await shouldNotify(tenant.id, NotificationType.PHOTO_REQUEST);
+      if (!shouldSend) {
+        console.log(`[photo-request] Skipping notification for tenant ${tenant.id} (preference disabled)`);
+        // Still create photo_request record so owner can see request in dashboard
+        await db.insert(photoRequests).values({
+          tenantId: tenant.id,
+          status: 'sent',
+          requestedAt: now,
+          week,
+          year,
+        });
+        skippedCount++;
+        continue;
+      }
+
       // Create WhatsApp client
       const client = await createWhatsAppClient(tenant.id);
       if (!client) {
@@ -191,6 +208,18 @@ async function processPhotoReminder(): Promise<void> {
 
       if (!tenant || !tenant.ownerPhone) {
         console.log(`[photo-reminder] Tenant ${request.tenantId} not found or no phone, skipping`);
+        continue;
+      }
+
+      // Check notification preferences
+      const shouldSend = await shouldNotify(request.tenantId, NotificationType.PHOTO_REQUEST);
+      if (!shouldSend) {
+        console.log(`[photo-reminder] Skipping reminder for tenant ${request.tenantId} (preference disabled)`);
+        // Update reminderSentAt to avoid re-checking this request
+        await db
+          .update(photoRequests)
+          .set({ reminderSentAt: now, updatedAt: now })
+          .where(eq(photoRequests.id, request.id));
         continue;
       }
 

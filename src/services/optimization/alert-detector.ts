@@ -8,6 +8,7 @@ import {
 } from '../../db/schema/index';
 import { createWhatsAppClient } from '../whatsapp/client';
 import { sendTextMessage, sendTemplateMessage } from '../whatsapp/messages';
+import { shouldNotify, NotificationType } from '../notification-gate';
 
 /**
  * Alert Detector Service
@@ -90,6 +91,7 @@ function composeAlertMessage(
 /**
  * Send review rate drop alert via WhatsApp.
  *
+ * Checks SYSTEM_ALERT notification preference before sending.
  * Uses template message to initiate conversation (outside 24h window),
  * with fallback to text message if within session window.
  *
@@ -109,6 +111,13 @@ export async function sendReviewRateAlert(
   dropPercent: number
 ): Promise<boolean> {
   try {
+    // Check notification preferences
+    const shouldSend = await shouldNotify(tenantId, NotificationType.SYSTEM_ALERT);
+    if (!shouldSend) {
+      console.log(`[alert-detector] Tenant ${tenantId}: Skipping alert (preference disabled)`);
+      return false;
+    }
+
     const client = await createWhatsAppClient(tenantId);
     if (!client) {
       console.log(`[alert-detector] Tenant ${tenantId}: No WhatsApp client, cannot send alert`);
