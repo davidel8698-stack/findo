@@ -10,3 +10,5 @@ export * from './reviews';
 export * from './review-requests';
 export * from './gbp-content';
 export * from './optimization';
+export * from './notification-preferences';
+export * from './chatbot-config';
