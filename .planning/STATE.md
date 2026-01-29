@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 9 (Dashboard & Notifications) COMPLETE - Ready for Phase 10 (Setup & Billing)
+**Current focus:** Phase 11 (Worker Registration) - Gap closure for v1 milestone
 
 ## Current Position
 
-Phase: 9 of 10 (Dashboard & Notifications)
-Plan: 8 of 8 in current phase (completed 09-01, 09-02, 09-03, 09-04, 09-05, 09-06, 09-07, 09-08)
+Phase: 11 of 11 (Worker Registration)
+Plan: 1 of 1 in current phase (completed 11-01)
 Status: Phase complete
-Last activity: 2026-01-29 - Completed 09-08-PLAN.md (Notification Preferences Integration)
+Last activity: 2026-01-30 - Completed 11-01-PLAN.md (Worker Registration)
 
-Progress: [█████████████████████████████████] 49/50 plans complete, ~98% of total project
+Progress: [██████████████████████████████████] 50/51 plans complete, ~98% of total project
 
 ## Performance Metrics
 
@@ -36,10 +36,11 @@ Progress: [███████████████████████
 | 07-gbp-content | 8 | 53 min | 6.6 min |
 | 08-gbp-optimization | 7 | ~35 min | 5 min |
 | 09-dashboard-notifications | 8 | ~45 min | 5.6 min |
+| 11-worker-registration | 1 | ~4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 09-05 (~5 min), 09-06 (~7 min), 09-07 (~6 min), 09-08 (~6 min)
-- Trend: Phase 9 complete. Notification preference integration done.
+- Last 5 plans: 09-06 (~7 min), 09-07 (~6 min), 09-08 (~6 min), 11-01 (~4 min)
+- Trend: Phase 11 complete. All 19 workers registered and operational.
 
 *Updated after each plan completion*
 
@@ -250,6 +251,8 @@ Recent decisions affecting current work:
 | Inline modal overlays for actions | 09-07 | Reusable components rendered in modals on main dashboard |
 | Client-side photo pre-validation | 09-07 | Faster feedback, reduces failed uploads |
 | Two-step post flow: generate then approve | 09-07 | Matches WhatsApp flow, owner always sees content before publishing |
+| metricsCollectionWorker and autoTuningWorker auto-start at import time | 11-01 | Const export pattern, same as holidayCheckWorker |
+| 4 workers use lazy-start pattern via start functions | 11-01 | Controlled lifecycle for reviewPoll, reviewReminder, invoicePoll, reviewRequest |
 
 ### Pending Todos
 
@@ -280,18 +283,15 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-29
-Stopped at: Completed 09-08-PLAN.md (Notification Preferences Integration)
+Last session: 2026-01-30
+Stopped at: Completed 11-01-PLAN.md (Worker Registration)
 Resume file: None
 
-**Phase 9 Progress:** COMPLETE (8/8 plans complete)
-- 09-01: Database Schema (notificationPreferences, chatbotConfig) [DONE]
-- 09-02: Dashboard Stats & Health APIs (stats-aggregator, health-checker, dashboard routes) [DONE]
-- 09-03: Dashboard Main View (health status, stats cards, main page, routes) [DONE]
-- 09-04: Activity Feed (grouper service, feed component, API integration) [DONE]
-- 09-05: Reports Visualization (trends aggregator, Chart.js reports page) [DONE]
-- 09-06: Settings Pages (settings service, view components, API, /dashboard/settings) [DONE]
-- 09-07: Owner Interaction Components (review approval, photo upload, post approval) [DONE]
-- 09-08: Notification Preferences Integration (notification gate, worker integration) [DONE]
+**Phase 11 Progress:** COMPLETE (1/1 plan complete)
+- 11-01: Worker Registration (6 workers registered in src/index.ts) [DONE]
+
+**v1-MILESTONE-AUDIT Gap Closure:**
+- All 19 workers now registered and operational
+- Phases 5, 6, and 8 workers are active (review-poll, review-reminder, invoice-poll, review-request, metrics-collection, auto-tuning)
 
 **Next:** Phase 10 (Setup & Billing)
