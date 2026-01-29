@@ -4,7 +4,7 @@ import {
   abTestAssignments,
   type AbTestVariant,
 } from '../../db/schema/index';
-import { eq, and, sql } from 'drizzle-orm';
+import { eq, and, sql, inArray, ne } from 'drizzle-orm';
 
 /**
  * Test types matching schema ab_test_type enum.
@@ -291,4 +291,103 @@ export async function seedVariants(
     }).onConflictDoNothing();
   }
   console.log(`[ab-testing] Seeded ${variants.length} variants for ${testType}`);
+}
+
+/**
+ * Migrate all existing tenant assignments to the winning variant.
+ * Called after promoteToGlobalWinner to ensure all tenants benefit.
+ * Per GBPO-06: "auto-adopt winners globally" means ALL tenants, not just new ones.
+ *
+ * @param variantId - ID of the winning variant to migrate to
+ * @returns Number of tenants migrated
+ */
+export async function migrateToWinner(variantId: string): Promise<number> {
+  // Get winner variant info
+  const [winner] = await db
+    .select()
+    .from(abTestVariants)
+    .where(eq(abTestVariants.id, variantId))
+    .limit(1);
+
+  if (!winner) {
+    throw new Error(`Variant ${variantId} not found`);
+  }
+
+  // Get all other variants for this test type (losers)
+  const loserVariants = await db
+    .select({ id: abTestVariants.id })
+    .from(abTestVariants)
+    .where(and(
+      eq(abTestVariants.testType, winner.testType),
+      ne(abTestVariants.id, variantId)
+    ));
+
+  if (loserVariants.length === 0) {
+    console.log(`[ab-testing] No other variants to migrate from for ${winner.testType}`);
+    return 0;
+  }
+
+  const loserIds = loserVariants.map(v => v.id);
+
+  // Get all active assignments to losing variants
+  const affectedAssignments = await db
+    .select({
+      id: abTestAssignments.id,
+      tenantId: abTestAssignments.tenantId,
+    })
+    .from(abTestAssignments)
+    .where(and(
+      inArray(abTestAssignments.variantId, loserIds),
+      eq(abTestAssignments.isActive, true)
+    ));
+
+  if (affectedAssignments.length === 0) {
+    console.log(`[ab-testing] No active assignments on losing variants for ${winner.testType}`);
+    return 0;
+  }
+
+  // Deactivate all assignments to losing variants
+  await db
+    .update(abTestAssignments)
+    .set({
+      isActive: false,
+      deactivatedAt: new Date(),
+      deactivationReason: `Migrated to winner: ${winner.variantName}`,
+      updatedAt: new Date(),
+    })
+    .where(and(
+      inArray(abTestAssignments.variantId, loserIds),
+      eq(abTestAssignments.isActive, true)
+    ));
+
+  // Create new assignments to winner for affected tenants
+  let migratedCount = 0;
+  for (const assignment of affectedAssignments) {
+    // Check if tenant already has an assignment to the winner
+    const existingWinnerAssignment = await db
+      .select({ id: abTestAssignments.id })
+      .from(abTestAssignments)
+      .where(and(
+        eq(abTestAssignments.tenantId, assignment.tenantId),
+        eq(abTestAssignments.variantId, variantId),
+        eq(abTestAssignments.isActive, true)
+      ))
+      .limit(1);
+
+    if (existingWinnerAssignment.length === 0) {
+      await db.insert(abTestAssignments).values({
+        tenantId: assignment.tenantId,
+        variantId,
+        assignedAt: new Date(),
+        samplesCollected: 0,
+        successCount: 0,
+        isActive: true,
+      }).onConflictDoNothing();
+
+      migratedCount++;
+    }
+  }
+
+  console.log(`[ab-testing] Migrated ${migratedCount} tenants to winner ${winner.variantName}`);
+  return migratedCount;
 }
