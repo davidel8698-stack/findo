@@ -22,3 +22,13 @@ export {
   type PostContent,
   type GeneratePostOptions,
 } from './post-generator';
+
+// Holiday checking
+export {
+  getUpcomingHolidays,
+  getHolidaysNeedingReminder,
+  checkTenantHolidays,
+  parseHoursResponse,
+  type UpcomingHoliday,
+  type ParsedHours,
+} from './holiday-checker';
