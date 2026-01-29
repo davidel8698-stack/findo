@@ -1,6 +1,6 @@
 import { Worker, Job } from 'bullmq';
 import { createRedisConnection } from '../../lib/redis';
-import { collectMetricsForAllTenants } from '../../services/optimization';
+import { collectMetricsForAllTenants, checkAlertsForAllTenants } from '../../services/optimization';
 import { type ScheduledJobData } from '../queues';
 
 /**
@@ -28,11 +28,20 @@ export const metricsCollectionWorker = new Worker<ScheduledJobData>(
 
     console.log('[metrics-collection] Starting weekly metrics collection...');
 
-    const result = await collectMetricsForAllTenants();
+    // Step 1: Collect metrics for all tenants
+    const metricsResult = await collectMetricsForAllTenants();
 
-    console.log(`[metrics-collection] Complete: ${result.processed} processed, ${result.skipped} skipped, ${result.errors} errors`);
+    console.log(`[metrics-collection] Metrics: ${metricsResult.processed} processed, ${metricsResult.skipped} skipped, ${metricsResult.errors} errors`);
 
-    return result;
+    // Step 2: Check for alerts after collection completes
+    const alertsResult = await checkAlertsForAllTenants();
+
+    console.log(`[metrics-collection] Alerts: ${alertsResult.checked} checked, ${alertsResult.sent} sent`);
+
+    return {
+      metrics: metricsResult,
+      alerts: alertsResult,
+    };
   },
   {
     connection: createRedisConnection(),
