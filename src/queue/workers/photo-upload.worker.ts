@@ -123,7 +123,9 @@ async function processPhotoUpload(job: Job<PhotoUploadJob>): Promise<void> {
         await sendTextMessage(
           client,
           tenant.ownerPhone,
-          `התמונה עלתה לגוגל! יכול לקחת 24-48 שעות עד שתופיע בפרופיל.\n` +
+          `התמונה עלתה בהצלחה!\n\n` +
+          `חשוב לדעת: גוגל מעבד את התמונות לפני הצגתן בפרופיל.\n` +
+          `התמונה תופיע בפרופיל העסקי שלך תוך 24-48 שעות.\n` +
           `תודה שאתה שומר על הפרופיל מעודכן!`
         );
       }
