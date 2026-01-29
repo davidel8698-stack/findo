@@ -7,12 +7,14 @@ import { getTrendsData, type TrendsPeriod, type TrendsData } from '../../service
 import { activityService } from '../../services/activity';
 import type { TenantContext } from '../../types/tenant-context';
 import { db } from '../../db';
-import { processedReviews, googleConnections, photoRequests, gbpPhotos } from '../../db/schema';
+import { processedReviews, googleConnections, photoRequests, gbpPhotos, postRequests, tenants } from '../../db/schema';
 import { eq, and, desc, isNull } from 'drizzle-orm';
 import { postReviewReply } from '../../services/google/reviews';
 import { validateImage, prepareImageForUpload } from '../../services/media/image-validator';
 import { uploadToR2, isR2Configured } from '../../services/storage/r2';
 import { uploadPhotoFromUrl, type PhotoCategory } from '../../services/google/media';
+import { generatePostContent } from '../../services/gbp-content/post-generator';
+import { createPost } from '../../services/google/posts';
 
 // Extend Hono Variables for tenant context
 type Variables = {
@@ -572,6 +574,308 @@ app.post('/photo/upload', async (c) => {
     console.error('[dashboard/photo-upload] Error uploading photo:', error);
     return c.json({
       error: 'Failed to upload photo',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * GET /api/dashboard/post-request
+ *
+ * Returns current post request status for tenant.
+ *
+ * Per DASH-05: "Enter promotional content for monthly posts"
+ *
+ * Returns:
+ * - hasPending: boolean
+ * - post?: { id, status, content, isSafe, createdAt }
+ */
+app.get('/post-request', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  try {
+    // Get most recent pending post request (requested or pending_approval)
+    const [request] = await db
+      .select({
+        id: postRequests.id,
+        status: postRequests.status,
+        ownerContent: postRequests.ownerContent,
+        aiDraft: postRequests.aiDraft,
+        finalContent: postRequests.finalContent,
+        isSafeContent: postRequests.isSafeContent,
+        createdAt: postRequests.createdAt,
+      })
+      .from(postRequests)
+      .where(
+        and(
+          eq(postRequests.tenantId, tenant.tenantId),
+          isNull(postRequests.deletedAt)
+        )
+      )
+      .orderBy(desc(postRequests.createdAt))
+      .limit(1);
+
+    if (request && (request.status === 'requested' || request.status === 'pending_approval')) {
+      return c.json({
+        hasPending: true,
+        post: {
+          id: request.id,
+          status: request.status,
+          content: request.aiDraft || request.finalContent || request.ownerContent,
+          isSafe: request.isSafeContent,
+          createdAt: request.createdAt,
+        },
+      });
+    }
+
+    return c.json({ hasPending: false });
+  } catch (error) {
+    console.error('[dashboard/post-request] Error fetching request:', error);
+    return c.json({
+      error: 'Failed to fetch post request status',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * POST /api/dashboard/post/generate
+ *
+ * Generate AI post content from owner's input.
+ *
+ * Body:
+ * - content: string - Owner's promotional content
+ *
+ * Per DASH-05: "Enter promotional content for monthly posts"
+ */
+app.post('/post/generate', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  let body: { content: string };
+  try {
+    body = await c.req.json();
+  } catch {
+    return c.json({ error: 'Invalid request body' }, 400);
+  }
+
+  if (!body.content || body.content.trim().length === 0) {
+    return c.json({ error: 'Content is required' }, 400);
+  }
+
+  if (body.content.length > 1500) {
+    return c.json({ error: 'Content exceeds 1500 character limit' }, 400);
+  }
+
+  try {
+    // Get tenant info for business name/type
+    const [tenantInfo] = await db
+      .select({
+        businessName: tenants.businessName,
+        businessType: tenants.businessType,
+      })
+      .from(tenants)
+      .where(eq(tenants.id, tenant.tenantId))
+      .limit(1);
+
+    if (!tenantInfo) {
+      return c.json({ error: 'Tenant not found' }, 404);
+    }
+
+    // Generate AI post
+    const generatedPost = await generatePostContent({
+      businessName: tenantInfo.businessName,
+      businessType: tenantInfo.businessType || 'business',
+      ownerContent: body.content,
+    });
+
+    // Get current month/year
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+
+    // Create or update post request
+    const [existingRequest] = await db
+      .select()
+      .from(postRequests)
+      .where(
+        and(
+          eq(postRequests.tenantId, tenant.tenantId),
+          eq(postRequests.month, month),
+          eq(postRequests.year, year),
+          isNull(postRequests.deletedAt)
+        )
+      )
+      .limit(1);
+
+    let postId: string;
+
+    if (existingRequest) {
+      // Update existing
+      await db
+        .update(postRequests)
+        .set({
+          status: 'pending_approval',
+          ownerContent: body.content,
+          aiDraft: generatedPost.summary,
+          isSafeContent: generatedPost.isSafe,
+          postType: generatedPost.topicType,
+          callToActionType: generatedPost.callToActionType,
+          draftSentAt: new Date(),
+          updatedAt: new Date(),
+        })
+        .where(eq(postRequests.id, existingRequest.id));
+      postId = existingRequest.id;
+    } else {
+      // Create new
+      const [newRequest] = await db
+        .insert(postRequests)
+        .values({
+          tenantId: tenant.tenantId,
+          status: 'pending_approval',
+          month,
+          year,
+          ownerContent: body.content,
+          aiDraft: generatedPost.summary,
+          isSafeContent: generatedPost.isSafe,
+          postType: generatedPost.topicType,
+          callToActionType: generatedPost.callToActionType,
+          draftSentAt: new Date(),
+        })
+        .returning({ id: postRequests.id });
+      postId = newRequest.id;
+    }
+
+    console.log(`[dashboard/post-generate] Generated post for tenant ${tenant.tenantId}`);
+
+    return c.json({
+      success: true,
+      postId,
+      content: generatedPost.summary,
+      isSafe: generatedPost.isSafe,
+      topicType: generatedPost.topicType,
+    });
+  } catch (error) {
+    console.error('[dashboard/post-generate] Error generating post:', error);
+    return c.json({
+      error: 'Failed to generate post',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * POST /api/dashboard/post/:postId/approve
+ *
+ * Approve and publish a post to GBP.
+ *
+ * Body:
+ * - customContent?: string - Optional edited content
+ *
+ * Per DASH-05: "Enter promotional content for monthly posts"
+ */
+app.post('/post/:postId/approve', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  const postId = c.req.param('postId');
+  let body: { customContent?: string } = {};
+
+  try {
+    body = await c.req.json();
+  } catch {
+    // Empty body is valid - means use AI draft
+  }
+
+  try {
+    // Get the post request
+    const [postRequest] = await db
+      .select()
+      .from(postRequests)
+      .where(
+        and(
+          eq(postRequests.id, postId),
+          eq(postRequests.tenantId, tenant.tenantId),
+          eq(postRequests.status, 'pending_approval')
+        )
+      )
+      .limit(1);
+
+    if (!postRequest) {
+      return c.json({ error: 'Post not found or not pending approval' }, 404);
+    }
+
+    // Get Google connection
+    const [googleConnection] = await db
+      .select()
+      .from(googleConnections)
+      .where(eq(googleConnections.tenantId, tenant.tenantId))
+      .limit(1);
+
+    if (!googleConnection || !googleConnection.locationId) {
+      return c.json({ error: 'No Google connection configured' }, 400);
+    }
+
+    // Determine final content
+    const finalContent = body.customContent || postRequest.aiDraft || postRequest.ownerContent;
+
+    if (!finalContent) {
+      return c.json({ error: 'No content available to publish' }, 400);
+    }
+
+    // Create post on GBP
+    const gbpPost = await createPost(
+      tenant.tenantId,
+      googleConnection.accountId,
+      googleConnection.locationId,
+      {
+        summary: finalContent,
+        topicType: postRequest.postType || 'STANDARD',
+        callToAction: postRequest.callToActionType && postRequest.callToActionUrl
+          ? {
+              actionType: postRequest.callToActionType as any,
+              url: postRequest.callToActionUrl,
+            }
+          : undefined,
+      }
+    );
+
+    // Update post request
+    await db
+      .update(postRequests)
+      .set({
+        status: 'published',
+        finalContent,
+        gbpPostId: gbpPost.postId,
+        gbpPostState: gbpPost.state,
+        approvedAt: new Date(),
+        publishedAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .where(eq(postRequests.id, postId));
+
+    console.log(`[dashboard/post-approve] Post ${postId} published: ${gbpPost.postId}`);
+
+    return c.json({
+      success: true,
+      message: 'Post published successfully',
+      gbpPostId: gbpPost.postId,
+      state: gbpPost.state,
+    });
+  } catch (error) {
+    console.error('[dashboard/post-approve] Error publishing post:', error);
+    return c.json({
+      error: 'Failed to publish post',
       details: error instanceof Error ? error.message : 'Unknown error'
     }, 500);
   }

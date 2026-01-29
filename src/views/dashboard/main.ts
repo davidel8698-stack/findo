@@ -14,6 +14,9 @@
  */
 
 import { renderActivityFeed } from './activity-feed';
+import { renderReviewApproval } from './review-approval';
+import { renderPhotoUpload } from './photo-upload';
+import { renderPostContent } from './post-content';
 
 /**
  * Renders the main dashboard HTML page.
@@ -180,6 +183,87 @@ export function renderMainDashboard(tenantId: string): string {
           ${renderActivityFeed(tenantId)}
         </section>
       </div>
+
+      <!-- Actions Section -->
+      <section id="actionsSection" class="mt-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">פעולות</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Pending Reviews Card -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer" onclick="openActionModal('reviews')">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <span class="text-2xl">&#9733;</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-gray-500">ביקורות לאישור</p>
+                <p id="pendingReviewsCount" class="text-2xl font-bold text-gray-800">-</p>
+              </div>
+              <span class="text-blue-600">&#8592;</span>
+            </div>
+          </div>
+
+          <!-- Photo Upload Card -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer" onclick="openActionModal('photos')">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <span class="text-2xl">&#128247;</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-gray-500">תמונות</p>
+                <p id="photoStatus" class="text-lg font-medium text-gray-800">-</p>
+              </div>
+              <span class="text-blue-600">&#8592;</span>
+            </div>
+          </div>
+
+          <!-- Post Content Card -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer" onclick="openActionModal('posts')">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <span class="text-2xl">&#128221;</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-gray-500">תוכן חודשי</p>
+                <p id="postStatus" class="text-lg font-medium text-gray-800">-</p>
+              </div>
+              <span class="text-blue-600">&#8592;</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Action Modals -->
+    <div id="actionModalOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40" onclick="closeActionModal()"></div>
+
+    <div id="reviewsModal" class="hidden fixed inset-4 md:inset-10 bg-white rounded-xl z-50 overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-gray-100 p-4 flex justify-between items-center">
+        <h3 class="text-lg font-semibold">ביקורות לאישור</h3>
+        <button onclick="closeActionModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&#10005;</button>
+      </div>
+      <div class="p-4">
+        ${renderReviewApproval()}
+      </div>
+    </div>
+
+    <div id="photosModal" class="hidden fixed inset-4 md:inset-10 bg-white rounded-xl z-50 overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-gray-100 p-4 flex justify-between items-center">
+        <h3 class="text-lg font-semibold">העלאת תמונות</h3>
+        <button onclick="closeActionModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&#10005;</button>
+      </div>
+      <div class="p-4">
+        ${renderPhotoUpload()}
+      </div>
+    </div>
+
+    <div id="postsModal" class="hidden fixed inset-4 md:inset-10 bg-white rounded-xl z-50 overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-gray-100 p-4 flex justify-between items-center">
+        <h3 class="text-lg font-semibold">תוכן חודשי</h3>
+        <button onclick="closeActionModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&#10005;</button>
+      </div>
+      <div class="p-4">
+        ${renderPostContent()}
+      </div>
     </div>
 
     <!-- Error State -->
@@ -320,8 +404,86 @@ export function renderMainDashboard(tenantId: string): string {
       }
     }
 
+    // Load action statuses
+    async function loadActionStatuses() {
+      try {
+        // Load pending reviews count
+        const reviewsRes = await fetch('/api/dashboard/pending-reviews', {
+          headers: { 'X-Tenant-ID': tenantId }
+        });
+        const reviewsData = await reviewsRes.json();
+        const count = reviewsData.reviews?.length || 0;
+        document.getElementById('pendingReviewsCount').textContent = count > 0 ? count.toString() : 'אין';
+
+        // Load photo request status
+        const photoRes = await fetch('/api/dashboard/photo-request', {
+          headers: { 'X-Tenant-ID': tenantId }
+        });
+        const photoData = await photoRes.json();
+        document.getElementById('photoStatus').textContent = photoData.hasPending ? 'יש בקשה' : 'אין בקשות';
+
+        // Load post request status
+        const postRes = await fetch('/api/dashboard/post-request', {
+          headers: { 'X-Tenant-ID': tenantId }
+        });
+        const postData = await postRes.json();
+        if (postData.hasPending && postData.post?.status === 'pending_approval') {
+          document.getElementById('postStatus').textContent = 'ממתין לאישור';
+        } else if (postData.hasPending) {
+          document.getElementById('postStatus').textContent = 'ממתין לתוכן';
+        } else {
+          document.getElementById('postStatus').textContent = 'אין פעיל';
+        }
+      } catch (err) {
+        console.error('Failed to load action statuses:', err);
+      }
+    }
+
+    // Modal functions
+    let currentModal = null;
+
+    function openActionModal(type) {
+      closeActionModal();
+      currentModal = type;
+      document.getElementById('actionModalOverlay').classList.remove('hidden');
+      document.getElementById(type + 'Modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      // Trigger reload of modal content
+      if (type === 'reviews' && typeof loadPendingReviews === 'function') {
+        loadPendingReviews();
+      } else if (type === 'photos' && typeof loadPhotoRequestStatus === 'function') {
+        loadPhotoRequestStatus();
+      } else if (type === 'posts' && typeof loadPostStatus === 'function') {
+        loadPostStatus();
+      }
+    }
+
+    function closeActionModal() {
+      document.getElementById('actionModalOverlay').classList.add('hidden');
+      if (currentModal) {
+        document.getElementById(currentModal + 'Modal').classList.add('hidden');
+      }
+      currentModal = null;
+      document.body.style.overflow = '';
+
+      // Refresh action statuses after closing
+      loadActionStatuses();
+    }
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && currentModal) {
+        closeActionModal();
+      }
+    });
+
+    // Make tenantId available globally for action components
+    window.tenantId = tenantId;
+
     // Load dashboard on page load
     loadDashboard();
+    loadActionStatuses();
   </script>
 </body>
 </html>`;
