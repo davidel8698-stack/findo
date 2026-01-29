@@ -19,7 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 5: Review Management** - Auto-reply to positive reviews, draft responses for negative
 - [x] **Phase 6: Review Requests** - Invoice-triggered and manual review request flows
 - [x] **Phase 7: GBP Content** - Photo requests, uploads, and promotional posts
-- [ ] **Phase 8: GBP Optimization** - Metrics monitoring and autonomous tuning
+- [x] **Phase 8: GBP Optimization** - Metrics monitoring and autonomous tuning
 - [ ] **Phase 9: Dashboard & Notifications** - Confidence window and WhatsApp-first UX
 - [ ] **Phase 10: Setup & Billing** - 2-minute onboarding wizard and payment processing
 
@@ -209,13 +209,13 @@ Plans:
 **Plans**: 7 plans
 
 Plans:
-- [ ] 08-01-PLAN.md - Optimization schema (metrics, A/B tests, baselines, config)
-- [ ] 08-02-PLAN.md - GBP Performance API service (visibility and content metrics)
-- [ ] 08-03-PLAN.md - Metrics collection worker (weekly aggregation and baselines)
-- [ ] 08-04-PLAN.md - Metrics dashboard API and view
-- [ ] 08-05-PLAN.md - Alert detection and WhatsApp notifications
-- [ ] 08-06-PLAN.md - A/B testing framework and review request integration
-- [ ] 08-07-PLAN.md - Auto-tuning engine and weekly summary notifications
+- [x] 08-01-PLAN.md - Optimization schema (metrics, A/B tests, baselines, config)
+- [x] 08-02-PLAN.md - GBP Performance API service (visibility and content metrics)
+- [x] 08-03-PLAN.md - Metrics collection worker (weekly aggregation and baselines)
+- [x] 08-04-PLAN.md - Metrics dashboard API and view
+- [x] 08-05-PLAN.md - Alert detection and WhatsApp notifications
+- [x] 08-06-PLAN.md - A/B testing framework and review request integration
+- [x] 08-07-PLAN.md - Auto-tuning engine and weekly summary notifications
 
 **Research flag**: None (standard patterns)
 
@@ -281,7 +281,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 5. Review Management | 6/6 | Complete | 2026-01-28 |
 | 6. Review Requests | 7/7 | Complete | 2026-01-28 |
 | 7. GBP Content | 8/8 | Complete | 2026-01-29 |
-| 8. GBP Optimization | 0/7 | Planned | - |
+| 8. GBP Optimization | 7/7 | Complete | 2026-01-29 |
 | 9. Dashboard & Notifications | 0/TBD | Not started | - |
 | 10. Setup & Billing | 0/TBD | Not started | - |
 
@@ -309,4 +309,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-29 - Phase 8 GBP Optimization planned (7 plans)*
+*Last updated: 2026-01-29 - Phase 8 GBP Optimization complete (7 plans)*

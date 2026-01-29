@@ -46,13 +46,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### GBP Optimization (GBPO)
 
-- [ ] **GBPO-01**: Monitor GBP metrics: average rating, review rate, total reviews, response %
-- [ ] **GBPO-02**: Monitor visibility metrics: impressions, contacts, search queries
-- [ ] **GBPO-03**: Monitor content metrics: image count, image views
-- [ ] **GBPO-04**: Alert if review rate drops below target (2-3 per week)
-- [ ] **GBPO-05**: Autonomous optimization: adjust review request timing
-- [ ] **GBPO-06**: Autonomous optimization: adjust message templates
-- [ ] **GBPO-07**: Autonomous optimization: A/B test approaches
+- [x] **GBPO-01**: Monitor GBP metrics: average rating, review rate, total reviews, response %
+- [x] **GBPO-02**: Monitor visibility metrics: impressions, contacts, search queries
+- [x] **GBPO-03**: Monitor content metrics: image count, image views
+- [x] **GBPO-04**: Alert if review rate drops below target (2-3 per week)
+- [x] **GBPO-05**: Autonomous optimization: adjust review request timing
+- [x] **GBPO-06**: Autonomous optimization: adjust message templates
+- [x] **GBPO-07**: Autonomous optimization: A/B test approaches
 
 ### Setup & Onboarding (SETUP)
 
@@ -80,7 +80,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **NOTF-02**: "New negative review" notification with tap-to-respond
 - [x] **NOTF-03**: "New lead" notification with summary
 - [x] **NOTF-04**: Photo request notifications
-- [ ] **NOTF-05**: Review rate alert if below target
+- [x] **NOTF-05**: Review rate alert if below target
 
 ### Integrations (INTG)
 
@@ -178,13 +178,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GBPC-03 | Phase 7 | Complete |
 | GBPC-04 | Phase 7 | Complete |
 | GBPC-05 | Phase 7 | Complete |
-| GBPO-01 | Phase 8 | Pending |
-| GBPO-02 | Phase 8 | Pending |
-| GBPO-03 | Phase 8 | Pending |
-| GBPO-04 | Phase 8 | Pending |
-| GBPO-05 | Phase 8 | Pending |
-| GBPO-06 | Phase 8 | Pending |
-| GBPO-07 | Phase 8 | Pending |
+| GBPO-01 | Phase 8 | Complete |
+| GBPO-02 | Phase 8 | Complete |
+| GBPO-03 | Phase 8 | Complete |
+| GBPO-04 | Phase 8 | Complete |
+| GBPO-05 | Phase 8 | Complete |
+| GBPO-06 | Phase 8 | Complete |
+| GBPO-07 | Phase 8 | Complete |
 | SETUP-01 | Phase 10 | Pending |
 | SETUP-02 | Phase 10 | Pending |
 | SETUP-03 | Phase 10 | Pending |
@@ -203,7 +203,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NOTF-02 | Phase 5 | Pending |
 | NOTF-03 | Phase 3 | Pending |
 | NOTF-04 | Phase 7 | Complete |
-| NOTF-05 | Phase 8 | Pending |
+| NOTF-05 | Phase 8 | Complete |
 | INTG-01 | Phase 2 | Complete |
 | INTG-02 | Phase 2 | Complete |
 | INTG-03 | Phase 4 | Complete |
@@ -228,4 +228,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-27*
-*Last updated: 2026-01-29 - Phase 7 complete*
+*Last updated: 2026-01-29 - Phase 8 complete*
