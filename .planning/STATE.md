@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 7 of 10 (GBP Content)
-Plan: 6 of 6 in current phase
-Status: Phase complete
-Last activity: 2026-01-29 - Completed 07-06-PLAN.md (Business Hours Updates)
+Plan: 7 of 7 in current phase (gap closure plan)
+Status: Phase complete (with worker registration)
+Last activity: 2026-01-29 - Completed 07-07-PLAN.md (Worker Registration - Gap Closure)
 
 Progress: [██████████████████████] Phase 7 complete, ~100% of Phases 1-7
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 38
+- Total plans completed: 39
 - Average duration: 5.2 min
 - Total execution time: 3.4 hours
 
@@ -33,11 +33,11 @@ Progress: [██████████████████████] P
 | 04-google-integration | 4 | 25 min | 6.3 min |
 | 05-review-management | 6 | 27 min | 4.5 min |
 | 06-review-requests | 7 | 25 min | 3.6 min |
-| 07-gbp-content | 6 | 45 min | 7.5 min |
+| 07-gbp-content | 7 | 48 min | 6.9 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-02 (~4 min), 07-03 (~12 min), 07-04 (~8 min), 07-05 (~10 min), 07-06 (~6 min)
-- Trend: Phase 7 COMPLETE! All GBP content features implemented.
+- Last 5 plans: 07-03 (~12 min), 07-04 (~8 min), 07-05 (~10 min), 07-06 (~6 min), 07-07 (~3 min)
+- Trend: Phase 7 COMPLETE! All GBP content features implemented and workers registered.
 
 *Updated after each plan completion*
 
@@ -194,6 +194,8 @@ Recent decisions affecting current work:
 | DD/MM: format for hours response | 07-06 | Simple pattern for Hebrew users - Israeli date format |
 | Merge special hours with conflicts | 07-06 | Don't lose existing special hours, just update conflicting dates |
 | Sunday 10:00 AM for holiday check | 07-06 | Weekly check same day as photo request (Israeli work week start) |
+| holidayCheckWorker as import-time instantiation | 07-07 | Worker starts at import (not via start function) |
+| postApprovalWorker dual-cleanup | 07-07 | Returns { notificationWorker, scheduledWorker } requiring separate cleanup |
 
 ### Pending Todos
 
@@ -225,15 +227,16 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 07-06-PLAN.md (Business Hours Updates) - Phase 7 complete
+Stopped at: Completed 07-07-PLAN.md (Worker Registration - Gap Closure) - Phase 7 fully operational
 Resume file: None
 
-**Phase 7 Progress:** COMPLETE
+**Phase 7 Progress:** COMPLETE (with worker registration)
 - 07-01: Photo Request Foundation (photoRequests/gbpPhotos/postRequests tables, weekly worker, reminder job) [DONE]
 - 07-02: Media Services (WhatsApp download, image validation, GBP upload) [DONE]
 - 07-03: Photo Upload Flow (photo processor, R2 storage, upload worker, message handler) [DONE]
 - 07-04: Promotional Posts (GBP posts service, monthly request worker) [DONE]
 - 07-05: AI Post Generation (post generator, approval worker, message handler integration) [DONE]
 - 07-06: Business Hours Updates (@hebcal/core, holiday-checker, hours service, message handler) [DONE]
+- 07-07: Worker Registration - Gap Closure (all Phase 7 workers registered in src/index.ts) [DONE]
 
 **Next:** Ready for Phase 8 (Dashboard) or Phase 9 (Analytics)
