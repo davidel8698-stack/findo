@@ -26,6 +26,12 @@ import { startPhotoUploadWorker } from './queue/workers/photo-upload.worker';
 import { startMonthlyPostWorker } from './queue/workers/monthly-post.worker';
 import { startPostApprovalWorker } from './queue/workers/post-approval.worker';
 import { holidayCheckWorker } from './queue/workers/holiday-check.worker';
+import { startReviewPollWorker } from './queue/workers/review-poll.worker';
+import { startReviewReminderWorker } from './queue/workers/review-reminder.worker';
+import { startInvoicePollWorker } from './queue/workers/invoice-poll.worker';
+import { startReviewRequestWorker } from './queue/workers/review-request.worker';
+import { metricsCollectionWorker } from './queue/workers/metrics-collection.worker';
+import { autoTuningWorker } from './queue/workers/auto-tuning.worker';
 import { initializeScheduler } from './scheduler/index';
 import { closeRedisConnections, warmUpConnections } from './lib/redis';
 
@@ -34,7 +40,13 @@ const app = new Hono();
 
 // Global middleware
 app.use('*', logger());
-app.use('*', cors());
+app.use('*', cors({
+  origin: '*',
+  allowHeaders: ['Content-Type', 'X-Tenant-ID', 'Authorization'],
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  exposeHeaders: ['Content-Length'],
+  maxAge: 86400,
+}));
 
 // Health routes (no auth required)
 app.route('/health', healthRoutes);
