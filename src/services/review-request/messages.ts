@@ -1,5 +1,6 @@
 import { WhatsAppClient } from '../whatsapp/client';
 import { sendTemplateMessage, TemplateComponent } from '../whatsapp/messages';
+import { getActiveVariant } from '../optimization/ab-testing';
 
 /**
  * Generate direct Google review link from Place ID.
@@ -13,16 +14,30 @@ export function generateGoogleReviewLink(placeId: string): string {
 }
 
 /**
+ * Variant content structure for review request messages.
+ * Variants can specify alternate templates or personalization approaches.
+ */
+interface ReviewRequestVariant {
+  templateName?: string;       // Alternate pre-approved template name
+  customerFallback?: string;   // Hebrew fallback for missing customer name
+  addEmoji?: boolean;          // Whether to add emoji to customer name
+}
+
+/**
  * Send initial review request via WhatsApp template.
  * Template must be pre-approved in Meta Business Suite.
  *
- * Template name: 'review_request'
+ * Uses A/B testing to select variant (template, personalization).
+ * Variant selection enables outcome tracking for optimization.
+ *
+ * Template name: 'review_request' (or variant-specified template)
  * Variables:
  * - Body {{1}}: Customer name
  * - Body {{2}}: Business name
  * - Button URL {{1}}: Place ID (appended to base URL)
  *
  * @param client - WhatsApp client for the tenant
+ * @param tenantId - Tenant ID for A/B test variant selection
  * @param customerPhone - Customer phone in international format
  * @param customerName - Customer name for personalization
  * @param businessName - Business name for message
@@ -31,16 +46,43 @@ export function generateGoogleReviewLink(placeId: string): string {
  */
 export async function sendReviewRequestMessage(
   client: WhatsAppClient,
+  tenantId: string,
   customerPhone: string,
   customerName: string,
   businessName: string,
   placeId: string
 ): Promise<string> {
+  // Check for A/B test variant
+  const variant = await getActiveVariant(tenantId, 'review_request_message');
+
+  // Parse variant content if exists
+  let templateName = 'review_request';
+  let customerDisplay = customerName || 'לקוח יקר'; // "Dear customer" fallback
+
+  if (variant) {
+    try {
+      const content = JSON.parse(variant.variantContent) as ReviewRequestVariant;
+      if (content.templateName) {
+        templateName = content.templateName;
+      }
+      if (content.customerFallback && !customerName) {
+        customerDisplay = content.customerFallback;
+      }
+      if (content.addEmoji && customerName) {
+        customerDisplay = `${customerName} 🙏`;
+      }
+      console.log(`[review-request] Using variant ${variant.variantName} for tenant ${tenantId}`);
+    } catch {
+      // Invalid JSON, use defaults
+      console.warn(`[review-request] Invalid variant content for ${variant.variantName}`);
+    }
+  }
+
   const components: TemplateComponent[] = [
     {
       type: 'body',
       parameters: [
-        { type: 'text', text: customerName || 'לקוח יקר' }, // "Dear customer" fallback
+        { type: 'text', text: customerDisplay },
         { type: 'text', text: businessName },
       ],
     },
@@ -55,7 +97,7 @@ export async function sendReviewRequestMessage(
   const result = await sendTemplateMessage(
     client,
     customerPhone,
-    'review_request',
+    templateName,
     'he',
     components
   );

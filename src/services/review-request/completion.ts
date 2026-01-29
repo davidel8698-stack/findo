@@ -2,6 +2,7 @@ import { db } from '../../db/index';
 import { reviewRequests, processedReviews } from '../../db/schema/index';
 import { eq, and, inArray } from 'drizzle-orm';
 import { reviewRequestQueue } from '../../queue/queues';
+import { recordOutcome } from '../optimization/ab-testing';
 
 /**
  * Check if any pending review requests were completed by new reviews.
@@ -56,6 +57,9 @@ export async function checkReviewCompletion(
           updatedAt: new Date(),
         })
         .where(eq(reviewRequests.id, matchedRequest.id));
+
+      // Record A/B test outcome - review request was successful
+      await recordOutcome(tenantId, 'review_request_message', true);
 
       // Cancel scheduled reminder job if exists
       try {

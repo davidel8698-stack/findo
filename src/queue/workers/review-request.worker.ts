@@ -86,6 +86,7 @@ export function startReviewRequestWorker(): Worker<ReviewRequestJobData> {
           // Send initial request
           const messageId = await sendReviewRequestMessage(
             client,
+            request.tenantId,
             request.customerPhone!,
             request.customerName || '',
             tenant.businessName,
