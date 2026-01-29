@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage, renderMetricsDashboard, renderMainDashboard } from '../views/index';
+import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage, renderMetricsDashboard, renderMainDashboard, renderReportsPage } from '../views/index';
 import { metricsRoutes } from './metrics';
 import { tenantContext } from '../middleware/tenant-context';
 import { getGoogleConnection } from '../services/google/oauth';
@@ -57,6 +57,23 @@ pagesRoutes.get('/dashboard/metrics', (c) => {
     return c.text('tenantId required', 400);
   }
   return c.html(renderMetricsDashboard(tenantId));
+});
+
+/**
+ * Reports Dashboard
+ *
+ * GET /dashboard/reports
+ *
+ * Renders the performance reports page with trend charts.
+ * Per DASH-06: "View weekly/monthly reports and performance trends with clear graphs"
+ * Requires tenant context (X-Tenant-ID header or future auth).
+ */
+pagesRoutes.get('/dashboard/reports', tenantContext, async (c) => {
+  const tenant = c.get('tenant');
+  if (!tenant?.tenantId) {
+    return c.text('Tenant context required', 401);
+  }
+  return c.html(renderReportsPage(tenant.tenantId));
 });
 
 /**

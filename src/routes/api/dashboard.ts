@@ -3,6 +3,7 @@ import { tenantContext } from '../../middleware/tenant-context';
 import { getStatsForPeriod, type TimePeriod, type DashboardStats } from '../../services/dashboard/stats-aggregator';
 import { getHealthStatus, type HealthStatus } from '../../services/dashboard/health-checker';
 import { groupActivityEvents, filterByType, type ActivityFilter, type ActivityGroup } from '../../services/dashboard/activity-grouper';
+import { getTrendsData, type TrendsPeriod, type TrendsData } from '../../services/dashboard/trends-aggregator';
 import { activityService } from '../../services/activity';
 import type { TenantContext } from '../../types/tenant-context';
 
@@ -169,6 +170,52 @@ app.get('/activity', async (c) => {
     console.error('[dashboard/activity] Error fetching activity:', error);
     return c.json({
       error: 'Failed to fetch activity feed',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * GET /api/dashboard/trends
+ *
+ * Returns trends data for reports charts.
+ *
+ * Query params:
+ * - period: 'weekly' | 'monthly' (default: 'weekly')
+ *
+ * Returns:
+ * - TrendsData object with labels and metric arrays
+ *
+ * Per DASH-06: "View weekly/monthly reports and performance trends with clear graphs"
+ */
+app.get('/trends', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  // Get period from query string, validate and default to 'weekly'
+  const periodParam = c.req.query('period') || 'weekly';
+
+  // Validate period value
+  const validPeriods: TrendsPeriod[] = ['weekly', 'monthly'];
+  if (!validPeriods.includes(periodParam as TrendsPeriod)) {
+    return c.json({
+      error: `Invalid period value. Must be one of: ${validPeriods.join(', ')}`
+    }, 400);
+  }
+
+  const period = periodParam as TrendsPeriod;
+
+  try {
+    const trends: TrendsData = await getTrendsData(tenant.tenantId, period);
+
+    return c.json(trends);
+  } catch (error) {
+    console.error('[dashboard/trends] Error fetching trends:', error);
+    return c.json({
+      error: 'Failed to fetch trends data',
       details: error instanceof Error ? error.message : 'Unknown error'
     }, 500);
   }

@@ -101,7 +101,10 @@ export function renderMainDashboard(tenantId: string): string {
         <!-- Stats Section (1 column on desktop) -->
         <section id="statsSection" class="lg:col-span-1">
           <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <h2 class="text-lg font-semibold text-gray-800 mb-4">סטטיסטיקות</h2>
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-lg font-semibold text-gray-800">סטטיסטיקות</h2>
+              <a href="/dashboard/reports" class="text-blue-600 hover:underline text-sm">דוחות מפורטים &#8594;</a>
+            </div>
 
             <!-- Period Toggle -->
             <div class="flex gap-2 mb-4">
