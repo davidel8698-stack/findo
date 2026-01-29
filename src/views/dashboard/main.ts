@@ -42,9 +42,15 @@ export function renderMainDashboard(tenantId: string): string {
 <body class="bg-gray-50 min-h-screen">
   <div class="container mx-auto px-4 py-8">
     <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-800">לוח הבקרה</h1>
-      <p class="text-gray-500 mt-1">סקירה כללית של העסק שלך</p>
+    <div class="flex justify-between items-start mb-8">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-800">לוח הבקרה</h1>
+        <p class="text-gray-500 mt-1">סקירה כללית של העסק שלך</p>
+      </div>
+      <a href="/dashboard/settings" class="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors">
+        <span>&#9881;</span>
+        <span>הגדרות</span>
+      </a>
     </div>
 
     <!-- Loading State -->

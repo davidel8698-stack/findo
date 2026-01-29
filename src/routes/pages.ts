@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage, renderMetricsDashboard, renderMainDashboard, renderReportsPage } from '../views/index';
+import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage, renderMetricsDashboard, renderMainDashboard, renderReportsPage, renderSettingsPage } from '../views/index';
 import { metricsRoutes } from './metrics';
 import { tenantContext } from '../middleware/tenant-context';
 import { getGoogleConnection } from '../services/google/oauth';
@@ -74,6 +74,23 @@ pagesRoutes.get('/dashboard/reports', tenantContext, async (c) => {
     return c.text('Tenant context required', 401);
   }
   return c.html(renderReportsPage(tenant.tenantId));
+});
+
+/**
+ * Settings Page
+ *
+ * GET /dashboard/settings
+ *
+ * Renders the settings page with timing, notifications, and chatbot tabs.
+ * Per DASH-07/08: Owner can customize wait times, notification preferences, and chatbot questions.
+ * Requires tenant context (X-Tenant-ID header or future auth).
+ */
+pagesRoutes.get('/dashboard/settings', tenantContext, async (c) => {
+  const tenant = c.get('tenant');
+  if (!tenant?.tenantId) {
+    return c.text('Tenant context required', 401);
+  }
+  return c.html(renderSettingsPage(tenant.tenantId));
 });
 
 /**

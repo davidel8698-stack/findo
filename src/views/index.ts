@@ -12,3 +12,4 @@ export { renderMainDashboard } from './dashboard/main';
 export { renderHealthStatus } from './dashboard/health-status';
 export { renderStatsCards } from './dashboard/stats-cards';
 export { renderReportsPage } from './dashboard/reports';
+export { renderSettingsPage } from './settings/main';
