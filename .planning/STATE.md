@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 8 of 10 (GBP Optimization)
-Plan: 3 of 7 in current phase (completed 08-01, 08-02, 08-03)
+Plan: 5 of 7 in current phase (completed 08-01, 08-02, 08-03, 08-04, 08-05)
 Status: In progress
-Last activity: 2026-01-29 - Completed 08-03-PLAN.md (Metrics Collection)
+Last activity: 2026-01-29 - Completed 08-05-PLAN.md (Alert Detection)
 
-Progress: [████████████████████████░░░] Phase 8 in progress, ~77% of total project
+Progress: [█████████████████████████░░] Phase 8 in progress, ~80% of total project
 
 ## Performance Metrics
 
@@ -208,6 +208,10 @@ Recent decisions affecting current work:
 | Monday 2:00 AM for metrics collection | 08-03 | Captures full Sun-Sat week before processing |
 | 4+ weeks required for baseline | 08-03 | Statistical validity before setting dynamic baseline |
 | 8 weeks max for baseline calculation | 08-03 | Moving average uses recent data, not entire history |
+| 30% drop threshold for alerts | 08-05 | Significant indicator without false positives |
+| 4+ weeks baseline for alerts | 08-05 | Statistical validity before alerting |
+| Text message over template for alerts | 08-05 | Owner messages Findo regularly, likely in session window |
+| Hebrew alerts with suggestions | 08-05 | Israeli market, owner needs clear next steps |
 
 ### Pending Todos
 
@@ -239,16 +243,16 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 08-03-PLAN.md (Metrics Collection)
+Stopped at: Completed 08-05-PLAN.md (Alert Detection)
 Resume file: None
 
-**Phase 8 Progress:** In progress (3/7 plans complete)
+**Phase 8 Progress:** In progress (5/7 plans complete)
 - 08-01: Optimization Schema (metricSnapshots, tenantBaselines, abTestVariants, abTestAssignments, optimizationConfig) [DONE]
 - 08-02: Performance API Client (getPerformanceMetrics, getMediaMetrics, date helpers) [DONE]
 - 08-03: Metrics Collection (metricsCollectorService, metricsCollectionWorker, Monday 2AM job) [DONE]
-- 08-04: Metrics Dashboard [PENDING]
-- 08-05: Optimization Tips [PENDING]
-- 08-06: Dashboard Enhancements [PENDING]
+- 08-04: Metrics Dashboard (API at /api/metrics, Hebrew RTL view at /dashboard/metrics) [DONE]
+- 08-05: Alert Detection (checkForAlerts, sendReviewRateAlert, WhatsApp alerts with 30% threshold) [DONE]
+- 08-06: A/B Testing [PENDING]
 - 08-07: Worker Registration [PENDING]
 
-**Next:** Continue with 08-04 (Metrics Dashboard)
+**Next:** Continue with 08-06 (A/B Testing)
