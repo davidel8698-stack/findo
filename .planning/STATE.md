@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 9 of 10 (Dashboard & Notifications)
-Plan: 1 of 8 in current phase (completed 09-01)
+Plan: 2 of 8 in current phase (completed 09-01, 09-02)
 Status: In progress
-Last activity: 2026-01-29 - Completed 09-01-PLAN.md (Database Schema)
+Last activity: 2026-01-29 - Completed 09-02-PLAN.md (Dashboard Stats & Health APIs)
 
-Progress: [█████████████████████████████░] 42/50 plans complete, ~84% of total project
+Progress: [█████████████████████████████░░] 43/50 plans complete, ~86% of total project
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 42
+- Total plans completed: 43
 - Average duration: 5.2 min
-- Total execution time: 3.67 hours
+- Total execution time: 3.75 hours
 
 **By Phase:**
 
@@ -35,11 +35,11 @@ Progress: [███████████████████████
 | 06-review-requests | 7 | 25 min | 3.6 min |
 | 07-gbp-content | 8 | 53 min | 6.6 min |
 | 08-gbp-optimization | 7 | ~35 min | 5 min |
-| 09-dashboard-notifications | 1 | ~4 min | 4 min |
+| 09-dashboard-notifications | 2 | ~9 min | 4.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 08-05 (~5 min), 08-06 (~5 min), 08-07 (~5 min), 09-01 (~4 min)
-- Trend: Phase 9 started! Schema foundation laid.
+- Last 5 plans: 08-06 (~5 min), 08-07 (~5 min), 09-01 (~4 min), 09-02 (~5 min)
+- Trend: Phase 9 progressing. Stats and health APIs complete.
 
 *Updated after each plan completion*
 
@@ -224,6 +224,10 @@ Recent decisions affecting current work:
 | 10 boolean notification flags with sensible defaults | 09-01 | Per CONTEXT.md: granular notification preferences with opt-out per type |
 | JSONB for chatbot questions with ChatbotQuestion interface | 09-01 | Flexible structure for add/edit/reorder while maintaining type safety |
 | Default Hebrew questions for all business types | 09-01 | Per CONTEXT.md: defaults work for all businesses, owner customizes as needed |
+| Tenant timezone for stats date ranges | 09-02 | Accurate day/week/month boundaries for Israeli businesses |
+| metricSnapshot fallback for rating | 09-02 | Use existing snapshot if available, calculate from reviews otherwise |
+| 24h threshold for review warnings in health | 09-02 | Reviews pending > 24h need attention per CONTEXT.md |
+| Israeli week starts Sunday | 09-02 | Per CONTEXT.md - matches Israeli business week |
 
 ### Pending Todos
 
@@ -255,17 +259,17 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-29
-Stopped at: Completed 09-01-PLAN.md (Database Schema)
+Stopped at: Completed 09-02-PLAN.md (Dashboard Stats & Health APIs)
 Resume file: None
 
-**Phase 9 Progress:** IN PROGRESS (1/8 plans complete)
+**Phase 9 Progress:** IN PROGRESS (2/8 plans complete)
 - 09-01: Database Schema (notificationPreferences, chatbotConfig) [DONE]
-- 09-02: Settings API Endpoints [PENDING]
-- 09-03: Dashboard Stats Aggregation [PENDING]
-- 09-04: Health Status Component [PENDING]
-- 09-05: Activity Feed [PENDING]
+- 09-02: Dashboard Stats & Health APIs (stats-aggregator, health-checker, dashboard routes) [DONE]
+- 09-03: Settings API Endpoints [PENDING]
+- 09-04: Activity Feed [PENDING]
+- 09-05: Dashboard Main View [PENDING]
 - 09-06: Settings Views [PENDING]
 - 09-07: Reports Visualization [PENDING]
 - 09-08: Main Dashboard Integration [PENDING]
 
-**Next:** 09-02 (Settings API Endpoints)
+**Next:** 09-03 (Settings API Endpoints)
