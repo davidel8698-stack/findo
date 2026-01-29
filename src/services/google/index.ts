@@ -65,3 +65,14 @@ export {
   type SpecialHourPeriod,
   type RegularHours,
 } from './hours';
+
+// Performance services
+export {
+  getPerformanceMetrics,
+  getMediaMetrics,
+  dateRangeForWeek,
+  dateRangeForMonth,
+  type PerformanceMetrics,
+  type MediaMetrics,
+  type DateRange,
+} from './performance';
