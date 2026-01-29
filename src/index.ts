@@ -118,7 +118,11 @@ let photoRequestWorker: ReturnType<typeof startPhotoRequestWorker> | null = null
 let photoUploadWorker: ReturnType<typeof startPhotoUploadWorker> | null = null;
 let monthlyPostWorker: ReturnType<typeof startMonthlyPostWorker> | null = null;
 let postApprovalWorker: ReturnType<typeof startPostApprovalWorker> | null = null;
-// holidayCheckWorker is already instantiated at import time (not lazy-started)
+let reviewPollWorker: ReturnType<typeof startReviewPollWorker> | null = null;
+let reviewReminderWorker: ReturnType<typeof startReviewReminderWorker> | null = null;
+let invoicePollWorker: ReturnType<typeof startInvoicePollWorker> | null = null;
+let reviewRequestWorker: ReturnType<typeof startReviewRequestWorker> | null = null;
+// holidayCheckWorker, metricsCollectionWorker, autoTuningWorker are already instantiated at import time (not lazy-started)
 
 // Graceful shutdown
 async function shutdown() {
@@ -210,7 +214,11 @@ async function start() {
   photoUploadWorker = startPhotoUploadWorker();
   monthlyPostWorker = startMonthlyPostWorker();
   postApprovalWorker = startPostApprovalWorker();
-  // holidayCheckWorker already started at import time
+  reviewPollWorker = startReviewPollWorker();
+  reviewReminderWorker = startReviewReminderWorker();
+  invoicePollWorker = startInvoicePollWorker();
+  reviewRequestWorker = startReviewRequestWorker();
+  // holidayCheckWorker, metricsCollectionWorker, autoTuningWorker already started at import time
 
   // Initialize scheduler (include test jobs in development)
   const includeTestJobs = process.env.NODE_ENV !== 'production';
