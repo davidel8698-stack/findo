@@ -247,6 +247,9 @@ Recent decisions affecting current work:
 | Notification gate pattern | 09-08 | Centralized shouldNotify service for preference enforcement |
 | NEGATIVE_REVIEW always on | 09-08 | Critical for approval flow - owner must approve negative reviews |
 | 1-minute preference cache | 09-08 | Avoid repeated DB queries during burst notifications |
+| Inline modal overlays for actions | 09-07 | Reusable components rendered in modals on main dashboard |
+| Client-side photo pre-validation | 09-07 | Faster feedback, reduces failed uploads |
+| Two-step post flow: generate then approve | 09-07 | Matches WhatsApp flow, owner always sees content before publishing |
 
 ### Pending Todos
 
