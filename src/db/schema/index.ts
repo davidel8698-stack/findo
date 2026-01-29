@@ -9,3 +9,4 @@ export * from './google';
 export * from './reviews';
 export * from './review-requests';
 export * from './gbp-content';
+export * from './optimization';
