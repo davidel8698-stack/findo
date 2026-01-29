@@ -83,3 +83,5 @@ holidayCheckWorker.on('completed', (job) => {
 holidayCheckWorker.on('failed', (job, err) => {
   console.error(`[holiday-check] Job ${job?.id} failed:`, err.message);
 });
+
+console.log('[holiday-check] Worker started');
