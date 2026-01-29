@@ -357,6 +357,31 @@ export async function scheduleRecurringJobs(): Promise<void> {
     }
   );
   console.log('[scheduler] Registered: holiday-check (Sunday 10:00 AM Israel)');
+
+  /**
+   * Metrics Collection Job
+   *
+   * Runs weekly on Monday at 2:00 AM Israel time.
+   * Collects GBP metrics for all tenants from the previous week.
+   * Updates baselines after collection.
+   *
+   * Per CONTEXT.md: Weekly check frequency for metrics.
+   * Monday chosen to capture full week data (Sun-Sat).
+   */
+  await scheduledQueue.add(
+    'metrics-collection',
+    {
+      jobType: 'metrics-collection',
+    } satisfies ScheduledJobData,
+    {
+      repeat: {
+        pattern: '0 2 * * 1', // Monday 2:00 AM
+        tz: 'Asia/Jerusalem',
+      },
+      jobId: 'metrics-collection-weekly',
+    }
+  );
+  console.log('[scheduler] Registered: metrics-collection (Monday 2:00 AM Israel)');
 }
 
 /**
