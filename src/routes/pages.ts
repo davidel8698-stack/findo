@@ -2,6 +2,9 @@ import { Hono } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { renderWhatsAppConnectPage, renderGoogleConnectPage, renderReviewRequestsPage, renderMetricsDashboard, renderMainDashboard, renderReportsPage, renderSettingsPage } from '../views/index';
 import { metricsRoutes } from './metrics';
+import { setupRoutes } from './setup/index';
+import { billingRoutes } from './billing/index';
+import { billingWebhookRoutes } from './billing/webhook';
 import { tenantContext } from '../middleware/tenant-context';
 import { getGoogleConnection } from '../services/google/oauth';
 import { db } from '../db/index';
@@ -40,6 +43,21 @@ pagesRoutes.get('/dashboard', tenantContext, async (c) => {
     return c.text('Tenant context required', 401);
   }
   return c.html(renderMainDashboard(tenant.tenantId));
+});
+
+/**
+ * Main Dashboard (URL-based tenant ID)
+ *
+ * GET /d/:tenantId
+ *
+ * Convenience route for testing - tenant ID in URL instead of header.
+ */
+pagesRoutes.get('/d/:tenantId', async (c) => {
+  const tenantId = c.req.param('tenantId');
+  if (!tenantId) {
+    return c.text('Tenant ID required', 400);
+  }
+  return c.html(renderMainDashboard(tenantId));
 });
 
 /**
@@ -211,6 +229,46 @@ pagesRoutes.get('/review-requests', tenantContext, async (c) => {
 
   return c.html(html);
 });
+
+// ============================================
+// SETUP WIZARD ROUTES
+// ============================================
+
+/**
+ * Setup Wizard Routes
+ *
+ * Mounts the 5-step setup wizard for new users.
+ * Steps: Business Info -> WhatsApp -> Google -> Telephony -> Billing -> Complete
+ */
+pagesRoutes.route('/setup', setupRoutes);
+
+// ============================================
+// BILLING ROUTES
+// ============================================
+
+/**
+ * Billing Routes
+ *
+ * Handles payment initiation, success/failure pages, and recurring billing.
+ */
+pagesRoutes.route('/billing', billingRoutes);
+
+/**
+ * Billing Webhook Routes
+ *
+ * Mounted separately for PayPlus webhook handling.
+ * Needs raw body access for signature verification.
+ */
+pagesRoutes.route('/billing', billingWebhookRoutes);
+
+/**
+ * Setup Landing - Redirect to Wizard
+ *
+ * GET /start
+ *
+ * Convenience redirect for marketing/onboarding links.
+ */
+pagesRoutes.get('/start', (c) => c.redirect('/setup'));
 
 /**
  * Decode Google OAuth error to Hebrew user message.
