@@ -22,7 +22,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 8: GBP Optimization** - Metrics monitoring and autonomous tuning
 - [x] **Phase 9: Dashboard & Notifications** - Confidence window and WhatsApp-first UX
 - [x] **Phase 11: Worker Registration** - Gap closure: Wire missing workers to enable Phases 5, 6, 8
-- [ ] **Phase 10: Setup & Billing** - 2-minute onboarding wizard and payment processing
+- [x] **Phase 10: Setup & Billing** - 2-minute onboarding wizard and payment processing
 
 ## Phase Details
 
@@ -286,12 +286,12 @@ Plans:
 **Plans**: 6 plans
 
 Plans:
-- [ ] 10-01-PLAN.md - Billing and setup schema (subscriptions, payments, setup_progress)
-- [ ] 10-02-PLAN.md - Setup wizard routes and views for steps 1-3 (business, WhatsApp, Google)
-- [ ] 10-03-PLAN.md - Setup wizard steps 4-5 (telephony, billing) and complete page
-- [ ] 10-04-PLAN.md - PayPlus payment integration (API client, routes, webhook)
-- [ ] 10-05-PLAN.md - Progressive profiling worker (weekly WhatsApp questions)
-- [ ] 10-06-PLAN.md - Integration wiring and end-to-end verification
+- [x] 10-01-PLAN.md - Billing and setup schema (subscriptions, payments, setup_progress)
+- [x] 10-02-PLAN.md - Setup wizard routes and views for steps 1-3 (business, WhatsApp, Google)
+- [x] 10-03-PLAN.md - Setup wizard steps 4-5 (telephony, billing) and complete page
+- [x] 10-04-PLAN.md - PayPlus payment integration (API client, routes, webhook)
+- [x] 10-05-PLAN.md - Progressive profiling worker (weekly WhatsApp questions)
+- [x] 10-06-PLAN.md - Integration wiring and end-to-end verification
 
 **Research flag**: Completed (10-RESEARCH.md)
 
@@ -314,7 +314,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 11
 | 8. GBP Optimization | 7/7 | Complete | 2026-01-29 |
 | 9. Dashboard & Notifications | 8/8 | Complete | 2026-01-29 |
 | 11. Worker Registration | 1/1 | Complete | 2026-01-30 |
-| 10. Setup & Billing | 0/6 | Not started | - |
+| 10. Setup & Billing | 6/6 | Complete | 2026-01-30 |
 
 ---
 
@@ -340,4 +340,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 11
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-30 - Phase 10 Setup & Billing planned (6 plans)*
+*Last updated: 2026-01-30 - Phase 10 Setup & Billing complete (all 11 phases done)*

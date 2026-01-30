@@ -56,12 +56,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Setup & Onboarding (SETUP)
 
-- [ ] **SETUP-01**: 2-minute setup wizard (business name, type, owner name, address, hours)
-- [ ] **SETUP-02**: "Connect WhatsApp" button via Meta Embedded Signup
-- [ ] **SETUP-03**: "Connect Google" button via OAuth 2.0
-- [ ] **SETUP-04**: Select telephony option (new/transfer/use current)
-- [ ] **SETUP-05**: Dashboard shows "Findo is now working in the background"
-- [ ] **SETUP-06**: Progressive profiling: collect more details over time via WhatsApp
+- [x] **SETUP-01**: 2-minute setup wizard (business name, type, owner name, address, hours)
+- [x] **SETUP-02**: "Connect WhatsApp" button via Meta Embedded Signup
+- [x] **SETUP-03**: "Connect Google" button via OAuth 2.0
+- [x] **SETUP-04**: Select telephony option (new/transfer/use current)
+- [x] **SETUP-05**: Dashboard shows "Findo is now working in the background"
+- [x] **SETUP-06**: Progressive profiling: collect more details over time via WhatsApp
 
 ### Dashboard (DASH)
 
@@ -103,9 +103,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Billing (BILL)
 
-- [ ] **BILL-01**: One-time setup fee: ~3,500 NIS
-- [ ] **BILL-02**: Monthly subscription: 350 NIS/month
-- [ ] **BILL-03**: Payment processing integration
+- [x] **BILL-01**: One-time setup fee: ~3,500 NIS
+- [x] **BILL-02**: Monthly subscription: 350 NIS/month
+- [x] **BILL-03**: Payment processing integration
 
 ## v2 Requirements
 
@@ -185,12 +185,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GBPO-05 | Phase 8 | Complete |
 | GBPO-06 | Phase 8 | Complete |
 | GBPO-07 | Phase 8 | Complete |
-| SETUP-01 | Phase 10 | Pending |
-| SETUP-02 | Phase 10 | Pending |
-| SETUP-03 | Phase 10 | Pending |
-| SETUP-04 | Phase 10 | Pending |
-| SETUP-05 | Phase 10 | Pending |
-| SETUP-06 | Phase 10 | Pending |
+| SETUP-01 | Phase 10 | Complete |
+| SETUP-02 | Phase 10 | Complete |
+| SETUP-03 | Phase 10 | Complete |
+| SETUP-04 | Phase 10 | Complete |
+| SETUP-05 | Phase 10 | Complete |
+| SETUP-06 | Phase 10 | Complete |
 | DASH-01 | Phase 9 | Pending |
 | DASH-02 | Phase 9 | Pending |
 | DASH-03 | Phase 9 | Pending |
@@ -217,9 +217,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFR-04 | Phase 1 | Complete |
 | INFR-05 | Phase 1 | Complete |
 | INFR-06 | Phase 1 | Complete |
-| BILL-01 | Phase 10 | Pending |
-| BILL-02 | Phase 10 | Pending |
-| BILL-03 | Phase 10 | Pending |
+| BILL-01 | Phase 10 | Complete |
+| BILL-02 | Phase 10 | Complete |
+| BILL-03 | Phase 10 | Complete |
 
 **Coverage:**
 - v1 requirements: 56 total
@@ -228,4 +228,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-27*
-*Last updated: 2026-01-29 - Phase 8 complete*
+*Last updated: 2026-01-30 - Phase 10 complete (all v1 requirements)*
