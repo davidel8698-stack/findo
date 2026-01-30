@@ -195,7 +195,12 @@ export async function createPaymentPage(
     throw new Error(`PayPlus API error: ${response.status}`);
   }
 
-  const data = await response.json();
+  const data = (await response.json()) as {
+    data?: {
+      payment_page_link?: string;
+      transaction_uid?: string;
+    };
+  };
 
   if (!data.data?.payment_page_link) {
     console.error('[payplus] Invalid response:', data);
@@ -204,7 +209,7 @@ export async function createPaymentPage(
 
   return {
     paymentPageUrl: data.data.payment_page_link,
-    transactionUid: data.data.transaction_uid,
+    transactionUid: data.data.transaction_uid || '',
   };
 }
 
@@ -247,7 +252,14 @@ export async function chargeWithToken(
     };
   }
 
-  const data = await response.json();
+  const data = (await response.json()) as {
+    data?: {
+      status_code?: string;
+      transaction_uid?: string;
+      approval_num?: string;
+      status_description?: string;
+    };
+  };
 
   // PayPlus status code '000' indicates approved
   const isApproved = data.data?.status_code === '000';
