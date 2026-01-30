@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 10 of 11 (Setup & Billing)
-Plan: 1 of 6 in current phase (completed 10-01)
+Plan: 3 of 6 in current phase (completed 10-03)
 Status: In progress
-Last activity: 2026-01-30 - Completed 10-01-PLAN.md (Billing Schema)
+Last activity: 2026-01-30 - Completed 10-03-PLAN.md (Setup Wizard Steps 4-5)
 
-Progress: [██████████████████████████████████] 51/56 plans complete, ~91% of total project
+Progress: [████████████████████████████████████] 53/56 plans complete, ~95% of total project
 
 ## Performance Metrics
 
@@ -37,11 +37,11 @@ Progress: [███████████████████████
 | 08-gbp-optimization | 7 | ~35 min | 5 min |
 | 09-dashboard-notifications | 8 | ~45 min | 5.6 min |
 | 11-worker-registration | 1 | ~4 min | 4 min |
-| 10-setup-billing | 1 | ~3.5 min | 3.5 min |
+| 10-setup-billing | 3 | ~11 min | 3.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 09-07 (~6 min), 09-08 (~6 min), 11-01 (~4 min), 10-01 (~3.5 min)
-- Trend: Phase 10 (Setup & Billing) started. Billing schema created.
+- Last 5 plans: 11-01 (~4 min), 10-01 (~3.5 min), 10-02 (~4 min), 10-03 (~4 min)
+- Trend: Phase 10 setup wizard complete. Ready for PayPlus integration.
 
 *Updated after each plan completion*
 
@@ -258,6 +258,9 @@ Recent decisions affecting current work:
 | PayPlus token in subscriptions | 10-01 | Enable recurring billing without re-authentication |
 | JSONB stepData for wizard | 10-01 | Flexible schema for wizard form field changes |
 | 5-state subscription status | 10-01 | trial, pending_payment, active, past_due, cancelled lifecycle |
+| Telephony card selection | 10-03 | Peer-checked radio with card-style UI for visual feedback |
+| Conditional phone inputs | 10-03 | JavaScript show/hide with required attribute toggle |
+| 14-day trial without credit card | 10-03 | Lower friction for signup, aligns with trial_ends_at schema field |
 
 ### Pending Todos
 
@@ -289,15 +292,15 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-30
-Stopped at: Completed 10-01-PLAN.md (Billing Schema)
+Stopped at: Completed 10-03-PLAN.md (Setup Wizard Steps 4-5)
 Resume file: None
 
-**Phase 10 Progress:** IN PROGRESS (1/6 plans complete)
+**Phase 10 Progress:** IN PROGRESS (3/6 plans complete)
 - 10-01: Billing Schema (subscriptions, payments, setup_progress tables) [DONE]
-- 10-02: Setup wizard service [PENDING]
-- 10-03: Setup wizard UI [PENDING]
+- 10-02: Setup wizard steps 1-3 (business info, WhatsApp, Google) [DONE]
+- 10-03: Setup wizard steps 4-5 (telephony, billing, complete) [DONE]
 - 10-04: PayPlus integration [PENDING]
 - 10-05: Billing lifecycle [PENDING]
 - 10-06: Billing UI [PENDING]
 
-**Next:** 10-02 Setup Wizard Service
+**Next:** 10-04 PayPlus Integration
