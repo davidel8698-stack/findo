@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-27)
 ## Current Position
 
 Phase: 10 of 11 (Setup & Billing)
-Plan: 3 of 6 in current phase (completed 10-03)
+Plan: 5 of 6 in current phase (completed 10-05)
 Status: In progress
-Last activity: 2026-01-30 - Completed 10-03-PLAN.md (Setup Wizard Steps 4-5)
+Last activity: 2026-01-30 - Completed 10-05-PLAN.md (Progressive Profiling via WhatsApp)
 
-Progress: [████████████████████████████████████] 53/56 plans complete, ~95% of total project
+Progress: [████████████████████████████████████] 55/56 plans complete, ~98% of total project
 
 ## Performance Metrics
 
@@ -37,11 +37,11 @@ Progress: [███████████████████████
 | 08-gbp-optimization | 7 | ~35 min | 5 min |
 | 09-dashboard-notifications | 8 | ~45 min | 5.6 min |
 | 11-worker-registration | 1 | ~4 min | 4 min |
-| 10-setup-billing | 3 | ~11 min | 3.7 min |
+| 10-setup-billing | 5 | ~21 min | 4.2 min |
 
 **Recent Trend:**
-- Last 5 plans: 11-01 (~4 min), 10-01 (~3.5 min), 10-02 (~4 min), 10-03 (~4 min)
-- Trend: Phase 10 setup wizard complete. Ready for PayPlus integration.
+- Last 5 plans: 10-01 (~3.5 min), 10-02 (~4 min), 10-03 (~4 min), 10-04 (~5 min), 10-05 (~5 min)
+- Trend: Phase 10 nearly complete. One plan remaining (10-06 Billing UI).
 
 *Updated after each plan completion*
 
@@ -266,6 +266,9 @@ Recent decisions affecting current work:
 | Copy-to-all for hours convenience | 10-02 | One-click duplication of first active day's hours |
 | WhatsApp/Google skip advances to next | 10-02 | Optional integrations don't block wizard progress |
 | Tenant created or resumed by email | 10-02 | Email uniqueness enables resume; updates other fields if exists |
+| Profile data stored in setupProgress.stepData | 10-05 | Reuse JSONB column, no schema migration needed |
+| Stop profiling after 2 consecutive ignores | 10-05 | Per CONTEXT.md, avoid spam and respect owner time |
+| 7-day pending window for profile questions | 10-05 | Weekly job cadence, gives owner time to respond |
 
 ### Pending Todos
 
@@ -297,15 +300,15 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-30
-Stopped at: Completed 10-03-PLAN.md (Setup Wizard Steps 4-5)
+Stopped at: Completed 10-05-PLAN.md (Progressive Profiling via WhatsApp)
 Resume file: None
 
-**Phase 10 Progress:** IN PROGRESS (3/6 plans complete)
+**Phase 10 Progress:** IN PROGRESS (5/6 plans complete)
 - 10-01: Billing Schema (subscriptions, payments, setup_progress tables) [DONE]
 - 10-02: Setup wizard steps 1-3 (business info, WhatsApp, Google) [DONE]
 - 10-03: Setup wizard steps 4-5 (telephony, billing, complete) [DONE]
-- 10-04: PayPlus integration [PENDING]
-- 10-05: Billing lifecycle [PENDING]
+- 10-04: PayPlus integration [DONE]
+- 10-05: Progressive profiling via WhatsApp [DONE]
 - 10-06: Billing UI [PENDING]
 
-**Next:** 10-04 PayPlus Integration
+**Next:** 10-06 Billing UI
