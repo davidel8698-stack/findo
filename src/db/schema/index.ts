@@ -12,3 +12,4 @@ export * from './gbp-content';
 export * from './optimization';
 export * from './notification-preferences';
 export * from './chatbot-config';
+export * from './billing';
