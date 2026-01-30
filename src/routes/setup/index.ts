@@ -689,8 +689,7 @@ setupRoutes.get('/step/5', async (c) => {
  * POST /setup/step/5/pay
  *
  * Initiate payment process via PayPlus.
- * NOTE: Full PayPlus integration is in plan 10-04.
- * For now, redirects to complete page (payment simulation).
+ * Redirects to billing routes which handle PayPlus integration.
  */
 setupRoutes.post('/step/5/pay', async (c) => {
   const tenantId = c.req.header('X-Tenant-ID') || (await c.req.formData()).get('tenantId');
@@ -699,8 +698,7 @@ setupRoutes.post('/step/5/pay', async (c) => {
     return c.text('Tenant ID required', 400);
   }
 
-  // TODO (10-04): Implement PayPlus payment page generation
-  // For now, mark as pending payment and redirect to complete
+  // Update subscription to pending payment status
   await db.update(subscriptions)
     .set({
       status: 'pending_payment',
@@ -708,16 +706,9 @@ setupRoutes.post('/step/5/pay', async (c) => {
     })
     .where(eq(subscriptions.tenantId, tenantId.toString()));
 
-  // Mark setup as complete
-  await db.update(setupProgress)
-    .set({
-      completedAt: new Date(),
-      updatedAt: new Date(),
-    })
-    .where(eq(setupProgress.tenantId, tenantId.toString()));
-
-  // Redirect to complete page (payment integration in 10-04)
-  return c.redirect('/setup/complete');
+  // Redirect to billing route which handles PayPlus payment page
+  // This route creates payment record and redirects to PayPlus hosted page
+  return c.redirect(`/billing/initiate-payment?tenantId=${tenantId}`);
 });
 
 /**
