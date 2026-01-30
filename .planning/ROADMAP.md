@@ -283,14 +283,17 @@ Plans:
   5. After setup, dashboard shows "Findo is now working in the background" within 2 minutes of starting
   6. Progressive profiling asks for more details over time without burdening initial setup
   7. User can pay 3,500 NIS setup fee and 350 NIS/month subscription through the system
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 10-01: TBD
-- [ ] 10-02: TBD
-- [ ] 10-03: TBD
+- [ ] 10-01-PLAN.md - Billing and setup schema (subscriptions, payments, setup_progress)
+- [ ] 10-02-PLAN.md - Setup wizard routes and views for steps 1-3 (business, WhatsApp, Google)
+- [ ] 10-03-PLAN.md - Setup wizard steps 4-5 (telephony, billing) and complete page
+- [ ] 10-04-PLAN.md - PayPlus payment integration (API client, routes, webhook)
+- [ ] 10-05-PLAN.md - Progressive profiling worker (weekly WhatsApp questions)
+- [ ] 10-06-PLAN.md - Integration wiring and end-to-end verification
 
-**Research flag**: User research on actual onboarding time
+**Research flag**: Completed (10-RESEARCH.md)
 
 ---
 
@@ -311,7 +314,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 11
 | 8. GBP Optimization | 7/7 | Complete | 2026-01-29 |
 | 9. Dashboard & Notifications | 8/8 | Complete | 2026-01-29 |
 | 11. Worker Registration | 1/1 | Complete | 2026-01-30 |
-| 10. Setup & Billing | 0/TBD | Not started | - |
+| 10. Setup & Billing | 0/6 | Not started | - |
 
 ---
 
@@ -337,4 +340,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 11
 
 ---
 *Roadmap created: 2026-01-27*
-*Last updated: 2026-01-30 - Phase 11 Worker Registration complete*
+*Last updated: 2026-01-30 - Phase 10 Setup & Billing planned (6 plans)*
