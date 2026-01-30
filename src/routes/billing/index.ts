@@ -44,21 +44,10 @@ function getBaseUrl(): string {
 // ============================================
 
 /**
- * POST /billing/initiate-payment
- *
- * Start the payment process for setup fee + first month.
- * Creates a pending payment record and redirects to PayPlus hosted page.
+ * Helper function to handle payment initiation logic.
+ * Used by both GET and POST endpoints.
  */
-billingRoutes.post('/initiate-payment', async (c) => {
-  // Get tenant ID from header or form data
-  const tenantId =
-    c.req.header('X-Tenant-ID') ||
-    ((await c.req.parseBody()) as Record<string, string>)['tenantId'];
-
-  if (!tenantId) {
-    return c.text('Tenant ID required', 400);
-  }
-
+async function handlePaymentInitiation(c: any, tenantId: string) {
   // Check if PayPlus is configured
   if (!isConfigured()) {
     console.error('[billing] PayPlus not configured');
@@ -191,6 +180,40 @@ billingRoutes.post('/initiate-payment', async (c) => {
 </body>
 </html>`);
   }
+}
+
+/**
+ * GET /billing/initiate-payment
+ *
+ * Start the payment process (accepts redirect from setup wizard).
+ */
+billingRoutes.get('/initiate-payment', async (c) => {
+  const tenantId = c.req.query('tenantId');
+
+  if (!tenantId) {
+    return c.text('Tenant ID required', 400);
+  }
+
+  return handlePaymentInitiation(c, tenantId);
+});
+
+/**
+ * POST /billing/initiate-payment
+ *
+ * Start the payment process for setup fee + first month.
+ * Creates a pending payment record and redirects to PayPlus hosted page.
+ */
+billingRoutes.post('/initiate-payment', async (c) => {
+  // Get tenant ID from header or form data
+  const tenantId =
+    c.req.header('X-Tenant-ID') ||
+    ((await c.req.parseBody()) as Record<string, string>)['tenantId'];
+
+  if (!tenantId) {
+    return c.text('Tenant ID required', 400);
+  }
+
+  return handlePaymentInitiation(c, tenantId);
 });
 
 // ============================================

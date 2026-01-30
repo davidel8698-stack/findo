@@ -112,11 +112,12 @@ export function renderStep4Telephony(data?: Step4Data): string {
               <input
                 type="tel"
                 name="existingNumber"
+                id="transferPhoneNumber"
                 value="${existingNumber}"
                 placeholder="05X-XXXXXXX"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-right"
                 dir="ltr"
-                ${selected === 'transfer' ? 'required' : ''}
+                ${selected === 'transfer' ? 'required' : 'disabled'}
               />
               <p class="mt-1 text-sm text-gray-500">&#1508;&#1493;&#1512;&#1502;&#1496; &#1497;&#1513;&#1512;&#1488;&#1500;&#1497;</p>
             </div>
@@ -161,11 +162,12 @@ export function renderStep4Telephony(data?: Step4Data): string {
               <input
                 type="tel"
                 name="existingNumber"
+                id="currentPhoneNumber"
                 value="${existingNumber}"
                 placeholder="05X-XXXXXXX"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-right"
                 dir="ltr"
-                ${selected === 'current' ? 'required' : ''}
+                ${selected === 'current' ? 'required' : 'disabled'}
               />
               <p class="mt-1 text-sm text-gray-500">&#1508;&#1493;&#1512;&#1502;&#1496; &#1497;&#1513;&#1512;&#1488;&#1500;&#1497;</p>
             </div>
@@ -193,24 +195,28 @@ export function renderStep4Telephony(data?: Step4Data): string {
 
     <script>
       function handleOptionChange(radio) {
-        // Hide all conditional inputs
-        document.getElementById('transferPhoneInput').classList.add('hidden');
-        document.getElementById('currentPhoneInput').classList.add('hidden');
+        const transferInput = document.getElementById('transferPhoneNumber');
+        const currentInput = document.getElementById('currentPhoneNumber');
+        const transferContainer = document.getElementById('transferPhoneInput');
+        const currentContainer = document.getElementById('currentPhoneInput');
 
-        // Remove required from all phone inputs
-        document.querySelectorAll('input[name="existingNumber"]').forEach(input => {
-          input.required = false;
-        });
+        // Hide all and disable all phone inputs
+        transferContainer.classList.add('hidden');
+        currentContainer.classList.add('hidden');
+        transferInput.disabled = true;
+        transferInput.required = false;
+        currentInput.disabled = true;
+        currentInput.required = false;
 
-        // Show and require the relevant input
+        // Show and enable the relevant input
         if (radio.value === 'transfer') {
-          const container = document.getElementById('transferPhoneInput');
-          container.classList.remove('hidden');
-          container.querySelector('input').required = true;
+          transferContainer.classList.remove('hidden');
+          transferInput.disabled = false;
+          transferInput.required = true;
         } else if (radio.value === 'current') {
-          const container = document.getElementById('currentPhoneInput');
-          container.classList.remove('hidden');
-          container.querySelector('input').required = true;
+          currentContainer.classList.remove('hidden');
+          currentInput.disabled = false;
+          currentInput.required = true;
         }
       }
     </script>
