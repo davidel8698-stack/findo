@@ -32,6 +32,8 @@ import { startInvoicePollWorker } from './queue/workers/invoice-poll.worker';
 import { startReviewRequestWorker } from './queue/workers/review-request.worker';
 import { metricsCollectionWorker } from './queue/workers/metrics-collection.worker';
 import { autoTuningWorker } from './queue/workers/auto-tuning.worker';
+import { progressiveProfileWorker } from './queue/workers/progressive-profile.worker';
+import { scheduleProgressiveProfilingJob } from './queue/jobs/progressive-profile.job';
 import { initializeScheduler } from './scheduler/index';
 import { closeRedisConnections, warmUpConnections } from './lib/redis';
 
@@ -122,7 +124,7 @@ let reviewPollWorker: ReturnType<typeof startReviewPollWorker> | null = null;
 let reviewReminderWorker: ReturnType<typeof startReviewReminderWorker> | null = null;
 let invoicePollWorker: ReturnType<typeof startInvoicePollWorker> | null = null;
 let reviewRequestWorker: ReturnType<typeof startReviewRequestWorker> | null = null;
-// holidayCheckWorker, metricsCollectionWorker, autoTuningWorker are already instantiated at import time (not lazy-started)
+// holidayCheckWorker, metricsCollectionWorker, autoTuningWorker, progressiveProfileWorker are already instantiated at import time (not lazy-started)
 
 // Graceful shutdown
 async function shutdown() {
@@ -194,13 +196,15 @@ async function shutdown() {
     await reviewRequestWorker.close();
     console.log('[server] Review request worker stopped');
   }
-  // holidayCheckWorker, metricsCollectionWorker, autoTuningWorker cleanup
+  // holidayCheckWorker, metricsCollectionWorker, autoTuningWorker, progressiveProfileWorker cleanup
   await holidayCheckWorker.close();
   console.log('[server] Holiday check worker stopped');
   await metricsCollectionWorker.close();
   console.log('[server] Metrics collection worker stopped');
   await autoTuningWorker.close();
   console.log('[server] Auto-tuning worker stopped');
+  await progressiveProfileWorker.close();
+  console.log('[server] Progressive profile worker stopped');
 
   // Close Redis connections
   await closeRedisConnections();
@@ -238,7 +242,11 @@ async function start() {
   reviewReminderWorker = startReviewReminderWorker();
   invoicePollWorker = startInvoicePollWorker();
   reviewRequestWorker = startReviewRequestWorker();
-  // holidayCheckWorker, metricsCollectionWorker, autoTuningWorker already started at import time
+  // holidayCheckWorker, metricsCollectionWorker, autoTuningWorker, progressiveProfileWorker already started at import time
+
+  // Schedule progressive profiling job (SETUP-06)
+  await scheduleProgressiveProfilingJob();
+  console.log('[startup] Progressive profiling job scheduled');
 
   // Initialize scheduler (include test jobs in development)
   const includeTestJobs = process.env.NODE_ENV !== 'production';
