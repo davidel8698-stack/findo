@@ -269,6 +269,11 @@ Recent decisions affecting current work:
 | Profile data stored in setupProgress.stepData | 10-05 | Reuse JSONB column, no schema migration needed |
 | Stop profiling after 2 consecutive ignores | 10-05 | Per CONTEXT.md, avoid spam and respect owner time |
 | 7-day pending window for profile questions | 10-05 | Weekly job cadence, gives owner time to respond |
+| PayPlus JSON Authorization header format | 10-04 | PayPlus API requires api_key and secret_key as JSON in Authorization header |
+| ChargeMethod.TOKEN_AND_CHARGE for setup | 10-04 | Creates token for recurring billing while charging setup fee |
+| Return 200 on orphan webhooks | 10-04 | Prevents PayPlus retries for webhooks without matching payment record |
+| Return 500 on DB errors for webhook | 10-04 | Triggers PayPlus retry (up to 5x with exponential backoff) for eventual consistency |
+| Timing-safe PayPlus signature comparison | 10-04 | Prevents timing attacks on HMAC verification |
 
 ### Pending Todos
 
@@ -296,6 +301,7 @@ None yet.
 - ANTHROPIC_API_KEY for AI intent extraction (Claude Haiku 4.5)
 - GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI for Google OAuth
 - R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME, R2_PUBLIC_URL for Cloudflare R2 storage
+- PAYPLUS_API_KEY, PAYPLUS_SECRET_KEY, PAYPLUS_TERMINAL_UID for PayPlus payment processing
 
 ## Session Continuity
 
