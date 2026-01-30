@@ -26,6 +26,11 @@ import { setSpecialHours, createSingleDayPeriod } from '../../services/google/ho
 import { photoRequests, googleConnections } from '../../db/schema';
 import { or } from 'drizzle-orm';
 import { tokenVaultService } from '../../services/token-vault';
+import {
+  getPendingProfileQuestion,
+  storeAnswer,
+  resetIgnoreCount,
+} from '../../services/progressive-profile';
 
 /**
  * Job data structure for whatsapp-messages jobs.
@@ -347,7 +352,8 @@ async function handleLeadConversation(
  * 3. Photo category selection (1-5 or Hebrew category words)
  * 4. Post responses (AI/skip/content when pending post request)
  * 5. Hours responses (DD/MM: format for holiday hours)
- * 6. Lead chatbot flow (fallback for non-owner messages)
+ * 6. Profile question responses (progressive profiling answers)
+ * 7. Lead chatbot flow (fallback for non-owner messages)
  *
  * For each message:
  * 1. Find tenant by WABA ID from whatsappConnections
@@ -576,8 +582,39 @@ async function processWhatsAppMessages(
         }
       }
 
-      // 1.9 Check if this is part of a lead conversation (skip if already handled)
-      if (!handledAsReviewResponse && !handledAsPhotoResponse && !handledAsPostResponse && !handledAsHoursResponse) {
+      // 1.9 Check if this is a progressive profile response
+      // Profile question answers: any text when there's a pending profile question
+      let handledAsProfileResponse = false;
+
+      if (isOwner && !handledAsReviewResponse && !handledAsPhotoResponse && !handledAsPostResponse && !handledAsHoursResponse && message.type === 'text' && message.text) {
+        // Check for pending profile question
+        const pendingQuestion = await getPendingProfileQuestion(tenantId);
+
+        if (pendingQuestion) {
+          // This message is likely an answer to the profile question
+          const messageText = message.text.trim();
+
+          // Store the answer
+          await storeAnswer(tenantId, pendingQuestion.field, messageText);
+          await resetIgnoreCount(tenantId);
+
+          // Send confirmation
+          const client = await createWhatsAppClient(tenantId);
+          if (client) {
+            await sendTextMessage(
+              client,
+              message.from,
+              'תודה! השמרנו את המידע.'
+            );
+          }
+
+          handledAsProfileResponse = true;
+          console.log(`[whatsapp-message] Processed as profile response for field: ${pendingQuestion.field}`);
+        }
+      }
+
+      // 1.10 Check if this is part of a lead conversation (skip if already handled)
+      if (!handledAsReviewResponse && !handledAsPhotoResponse && !handledAsPostResponse && !handledAsHoursResponse && !handledAsProfileResponse) {
         const leadConvo = await db.query.leadConversations.findFirst({
           where: eq(leadConversations.whatsappConversationId, conversation.id),
         });
