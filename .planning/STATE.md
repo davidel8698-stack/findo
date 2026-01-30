@@ -261,6 +261,11 @@ Recent decisions affecting current work:
 | Telephony card selection | 10-03 | Peer-checked radio with card-style UI for visual feedback |
 | Conditional phone inputs | 10-03 | JavaScript show/hide with required attribute toggle |
 | 14-day trial without credit card | 10-03 | Lower friction for signup, aligns with trial_ends_at schema field |
+| Israeli week starts Sunday in hours UI | 10-02 | Business hours match Israeli work week |
+| Business hours default 08:00-18:00 | 10-02 | Common Israeli business hours, toggleable per day |
+| Copy-to-all for hours convenience | 10-02 | One-click duplication of first active day's hours |
+| WhatsApp/Google skip advances to next | 10-02 | Optional integrations don't block wizard progress |
+| Tenant created or resumed by email | 10-02 | Email uniqueness enables resume; updates other fields if exists |
 
 ### Pending Todos
 
