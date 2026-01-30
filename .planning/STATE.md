@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-27)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Phase 11 (Worker Registration) - Gap closure for v1 milestone
+**Current focus:** Phase 10 (Setup & Billing)
 
 ## Current Position
 
-Phase: 11 of 11 (Worker Registration)
-Plan: 1 of 1 in current phase (completed 11-01)
-Status: Phase complete
-Last activity: 2026-01-30 - Completed 11-01-PLAN.md (Worker Registration)
+Phase: 10 of 11 (Setup & Billing)
+Plan: 1 of 6 in current phase (completed 10-01)
+Status: In progress
+Last activity: 2026-01-30 - Completed 10-01-PLAN.md (Billing Schema)
 
-Progress: [██████████████████████████████████] 50/51 plans complete, ~98% of total project
+Progress: [██████████████████████████████████] 51/56 plans complete, ~91% of total project
 
 ## Performance Metrics
 
@@ -37,10 +37,11 @@ Progress: [███████████████████████
 | 08-gbp-optimization | 7 | ~35 min | 5 min |
 | 09-dashboard-notifications | 8 | ~45 min | 5.6 min |
 | 11-worker-registration | 1 | ~4 min | 4 min |
+| 10-setup-billing | 1 | ~3.5 min | 3.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 09-06 (~7 min), 09-07 (~6 min), 09-08 (~6 min), 11-01 (~4 min)
-- Trend: Phase 11 complete. All 19 workers registered and operational.
+- Last 5 plans: 09-07 (~6 min), 09-08 (~6 min), 11-01 (~4 min), 10-01 (~3.5 min)
+- Trend: Phase 10 (Setup & Billing) started. Billing schema created.
 
 *Updated after each plan completion*
 
@@ -253,6 +254,10 @@ Recent decisions affecting current work:
 | Two-step post flow: generate then approve | 09-07 | Matches WhatsApp flow, owner always sees content before publishing |
 | metricsCollectionWorker and autoTuningWorker auto-start at import time | 11-01 | Const export pattern, same as holidayCheckWorker |
 | 4 workers use lazy-start pattern via start functions | 11-01 | Controlled lifecycle for reviewPoll, reviewReminder, invoicePoll, reviewRequest |
+| Agorot for currency storage | 10-01 | Store amounts as integers (agorot/cents) to avoid floating point issues |
+| PayPlus token in subscriptions | 10-01 | Enable recurring billing without re-authentication |
+| JSONB stepData for wizard | 10-01 | Flexible schema for wizard form field changes |
+| 5-state subscription status | 10-01 | trial, pending_payment, active, past_due, cancelled lifecycle |
 
 ### Pending Todos
 
@@ -284,14 +289,15 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-30
-Stopped at: Completed 11-01-PLAN.md (Worker Registration)
+Stopped at: Completed 10-01-PLAN.md (Billing Schema)
 Resume file: None
 
-**Phase 11 Progress:** COMPLETE (1/1 plan complete)
-- 11-01: Worker Registration (6 workers registered in src/index.ts) [DONE]
+**Phase 10 Progress:** IN PROGRESS (1/6 plans complete)
+- 10-01: Billing Schema (subscriptions, payments, setup_progress tables) [DONE]
+- 10-02: Setup wizard service [PENDING]
+- 10-03: Setup wizard UI [PENDING]
+- 10-04: PayPlus integration [PENDING]
+- 10-05: Billing lifecycle [PENDING]
+- 10-06: Billing UI [PENDING]
 
-**v1-MILESTONE-AUDIT Gap Closure:**
-- All 19 workers now registered and operational
-- Phases 5, 6, and 8 workers are active (review-poll, review-reminder, invoice-poll, review-request, metrics-collection, auto-tuning)
-
-**Next:** Phase 10 (Setup & Billing)
+**Next:** 10-02 Setup Wizard Service
