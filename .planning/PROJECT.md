@@ -8,96 +8,54 @@ Findo is a Hebrew SaaS platform for small and medium-sized businesses in Israel 
 
 The business owner does nothing. Findo operates completely autonomously after a 2-minute setup, capturing leads, growing reviews, and managing their digital presence without any ongoing effort.
 
+## Current State
+
+**Version:** v1.0 MVP (shipped 2026-01-30)
+**Status:** Ready for production deployment pending human UAT
+
+**Codebase:**
+- 29,580 lines of TypeScript
+- 11 phases, 67 plans executed
+- 20 workers registered
+- 15 scheduled jobs active
+
+**Tech Stack:**
+- Hono (web framework)
+- Drizzle ORM + PostgreSQL
+- BullMQ + Redis (queues)
+- Claude Haiku 4.5 (AI)
+- PayPlus (payments)
+- Meta Graph API (WhatsApp)
+- Google Business Profile API
+
 ## Requirements
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ LEAD-01 to LEAD-07 — v1.0 (Missed call → WhatsApp chatbot → lead capture → owner notification)
+- ✓ REVW-01 to REVW-07 — v1.0 (Invoice detection → 24h delay → review request → 3-day reminder)
+- ✓ GBPR-01 to GBPR-06 — v1.0 (Review polling → AI auto-reply for positive → owner approval for negative)
+- ✓ GBPC-01 to GBPC-05 — v1.0 (Weekly photos, monthly posts, holiday hours)
+- ✓ GBPO-01 to GBPO-07 — v1.0 (Metrics monitoring, alerts, A/B testing, auto-tuning)
+- ✓ SETUP-01 to SETUP-06 — v1.0 (2-minute wizard, progressive profiling)
+- ✓ DASH-01 to DASH-08 — v1.0 (Stats, activity feed, settings, actions)
+- ✓ NOTF-01 to NOTF-05 — v1.0 (WhatsApp-first notifications)
+- ✓ INTG-01 to INTG-07 — v1.0 (WhatsApp, Google, Voicenter, Greeninvoice, iCount)
+- ✓ INFR-01 to INFR-06 — v1.0 (Multi-tenant, RLS, encryption, queues, jobs, activity feed)
+- ✓ BILL-01 to BILL-03 — v1.0 (Setup fee, subscription, PayPlus)
 
 ### Active
 
-**Missed Call → WhatsApp Lead Capture:**
-- [ ] Phone rings → no answer after 20 seconds → system waits 2 minutes → WhatsApp sent to caller
-- [ ] WhatsApp chatbot collects customer details (configurable per business type)
-- [ ] Customer saved as lead with organized summary
-- [ ] Lead handed off to business owner via WhatsApp notification
-- [ ] Voicenter integration for unanswered call webhooks
-- [ ] Support for: new number (instant), transfer existing number (3-5 days), use current mobile
-
-**Post-Service → Review Requests:**
-- [ ] Invoice detected → wait 24 hours → WhatsApp with direct Google review link
-- [ ] If no review after 3 days → send 1 reminder → stop
-- [ ] Manual trigger: forward invoice to Findo WhatsApp/Email, or "Mark as service" button
-- [ ] Greeninvoice integration (webhook on invoice creation)
-- [ ] iCount integration (webhook or polling)
-
-**GBP Autopilot (runs forever, completely autonomous):**
-- [ ] Review monitoring: check for new reviews every hour
-- [ ] Auto-reply to 4-5 star reviews: personalized, in owner's voice, uses reviewer name and references their content
-- [ ] Negative review alerts (1-3 stars): WhatsApp to owner with ready-made reply draft
-- [ ] Weekly photo requests: "Send 1-2 photos from the week" → system uploads to GBP
-- [ ] Monthly promotional post: owner provides content, or AI generates if they don't
-- [ ] Business details updates: holidays, hours changes → offer update for approval
-- [ ] Review rate monitoring: alert if drops below target (2-3 per week)
-
-**GBP Optimization Loop (autonomous intelligence):**
-- [ ] Monitor metrics: average rating, review rate, total reviews, response %, impressions, contacts, search queries, image count, image views
-- [ ] Optimization levers — Reviews: request timing, reminder timing, message templates
-- [ ] Optimization levers — Content: photo requests (specific types), posting frequency, post style/format
-- [ ] Optimization levers — Profile: hours, services, features, description keywords, category suggestions
-- [ ] Optimization levers — Engagement: WhatsApp templates, timing, A/B testing
-- [ ] Continuous improvement cycle: monitor → identify gaps → plan actions → execute → measure → repeat
-
-**Setup Flow (2 minutes):**
-- [ ] Step 1: Business information (minimal: name, type, owner name, address, hours)
-- [ ] Step 2: "Connect WhatsApp" button → Meta Embedded Signup popup → done
-- [ ] Step 3: "Connect Google" button → Google OAuth popup → done
-- [ ] Step 4: Select telephony option (new number / transfer / use current mobile)
-- [ ] Step 5: Dashboard shows "Findo is now working in the background"
-
-**Progressive Profiling (post-setup):**
-- [ ] System asks for more details over time via WhatsApp/notifications
-- [ ] Week 1: "What services do you offer?"
-- [ ] Week 2: "What makes your business special?"
-- [ ] Week 3: "Do you have parking? Accessibility features?"
-- [ ] Business profile gets richer without burdening setup
-
-**Dashboard (confidence window, not control panel):**
-- [ ] Main screen: daily stats (calls received, unanswered, WhatsApp sent, new reviews, current rating)
-- [ ] Activity feed: timeline of events with timestamps
-- [ ] Actions: approve/edit negative review responses, upload photos, enter promotions, view reports, adjust settings
-- [ ] Settings: response templates, wait times, notification preferences, chatbot questions
-- [ ] Weekly/monthly reports and performance graphs
-
-**Notification-Driven UX:**
-- [ ] Most interactions via WhatsApp/SMS to business owner
-- [ ] "New negative review — tap to respond" → opens specific screen → approve → done
-- [ ] No need to browse dashboard daily
-
-**Integrations:**
-- [ ] WhatsApp Business API via Meta Embedded Signup (configuration ID, code exchange, WABA ID + Phone Number ID storage)
-- [ ] Google Business Profile API via OAuth 2.0 (consent screen, code exchange, access + refresh tokens, business list)
-- [ ] Voicenter (Israeli VoIP): webhook for unanswered calls (caller number + timestamp)
-- [ ] Greeninvoice: webhook on document.created (customer phone/email, name, service)
-- [ ] iCount: API integration (webhook or polling)
-
-**Billing:**
-- [ ] One-time setup fee: ~3,500 NIS
-- [ ] Monthly subscription: 350 NIS/month
-- [ ] Payment processing integration
-
-**Multi-tenant Architecture:**
-- [ ] One account = one business
-- [ ] Secure data isolation between tenants
-- [ ] Encrypted storage of tokens and credentials
+(No active requirements — planning next milestone)
 
 ### Out of Scope
 
-- English/Arabic language support — Hebrew only for v1
-- Agency/consultant multi-business management — individual business owners only
-- Rivhit integration — poor API quality, not worth the effort for v1
-- Mobile app — web-first, mobile later
+- English/Arabic language support — Hebrew only, simplifies AI layer and UI
+- Agency/consultant multi-business management — individual business owners only for v1
+- Rivhit integration — poor API quality, not worth the effort
+- Mobile app — web-first, mobile responsive is sufficient
 - Real-time chat with customers — Findo collects info and hands off, doesn't replace the business
+- Offline mode — real-time is core value
 
 ## Context
 
@@ -108,22 +66,19 @@ The business owner does nothing. Findo operates completely autonomously after a 
 - Often miss calls because they're busy working
 
 **Technical Environment:**
-- Greenfield project — no existing code, designs, or documentation
+- Shipped v1.0 with 29,580 LOC TypeScript
 - Building with Claude (AI-assisted development)
 - Hebrew language throughout (UI, messages, AI-generated content)
 
 **Integration Partners:**
-- Meta (WhatsApp Business API) — requires Tech Provider registration and Business Verification (2-4 weeks)
-- Google (Business Profile API) — requires API access request and OAuth consent verification (3-5 days)
+- Meta (WhatsApp Business API) — requires Tech Provider registration and Business Verification
+- Google (Business Profile API) — OAuth consent verified
 - Voicenter — Israeli VoIP provider, webhooks for call events
-- Greeninvoice — best Israeli accounting API, full webhook support
-- iCount — secondary accounting integration, limited webhooks
+- Greeninvoice — best Israeli accounting API, polling for invoices
+- iCount — secondary accounting integration, polling for invoices
+- PayPlus — Israeli payment processor, recurring billing
 
-**Key Technical Decisions Already Made:**
-- WhatsApp via Meta Embedded Signup (one-click connection)
-- Google via OAuth 2.0 (standard flow)
-- Voicenter for telephony (webhook-based)
-- Greeninvoice as primary accounting integration
+**User Feedback:** (pending production deployment)
 
 ## Constraints
 
@@ -137,13 +92,18 @@ The business owner does nothing. Findo operates completely autonomously after a 
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Hebrew only for v1 | Focus on Israeli market, simplify AI layer | — Pending |
-| Individual business owners only (no agencies) | Simpler multi-tenant model, clearer UX | — Pending |
-| Voicenter for telephony | Israeli provider, webhook support for unanswered calls | — Pending |
-| Greeninvoice as primary accounting | Best API quality, full webhook support | — Pending |
-| Meta Embedded Signup for WhatsApp | One-click connection, can create WhatsApp Business in same flow | — Pending |
-| Notification-driven UX over dashboard-driven | Reinforces "you don't need to do anything" core value | — Pending |
-| Progressive profiling over long setup | Keeps 2-minute setup promise, system gets smarter over time | — Pending |
+| Hebrew only for v1 | Focus on Israeli market, simplify AI layer | ✓ Good |
+| Individual business owners only (no agencies) | Simpler multi-tenant model, clearer UX | ✓ Good |
+| Voicenter for telephony | Israeli provider, webhook support for unanswered calls | ✓ Good |
+| Greeninvoice as primary accounting | Best API quality in Israel | ✓ Good |
+| Meta Embedded Signup for WhatsApp | One-click connection, create WhatsApp Business in same flow | ✓ Good |
+| Notification-driven UX over dashboard-driven | Reinforces "you don't need to do anything" core value | ✓ Good |
+| Progressive profiling over long setup | Keeps 2-minute setup promise | ✓ Good |
+| Claude Haiku 4.5 for AI | Cost-effective, good Hebrew support | ✓ Good |
+| Queue-first webhook architecture | Fast response, reliable async processing | ✓ Good |
+| Row-Level Security for tenant isolation | Database-level security, prevents bugs | ✓ Good |
+| Polling for reviews and invoices | No webhooks available from providers | — Necessary |
+| PayPlus for payments | Israeli processor, recurring billing support | ✓ Good |
 
 ---
-*Last updated: 2026-01-27 after initialization*
+*Last updated: 2026-01-30 after v1.0 milestone*
