@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 12 - Technical Foundation
-Plan: 03 of 5 complete
+Plan: 04 of 5 complete
 Status: In progress
-Last activity: 2026-01-31 - Completed 12-03-PLAN.md (Font and animation config)
+Last activity: 2026-01-31 - Completed 12-04-PLAN.md (Project structure and utilities)
 
-Progress: [===>.................] 3/37 plans (v1.1)
+Progress: [====>.................] 4/37 plans (v1.1)
 
 ## Milestone Summary
 
@@ -40,7 +40,7 @@ Archives:
 
 | Phase | Name | Requirements | Status |
 |-------|------|--------------|--------|
-| 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | Plan 03 complete |
+| 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | Plan 04 complete |
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | Not started |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | Not started |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | Not started |
@@ -89,6 +89,11 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - Centralized GSAP config in lib/gsapConfig.ts - all imports must go through this file
 - Provider nesting order: DirectionProvider > MotionProvider > SmoothScroll (RTL outermost)
 
+**12-04 Decisions:**
+- Used website/* paths (not website/src/*) - aligns with 12-01 project structure
+- cn() utility with clsx + tailwind-merge for class merging
+- Israeli formatting utilities (formatPhone, formatPrice, formatDateHebrew)
+
 ### Pending Todos
 
 None.
@@ -117,10 +122,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-31
-Stopped at: Completed 12-03-PLAN.md
+Stopped at: Completed 12-04-PLAN.md
 Resume file: None
 
-**Next step:** Execute 12-04-PLAN.md (shadcn/ui and components setup)
+**Next step:** Execute 12-05-PLAN.md (Vercel deployment)
 
 ---
-*Updated: 2026-01-31 after 12-03-PLAN.md completion*
+*Updated: 2026-01-31 after 12-04-PLAN.md completion*
