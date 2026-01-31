@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Custom theme will be added in later plans */
+/* Custom theme - Tailwind 4.0 CSS-first configuration */
 @theme {
-  /* Placeholder for Heebo font variable */
-  --font-sans: system-ui, sans-serif;
+  /* Heebo Hebrew font with CSS variable integration */
+  --font-sans: var(--font-heebo), Arial, sans-serif;
 }

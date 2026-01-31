@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@radix-ui/react-direction": "^1.1.1",
+    "@radix-ui/react-direction": "^1.1.2-rc.1766004502650",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
