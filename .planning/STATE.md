@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 13 - Design System
-Plan: 01 of 5 complete
+Plan: 02 of 5 complete
 Status: In progress
-Last activity: 2026-01-31 - Completed 13-01-PLAN.md (Atomic components with RTL support)
+Last activity: 2026-02-01 - Completed 13-02-PLAN.md (Dark Mode & Color Tokens)
 
-Progress: [======>...............] 6/37 plans (v1.1)
+Progress: [=======>..............] 7/37 plans (v1.1)
 
 ## Milestone Summary
 
@@ -41,7 +41,7 @@ Archives:
 | Phase | Name | Requirements | Status |
 |-------|------|--------------|--------|
 | 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | COMPLETE |
-| 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | Plan 01 complete |
+| 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | Plans 01-02 complete |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | Not started |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | Not started |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | Not started |
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 6
-- Average duration: 7.5 min
+- Total plans completed: 7
+- Average duration: 8.2 min
 - Estimated plans: ~37
 
 ## Accumulated Context
@@ -104,6 +104,13 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - Badge/Card use logical properties (ps-/pe-) for RTL support
 - Input uses text-start instead of text-left for RTL alignment
 
+**13-02 Decisions:**
+- Orange primary color (#f97316) for conversion-optimized CTAs - proven high conversion, high contrast
+- HSL color format for shadcn/ui compatibility
+- Provider order updated: DirectionProvider > ThemeProvider > MotionProvider > SmoothScroll
+- Typography scale: 16px base minimum for WCAG accessibility
+- @custom-variant dark for Tailwind 4 dark mode support
+
 ### Pending Todos
 
 None.
@@ -131,15 +138,15 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-31
-Stopped at: Completed 13-01-PLAN.md (Atomic components)
+Last session: 2026-02-01
+Stopped at: Completed 13-02-PLAN.md (Dark Mode & Color Tokens)
 Resume file: None
 
-**Next step:** Execute 13-02-PLAN.md (Dark Mode & Color Tokens)
+**Next step:** Execute 13-03-PLAN.md (Animation Variants)
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
 - Human verification: APPROVED
 
 ---
-*Updated: 2026-01-31 after 13-01-PLAN.md completion*
+*Updated: 2026-02-01 after 13-02-PLAN.md completion*
