@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-30)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** v1.0 shipped — planning next milestone
+**Current focus:** v1.1 Sales Website - 50% conversion from qualified referral traffic
 
 ## Current Position
 
-Phase: v1.0 COMPLETE (11 phases shipped)
-Plan: All 67 plans complete
-Status: Milestone archived
-Last activity: 2026-01-30 — v1.0 milestone complete
+Phase: 12 - Technical Foundation
+Plan: 01 of 3 complete
+Status: In progress
+Last activity: 2026-01-31 - Completed 12-01-PLAN.md (Next.js + Tailwind setup)
 
-Progress: [████████████████████████████████████] 67/67 plans complete, 100% of v1.0
+Progress: [=>..................] 1/37 plans (v1.1)
 
 ## Milestone Summary
 
@@ -29,28 +29,37 @@ Archives:
 - `.planning/milestones/v1.0-REQUIREMENTS.md`
 - `.planning/milestones/v1.0-MILESTONE-AUDIT.md`
 
+**v1.1 Sales Website (in progress)**
+
+- 8 phases (12-19), ~37 plans, 98 requirements
+- Target: 50% conversion from qualified referral traffic
+- Certification: 95+ (EXEMPLARY) on Design Bible test
+- Tech: Next.js 16, Tailwind 4.0, Motion + GSAP, shadcn/ui
+
+## v1.1 Phase Overview
+
+| Phase | Name | Requirements | Status |
+|-------|------|--------------|--------|
+| 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | Plan 01 complete |
+| 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | Not started |
+| 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | Not started |
+| 15 | Social Proof & Trust | PROOF-*, TRUST-* | Not started |
+| 16 | Offer & Objection | OFFER-*, OBJ-* | Not started |
+| 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | Not started |
+| 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | Not started |
+| 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | Not started |
+
 ## Performance Metrics
 
-**Velocity:**
+**v1.0 Velocity:**
 - Total plans completed: 67
 - Average duration: 5.3 min
 - Total execution time: ~6 hours
 
-**By Phase:**
-
-| Phase | Plans | Status |
-|-------|-------|--------|
-| 01-foundation | 8 | Complete |
-| 02-whatsapp-integration | 6 | Complete |
-| 03-lead-capture | 6 | Complete |
-| 04-google-integration | 4 | Complete |
-| 05-review-management | 6 | Complete |
-| 06-review-requests | 7 | Complete |
-| 07-gbp-content | 8 | Complete |
-| 08-gbp-optimization | 7 | Complete |
-| 09-dashboard-notifications | 8 | Complete |
-| 10-setup-billing | 6 | Complete |
-| 11-worker-registration | 1 | Complete |
+**v1.1 Velocity:**
+- Total plans completed: 1
+- Average duration: 5 min
+- Estimated plans: ~37
 
 ## Accumulated Context
 
@@ -58,13 +67,26 @@ Archives:
 
 All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
+**v1.1 Architecture Decisions:**
+- Next.js 16 (upgraded from planned 15.5) - sales website has no API routes
+- Tailwind 4.0 with CSS-first @theme configuration
+- Motion + GSAP two-library animation strategy
+- Heebo font with preload optimization
+- PostHog for analytics (session replay, funnels, A/B testing)
+- Vercel for deployment (CDN, preview URLs)
+
+**12-01 Decisions:**
+- Used Next.js 16.1.6 instead of 15.5 - create-next-app defaults to latest, and sales website has no API routes so API stability concern doesn't apply
+- Used app/ structure instead of src/app/ - create-next-app v16 default
+- Tailwind 4.0 CSS-first with @theme blocks, no tailwind.config.ts
+
 ### Pending Todos
 
 None.
 
 ### Blockers/Concerns
 
-**Production Readiness:**
+**Production Readiness (v1.0):**
 - RLS enforcement requires findo_app database user creation (documented in docs/rls-setup.md)
 - Human UAT required before production deployment
 
@@ -73,21 +95,23 @@ None.
 - Google API Access: OAuth consent screen approved
 - PayPlus: Sandbox tested, production credentials needed
 
-**Environment Variables Required:**
-- ENCRYPTION_SECRET, REDIS_URL, DATABASE_URL
-- META_APP_ID, META_APP_SECRET, WHATSAPP_WEBHOOK_VERIFY_TOKEN, META_CONFIG_ID
-- ANTHROPIC_API_KEY
-- GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI
-- R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME, R2_PUBLIC_URL
-- PAYPLUS_API_KEY, PAYPLUS_SECRET_KEY, PAYPLUS_TERMINAL_UID
+**v1.1 Dependencies:**
+- Real customer testimonials needed (photos, names, metrics)
+- Video testimonial production required
+- Interactive demo platform decision (Storylane vs Navattic)
+- Native Hebrew copywriter for final copy review
+
+**Research Flags:**
+- Phase 14: GSAP ScrollTrigger + Lenis integration with Next.js 16 App Router
+- Phase 18: Interactive demo platform comparison and embed performance
 
 ## Session Continuity
 
-Last session: 2026-01-30
-Stopped at: v1.0 milestone complete
+Last session: 2026-01-31
+Stopped at: Completed 12-01-PLAN.md
 Resume file: None
 
-**Next step:** `/gsd:new-milestone` to plan v1.1
+**Next step:** Execute 12-02-PLAN.md (RTL support and Hebrew configuration)
 
 ---
-*Updated: 2026-01-30 after v1.0 milestone completion*
+*Updated: 2026-01-31 after 12-01-PLAN.md completion*
