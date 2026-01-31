@@ -3,6 +3,9 @@ import Anthropic from '@anthropic-ai/sdk';
 // Initialize Anthropic client (uses ANTHROPIC_API_KEY env var automatically)
 const anthropic = new Anthropic();
 
+// Valid Claude model - use claude-3-haiku for fast, cost-effective generation
+const CLAUDE_MODEL = 'claude-3-haiku-20240307';
+
 /**
  * Result of AI-generated review reply.
  */
@@ -66,40 +69,23 @@ Requirements:
 - Warm, personal tone (not corporate)
 - Reference something specific they mentioned (if available)
 - No emojis
-- Sign as the business (not "the team")`;
+- Sign as the business (not "the team")
+
+IMPORTANT: Return ONLY valid JSON (no markdown, no explanation) with these exact fields:
+{
+  "replyText": "The Hebrew reply text",
+  "tone": "warm" or "apologetic" or "neutral",
+  "referencedContent": "What from the review was referenced"
+}`;
 
   try {
-    const response = await anthropic.beta.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+    const response = await anthropic.messages.create({
+      model: CLAUDE_MODEL,
       max_tokens: 512,
-      betas: ['structured-outputs-2025-11-13'],
       messages: [{
         role: 'user',
         content: prompt
       }],
-      output_format: {
-        type: 'json_schema',
-        schema: {
-          type: 'object',
-          properties: {
-            replyText: {
-              type: 'string',
-              description: 'The Hebrew reply text'
-            },
-            tone: {
-              type: 'string',
-              enum: ['warm', 'apologetic', 'neutral'],
-              description: 'The tone of the reply'
-            },
-            referencedContent: {
-              type: 'string',
-              description: 'What from the review was referenced in the reply'
-            }
-          },
-          required: ['replyText', 'tone', 'referencedContent'],
-          additionalProperties: false
-        }
-      }
     });
 
     // Extract text content from response
@@ -109,7 +95,14 @@ Requirements:
       return getFallbackReply(isPositive);
     }
 
-    const result = JSON.parse(content.text) as ReviewReplyResult;
+    // Parse JSON from response - handle potential markdown code blocks
+    const text = content.text.trim();
+    const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/) ||
+                      text.match(/```\s*([\s\S]*?)\s*```/) ||
+                      [null, text];
+    const jsonStr = jsonMatch[1] || text;
+
+    const result = JSON.parse(jsonStr) as ReviewReplyResult;
 
     // Validate reply byte length
     const byteLength = Buffer.byteLength(result.replyText, 'utf8');
@@ -161,7 +154,7 @@ export async function classifyReviewSentiment(
   // Use Claude to analyze sentiment
   try {
     const response = await anthropic.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+      model: CLAUDE_MODEL,
       max_tokens: 64,
       messages: [{
         role: 'user',

@@ -15,6 +15,9 @@ import type { CallToActionType, PostTopicType } from '../google/posts';
 
 const anthropic = new Anthropic();
 
+// Valid Claude model - use claude-3-haiku for fast, cost-effective generation
+const CLAUDE_MODEL = 'claude-3-haiku-20240307';
+
 export interface PostContent {
   summary: string;
   topicType: PostTopicType;
@@ -46,31 +49,10 @@ export async function generatePostContent(
     : buildAIGenerationPrompt(businessName, businessType, recentActivity, forceSafe);
 
   try {
-    const response = await anthropic.beta.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+    const response = await anthropic.messages.create({
+      model: CLAUDE_MODEL,
       max_tokens: 512,
-      betas: ['structured-outputs-2025-11-13'],
       messages: [{ role: 'user', content: prompt }],
-      output_format: {
-        type: 'json_schema',
-        schema: {
-          type: 'object',
-          properties: {
-            summary: { type: 'string' },
-            topicType: {
-              type: 'string',
-              enum: ['STANDARD', 'EVENT', 'OFFER'],
-            },
-            callToActionType: {
-              type: ['string', 'null'],
-              enum: ['LEARN_MORE', 'BOOK', 'ORDER', 'SHOP', 'SIGN_UP', 'CALL', null],
-            },
-            isSafe: { type: 'boolean' },
-          },
-          required: ['summary', 'topicType', 'callToActionType', 'isSafe'],
-          additionalProperties: false,
-        },
-      },
     });
 
     const content = response.content[0];
@@ -78,7 +60,15 @@ export async function generatePostContent(
       throw new Error('Unexpected response type');
     }
 
-    const result = JSON.parse(content.text) as PostContent;
+    // Parse JSON from response - Claude should return valid JSON
+    const text = content.text.trim();
+    // Extract JSON from response (handle potential markdown code blocks)
+    const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/) ||
+                      text.match(/```\s*([\s\S]*?)\s*```/) ||
+                      [null, text];
+    const jsonStr = jsonMatch[1] || text;
+
+    const result = JSON.parse(jsonStr) as PostContent;
 
     // Validate no phone numbers
     if (/\d{2,3}[-.\s]?\d{7}|\d{10}/.test(result.summary)) {
@@ -127,11 +117,13 @@ Content types by safety:
 - SAFE (isSafe=true): seasonal greetings, customer appreciation, quality commitment, behind-the-scenes, general updates
 - NOT SAFE (isSafe=false): specific discounts, limited-time offers, sales promotions
 
-Return JSON with:
-- summary: The post text in Hebrew
-- topicType: "STANDARD" for updates, "EVENT" for events, "OFFER" for promotions
-- callToActionType: "LEARN_MORE", "BOOK", "ORDER", "SHOP", "SIGN_UP", "CALL", or null
-- isSafe: true if content is general/seasonal (can auto-publish), false if contains specific promotions`;
+IMPORTANT: Return ONLY valid JSON (no markdown, no explanation) with these exact fields:
+{
+  "summary": "The post text in Hebrew",
+  "topicType": "STANDARD" or "EVENT" or "OFFER",
+  "callToActionType": "LEARN_MORE" or "BOOK" or "ORDER" or "SHOP" or "SIGN_UP" or "CALL" or null,
+  "isSafe": true or false
+}`;
 }
 
 /**
@@ -156,11 +148,13 @@ Requirements:
 - NO phone numbers (remove if present - Google rejects)
 - NO email addresses (remove if present)
 
-Return JSON with:
-- summary: The polished post text in Hebrew
-- topicType: "STANDARD" for updates, "EVENT" for events, "OFFER" for promotions
-- callToActionType: "LEARN_MORE", "BOOK", "ORDER", "SHOP", "SIGN_UP", "CALL", or null (based on content)
-- isSafe: true if content is general (no specific promotions), false if contains specific offers`;
+IMPORTANT: Return ONLY valid JSON (no markdown, no explanation) with these exact fields:
+{
+  "summary": "The polished post text in Hebrew",
+  "topicType": "STANDARD" or "EVENT" or "OFFER",
+  "callToActionType": "LEARN_MORE" or "BOOK" or "ORDER" or "SHOP" or "SIGN_UP" or "CALL" or null,
+  "isSafe": true or false
+}`;
 }
 
 /**
