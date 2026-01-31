@@ -70,7 +70,7 @@ export function renderPostContent(): string {
         <p id="draftContent" class="text-gray-800 whitespace-pre-wrap"></p>
       </div>
 
-      <div class="flex gap-3">
+      <div class="flex gap-3 mb-3">
         <button
           id="approvePostBtn"
           onclick="approvePost()"
@@ -84,6 +84,22 @@ export function renderPostContent(): string {
           class="px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
         >
           &#9998; ערוך
+        </button>
+      </div>
+      <div class="flex gap-3" id="secondaryActions">
+        <button
+          id="regenerateBtn"
+          onclick="regeneratePost()"
+          class="flex-1 py-2 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors text-sm"
+        >
+          &#8635; הצעה חדשה
+        </button>
+        <button
+          id="deletePostBtn"
+          onclick="deletePost()"
+          class="flex-1 py-2 bg-red-50 text-red-700 border border-red-200 rounded-lg hover:bg-red-100 transition-colors text-sm"
+        >
+          &#10005; מחק הצעה
         </button>
       </div>
 
@@ -390,6 +406,99 @@ function showPostMessage(text, type = 'info') {
 
 function hidePostMessage() {
   document.getElementById('postMessage').classList.add('hidden');
+}
+
+async function regeneratePost() {
+  if (!currentPostId) {
+    showPostMessage('אין פוסט ליצירה מחדש', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('regenerateBtn');
+  const processing = document.getElementById('processingState');
+  const draftApproval = document.getElementById('draftApproval');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="animate-spin inline-block">&#8635;</span> יוצר...';
+  draftApproval.classList.add('hidden');
+  processing.classList.remove('hidden');
+
+  try {
+    const res = await fetch(\`/api/dashboard/post/\${currentPostId}/regenerate\`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Tenant-ID': window.tenantId || ''
+      }
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || 'שגיאה ביצירה מחדש');
+    }
+
+    // Update draft content
+    currentDraftContent = data.content;
+    document.getElementById('draftContent').textContent = data.content;
+    draftApproval.classList.remove('hidden');
+    processing.classList.add('hidden');
+
+    showPostMessage('הצעה חדשה נוצרה בהצלחה', 'success');
+  } catch (err) {
+    console.error('Failed to regenerate post:', err);
+    showPostMessage(err.message || 'שגיאה ביצירה מחדש', 'error');
+    draftApproval.classList.remove('hidden');
+    processing.classList.add('hidden');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '&#8635; הצעה חדשה';
+  }
+}
+
+async function deletePost() {
+  if (!currentPostId) {
+    showPostMessage('אין פוסט למחיקה', 'error');
+    return;
+  }
+
+  if (!confirm('האם למחוק את ההצעה? ניתן ליצור הצעה חדשה בכל עת.')) {
+    return;
+  }
+
+  const btn = document.getElementById('deletePostBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="animate-spin inline-block">&#8635;</span> מוחק...';
+
+  try {
+    const res = await fetch(\`/api/dashboard/post/\${currentPostId}\`, {
+      method: 'DELETE',
+      headers: {
+        'X-Tenant-ID': window.tenantId || ''
+      }
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || 'שגיאה במחיקת הפוסט');
+    }
+
+    showPostMessage('ההצעה נמחקה', 'info');
+    currentPostId = null;
+    currentDraftContent = null;
+
+    // Reload status to show content form
+    setTimeout(() => {
+      loadPostStatus();
+    }, 1500);
+  } catch (err) {
+    console.error('Failed to delete post:', err);
+    showPostMessage(err.message || 'שגיאה במחיקת הפוסט', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '&#10005; מחק הצעה';
+  }
 }
 
 // Load status on page load

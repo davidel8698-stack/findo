@@ -881,4 +881,155 @@ app.post('/post/:postId/approve', async (c) => {
   }
 });
 
+/**
+ * POST /api/dashboard/post/:postId/regenerate
+ *
+ * Regenerate AI content for a pending post using the original owner content.
+ *
+ * Per user request: "Add option to regenerate AI suggestion"
+ */
+app.post('/post/:postId/regenerate', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  const postId = c.req.param('postId');
+
+  try {
+    // Get the post request
+    const [postRequest] = await db
+      .select()
+      .from(postRequests)
+      .where(
+        and(
+          eq(postRequests.id, postId),
+          eq(postRequests.tenantId, tenant.tenantId),
+          eq(postRequests.status, 'pending_approval')
+        )
+      )
+      .limit(1);
+
+    if (!postRequest) {
+      return c.json({ error: 'Post not found or not pending approval' }, 404);
+    }
+
+    if (!postRequest.ownerContent) {
+      return c.json({ error: 'No original content to regenerate from' }, 400);
+    }
+
+    // Get tenant info for business name/type
+    const [tenantInfo] = await db
+      .select({
+        businessName: tenants.businessName,
+        businessType: tenants.businessType,
+      })
+      .from(tenants)
+      .where(eq(tenants.id, tenant.tenantId))
+      .limit(1);
+
+    if (!tenantInfo) {
+      return c.json({ error: 'Tenant not found' }, 404);
+    }
+
+    // Generate new AI post
+    const generatedPost = await generatePostContent({
+      businessName: tenantInfo.businessName,
+      businessType: tenantInfo.businessType || 'business',
+      ownerContent: postRequest.ownerContent,
+    });
+
+    // Update post request with new AI draft
+    await db
+      .update(postRequests)
+      .set({
+        aiDraft: generatedPost.summary,
+        isSafeContent: generatedPost.isSafe,
+        postType: generatedPost.topicType,
+        callToActionType: generatedPost.callToActionType,
+        draftSentAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .where(eq(postRequests.id, postId));
+
+    console.log(`[dashboard/post-regenerate] Regenerated post for tenant ${tenant.tenantId}`);
+
+    return c.json({
+      success: true,
+      content: generatedPost.summary,
+      isSafe: generatedPost.isSafe,
+      topicType: generatedPost.topicType,
+    });
+  } catch (error) {
+    console.error('[dashboard/post-regenerate] Error regenerating post:', error);
+    return c.json({
+      error: 'Failed to regenerate post',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
+/**
+ * DELETE /api/dashboard/post/:postId
+ *
+ * Delete a pending post draft.
+ *
+ * Per user request: "Add option to delete AI suggestion"
+ */
+app.delete('/post/:postId', async (c) => {
+  const tenant = c.get('tenant');
+
+  if (!tenant) {
+    return c.json({ error: 'Unauthorized - tenant context required' }, 401);
+  }
+
+  const postId = c.req.param('postId');
+
+  try {
+    // Get the post request
+    const [postRequest] = await db
+      .select()
+      .from(postRequests)
+      .where(
+        and(
+          eq(postRequests.id, postId),
+          eq(postRequests.tenantId, tenant.tenantId)
+        )
+      )
+      .limit(1);
+
+    if (!postRequest) {
+      return c.json({ error: 'Post not found' }, 404);
+    }
+
+    // Don't allow deleting already published posts
+    if (postRequest.status === 'published') {
+      return c.json({ error: 'Cannot delete published posts' }, 400);
+    }
+
+    // Soft delete the post
+    await db
+      .update(postRequests)
+      .set({
+        deletedAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .where(eq(postRequests.id, postId));
+
+    console.log(`[dashboard/post-delete] Deleted post ${postId} for tenant ${tenant.tenantId}`);
+
+    return c.json({
+      success: true,
+      message: 'Post deleted successfully',
+    });
+  } catch (error) {
+    console.error('[dashboard/post-delete] Error deleting post:', error);
+    return c.json({
+      error: 'Failed to delete post',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, 500);
+  }
+});
+
 export const dashboardApiRoutes = app;
