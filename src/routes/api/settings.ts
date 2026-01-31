@@ -1,5 +1,4 @@
 import { Hono } from 'hono';
-import { tenantContext } from '../../middleware/tenant-context';
 import {
   getSettings,
   updateTimingSettings,
@@ -26,8 +25,7 @@ type Variables = {
  */
 const app = new Hono<{ Variables: Variables }>();
 
-// Apply tenant context middleware to all routes
-app.use('*', tenantContext);
+// Note: tenantContext middleware is already applied by the parent api router in index.ts
 
 /**
  * GET /api/settings

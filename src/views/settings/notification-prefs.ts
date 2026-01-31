@@ -113,7 +113,7 @@ export function renderNotificationPrefs(data?: NotificationPrefsData): string {
           id: 'notifyNewLead',
           field: 'notifyNewLead',
           label: 'ליד חדש',
-          description: 'התראה כאשר מישהו יוצר קשר דרך הצ\'אטבוט',
+          description: 'התראה כאשר מישהו יוצר קשר דרך הצאטבוט',
         },
         {
           id: 'notifyLeadQualified',

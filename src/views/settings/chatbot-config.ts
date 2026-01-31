@@ -235,66 +235,6 @@ export function renderChatbotConfig(questions?: ChatbotQuestion[]): string {
       </div>
     </div>
 
-    <!-- Drag and Drop Script (inline for simplicity) -->
-    <script>
-      // Simple drag-drop reordering (can be enhanced with a library like SortableJS)
-      let draggedElement = null;
-
-      document.querySelectorAll('.drag-handle').forEach(handle => {
-        const card = handle.closest('.question-card');
-
-        handle.addEventListener('mousedown', () => {
-          card.setAttribute('draggable', 'true');
-        });
-
-        card.addEventListener('dragstart', (e) => {
-          draggedElement = card;
-          card.style.opacity = '0.5';
-        });
-
-        card.addEventListener('dragend', () => {
-          card.style.opacity = '1';
-          card.setAttribute('draggable', 'false');
-          draggedElement = null;
-          updateQuestionOrders();
-        });
-
-        card.addEventListener('dragover', (e) => {
-          e.preventDefault();
-          const list = document.getElementById('questionsList');
-          const afterElement = getDragAfterElement(list, e.clientY);
-
-          if (afterElement == null) {
-            list.appendChild(draggedElement);
-          } else {
-            list.insertBefore(draggedElement, afterElement);
-          }
-        });
-      });
-
-      function getDragAfterElement(container, y) {
-        const draggableElements = [...container.querySelectorAll('.question-card:not([style*="opacity: 0.5"])')];
-
-        return draggableElements.reduce((closest, child) => {
-          const box = child.getBoundingClientRect();
-          const offset = y - box.top - box.height / 2;
-
-          if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: child };
-          } else {
-            return closest;
-          }
-        }, { offset: Number.NEGATIVE_INFINITY }).element;
-      }
-
-      function updateQuestionOrders() {
-        const cards = document.querySelectorAll('.question-card');
-        cards.forEach((card, index) => {
-          card.dataset.order = index + 1;
-        });
-        // Trigger re-render of preview
-        updatePreview();
-      }
-    </script>
+<!-- Drag and Drop is handled by main.ts script -->
   `;
 }

@@ -471,7 +471,7 @@ export function renderSettingsPage(tenantId: string): string {
 
       try {
         await apiRequest('PUT', '/chatbot', { questions: chatbotQuestions });
-        showToast('הגדרות הצ\'אטבוט נשמרו');
+        showToast('הגדרות הצאטבוט נשמרו');
       } catch (err) {
         showToast(err.message || 'שגיאה בשמירת ההגדרות', 'error');
       }
@@ -484,7 +484,7 @@ export function renderSettingsPage(tenantId: string): string {
         chatbotQuestions = data.settings.chatbot || [];
         renderQuestionsList();
         updatePreview();
-        showToast('הגדרות הצ\'אטבוט אופסו');
+        showToast('הגדרות הצאטבוט אופסו');
       } catch (err) {
         showToast(err.message || 'שגיאה באיפוס ההגדרות', 'error');
       }
