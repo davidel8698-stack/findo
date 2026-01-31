@@ -104,14 +104,14 @@ Plans:
   4. Animation variants (fadeInUp, staggerContainer, scaleIn) are GPU-accelerated
   5. Components pass WCAG 2.1 AA contrast requirements (4.5:1 for text)
   6. ScrollReveal component works with Intersection Observer + Motion
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 13-01: Atomic components (Button, Input, Badge, Logo, Icon)
-- [ ] 13-02: Molecule components (CTAGroup, StatItem, NavLink, FormField)
-- [ ] 13-03: Animation system (Motion variants, ScrollReveal, GSAP setup)
-- [ ] 13-04: Typography scale, color tokens, spacing system
-- [ ] 13-05: shadcn/ui integration with RTL adaptations
+- [ ] 13-01-PLAN.md — shadcn/ui setup and atomic components (Button, Input, Badge, Card) with 48px touch targets
+- [ ] 13-02-PLAN.md — Dark mode theming (next-themes) and design tokens (typography, colors, spacing)
+- [ ] 13-03-PLAN.md — Animation system (Motion variants, ScrollReveal, FadeIn, StaggerContainer)
+- [ ] 13-04-PLAN.md — Custom atoms (Logo, Icon) and molecules (CTAGroup, StatItem, NavLink, FormField)
+- [ ] 13-05-PLAN.md — Component showcase and visual verification
 
 ---
 
@@ -264,7 +264,7 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 |-------|-----------|----------------|--------|-----------|
 | 1-11 | v1.0 MVP | 67/67 | Complete | 2026-01-30 |
 | 12. Technical Foundation | v1.1 | 5/5 | Complete | 2026-01-31 |
-| 13. Design System | v1.1 | 0/5 | Not started | - |
+| 13. Design System | v1.1 | 0/5 | Planned | - |
 | 14. Hero & First Impression | v1.1 | 0/4 | Not started | - |
 | 15. Social Proof & Trust | v1.1 | 0/5 | Not started | - |
 | 16. Offer & Objection Handling | v1.1 | 0/5 | Not started | - |
