@@ -1,5 +1,16 @@
 import type { Metadata, Viewport } from "next";
+import { Heebo } from "next/font/google";
+import { Providers } from "./providers";
 import "./globals.css";
+
+const heebo = Heebo({
+  subsets: ["hebrew"],
+  display: "swap",
+  weight: ["400", "500", "700"],
+  variable: "--font-heebo",
+  fallback: ["Arial", "sans-serif"],
+  preload: true,
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -19,9 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="he">
-      <body className="antialiased">
-        {children}
+    <html lang="he" dir="rtl" className={heebo.variable}>
+      <body className={`${heebo.className} antialiased`}>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
