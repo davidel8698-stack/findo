@@ -5,3 +5,13 @@
   /* Heebo Hebrew font with CSS variable integration */
   --font-sans: var(--font-heebo), Arial, sans-serif;
 }
+
+/* Shimmer animation for loading states (no spinner per CONTEXT.md) */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
