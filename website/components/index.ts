@@ -1,3 +1,17 @@
+/**
+ * Unified component exports
+ *
+ * NOTE: Due to a Next.js 16 Turbopack SSR issue with barrel re-exports,
+ * prefer direct imports from subfolders in page components:
+ *   import { Button } from "@/components/ui/button";
+ *   import { Logo } from "@/components/atoms";
+ *
+ * This barrel file is still useful for:
+ * - Client components with "use client"
+ * - Storybook stories
+ * - Test files
+ */
+
 // UI Components (shadcn/ui)
 export { Button, buttonVariants } from "./ui/button";
 export { Input } from "./ui/input";
@@ -23,10 +37,10 @@ export { NavLink } from "./molecules";
 export { FormField } from "./molecules";
 
 // Motion Components
+export { ScrollReveal } from "./motion/ScrollReveal";
+export { FadeIn } from "./motion/FadeIn";
+export { StaggerContainer } from "./motion/StaggerContainer";
 export {
-  ScrollReveal,
-  FadeIn,
-  StaggerContainer,
   fadeInUp,
   fadeInDown,
   fadeInLeft,
@@ -36,4 +50,4 @@ export {
   staggerContainer,
   staggerContainerFast,
   staggerContainerSlow,
-} from "./motion";
+} from "./motion/variants";
