@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 12 - Technical Foundation
-Plan: 01 of 3 complete
+Plan: 02 of 5 complete
 Status: In progress
-Last activity: 2026-01-31 - Completed 12-01-PLAN.md (Next.js + Tailwind setup)
+Last activity: 2026-01-31 - Completed 12-02-PLAN.md (RTL support and Hebrew configuration)
 
-Progress: [=>..................] 1/37 plans (v1.1)
+Progress: [==>.................] 2/37 plans (v1.1)
 
 ## Milestone Summary
 
@@ -40,7 +40,7 @@ Archives:
 
 | Phase | Name | Requirements | Status |
 |-------|------|--------------|--------|
-| 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | Plan 01 complete |
+| 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | Plan 02 complete |
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | Not started |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | Not started |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | Not started |
@@ -57,7 +57,7 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 1
+- Total plans completed: 2
 - Average duration: 5 min
 - Estimated plans: ~37
 
@@ -79,6 +79,10 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - Used Next.js 16.1.6 instead of 15.5 - create-next-app defaults to latest, and sales website has no API routes so API stability concern doesn't apply
 - Used app/ structure instead of src/app/ - create-next-app v16 default
 - Tailwind 4.0 CSS-first with @theme blocks, no tailwind.config.ts
+
+**12-02 Decisions:**
+- Created Providers client component wrapper for DirectionProvider (server components cannot use React context)
+- Established logical properties pattern (ps-/pe-/ms-/me- instead of pl-/pr-/ml-/mr-) for RTL support
 
 ### Pending Todos
 
@@ -108,10 +112,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-31
-Stopped at: Completed 12-01-PLAN.md
+Stopped at: Completed 12-02-PLAN.md
 Resume file: None
 
-**Next step:** Execute 12-02-PLAN.md (RTL support and Hebrew configuration)
+**Next step:** Execute 12-03-PLAN.md (Font and design tokens setup)
 
 ---
-*Updated: 2026-01-31 after 12-01-PLAN.md completion*
+*Updated: 2026-01-31 after 12-02-PLAN.md completion*
