@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 12 - Technical Foundation
-Plan: 02 of 5 complete
+Plan: 03 of 5 complete
 Status: In progress
-Last activity: 2026-01-31 - Completed 12-02-PLAN.md (RTL support and Hebrew configuration)
+Last activity: 2026-01-31 - Completed 12-03-PLAN.md (Font and animation config)
 
-Progress: [==>.................] 2/37 plans (v1.1)
+Progress: [===>.................] 3/37 plans (v1.1)
 
 ## Milestone Summary
 
@@ -40,7 +40,7 @@ Archives:
 
 | Phase | Name | Requirements | Status |
 |-------|------|--------------|--------|
-| 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | Plan 02 complete |
+| 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | Plan 03 complete |
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | Not started |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | Not started |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | Not started |
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 2
-- Average duration: 5 min
+- Total plans completed: 3
+- Average duration: 5.6 min
 - Estimated plans: ~37
 
 ## Accumulated Context
@@ -84,6 +84,11 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - Created Providers client component wrapper for DirectionProvider (server components cannot use React context)
 - Established logical properties pattern (ps-/pe-/ms-/me- instead of pl-/pr-/ml-/mr-) for RTL support
 
+**12-03 Decisions:**
+- Upgraded @radix-ui/react-direction to 1.1.2-rc for React 19 compatibility (createContext fix)
+- Centralized GSAP config in lib/gsapConfig.ts - all imports must go through this file
+- Provider nesting order: DirectionProvider > MotionProvider > SmoothScroll (RTL outermost)
+
 ### Pending Todos
 
 None.
@@ -106,16 +111,16 @@ None.
 - Native Hebrew copywriter for final copy review
 
 **Research Flags:**
-- Phase 14: GSAP ScrollTrigger + Lenis integration with Next.js 16 App Router
+- Phase 14: GSAP ScrollTrigger + Lenis integration with Next.js 16 App Router - RESOLVED in 12-03
 - Phase 18: Interactive demo platform comparison and embed performance
 
 ## Session Continuity
 
 Last session: 2026-01-31
-Stopped at: Completed 12-02-PLAN.md
+Stopped at: Completed 12-03-PLAN.md
 Resume file: None
 
-**Next step:** Execute 12-03-PLAN.md (Font and design tokens setup)
+**Next step:** Execute 12-04-PLAN.md (shadcn/ui and components setup)
 
 ---
-*Updated: 2026-01-31 after 12-02-PLAN.md completion*
+*Updated: 2026-01-31 after 12-03-PLAN.md completion*
