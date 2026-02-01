@@ -104,7 +104,7 @@ Plans:
   4. ✓ Animation variants (fadeInUp, staggerContainer, scaleIn) are GPU-accelerated
   5. ✓ Components pass WCAG 2.1 AA contrast requirements (4.5:1 for text)
   6. ✓ ScrollReveal component works with Intersection Observer + Motion
-**Plans**: 5 plans
+**Plans**: 6 plans
 **Completed**: 2026-02-01
 
 Plans:
@@ -113,6 +113,7 @@ Plans:
 - [x] 13-03-PLAN.md — Animation system (Motion variants, ScrollReveal, FadeIn, StaggerContainer)
 - [x] 13-04-PLAN.md — Custom atoms (Logo, Icon) and molecules (CTAGroup, StatItem, NavLink, FormField)
 - [x] 13-05-PLAN.md — Component showcase and visual verification
+- [ ] 13-06-PLAN.md — UAT gap closure (button touch targets, dark mode, stagger animation)
 
 ---
 
@@ -265,7 +266,7 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 |-------|-----------|----------------|--------|-----------|
 | 1-11 | v1.0 MVP | 67/67 | Complete | 2026-01-30 |
 | 12. Technical Foundation | v1.1 | 5/5 | Complete | 2026-01-31 |
-| 13. Design System | v1.1 | 5/5 | Complete | 2026-02-01 |
+| 13. Design System | v1.1 | 5/6 | Gap Closure | 2026-02-01 |
 | 14. Hero & First Impression | v1.1 | 0/4 | Not started | - |
 | 15. Social Proof & Trust | v1.1 | 0/5 | Not started | - |
 | 16. Offer & Objection Handling | v1.1 | 0/5 | Not started | - |
@@ -273,7 +274,7 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | 18. Emotional Journey & Demo | v1.1 | 0/4 | Not started | - |
 | 19. Performance, SEO & Certification | v1.1 | 0/6 | Not started | - |
 
-**v1.1 Total: 8 phases, ~37 plans, 98 requirements**
+**v1.1 Total: 8 phases, ~38 plans, 98 requirements**
 
 ---
 
