@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 Phase: 15 - Social Proof & Trust
 Plan: 04 of 5 complete (01, 02, 03, 04 done)
 Status: In progress
-Last activity: 2026-02-01 - Completed 15-04-PLAN.md (TeamSection, ContactSection)
+Last activity: 2026-02-01 - Re-executed 15-01-PLAN.md (TestimonialsCarousel)
 
 Progress: [===================>......] 20/38 plans (v1.1)
 
@@ -207,10 +207,17 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 15-04-PLAN.md
+Stopped at: Re-executed 15-01-PLAN.md
 Resume file: None
 
 **Next step:** Continue Phase 15: Plan 05 (homepage integration)
+
+**15-01 Re-execution:**
+- carousel.tsx created (shadcn/ui pattern with Embla)
+- TestimonialCard.tsx created with Testimonial type export
+- TestimonialsCarousel.tsx created with 3 placeholder testimonials
+- npm used for installation due to pnpm/OneDrive sync issues
+- TrustBadges type error fixed (Badge interface added)
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
@@ -253,5 +260,10 @@ Resume file: None
 - All contact methods use proper protocols (wa.me, tel:, mailto:)
 - Build verification blocked by OneDrive node_modules sync issue
 
+**15-01 Decisions:**
+- shadcn/ui Carousel pattern with Embla (native RTL support)
+- npm used for package installation (pnpm EPERM with OneDrive)
+- Motion hover effect on TestimonialCard for playful character
+
 ---
-*Updated: 2026-02-01 after 15-04-PLAN.md complete — TeamSection & ContactSection*
+*Updated: 2026-02-01 after 15-01-PLAN.md re-executed — TestimonialsCarousel*
