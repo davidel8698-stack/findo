@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 
 ## Current Position
 
-Phase: 14 - Hero & First Impression
-Plan: 05 of 5 complete
-Status: COMPLETE ✓ (human verified, 6/6 criteria passed)
-Last activity: 2026-02-01 - Phase 14 complete, ready for Phase 15
+Phase: 15 - Social Proof & Trust
+Plan: 03 of 5 complete
+Status: In progress
+Last activity: 2026-02-01 - Completed 15-03-PLAN.md (FloatingWidget, TrustBadges, GuaranteeBadge)
 
-Progress: [================>.........] 16/38 plans (v1.1)
+Progress: [=================>.......] 19/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -43,7 +43,7 @@ Archives:
 | 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | COMPLETE |
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | VERIFIED ✓ |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | COMPLETE ✓ |
-| 15 | Social Proof & Trust | PROOF-*, TRUST-* | Not started |
+| 15 | Social Proof & Trust | PROOF-*, TRUST-* | In progress (3/5 plans) |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | Not started |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | Not started |
 | 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | Not started |
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 15
-- Average duration: 6.8 min
+- Total plans completed: 19
+- Average duration: 7.2 min
 - Estimated plans: ~38
 
 ## Accumulated Context
@@ -159,6 +159,14 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - Outcome-focused headline "More customers. Less work." - 4 words, states benefit directly
 - Subheadline explains 24/7 automation with specific actions (reviews, content, leads)
 
+**15-03 Decisions (Social Proof Components):**
+- FloatingActivityWidget timing: 5s initial delay, 5s show / 3s hide cycle
+- Activity types: signup, review, lead (covers main platform value props)
+- RTL positioning: start-4 instead of left-4 for automatic RTL flip
+- SSL badge uses Shield icon fallback (always available, no missing image)
+- GuaranteeBadge variants: inline (near CTAs) and full (dedicated sections)
+- localStorage persistence key: "findo-activity-widget-dismissed"
+
 ### Pending Todos
 
 None.
@@ -187,10 +195,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Phase 14 complete
+Stopped at: Completed 15-03-PLAN.md
 Resume file: None
 
-**Next step:** Begin Phase 15: Social Proof & Trust
+**Next step:** Continue Phase 15: Plans 04-05 (testimonials, counters)
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
@@ -212,5 +220,11 @@ Resume file: None
 - Fixed headline: outcome-focused "More customers. Less work."
 - UAT tests 1, 2, 3, 8, 10, 12 should now pass on re-test
 
+**Phase 15 Progress (15-03):**
+- Created FloatingActivityWidget with 10 activities, RTL positioning
+- Created TrustBadges with 4 authority badges, hover effects
+- Created GuaranteeBadge with inline/full variants
+- Build verification blocked by OneDrive node_modules sync issue
+
 ---
-*Updated: 2026-02-01 after Phase 14 complete — Hero & First Impression VERIFIED ✓*
+*Updated: 2026-02-01 after 15-03-PLAN.md complete — Social Proof Components*
