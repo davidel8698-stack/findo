@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 15 - Social Proof & Trust
-Plan: 03 of 5 complete
+Plan: 03 of 5 complete (01, 02, 03 done)
 Status: In progress
-Last activity: 2026-02-01 - Completed 15-03-PLAN.md (FloatingWidget, TrustBadges, GuaranteeBadge)
+Last activity: 2026-02-01 - Completed 15-02-PLAN.md (VideoTestimonial, SocialProofCounters)
 
-Progress: [=================>.......] 19/38 plans (v1.1)
+Progress: [==================>.......] 19/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -159,6 +159,12 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - Outcome-focused headline "More customers. Less work." - 4 words, states benefit directly
 - Subheadline explains 24/7 automation with specific actions (reviews, content, leads)
 
+**15-02 Decisions (Video & Counters):**
+- Video uses burned-in subtitles per CONTEXT.md - no subtitle track in code
+- Spring physics stiffness:100 damping:30 for smooth counting (not bouncy)
+- Counter animation triggers once only (once: true) to avoid restart on scroll
+- Viewport detection: amount: 0.5 for video (50% visible), margin: -100px for counters
+
 **15-03 Decisions (Social Proof Components):**
 - FloatingActivityWidget timing: 5s initial delay, 5s show / 3s hide cycle
 - Activity types: signup, review, lead (covers main platform value props)
@@ -195,10 +201,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 15-03-PLAN.md
+Stopped at: Completed 15-02-PLAN.md
 Resume file: None
 
-**Next step:** Continue Phase 15: Plans 04-05 (testimonials, counters)
+**Next step:** Continue Phase 15: Plans 04-05 (testimonials carousel, integration)
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
@@ -220,6 +226,13 @@ Resume file: None
 - Fixed headline: outcome-focused "More customers. Less work."
 - UAT tests 1, 2, 3, 8, 10, 12 should now pass on re-test
 
+**Phase 15 Progress (15-02):**
+- Created VideoTestimonial with viewport autoplay using Motion useInView
+- Click-to-unmute toggle with VolumeX/Volume2 icons
+- Created SocialProofCounters with spring animation (useSpring + useTransform)
+- Hebrew locale formatting (he-IL) for number display
+- Build verification blocked by OneDrive node_modules sync issue
+
 **Phase 15 Progress (15-03):**
 - Created FloatingActivityWidget with 10 activities, RTL positioning
 - Created TrustBadges with 4 authority badges, hover effects
@@ -227,4 +240,4 @@ Resume file: None
 - Build verification blocked by OneDrive node_modules sync issue
 
 ---
-*Updated: 2026-02-01 after 15-03-PLAN.md complete — Social Proof Components*
+*Updated: 2026-02-01 after 15-02-PLAN.md complete — VideoTestimonial & SocialProofCounters*
