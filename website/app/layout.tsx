@@ -3,6 +3,15 @@ import { Heebo } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
+/**
+ * LCP Strategy:
+ * - Heebo font is preloaded via Next.js font optimization (preload: true)
+ * - Hero section uses pure CSS phone mockup (no images to preload)
+ * - Headline text is the LCP element, server-rendered for immediate visibility
+ * - ActivityFeed animation runs after initial paint (client-only, non-blocking)
+ * - No additional preload hints needed - hero is text + CSS only
+ */
+
 const heebo = Heebo({
   subsets: ["hebrew"],
   display: "swap",
