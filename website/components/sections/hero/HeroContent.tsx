@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import { CTAGroup } from "@/components/molecules";
 import { TrustSignal } from "./TrustSignal";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import { gsap, useGSAP } from "@/lib/gsapConfig";
 import { ActivityCard, type ActivityType } from "./ActivityCard";
 import { cn } from "@/lib/utils";
@@ -52,7 +52,17 @@ interface ActivityFeedProps {
 export function ActivityFeed({ className }: ActivityFeedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // GSAP animation - plays once on mount
+  // Remove will-change after animation completes (performance optimization)
+  const removeWillChange = useCallback(() => {
+    if (containerRef.current) {
+      const cards = containerRef.current.querySelectorAll(".activity-card");
+      cards.forEach((card) => {
+        (card as HTMLElement).style.willChange = "auto";
+      });
+    }
+  }, []);
+
+  // GSAP animation - plays once on mount, removes will-change after completion
   useGSAP(
     () => {
       const tl = gsap.timeline({
@@ -60,6 +70,7 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
           ease: "back.out(1.7)", // Bouncy spring per CONTEXT.md
           duration: 0.5,
         },
+        onComplete: removeWillChange, // Clean up will-change after animation
       });
 
       tl.from(".activity-card", {
@@ -74,7 +85,7 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
 
       // Animation plays once, holds final state (no repeat)
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [removeWillChange] }
   );
 
   return (
@@ -95,7 +106,8 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
           title={activity.title}
           subtitle={activity.subtitle}
           // Initial state: invisible (GSAP animates in)
-          className="opacity-0"
+          // will-change-transform hints GPU acceleration, removed after animation
+          className="opacity-0 will-change-transform"
         />
       ))}
     </div>

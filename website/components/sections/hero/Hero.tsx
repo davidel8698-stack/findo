@@ -14,6 +14,12 @@ interface HeroProps {
  * Content appears on the RIGHT side in RTL desktop (natural for Hebrew).
  * Phone mockup appears on the LEFT side in RTL desktop.
  * On mobile, visual appears first, then content below.
+ *
+ * LCP Strategy:
+ * - Headline text (h1) is the LCP element, rendered via server-side HeroContent
+ * - ActivityFeed animation runs after initial paint (client-only)
+ * - No images in hero - pure CSS phone mockup optimizes LCP
+ * - Animation uses GPU-accelerated properties (transform, opacity)
  */
 export function Hero({ className }: HeroProps) {
   return (
