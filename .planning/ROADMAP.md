@@ -117,25 +117,26 @@ Plans:
 
 ---
 
-### Phase 14: Hero & First Impression ✓
+### Phase 14: Hero & First Impression
 **Goal**: Above-fold experience that passes 5-second test with 100% accuracy - visitor knows what Findo is, what they can do, and who it's for
 **Depends on**: Phase 13
 **Requirements**: 5SEC-01, 5SEC-02, 5SEC-03, 5SEC-04, 5SEC-05, 5SEC-06, 5SEC-07, ACTION-01 (partial), ACTION-02
 **Success Criteria** (what must be TRUE):
-  1. ✓ Headline under 8 Hebrew words states core outcome (not features)
-  2. ✓ Hero visual shows product in action (animated WhatsApp conversation or review reply)
-  3. ✓ Primary CTA visible without scrolling with value-focused text
-  4. ✓ Trust signal (customer count or key metric) visible above fold
-  5. ✓ LCP under 2.5 seconds despite hero animation
-  6. ✓ 3/3 testers correctly identify what Findo is, what they can do, and who it's for
-**Plans**: 4 plans
-**Completed**: 2026-02-01
+  1. Headline under 8 Hebrew words states core outcome (not features)
+  2. Hero visual shows product in action (animated WhatsApp conversation or review reply)
+  3. Primary CTA visible without scrolling with value-focused text
+  4. Trust signal (customer count or key metric) visible above fold
+  5. LCP under 2.5 seconds despite hero animation
+  6. 3/3 testers correctly identify what Findo is, what they can do, and who it's for
+**Plans**: 5 plans
+**Status**: UAT gap closure in progress
 
 Plans:
 - [x] 14-01-PLAN.md — Hero section layout with RTL grid, phone mockup, and headline/CTA content
 - [x] 14-02-PLAN.md — Activity feed animation with GSAP timeline (cards showing automated actions)
 - [x] 14-03-PLAN.md — Trust signal, sticky mobile CTA, and homepage integration
 - [x] 14-04-PLAN.md — LCP optimization and human verification checkpoint
+- [ ] 14-05-PLAN.md — UAT gap closure (activity feed animation fix, headline clarity)
 
 ---
 
@@ -268,14 +269,14 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | 1-11 | v1.0 MVP | 67/67 | Complete | 2026-01-30 |
 | 12. Technical Foundation | v1.1 | 5/5 | Complete | 2026-01-31 |
 | 13. Design System | v1.1 | 6/6 | Complete | 2026-02-01 |
-| 14. Hero & First Impression | v1.1 | 4/4 | Complete | 2026-02-01 |
+| 14. Hero & First Impression | v1.1 | 4/5 | Gap closure | - |
 | 15. Social Proof & Trust | v1.1 | 0/5 | Not started | - |
 | 16. Offer & Objection Handling | v1.1 | 0/5 | Not started | - |
 | 17. Conversion Flow & Forms | v1.1 | 0/4 | Not started | - |
 | 18. Emotional Journey & Demo | v1.1 | 0/4 | Not started | - |
 | 19. Performance, SEO & Certification | v1.1 | 0/6 | Not started | - |
 
-**v1.1 Total: 8 phases, ~38 plans, 98 requirements**
+**v1.1 Total: 8 phases, ~39 plans, 98 requirements**
 
 ---
 
