@@ -65,25 +65,77 @@ function AnimatedCounter({
   );
 }
 
+interface StaticMetricProps {
+  /** Static value like "24/7" */
+  value: string;
+  /** Hebrew label below the value */
+  label: string;
+  /** Additional CSS classes */
+  className?: string;
+}
+
+/**
+ * StaticMetric - Fade-in display for non-numeric metrics
+ *
+ * Used for values like "24/7" that cannot be animated with counting.
+ * Uses ScrollReveal for fade-in animation when scrolled into view.
+ */
+function StaticMetric({ value, label, className }: StaticMetricProps) {
+  return (
+    <div className={cn("text-center", className)}>
+      <div className="flex items-baseline justify-center gap-1">
+        <span className="text-4xl md:text-5xl font-bold text-primary">
+          {value}
+        </span>
+      </div>
+      <p className="text-sm md:text-base text-muted-foreground mt-2">{label}</p>
+    </div>
+  );
+}
+
+/**
+ * Metric type - either animated (numeric) or static (string)
+ */
+type Metric =
+  | {
+      type: "animated";
+      target: number;
+      suffix: string;
+      label: string;
+    }
+  | {
+      type: "static";
+      value: string;
+      label: string;
+    };
+
 /**
  * Metrics data for social proof counters
  * Values sourced from PROOF-06 requirements
  */
-const metrics = [
+const metrics: Metric[] = [
   {
+    type: "animated",
     target: 573,
     suffix: "+",
     label: "לקוחות פעילים",
   },
   {
+    type: "animated",
     target: 12400,
     suffix: "+",
     label: "ביקורות שנאספו",
   },
   {
+    type: "animated",
     target: 8500,
     suffix: "+",
     label: "לידים חדשים",
+  },
+  {
+    type: "static",
+    value: "24/7",
+    label: "זמינות מלאה",
   },
 ];
 
@@ -95,7 +147,8 @@ interface SocialProofCountersProps {
 /**
  * SocialProofCounters - Section displaying key business metrics
  *
- * Shows animated counters for customers, reviews, and leads.
+ * Shows animated counters for customers, reviews, and leads,
+ * plus static 24/7 availability metric.
  * Requirements:
  * - PROOF-06: Display impressive metrics to build credibility
  */
@@ -115,14 +168,18 @@ export function SocialProofCounters({ className }: SocialProofCountersProps) {
           </h2>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {metrics.map((metric, index) => (
             <ScrollReveal key={metric.label} delay={index * 0.1}>
-              <AnimatedCounter
-                target={metric.target}
-                suffix={metric.suffix}
-                label={metric.label}
-              />
+              {metric.type === "animated" ? (
+                <AnimatedCounter
+                  target={metric.target}
+                  suffix={metric.suffix}
+                  label={metric.label}
+                />
+              ) : (
+                <StaticMetric value={metric.value} label={metric.label} />
+              )}
             </ScrollReveal>
           ))}
         </div>
