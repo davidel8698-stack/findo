@@ -73,15 +73,25 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
         onComplete: removeWillChange, // Clean up will-change after animation
       });
 
-      tl.from(".activity-card", {
-        y: 40,
-        opacity: 0,
-        scale: 0.9,
-        stagger: {
-          each: 0.3,
-          from: "start",
+      tl.fromTo(
+        ".activity-card",
+        {
+          // FROM values (start state)
+          y: 40,
+          opacity: 0,
+          scale: 0.9,
         },
-      });
+        {
+          // TO values (end state)
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          stagger: {
+            each: 0.3,
+            from: "start",
+          },
+        }
+      );
 
       // Animation plays once, holds final state (no repeat)
     },
