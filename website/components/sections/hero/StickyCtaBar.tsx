@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 interface StickyCtaBarProps {
   className?: string;
+  formId?: string;
 }
 
 /**
@@ -13,7 +14,7 @@ interface StickyCtaBarProps {
  * Shows on mobile only (md:hidden) with frosted glass effect.
  * Includes iOS safe area support for notched devices.
  */
-export function StickyCtaBar({ className }: StickyCtaBarProps) {
+export function StickyCtaBar({ className, formId = "hero-form" }: StickyCtaBarProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -25,6 +26,17 @@ export function StickyCtaBar({ className }: StickyCtaBarProps) {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Scroll to form when CTA is clicked
+  const handleClick = () => {
+    const formElement = document.getElementById(formId);
+    if (formElement) {
+      formElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
 
   // Don't render when not visible
   if (!isVisible) {
@@ -47,7 +59,7 @@ export function StickyCtaBar({ className }: StickyCtaBarProps) {
         className
       )}
     >
-      <Button size="lg" className="w-full">
+      <Button size="lg" className="w-full" onClick={handleClick}>
         התחל בחינם
       </Button>
     </div>
