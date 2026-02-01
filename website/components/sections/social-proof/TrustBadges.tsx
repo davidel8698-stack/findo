@@ -2,11 +2,18 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Shield } from "lucide-react";
 
+interface Badge {
+  src: string;
+  alt: string;
+  fallbackText: string;
+  useIcon?: boolean;
+}
+
 /**
  * Badge configuration for trust/authority indicators.
  * Note: Real badge SVGs needed in production - these are placeholder paths.
  */
-const badges = [
+const badges: Badge[] = [
   {
     src: "/badges/google-partner.svg",
     alt: "Google Partner",
@@ -28,7 +35,7 @@ const badges = [
     fallbackText: "SSL",
     useIcon: true, // Use Shield icon as fallback
   },
-] as const;
+];
 
 interface TrustBadgesProps {
   className?: string;
