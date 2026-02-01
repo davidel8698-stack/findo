@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 15 - Social Proof & Trust
-Plan: 03 of 5 complete (01, 02, 03 done)
+Plan: 04 of 5 complete (01, 02, 03, 04 done)
 Status: In progress
-Last activity: 2026-02-01 - Completed 15-02-PLAN.md (VideoTestimonial, SocialProofCounters)
+Last activity: 2026-02-01 - Completed 15-04-PLAN.md (TeamSection, ContactSection)
 
-Progress: [==================>.......] 19/38 plans (v1.1)
+Progress: [===================>......] 20/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -43,7 +43,7 @@ Archives:
 | 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | COMPLETE |
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | VERIFIED ✓ |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | COMPLETE ✓ |
-| 15 | Social Proof & Trust | PROOF-*, TRUST-* | In progress (3/5 plans) |
+| 15 | Social Proof & Trust | PROOF-*, TRUST-* | In progress (4/5 plans) |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | Not started |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | Not started |
 | 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | Not started |
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 19
-- Average duration: 7.2 min
+- Total plans completed: 20
+- Average duration: 7.5 min
 - Estimated plans: ~38
 
 ## Accumulated Context
@@ -173,6 +173,12 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - GuaranteeBadge variants: inline (near CTAs) and full (dedicated sections)
 - localStorage persistence key: "findo-activity-widget-dismissed"
 
+**15-04 Decisions (Team & Contact):**
+- Founder story as quote-style blockquote with large quotation mark decoration
+- WhatsApp highlighted as primary contact method (green accent, "preferred" badge)
+- Contact values use dir="ltr" for proper phone/email display in RTL context
+- Business hours note added below contact cards for transparency
+
 ### Pending Todos
 
 None.
@@ -201,10 +207,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 15-02-PLAN.md
+Stopped at: Completed 15-04-PLAN.md
 Resume file: None
 
-**Next step:** Continue Phase 15: Plans 04-05 (testimonials carousel, integration)
+**Next step:** Continue Phase 15: Plan 05 (homepage integration)
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
@@ -239,5 +245,13 @@ Resume file: None
 - Created GuaranteeBadge with inline/full variants
 - Build verification blocked by OneDrive node_modules sync issue
 
+**Phase 15 Progress (15-04):**
+- Created TeamSection with founder photo, name, role, and personal story
+- Story explains pain point from personal experience (why Findo exists)
+- Created ContactSection with WhatsApp, phone, and email cards
+- WhatsApp highlighted as primary (green accent, badge)
+- All contact methods use proper protocols (wa.me, tel:, mailto:)
+- Build verification blocked by OneDrive node_modules sync issue
+
 ---
-*Updated: 2026-02-01 after 15-02-PLAN.md complete — VideoTestimonial & SocialProofCounters*
+*Updated: 2026-02-01 after 15-04-PLAN.md complete — TeamSection & ContactSection*
