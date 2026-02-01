@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 
 ## Current Position
 
-Phase: 13 - Design System
-Plan: 06 of 6 complete (gap closure plan added)
-Status: Phase VERIFIED ✓ (6/6 criteria, all gaps closed)
-Last activity: 2026-02-01 - Completed 13-06-PLAN.md (UAT Gap Closure)
+Phase: 14 - Hero & First Impression
+Plan: 02 of 6 complete
+Status: In progress
+Last activity: 2026-02-01 - Completed 14-02-PLAN.md (Activity Feed)
 
-Progress: [===========>.............] 11/38 plans (v1.1)
+Progress: [============>............] 13/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -42,7 +42,7 @@ Archives:
 |-------|------|--------------|--------|
 | 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | COMPLETE |
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | VERIFIED ✓ |
-| 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | Not started |
+| 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | In progress (2/6) |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | Not started |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | Not started |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | Not started |
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 11
-- Average duration: 7.5 min
+- Total plans completed: 13
+- Average duration: 7.2 min
 - Estimated plans: ~38
 
 ## Accumulated Context
@@ -130,6 +130,12 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - ThemeProvider removes enableSystem to prevent light mode override
 - StatItem wrapped in m.div with fadeInUp for stagger container compatibility
 
+**14-02 Decisions (Activity Feed):**
+- Activity type union for strict type mapping (review | post | lead | call)
+- back.out(1.7) easing for bouncy personality matching CONTEXT.md
+- Cards start with opacity-0, GSAP animates from that state
+- GSAP class targeting: Use semantic class names (activity-card) for selectors
+
 ### Pending Todos
 
 None.
@@ -158,10 +164,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 13-06-PLAN.md (UAT Gap Closure)
+Stopped at: Completed 14-02-PLAN.md (Activity Feed)
 Resume file: None
 
-**Next step:** Begin Phase 14: Hero & First Impression
+**Next step:** Continue Phase 14: Plans 03-06
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
@@ -172,5 +178,8 @@ Resume file: None
 - 3 UAT gaps closed (button 48px, dark mode, stagger)
 - All requirements satisfied (MOBILE-02, MOBILE-04, MOBILE-07, A11Y-01/02/03, TRUST-04)
 
+**Phase 14 Progress:**
+- 14-02 complete: ActivityCard and ActivityFeed with GSAP animation
+
 ---
-*Updated: 2026-02-01 after 13-06-PLAN.md completion - Phase 13 Design System VERIFIED ✓*
+*Updated: 2026-02-01 after 14-02-PLAN.md completion - Activity Feed components*
