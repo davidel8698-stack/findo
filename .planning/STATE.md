@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 17 - Conversion Flow
-Plan: 02 of 4 complete
+Plan: 03 of 4 complete
 Status: In progress
-Last activity: 2026-02-01 - Completed 17-02-PLAN.md (Lead Capture Form)
+Last activity: 2026-02-01 - Completed 17-03-PLAN.md (Signup Section Integration)
 
-Progress: [==============================>] 30/38 plans (v1.1)
+Progress: [================================>] 31/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -45,7 +45,7 @@ Archives:
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | COMPLETE ✓ |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | VERIFIED ✓ |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | VERIFIED (6/6) |
-| 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | In progress (2/4) |
+| 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | In progress (3/4) |
 | 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | Not started |
 | 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | Not started |
 
@@ -207,10 +207,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 17-02-PLAN.md (Lead Capture Form)
+Stopped at: Completed 17-03-PLAN.md (Signup Section Integration)
 Resume file: None
 
-**Next step:** 17-03-PLAN.md - Signup Section Integration
+**Next step:** 17-04-PLAN.md - Verification & UAT
 
 **15-06 Gap Closure (UAT):**
 - Added 24/7 availability metric to SocialProofCounters (StaticMetric component)
@@ -344,5 +344,12 @@ Resume file: None
 - Server actions in app/actions.ts with Hebrew error messages
 - useActionState hook from React 19 for form handling
 
+**17-03 Decisions (Signup Section Integration):**
+- Hero form as separate section below Hero component (Hero uses min-h-[100dvh])
+- 4 CTAs at strategic high-intent points (hero, after proof, after pricing, after FAQ)
+- Negative margin (-mt-16) for hero form placement creates visual overlap
+- AnimatePresence mode="wait" for smooth form/success transitions
+- scrollIntoView with block: center for optimal scroll positioning
+
 ---
-*Updated: 2026-02-01 after 17-02 complete — Lead Capture Form*
+*Updated: 2026-02-01 after 17-03 complete — Signup Section Integration*
