@@ -128,13 +128,13 @@ Plans:
   4. Trust signal (customer count or key metric) visible above fold
   5. LCP under 2.5 seconds despite hero animation
   6. 3/3 testers correctly identify what Findo is, what they can do, and who it's for
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 14-01: Hero section layout with GSAP ScrollTrigger animation
-- [ ] 14-02: Headline, subheadline, and hero visual implementation
-- [ ] 14-03: Above-fold CTA and trust signal
-- [ ] 14-04: Hero performance optimization (LCP, preload, lazy-load)
+- [ ] 14-01-PLAN.md — Hero section layout with RTL grid, phone mockup, and headline/CTA content
+- [ ] 14-02-PLAN.md — Activity feed animation with GSAP timeline (cards showing automated actions)
+- [ ] 14-03-PLAN.md — Trust signal, sticky mobile CTA, and homepage integration
+- [ ] 14-04-PLAN.md — LCP optimization and human verification checkpoint
 
 ---
 
@@ -267,7 +267,7 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | 1-11 | v1.0 MVP | 67/67 | Complete | 2026-01-30 |
 | 12. Technical Foundation | v1.1 | 5/5 | Complete | 2026-01-31 |
 | 13. Design System | v1.1 | 6/6 | Complete | 2026-02-01 |
-| 14. Hero & First Impression | v1.1 | 0/4 | Not started | - |
+| 14. Hero & First Impression | v1.1 | 0/4 | Planned | - |
 | 15. Social Proof & Trust | v1.1 | 0/5 | Not started | - |
 | 16. Offer & Objection Handling | v1.1 | 0/5 | Not started | - |
 | 17. Conversion Flow & Forms | v1.1 | 0/4 | Not started | - |
