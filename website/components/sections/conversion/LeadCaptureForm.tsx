@@ -1,0 +1,80 @@
+"use client";
+
+import { useEffect, useActionState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { PhoneInput } from "./PhoneInput";
+import { submitLead } from "@/app/actions";
+import { cn } from "@/lib/utils";
+
+interface LeadCaptureFormProps {
+  onSuccess: () => void;
+  className?: string;
+}
+
+/**
+ * 2-field lead capture form with server action submission
+ *
+ * Features:
+ * - Name and phone fields only (minimal friction)
+ * - Uses React 19 useActionState for form handling
+ * - Loading state during submission (shimmer button)
+ * - Warm Hebrew error messages
+ * - Calls onSuccess when submission succeeds
+ */
+export function LeadCaptureForm({ onSuccess, className }: LeadCaptureFormProps) {
+  const [state, formAction, isPending] = useActionState(submitLead, {
+    success: false,
+    error: null,
+  });
+
+  // Call onSuccess when form successfully submits
+  useEffect(() => {
+    if (state.success) {
+      onSuccess();
+    }
+  }, [state.success, onSuccess]);
+
+  return (
+    <form
+      action={formAction}
+      className={cn("flex flex-col gap-4 max-w-sm", className)}
+    >
+      {/* Name field */}
+      <div>
+        <Input
+          name="name"
+          type="text"
+          placeholder="השם שלך"
+          required
+          disabled={isPending}
+          autoComplete="name"
+        />
+      </div>
+
+      {/* Phone field */}
+      <PhoneInput name="phone" disabled={isPending} />
+
+      {/* Error message (warm style, not harsh) */}
+      {state.error && (
+        <p className="text-sm text-amber-600 dark:text-amber-400">
+          {state.error}
+        </p>
+      )}
+
+      {/* Submit button */}
+      <Button
+        type="submit"
+        loading={isPending}
+        className="w-full"
+      >
+        {isPending ? "שולח..." : "התחל עכשיו"}
+      </Button>
+
+      {/* Time expectation (ACTION-03 requirement) */}
+      <p className="text-sm text-muted-foreground text-center">
+        תוך 2 דקות תהיה מחובר
+      </p>
+    </form>
+  );
+}
