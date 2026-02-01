@@ -1,2 +1,3 @@
 export { PhoneMockup } from "./PhoneMockup";
-// HeroContent and Hero will be added in subsequent tasks
+export { HeroContent } from "./HeroContent";
+// Hero will be added in the next task
