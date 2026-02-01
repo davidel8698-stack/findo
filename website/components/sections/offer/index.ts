@@ -5,3 +5,4 @@ export {
 } from "./GuaranteeBadges";
 export { ZeroRiskSummary, type ZeroRiskSummaryProps } from "./ZeroRiskSummary";
 export { ROICalculator } from "./ROICalculator";
+export { FAQSection } from "./FAQSection";
