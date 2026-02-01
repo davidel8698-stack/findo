@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/atoms";
 import { type LucideIcon } from "lucide-react";
+import { m } from "motion/react";
+import { fadeInUp } from "@/components/motion/variants";
 
 interface StatItemProps {
   value: string | number;
@@ -19,7 +21,8 @@ export function StatItem({
   featured = false,
 }: StatItemProps) {
   return (
-    <div
+    <m.div
+      variants={fadeInUp}
       className={cn(
         "flex flex-col items-center text-center gap-1",
         featured && "scale-110",
@@ -45,6 +48,6 @@ export function StatItem({
       <span className="text-sm text-muted-foreground">
         {label}
       </span>
-    </div>
+    </m.div>
   );
 }
