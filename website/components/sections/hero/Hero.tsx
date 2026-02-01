@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { HeroContent } from "./HeroContent";
 import { PhoneMockup } from "./PhoneMockup";
+import { ActivityFeed } from "./ActivityFeed";
 
 interface HeroProps {
   className?: string;
@@ -45,11 +46,7 @@ export function Hero({ className }: HeroProps) {
           {/* Visual - order-1 on mobile (above content), lg:order-2 (left side in RTL) */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-start">
             <PhoneMockup>
-              {/* Placeholder for activity cards - will be added in Plan 02 */}
-              <div className="flex h-full flex-col items-center justify-center text-center text-muted-foreground">
-                <span className="text-sm">Activity Feed</span>
-                <span className="text-xs">(Plan 02)</span>
-              </div>
+              <ActivityFeed />
             </PhoneMockup>
           </div>
         </div>

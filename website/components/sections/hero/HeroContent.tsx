@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { CTAGroup } from "@/components/molecules";
+import { TrustSignal } from "./TrustSignal";
 import { ArrowLeft } from "lucide-react";
 
 interface HeroContentProps {
@@ -58,6 +59,13 @@ export function HeroContent({ className }: HeroContentProps) {
           className="justify-center lg:justify-start"
         />
       </div>
+
+      {/* Trust Signal - subtle social proof below CTA */}
+      <TrustSignal
+        value="573"
+        label="עסקים סומכים על Findo"
+        className="mt-6 justify-center lg:justify-start"
+      />
     </div>
   );
 }
