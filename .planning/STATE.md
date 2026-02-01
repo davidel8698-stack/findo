@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 
 ## Current Position
 
-Phase: 15 - Social Proof & Trust
-Plan: 06 of 6 complete
-Status: VERIFIED ✓ (24/24 must-haves, gap closure complete)
-Last activity: 2026-02-01 - Phase 15 complete with gap closure, ready for Phase 16
+Phase: 16 - Offer & Objection Handling
+Plan: 01 of 6 complete
+Status: In progress
+Last activity: 2026-02-01 - Completed 16-01-PLAN.md (UI primitives & foundation)
 
-Progress: [======================>...] 22/38 plans (v1.1)
+Progress: [=======================>..] 23/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -44,7 +44,7 @@ Archives:
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | VERIFIED ✓ |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | COMPLETE ✓ |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | VERIFIED ✓ |
-| 16 | Offer & Objection | OFFER-*, OBJ-* | Not started |
+| 16 | Offer & Objection | OFFER-*, OBJ-* | In progress (1/6) |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | Not started |
 | 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | Not started |
 | 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | Not started |
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 21
-- Average duration: 7.8 min
+- Total plans completed: 23
+- Average duration: 7.6 min
 - Estimated plans: ~38
 
 ## Accumulated Context
@@ -207,10 +207,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 15-06-PLAN.md (UAT gap closure)
+Stopped at: Completed 16-01-PLAN.md (UI primitives & foundation)
 Resume file: None
 
-**Next step:** Begin Phase 16: Offer & Objection Handling
+**Next step:** Execute 16-02-PLAN.md (ROI Calculator)
 
 **15-06 Gap Closure (UAT):**
 - Added 24/7 availability metric to SocialProofCounters (StaticMetric component)
@@ -290,5 +290,11 @@ Resume file: None
 - Icons as primary display for all trust badges (not fallback)
 - Consistent 30-day messaging across inline and full guarantee variants
 
+**16-01 Decisions (UI Primitives):**
+- CSS keyframes for accordion animation (better performance, no layout shift)
+- dir="rtl" hardcoded on Slider.Root (prevents wrong direction in RTL context)
+- Thumb hover:scale-110 active:scale-95 for playful feel per CONTEXT.md
+- npm used for Radix package installation (consistent with OneDrive workaround)
+
 ---
-*Updated: 2026-02-01 after Phase 15 gap closure verified — Phase 15 COMPLETE ✓*
+*Updated: 2026-02-01 after 16-01 complete — Phase 16 in progress (1/6)*
