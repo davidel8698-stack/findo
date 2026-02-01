@@ -130,6 +130,12 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - ThemeProvider removes enableSystem to prevent light mode override
 - StatItem wrapped in m.div with fadeInUp for stagger container compatibility
 
+**14-01 Decisions (Hero Layout):**
+- Hebrew headline "Your business works. You don't have to." (problem-focused, under 8 words)
+- RTL grid ordering: content order-2/lg:order-1, visual order-1/lg:order-2
+- 100dvh for mobile-safe full viewport height
+- ArrowLeft icon for RTL CTA (flips automatically via rtlFlip prop)
+
 **14-02 Decisions (Activity Feed):**
 - Activity type union for strict type mapping (review | post | lead | call)
 - back.out(1.7) easing for bouncy personality matching CONTEXT.md
@@ -179,6 +185,7 @@ Resume file: None
 - All requirements satisfied (MOBILE-02, MOBILE-04, MOBILE-07, A11Y-01/02/03, TRUST-04)
 
 **Phase 14 Progress:**
+- 14-01 complete: Hero section layout with RTL-native grid, HeroContent, PhoneMockup
 - 14-02 complete: ActivityCard and ActivityFeed with GSAP animation
 
 ---
