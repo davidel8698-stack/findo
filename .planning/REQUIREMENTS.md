@@ -76,34 +76,34 @@ Referral provides initial trust. Website must AMPLIFY with overwhelming evidence
 
 ### Requirements
 
-- [ ] **PROOF-01**: Testimonial #1 - Full attribution
+- [x] **PROOF-01**: Testimonial #1 - Full attribution
   - Real name, real photo, real business name
   - Specific metric: "הגדלנו את כמות הלידים ב-40%"
   - What nearly stopped them: addresses common objection
   - Hebrew, conversational tone
 
-- [ ] **PROOF-02**: Testimonial #2 - Different business type
+- [x] **PROOF-02**: Testimonial #2 - Different business type
   - Different industry than #1
   - Different benefit emphasized
   - Shows breadth of applicability
 
-- [ ] **PROOF-03**: Testimonial #3 - Emotional outcome
+- [x] **PROOF-03**: Testimonial #3 - Emotional outcome
   - Focuses on feeling, not just metrics
   - "סוף סוף יש לי שקט נפשי" (Finally I have peace of mind)
   - Addresses the REAL reason they want this
 
-- [ ] **PROOF-04**: Video testimonial
+- [x] **PROOF-04**: Video testimonial
   - 30-60 seconds maximum
   - Real customer, real location (their business)
   - Hebrew with subtitles
   - Autoplay muted with sound icon visible
 
-- [ ] **PROOF-05**: Real-time proof element
+- [x] **PROOF-05**: Real-time proof element
   - Live counter: "לידים שנתפסו השבוע: X"
   - Or: Recent activity feed showing anonymized wins
   - Creates FOMO and social proof simultaneously
 
-- [ ] **PROOF-06**: Metrics that matter to SMB owners
+- [x] **PROOF-06**: Metrics that matter to SMB owners
   - NOT vanity metrics (users, downloads)
   - Business metrics: leads captured, reviews generated, calls saved
   - Specific numbers, not percentages without context
@@ -113,7 +113,7 @@ Referral provides initial trust. Website must AMPLIFY with overwhelming evidence
   - Headline visible: "איך [עסק] הכפיל את הלידים שלו ב-3 חודשים"
   - Link to full story (or expand in place)
 
-- [ ] **PROOF-08**: "As seen in" or authority signals
+- [x] **PROOF-08**: "As seen in" or authority signals
   - If no media coverage yet: industry association logos
   - Or: "מאושר על ידי" certification badges
   - Or: Partner logos (Voicenter, Greeninvoice)
@@ -296,19 +296,19 @@ Every element on the page must REINFORCE trust, never undermine it.
 
 ### Requirements
 
-- [ ] **TRUST-01**: Contact information prominent
+- [x] **TRUST-01**: Contact information prominent
   - WhatsApp button (Israeli expectation)
   - Phone number in header or footer
   - Email address available
   - Physical address or business registration
 
-- [ ] **TRUST-02**: Real team presence
+- [x] **TRUST-02**: Real team presence
   - "About" or "Who we are" section
   - Real photos, not stock
   - Names and roles
   - Story of why Findo exists
 
-- [ ] **TRUST-03**: Security signals
+- [x] **TRUST-03**: Security signals
   - SSL certificate (https)
   - Payment security badges (when relevant)
   - "Your data is safe" messaging
@@ -319,7 +319,7 @@ Every element on the page must REINFORCE trust, never undermine it.
   - No broken links or images
   - Fast loading
 
-- [ ] **TRUST-05**: Social validation
+- [x] **TRUST-05**: Social validation
   - Customer count if significant
   - Reviews/ratings if available
   - Partner logos
@@ -331,13 +331,13 @@ Every element on the page must REINFORCE trust, never undermine it.
   - Cookie consent (if required)
   - Accessibility statement
 
-- [ ] **TRUST-07**: Guarantee visibility
+- [x] **TRUST-07**: Guarantee visibility
   - Near every CTA
   - In footer
   - On pricing section
   - Named and specific
 
-- [ ] **TRUST-08**: No dark patterns
+- [x] **TRUST-08**: No dark patterns
   - No confirm shaming
   - No hidden costs
   - No fake urgency
@@ -703,14 +703,14 @@ For 50% conversion, we need EXEMPLARY certification (95+), not just passing (90+
 | 5SEC-05 | Phase 14: Hero & First Impression | Complete |
 | 5SEC-06 | Phase 14: Hero & First Impression | Complete |
 | 5SEC-07 | Phase 14: Hero & First Impression | Complete |
-| PROOF-01 | Phase 15: Social Proof & Trust | Pending |
-| PROOF-02 | Phase 15: Social Proof & Trust | Pending |
-| PROOF-03 | Phase 15: Social Proof & Trust | Pending |
-| PROOF-04 | Phase 15: Social Proof & Trust | Pending |
-| PROOF-05 | Phase 15: Social Proof & Trust | Pending |
-| PROOF-06 | Phase 15: Social Proof & Trust | Pending |
-| PROOF-07 | Phase 15: Social Proof & Trust | Pending |
-| PROOF-08 | Phase 15: Social Proof & Trust | Pending |
+| PROOF-01 | Phase 15: Social Proof & Trust | Complete |
+| PROOF-02 | Phase 15: Social Proof & Trust | Complete |
+| PROOF-03 | Phase 15: Social Proof & Trust | Complete |
+| PROOF-04 | Phase 15: Social Proof & Trust | Complete |
+| PROOF-05 | Phase 15: Social Proof & Trust | Complete |
+| PROOF-06 | Phase 15: Social Proof & Trust | Complete |
+| PROOF-07 | Phase 15: Social Proof & Trust | Deferred |
+| PROOF-08 | Phase 15: Social Proof & Trust | Complete |
 | OFFER-01 | Phase 16: Offer & Objection Handling | Pending |
 | OFFER-02 | Phase 16: Offer & Objection Handling | Pending |
 | OFFER-03 | Phase 16: Offer & Objection Handling | Pending |
@@ -735,14 +735,14 @@ For 50% conversion, we need EXEMPLARY certification (95+), not just passing (90+
 | OBJ-06 | Phase 16: Offer & Objection Handling | Pending |
 | OBJ-07 | Phase 16: Offer & Objection Handling | Pending |
 | OBJ-08 | Phase 16: Offer & Objection Handling | Pending |
-| TRUST-01 | Phase 15: Social Proof & Trust | Pending |
-| TRUST-02 | Phase 15: Social Proof & Trust | Pending |
-| TRUST-03 | Phase 15: Social Proof & Trust | Pending |
+| TRUST-01 | Phase 15: Social Proof & Trust | Complete |
+| TRUST-02 | Phase 15: Social Proof & Trust | Complete |
+| TRUST-03 | Phase 15: Social Proof & Trust | Complete |
 | TRUST-04 | Phase 13: Design System | Complete |
-| TRUST-05 | Phase 15: Social Proof & Trust | Pending |
-| TRUST-06 | Phase 15: Social Proof & Trust | Pending |
-| TRUST-07 | Phase 15: Social Proof & Trust | Pending |
-| TRUST-08 | Phase 15: Social Proof & Trust | Pending |
+| TRUST-05 | Phase 15: Social Proof & Trust | Complete |
+| TRUST-06 | Phase 16: Offer & Objection | Deferred |
+| TRUST-07 | Phase 15: Social Proof & Trust | Complete |
+| TRUST-08 | Phase 15: Social Proof & Trust | Complete |
 | EMOTION-01 | Phase 18: Emotional Journey & Demo | Pending |
 | EMOTION-02 | Phase 18: Emotional Journey & Demo | Pending |
 | EMOTION-03 | Phase 18: Emotional Journey & Demo | Pending |
