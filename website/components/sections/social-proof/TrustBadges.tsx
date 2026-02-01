@@ -1,60 +1,57 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Shield } from "lucide-react";
+import { Shield, BadgeCheck, CreditCard, Award } from "lucide-react";
 
 interface Badge {
-  src: string;
+  icon: React.ComponentType<{ className?: string }>;
+  text: string;
   alt: string;
-  fallbackText: string;
-  useIcon?: boolean;
 }
 
 /**
  * Badge configuration for trust/authority indicators.
- * Note: Real badge SVGs needed in production - these are placeholder paths.
+ * Uses Lucide icons for consistent display (no missing image issues).
  */
 const badges: Badge[] = [
   {
-    src: "/badges/google-partner.svg",
+    icon: Award,
+    text: "Google Partner",
     alt: "Google Partner",
-    fallbackText: "Google Partner",
   },
   {
-    src: "/badges/meta-partner.svg",
+    icon: BadgeCheck,
+    text: "Meta Partner",
     alt: "Meta Partner",
-    fallbackText: "Meta Partner",
   },
   {
-    src: "/badges/payplus.svg",
+    icon: CreditCard,
+    text: "PayPlus",
     alt: "PayPlus - תשלום מאובטח",
-    fallbackText: "PayPlus",
   },
   {
-    src: "/badges/ssl-secure.svg",
+    icon: Shield,
+    text: "SSL Secure",
     alt: "SSL Secure - אתר מאובטח",
-    fallbackText: "SSL",
-    useIcon: true, // Use Shield icon as fallback
   },
 ];
 
 interface TrustBadgesProps {
   className?: string;
-  /** Badge size - affects image dimensions */
+  /** Badge size - affects icon dimensions */
   size?: "sm" | "md";
 }
 
 // Size configurations
 const sizeConfig = {
-  sm: { width: 80, height: 28, gap: "gap-4", text: "text-xs" },
-  md: { width: 120, height: 40, gap: "gap-6", text: "text-sm" },
+  sm: { gap: "gap-4", text: "text-xs", iconSize: "h-4 w-4" },
+  md: { gap: "gap-6", text: "text-sm", iconSize: "h-5 w-5" },
 } as const;
 
 /**
- * Trust badges showing authority and partner logos.
- * Displays partner/authority indicators with grayscale-to-color hover effect.
+ * Trust badges showing authority and partner indicators.
+ * Displays icon-based badges with grayscale-to-color hover effect.
  *
- * Note: In production, replace placeholder SVGs in /public/badges/
- * with actual partner badge images.
+ * Uses Lucide icons for all badges to ensure consistent display
+ * without relying on external image files.
  */
 export function TrustBadges({ className, size = "md" }: TrustBadgesProps) {
   const config = sizeConfig[size];
@@ -73,37 +70,15 @@ export function TrustBadges({ className, size = "md" }: TrustBadgesProps) {
           key={badge.alt}
           className="relative grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
         >
-          {badge.useIcon ? (
-            // SSL badge with Shield icon as fallback
-            <div
-              className={cn(
-                "flex items-center gap-1.5 text-muted-foreground",
-                config.text
-              )}
-            >
-              <Shield className={size === "sm" ? "h-4 w-4" : "h-5 w-5"} />
-              <span className="font-medium">{badge.fallbackText}</span>
-            </div>
-          ) : (
-            // Image badge (will show alt text if image missing)
-            <Image
-              src={badge.src}
-              alt={badge.alt}
-              width={config.width}
-              height={config.height}
-              className="object-contain"
-              // Show fallback on error (handled by Next.js Image)
-              onError={(e) => {
-                // Replace with text fallback on image load error
-                const target = e.currentTarget as HTMLImageElement;
-                target.style.display = "none";
-                const fallback = target.nextElementSibling;
-                if (fallback) {
-                  (fallback as HTMLElement).style.display = "block";
-                }
-              }}
-            />
-          )}
+          <div
+            className={cn(
+              "flex items-center gap-1.5 text-muted-foreground",
+              config.text
+            )}
+          >
+            <badge.icon className={config.iconSize} />
+            <span className="font-medium">{badge.text}</span>
+          </div>
         </div>
       ))}
     </div>
