@@ -198,18 +198,18 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. Primary CTA appears 4-6 times on homepage (above fold, after sections, sticky mobile)
   2. What happens next is crystal clear below every CTA
-  3. Lead form has 2 fields maximum (email + phone)
-  4. Israeli phone format auto-detected, email validated inline
+  3. Lead form has 2 fields maximum (phone + name)
+  4. Israeli phone format auto-detected, validated inline with checkmark
   5. Mobile CTA in thumb zone with 48px height, sticky on scroll
   6. Social proof snippet near every CTA
   7. Achievement moment on signup with celebration animation
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 17-01: CTA hierarchy and placement strategy
-- [ ] 17-02: Lead capture form with validation
-- [ ] 17-03: Mobile CTA optimization (sticky, thumb zone)
-- [ ] 17-04: Signup flow with achievement moment
+- [ ] 17-01-PLAN.md — Validation utilities and canvas-confetti installation
+- [ ] 17-02-PLAN.md — LeadCaptureForm, PhoneInput, FormSuccess, and server action
+- [ ] 17-03-PLAN.md — ConversionSection, StickyCtaBar update, homepage CTA integration
+- [ ] 17-04-PLAN.md — Human verification checkpoint
 
 ---
 
@@ -276,7 +276,7 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | 14. Hero & First Impression | v1.1 | 5/5 | Complete | 2026-02-01 |
 | 15. Social Proof & Trust | v1.1 | 6/6 | Complete | 2026-02-01 |
 | 16. Offer & Objection Handling | v1.1 | 6/6 | Complete | 2026-02-01 |
-| 17. Conversion Flow & Forms | v1.1 | 0/4 | Not started | - |
+| 17. Conversion Flow & Forms | v1.1 | 0/4 | Planned | - |
 | 18. Emotional Journey & Demo | v1.1 | 0/4 | Not started | - |
 | 19. Performance, SEO & Certification | v1.1 | 0/6 | Not started | - |
 
@@ -312,14 +312,14 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 ### Phase C: Irresistible Offer (8 requirements)
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| OFFER-01 | Phase 16 | Pending |
-| OFFER-02 | Phase 16 | Pending |
-| OFFER-03 | Phase 16 | Pending |
-| OFFER-04 | Phase 16 | Pending |
-| OFFER-05 | Phase 16 | Pending |
-| OFFER-06 | Phase 16 | Pending |
-| OFFER-07 | Phase 16 | Pending |
-| OFFER-08 | Phase 16 | Pending |
+| OFFER-01 | Phase 16 | Complete |
+| OFFER-02 | Phase 16 | Complete |
+| OFFER-03 | Phase 16 | Complete |
+| OFFER-04 | Phase 16 | Complete |
+| OFFER-05 | Phase 16 | Complete |
+| OFFER-06 | Phase 16 | Complete |
+| OFFER-07 | Phase 16 | Complete |
+| OFFER-08 | Phase 16 | Complete |
 
 ### Phase D: Effortless Action (8 requirements)
 | Requirement | Phase | Status |
@@ -336,14 +336,14 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 ### Phase E: Objection Obliterator (8 requirements)
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| OBJ-01 | Phase 16 | Pending |
-| OBJ-02 | Phase 16 | Pending |
-| OBJ-03 | Phase 16 | Pending |
-| OBJ-04 | Phase 16 | Pending |
-| OBJ-05 | Phase 16 | Pending |
-| OBJ-06 | Phase 16 | Pending |
-| OBJ-07 | Phase 16 | Pending |
-| OBJ-08 | Phase 16 | Pending |
+| OBJ-01 | Phase 16 | Complete |
+| OBJ-02 | Phase 16 | Complete |
+| OBJ-03 | Phase 16 | Complete |
+| OBJ-04 | Phase 16 | Complete |
+| OBJ-05 | Phase 16 | Complete |
+| OBJ-06 | Phase 16 | Complete |
+| OBJ-07 | Phase 16 | Complete |
+| OBJ-08 | Phase 16 | Complete |
 
 ### Phase F: Trust Architecture (8 requirements)
 | Requirement | Phase | Status |
