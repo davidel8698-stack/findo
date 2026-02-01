@@ -140,7 +140,7 @@ Plans:
 
 ---
 
-### Phase 15: Social Proof & Trust ✓
+### Phase 15: Social Proof & Trust
 **Goal**: Overwhelming evidence cascade that eliminates doubt - testimonials, metrics, case study, authority signals
 **Depends on**: Phase 14
 **Requirements**: PROOF-01, PROOF-02, PROOF-03, PROOF-04, PROOF-05, PROOF-06, PROOF-07, PROOF-08, TRUST-01, TRUST-02, TRUST-03, TRUST-05, TRUST-06, TRUST-07, TRUST-08
@@ -152,7 +152,7 @@ Plans:
   5. ✓ Team section shows real photos and story
   6. ✓ Guarantee visible near every CTA and in footer
   7. ✓ No dark patterns (no fake urgency, no confirm shaming)
-**Plans**: 5 plans
+**Plans**: 6 plans
 **Completed**: 2026-02-01
 
 Plans:
@@ -161,6 +161,7 @@ Plans:
 - [x] 15-03-PLAN.md — Floating activity widget, trust badges, and guarantee badge components
 - [x] 15-04-PLAN.md — Team section (founder story) and contact section (WhatsApp, phone, email)
 - [x] 15-05-PLAN.md — Homepage integration and human verification checkpoint
+- [ ] 15-06-PLAN.md — UAT gap closure (24/7 counter, trust badge icons, guarantee 30 days)
 
 ---
 
@@ -271,13 +272,13 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | 12. Technical Foundation | v1.1 | 5/5 | Complete | 2026-01-31 |
 | 13. Design System | v1.1 | 6/6 | Complete | 2026-02-01 |
 | 14. Hero & First Impression | v1.1 | 5/5 | Complete | 2026-02-01 |
-| 15. Social Proof & Trust | v1.1 | 5/5 | Complete | 2026-02-01 |
+| 15. Social Proof & Trust | v1.1 | 5/6 | Gap closure | - |
 | 16. Offer & Objection Handling | v1.1 | 0/5 | Not started | - |
 | 17. Conversion Flow & Forms | v1.1 | 0/4 | Not started | - |
 | 18. Emotional Journey & Demo | v1.1 | 0/4 | Not started | - |
 | 19. Performance, SEO & Certification | v1.1 | 0/6 | Not started | - |
 
-**v1.1 Total: 8 phases, ~39 plans, 98 requirements**
+**v1.1 Total: 8 phases, ~40 plans, 98 requirements**
 
 ---
 
