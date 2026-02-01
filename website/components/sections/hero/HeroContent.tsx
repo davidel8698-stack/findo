@@ -21,7 +21,7 @@ export function HeroContent({ className }: HeroContentProps) {
         className
       )}
     >
-      {/* Headline - Problem-focused, under 8 words */}
+      {/* Headline - Outcome-focused, under 8 words */}
       <h1
         className={cn(
           "text-4xl md:text-5xl lg:text-6xl",
@@ -30,10 +30,10 @@ export function HeroContent({ className }: HeroContentProps) {
           "leading-tight"
         )}
       >
-        העסק שלך עובד. אתה לא צריך.
+        יותר לקוחות. פחות עבודה.
       </h1>
 
-      {/* Subheadline - Explains the mechanism */}
+      {/* Subheadline - Explains the automation */}
       <p
         className={cn(
           "text-lg md:text-xl",
@@ -42,8 +42,8 @@ export function HeroContent({ className }: HeroContentProps) {
           "mx-auto lg:mx-0"
         )}
       >
-        Findo מנהל את הגוגל ביזנס שלך באופן אוטומטי - משיב לביקורות, מפרסם תוכן,
-        ולוכד לידים בוואטסאפ. אתה לא עושה כלום.
+        Findo מנהל את הנוכחות הדיגיטלית של העסק שלך 24/7. תגובות לביקורות, פרסום
+        תוכן, לכידת לידים - הכל אוטומטי.
       </p>
 
       {/* CTA Group */}
