@@ -1,0 +1,10 @@
+# Badge Placeholder Directory
+
+This directory should contain trust/authority badge images:
+
+- google-partner.svg - Google Partner badge
+- meta-partner.svg - Meta Partner badge
+- payplus.svg - PayPlus payment badge
+- ssl-secure.svg - SSL security badge (optional - component has icon fallback)
+
+Replace these placeholders with actual partner badge SVGs in production.
