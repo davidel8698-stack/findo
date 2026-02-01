@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 16 - Offer & Objection Handling
-Plan: 03 of 6 complete
+Plan: 04 of 6 complete
 Status: In progress
-Last activity: 2026-02-01 - Completed 16-03-PLAN.md (ROI Calculator)
+Last activity: 2026-02-01 - Completed 16-04-PLAN.md (FAQ Section)
 
-Progress: [=========================>.] 25/38 plans (v1.1)
+Progress: [==========================>.] 26/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -44,7 +44,7 @@ Archives:
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | VERIFIED ✓ |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | COMPLETE ✓ |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | VERIFIED ✓ |
-| 16 | Offer & Objection | OFFER-*, OBJ-* | In progress (3/6) |
+| 16 | Offer & Objection | OFFER-*, OBJ-* | In progress (4/6) |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | Not started |
 | 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | Not started |
 | 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | Not started |
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 25
-- Average duration: 7.2 min
+- Total plans completed: 26
+- Average duration: 7.1 min
 - Estimated plans: ~38
 
 ## Accumulated Context
@@ -207,10 +207,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 16-03-PLAN.md (ROI Calculator)
+Stopped at: Completed 16-04-PLAN.md (FAQ Section)
 Resume file: None
 
-**Next step:** Execute 16-04-PLAN.md (Pricing Section)
+**Next step:** Execute 16-05-PLAN.md (Comparison Table)
 
 **15-06 Gap Closure (UAT):**
 - Added 24/7 availability metric to SocialProofCounters (StaticMetric component)
@@ -308,5 +308,10 @@ Resume file: None
 - Hebrew labels avoiding "ROI" term per CONTEXT.md - uses "כמה תרוויח" style instead
 - Calculation: 15% conversion rate, 10% avg deal value multiplier
 
+**16-04 Decisions (FAQ Section):**
+- 5 FAQ questions cover top SMB objections per CONTEXT.md
+- WhatsApp placeholder URL (972XXXXXXXXX) for later configuration
+- me-2 for RTL-compatible icon spacing
+
 ---
-*Updated: 2026-02-01 after 16-03 complete — Phase 16 in progress (3/6)*
+*Updated: 2026-02-01 after 16-04 complete — Phase 16 in progress (4/6)*
