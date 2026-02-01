@@ -152,14 +152,14 @@ Plans:
   5. Team section shows real photos and story
   6. Guarantee visible near every CTA and in footer
   7. No dark patterns (no fake urgency, no confirm shaming)
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 15-01: Testimonials section with full attribution and variety
-- [ ] 15-02: Video testimonial with Hebrew subtitles
-- [ ] 15-03: Real-time proof and metrics display
-- [ ] 15-04: Trust architecture (contact, team, security signals)
-- [ ] 15-05: Case study preview and authority signals
+- [ ] 15-01-PLAN.md — Testimonial carousel with shadcn/ui Carousel, RTL support, full attribution cards
+- [ ] 15-02-PLAN.md — Video testimonial with autoplay and animated social proof counters
+- [ ] 15-03-PLAN.md — Floating activity widget, trust badges, and guarantee badge components
+- [ ] 15-04-PLAN.md — Team section (founder story) and contact section (WhatsApp, phone, email)
+- [ ] 15-05-PLAN.md — Homepage integration and human verification checkpoint
 
 ---
 
@@ -270,7 +270,7 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | 12. Technical Foundation | v1.1 | 5/5 | Complete | 2026-01-31 |
 | 13. Design System | v1.1 | 6/6 | Complete | 2026-02-01 |
 | 14. Hero & First Impression | v1.1 | 5/5 | Complete | 2026-02-01 |
-| 15. Social Proof & Trust | v1.1 | 0/5 | Not started | - |
+| 15. Social Proof & Trust | v1.1 | 0/5 | Planned | - |
 | 16. Offer & Objection Handling | v1.1 | 0/5 | Not started | - |
 | 17. Conversion Flow & Forms | v1.1 | 0/4 | Not started | - |
 | 18. Emotional Journey & Demo | v1.1 | 0/4 | Not started | - |
