@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 14 - Hero & First Impression
-Plan: 02 of 6 complete
+Plan: 03 of 6 complete
 Status: In progress
-Last activity: 2026-02-01 - Completed 14-02-PLAN.md (Activity Feed)
+Last activity: 2026-02-01 - Completed 14-03-PLAN.md (Hero Integration)
 
-Progress: [============>............] 13/38 plans (v1.1)
+Progress: [==============>..........] 14/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -42,7 +42,7 @@ Archives:
 |-------|------|--------------|--------|
 | 12 | Technical Foundation | PERF-07, PERF-08, MOBILE-01, A11Y-01 | COMPLETE |
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | VERIFIED ✓ |
-| 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | In progress (2/6) |
+| 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | In progress (3/6) |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | Not started |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | Not started |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | Not started |
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 13
-- Average duration: 7.2 min
+- Total plans completed: 14
+- Average duration: 6.9 min
 - Estimated plans: ~38
 
 ## Accumulated Context
@@ -142,6 +142,12 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - Cards start with opacity-0, GSAP animates from that state
 - GSAP class targeting: Use semantic class names (activity-card) for selectors
 
+**14-03 Decisions (Hero Integration):**
+- TrustSignal uses specific numbers (573) not rounded (500+) per research
+- StickyCtaBar shows after 400px scroll when hero CTA out of view
+- iOS safe area: pb-[env(safe-area-inset-bottom,1rem)]
+- Homepage replaces Phase 13 component showcase with Hero
+
 ### Pending Todos
 
 None.
@@ -170,10 +176,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 14-02-PLAN.md (Activity Feed)
+Stopped at: Completed 14-03-PLAN.md (Hero Integration)
 Resume file: None
 
-**Next step:** Continue Phase 14: Plans 03-06
+**Next step:** Continue Phase 14: Plans 04-06
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
@@ -187,6 +193,7 @@ Resume file: None
 **Phase 14 Progress:**
 - 14-01 complete: Hero section layout with RTL-native grid, HeroContent, PhoneMockup
 - 14-02 complete: ActivityCard and ActivityFeed with GSAP animation
+- 14-03 complete: Hero integration with TrustSignal, StickyCtaBar, homepage wiring
 
 ---
-*Updated: 2026-02-01 after 14-02-PLAN.md completion - Activity Feed components*
+*Updated: 2026-02-01 after 14-03-PLAN.md completion - Hero Integration*
