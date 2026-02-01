@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 14 - Hero & First Impression
-Plan: 03 of 6 complete
+Plan: 04 of 6 complete
 Status: In progress
-Last activity: 2026-02-01 - Completed 14-03-PLAN.md (Hero Integration)
+Last activity: 2026-02-01 - Completed 14-04-PLAN.md (LCP Optimization & Human Verification)
 
-Progress: [==============>..........] 14/38 plans (v1.1)
+Progress: [===============>..........] 15/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -148,6 +148,12 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - iOS safe area: pb-[env(safe-area-inset-bottom,1rem)]
 - Homepage replaces Phase 13 component showcase with Hero
 
+**14-04 Decisions (LCP Optimization):**
+- Animation cards start opacity-0 via CSS class, GSAP animates from that state
+- will-change-transform added for GPU acceleration, removed onComplete
+- No hero images - pure CSS phone mockup is LCP performance win
+- LCP element is h1 headline text, server-rendered in HeroContent
+
 ### Pending Todos
 
 None.
@@ -176,10 +182,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 14-03-PLAN.md (Hero Integration)
+Stopped at: Completed 14-04-PLAN.md (LCP Optimization & Human Verification)
 Resume file: None
 
-**Next step:** Continue Phase 14: Plans 04-06
+**Next step:** Continue Phase 14: Plans 05-06
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
@@ -194,6 +200,7 @@ Resume file: None
 - 14-01 complete: Hero section layout with RTL-native grid, HeroContent, PhoneMockup
 - 14-02 complete: ActivityCard and ActivityFeed with GSAP animation
 - 14-03 complete: Hero integration with TrustSignal, StickyCtaBar, homepage wiring
+- 14-04 complete: LCP optimization (GPU acceleration, server-rendered headline), human verification passed
 
 ---
 *Updated: 2026-02-01 after 14-03-PLAN.md completion - Hero Integration*
