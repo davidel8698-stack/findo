@@ -113,7 +113,7 @@ Plans:
 - [x] 13-03-PLAN.md — Animation system (Motion variants, ScrollReveal, FadeIn, StaggerContainer)
 - [x] 13-04-PLAN.md — Custom atoms (Logo, Icon) and molecules (CTAGroup, StatItem, NavLink, FormField)
 - [x] 13-05-PLAN.md — Component showcase and visual verification
-- [ ] 13-06-PLAN.md — UAT gap closure (button touch targets, dark mode, stagger animation)
+- [x] 13-06-PLAN.md — UAT gap closure (button touch targets, dark mode, stagger animation)
 
 ---
 
@@ -266,7 +266,7 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 |-------|-----------|----------------|--------|-----------|
 | 1-11 | v1.0 MVP | 67/67 | Complete | 2026-01-30 |
 | 12. Technical Foundation | v1.1 | 5/5 | Complete | 2026-01-31 |
-| 13. Design System | v1.1 | 5/6 | Gap Closure | 2026-02-01 |
+| 13. Design System | v1.1 | 6/6 | Complete | 2026-02-01 |
 | 14. Hero & First Impression | v1.1 | 0/4 | Not started | - |
 | 15. Social Proof & Trust | v1.1 | 0/5 | Not started | - |
 | 16. Offer & Objection Handling | v1.1 | 0/5 | Not started | - |
@@ -345,7 +345,7 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | TRUST-01 | Phase 15 | Pending |
 | TRUST-02 | Phase 15 | Pending |
 | TRUST-03 | Phase 15 | Pending |
-| TRUST-04 | Phase 13 | Pending |
+| TRUST-04 | Phase 13 | Complete |
 | TRUST-05 | Phase 15 | Pending |
 | TRUST-06 | Phase 15 | Pending |
 | TRUST-07 | Phase 15 | Pending |
@@ -388,12 +388,12 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | MOBILE-01 | Phase 12 | Complete |
-| MOBILE-02 | Phase 13 | Pending |
+| MOBILE-02 | Phase 13 | Complete |
 | MOBILE-03 | Phase 17 | Pending |
-| MOBILE-04 | Phase 13 | Pending |
+| MOBILE-04 | Phase 13 | Complete |
 | MOBILE-05 | Phase 19 | Pending |
 | MOBILE-06 | Phase 19 | Pending |
-| MOBILE-07 | Phase 13 | Pending |
+| MOBILE-07 | Phase 13 | Complete |
 | MOBILE-08 | Phase 17 | Pending |
 
 ### Phase K: SEO & Accessibility (7 requirements)
@@ -403,9 +403,9 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | SEO-02 | Phase 19 | Pending |
 | SEO-03 | Phase 19 | Pending |
 | SEO-04 | Phase 19 | Pending |
-| A11Y-01 | Phase 12, 13 | Partial (Phase 12) |
-| A11Y-02 | Phase 13 | Pending |
-| A11Y-03 | Phase 13 | Pending |
+| A11Y-01 | Phase 12, 13 | Complete |
+| A11Y-02 | Phase 13 | Complete |
+| A11Y-03 | Phase 13 | Complete |
 
 ### Phase L: Analytics (6 requirements)
 | Requirement | Phase | Status |
