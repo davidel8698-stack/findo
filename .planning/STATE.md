@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 17 - Conversion Flow
-Plan: 01 of 4 complete
+Plan: 02 of 4 complete
 Status: In progress
-Last activity: 2026-02-01 - Completed 17-01-PLAN.md (Foundation Utilities)
+Last activity: 2026-02-01 - Completed 17-02-PLAN.md (Lead Capture Form)
 
-Progress: [=============================>] 29/38 plans (v1.1)
+Progress: [==============================>] 30/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -45,7 +45,7 @@ Archives:
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | COMPLETE ✓ |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | VERIFIED ✓ |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | VERIFIED (6/6) |
-| 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | In progress (1/4) |
+| 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | In progress (2/4) |
 | 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | Not started |
 | 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | Not started |
 
@@ -57,8 +57,8 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 27
-- Average duration: 7.0 min
+- Total plans completed: 28
+- Average duration: 6.9 min
 - Estimated plans: ~38
 
 ## Accumulated Context
@@ -207,10 +207,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 17-01-PLAN.md (Foundation Utilities)
+Stopped at: Completed 17-02-PLAN.md (Lead Capture Form)
 Resume file: None
 
-**Next step:** 17-02-PLAN.md - Signup Form Component
+**Next step:** 17-03-PLAN.md - Signup Section Integration
 
 **15-06 Gap Closure (UAT):**
 - Added 24/7 availability metric to SocialProofCounters (StaticMetric component)
@@ -337,5 +337,12 @@ Resume file: None
 - canvas-confetti 1.9.4 for celebration animations with disableForReducedMotion accessibility
 - Validation utilities kept separate from content.ts for cleaner imports
 
+**17-02 Decisions (Lead Capture Form):**
+- Warm amber error color instead of harsh red for friendly UX
+- dir="ltr" on phone input to prevent RTL number reversal (critical for Hebrew pages)
+- Optional webhook - form works in dev without LEAD_WEBHOOK_URL
+- Server actions in app/actions.ts with Hebrew error messages
+- useActionState hook from React 19 for form handling
+
 ---
-*Updated: 2026-02-01 after 17-01 complete — Phase 17 started*
+*Updated: 2026-02-01 after 17-02 complete — Lead Capture Form*
