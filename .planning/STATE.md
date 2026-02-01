@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 16 - Offer & Objection Handling
-Plan: 04 of 6 complete
+Plan: 05 of 6 complete
 Status: In progress
-Last activity: 2026-02-01 - Completed 16-04-PLAN.md (FAQ Section)
+Last activity: 2026-02-01 - Completed 16-05-PLAN.md (Comparison Table)
 
-Progress: [==========================>.] 26/38 plans (v1.1)
+Progress: [===========================>.] 27/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -44,7 +44,7 @@ Archives:
 | 13 | Design System | MOBILE-02, MOBILE-04, MOBILE-07, A11Y-* | VERIFIED ✓ |
 | 14 | Hero & First Impression | 5SEC-01 to 5SEC-07, ACTION-01/02 | COMPLETE ✓ |
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | VERIFIED ✓ |
-| 16 | Offer & Objection | OFFER-*, OBJ-* | In progress (4/6) |
+| 16 | Offer & Objection | OFFER-*, OBJ-* | In progress (5/6) |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | Not started |
 | 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | Not started |
 | 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | Not started |
@@ -207,10 +207,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 16-04-PLAN.md (FAQ Section)
+Stopped at: Completed 16-05-PLAN.md (Comparison Table)
 Resume file: None
 
-**Next step:** Execute 16-05-PLAN.md (Comparison Table)
+**Next step:** Execute 16-06-PLAN.md (UAT Verification)
 
 **15-06 Gap Closure (UAT):**
 - Added 24/7 availability metric to SocialProofCounters (StaticMetric component)
@@ -313,5 +313,11 @@ Resume file: None
 - WhatsApp placeholder URL (972XXXXXXXXX) for later configuration
 - me-2 for RTL-compatible icon spacing
 
+**16-05 Decisions (Comparison Table):**
+- Three-column comparison (DIY | Agency | Findo) with Findo highlighted bg-primary/5
+- Price 350/month + 500 setup clearly visible in table and section
+- Added "ללא כרטיס אשראי" to Hero CTA (OFFER-01 requirement)
+- Homepage section order follows psychological journey: value before price
+
 ---
-*Updated: 2026-02-01 after 16-04 complete — Phase 16 in progress (4/6)*
+*Updated: 2026-02-01 after 16-05 complete — Phase 16 in progress (5/6)*
