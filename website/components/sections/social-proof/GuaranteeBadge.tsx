@@ -31,7 +31,7 @@ export function GuaranteeBadge({
         )}
       >
         <ShieldCheck className="h-4 w-4 text-primary shrink-0" />
-        <span>אחריות 100% החזר כספי</span>
+        <span>אחריות 30 יום - החזר כספי מלא</span>
       </div>
     );
   }
