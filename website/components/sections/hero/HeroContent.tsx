@@ -56,6 +56,10 @@ export function HeroContent({ className }: HeroContentProps) {
           secondaryHref="#how-it-works"
           className="justify-center lg:justify-start"
         />
+        {/* OFFER-01: Trust reassurance near CTA */}
+        <p className="text-sm text-muted-foreground mt-3 text-center lg:text-start">
+          ללא כרטיס אשראי • ביטול בכל עת
+        </p>
       </div>
 
       {/* Trust Signal - subtle social proof below CTA */}

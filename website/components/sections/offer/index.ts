@@ -6,3 +6,5 @@ export {
 export { ZeroRiskSummary, type ZeroRiskSummaryProps } from "./ZeroRiskSummary";
 export { ROICalculator } from "./ROICalculator";
 export { FAQSection } from "./FAQSection";
+export { PricingComparison, type PricingComparisonProps } from "./PricingComparison";
+export { PricingSection, type PricingSectionProps } from "./PricingSection";

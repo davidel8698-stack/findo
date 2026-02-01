@@ -11,6 +11,11 @@ import { GuaranteeBadge } from "@/components/sections/social-proof/GuaranteeBadg
 import { FloatingActivityWidget } from "@/components/sections/social-proof/FloatingActivityWidget";
 import { TeamSection } from "@/components/sections/trust/TeamSection";
 import { ContactSection } from "@/components/sections/trust/ContactSection";
+// Phase 16 - Offer & Objection sections (direct imports for SSR)
+import { ROICalculator } from "@/components/sections/offer/ROICalculator";
+import { PricingSection } from "@/components/sections/offer/PricingSection";
+import { ZeroRiskSummary } from "@/components/sections/offer/ZeroRiskSummary";
+import { FAQSection } from "@/components/sections/offer/FAQSection";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
@@ -60,12 +65,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust Badges - Authority signals (PROOF-08) */}
+      {/* ROI Calculator - Show value before price (OFFER-02) - Phase 16 */}
+      <ROICalculator />
+
+      {/* Pricing Section - Transparent pricing (OFFER-03) - Phase 16 */}
+      <PricingSection className="bg-muted/30" />
+
+      {/* Zero Risk Summary - Eliminate risk (OBJ-01) - Phase 16 */}
       <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="max-w-xl mx-auto">
+            <ZeroRiskSummary />
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges - Authority signals (PROOF-08) */}
+      <section className={cn("py-16 md:py-24", "bg-muted/30")}>
         <div className="container">
           <TrustBadges />
         </div>
       </section>
+
+      {/* FAQ Section - Address objections (OBJ-02) - Phase 16 */}
+      <FAQSection />
 
       {/* Team Section - Real people (TRUST-02) */}
       <section className={cn("py-16 md:py-24", "bg-muted/30")}>
