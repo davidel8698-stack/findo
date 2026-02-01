@@ -131,46 +131,46 @@ The visitor has NOTHING to lose and EVERYTHING to gain.
 
 ### Requirements
 
-- [ ] **OFFER-01**: Free trial messaging prominent
+- [x] **OFFER-01**: Free trial messaging prominent
   - "ניסיון חינם" visible on every CTA
   - No credit card required messaging
   - Duration specified (if applicable)
 
-- [ ] **OFFER-02**: Money-back guarantee with name
+- [x] **OFFER-02**: Money-back guarantee with name
   - Not just "30-day guarantee"
   - Named guarantee: "ההבטחה של Findo" or "אחריות 100%"
   - Visible near EVERY CTA, not just footer
 
-- [ ] **OFFER-03**: 2-minute setup promise
+- [x] **OFFER-03**: 2-minute setup promise
   - "התקנה ב-2 דקות" badge
   - This addresses time objection directly
   - Must be TRUE and proven in onboarding
 
-- [ ] **OFFER-04**: Zero risk summary block
+- [x] **OFFER-04**: Zero risk summary block
   - Visual summary of all risk eliminators:
     - ✓ ניסיון חינם
     - ✓ ללא כרטיס אשראי
     - ✓ התקנה ב-2 דקות
     - ✓ החזר כספי מלא
 
-- [ ] **OFFER-05**: Pricing transparency
+- [x] **OFFER-05**: Pricing transparency
   - 350 ₪/חודש visible (not hidden)
   - Setup fee explained
   - What's included listed clearly
   - No surprises, no hidden costs
 
-- [ ] **OFFER-06**: ROI calculator
+- [x] **OFFER-06**: ROI calculator
   - "כמה לידים אתה מפסיד?"
   - Input: calls per day, missed call rate
   - Output: potential leads recovered, value in NIS
   - Makes the decision a NO-BRAINER mathematically
 
-- [ ] **OFFER-07**: Comparison with alternatives
+- [x] **OFFER-07**: Comparison with alternatives
   - Cost of doing nothing (lost leads × value)
   - Cost of hiring someone (employee salary)
   - Cost of Findo (350 ₪ = obvious winner)
 
-- [ ] **OFFER-08**: FAQ addressing objections
+- [x] **OFFER-08**: FAQ addressing objections
   - "מה אם זה לא עובד לי?" → Guarantee
   - "כמה זמן לוקח להתקין?" → 2 minutes
   - "האם אני צריך להיות טכני?" → No
@@ -244,42 +244,42 @@ Every common objection must be addressed WITHOUT the visitor needing to ask.
 
 ### Requirements
 
-- [ ] **OBJ-01**: "Is this legit?" → Answered by social proof cascade
+- [x] **OBJ-01**: "Is this legit?" → Answered by social proof cascade
   - Real names, real faces, real businesses
   - Video testimonials
   - Contact information visible
 
-- [ ] **OBJ-02**: "Can I trust them with my business?" → Answered by transparency
+- [x] **OBJ-02**: "Can I trust them with my business?" → Answered by transparency
   - Privacy policy easily accessible
   - How data is handled explained
   - WhatsApp integration is THEIR account, we don't access messages
 
-- [ ] **OBJ-03**: "What if it doesn't work for my type of business?" → Answered by variety
+- [x] **OBJ-03**: "What if it doesn't work for my type of business?" → Answered by variety
   - Testimonials from different industries
   - "Works for" section with business types
   - Or: Quiz to confirm fit
 
-- [ ] **OBJ-04**: "Is it complicated to set up?" → Answered by 2-minute promise
+- [x] **OBJ-04**: "Is it complicated to set up?" → Answered by 2-minute promise
   - Setup time promise repeated
   - Video showing actual setup speed
   - "No technical knowledge required" messaging
 
-- [ ] **OBJ-05**: "What if I need help?" → Answered by support visibility
+- [x] **OBJ-05**: "What if I need help?" → Answered by support visibility
   - WhatsApp support button (they know WhatsApp)
   - Phone number visible
   - "Real humans, not bots" messaging
 
-- [ ] **OBJ-06**: "Can I cancel if it doesn't work?" → Answered by guarantee
+- [x] **OBJ-06**: "Can I cancel if it doesn't work?" → Answered by guarantee
   - "Cancel anytime" messaging
   - Money-back guarantee prominent
   - No lock-in, no penalty
 
-- [ ] **OBJ-07**: "Why should I choose this over others?" → Answered by differentiation
+- [x] **OBJ-07**: "Why should I choose this over others?" → Answered by differentiation
   - "Why Findo" section
   - Key differentiator: "אתה לא עושה כלום - זה עובד לבד"
   - Comparison table if competitors exist
 
-- [ ] **OBJ-08**: "Is it worth the money?" → Answered by ROI calculator
+- [x] **OBJ-08**: "Is it worth the money?" → Answered by ROI calculator
   - Shows value is 10x+ the cost
   - Makes 350 ₪ feel like nothing
   - "Less than one missed lead per month"
