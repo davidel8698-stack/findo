@@ -1,5 +1,5 @@
 ---
-status: complete
+status: diagnosed
 phase: 13-design-system
 source: 13-01-SUMMARY.md, 13-02-SUMMARY.md, 13-03-SUMMARY.md, 13-04-SUMMARY.md, 13-05-SUMMARY.md
 started: 2026-02-01T12:00:00Z
@@ -93,27 +93,33 @@ skipped: 0
   reason: "User reported: Small button (40px) violates 48px touch target requirement"
   severity: major
   test: 1
-  root_cause: ""
-  artifacts: []
-  missing: []
-  debug_session: ""
+  root_cause: "button.tsx:24 uses h-10 (40px) for default size instead of h-12 (48px)"
+  artifacts:
+    - path: "website/components/ui/button.tsx"
+      issue: "Line 24: default size uses h-10 instead of h-12"
+  missing:
+    - "Change h-10 to h-12 in button.tsx default variant"
 
 - truth: "Page loads in dark mode by default"
   status: failed
   reason: "User reported: enableSystem overrides defaultTheme='dark'. Page may load in light mode if system preference is light."
   severity: major
   test: 4
-  root_cause: ""
-  artifacts: []
-  missing: []
-  debug_session: ""
+  root_cause: "ThemeProvider.tsx:14 has enableSystem which overrides defaultTheme='dark'"
+  artifacts:
+    - path: "website/providers/ThemeProvider.tsx"
+      issue: "Line 14: enableSystem overrides defaultTheme"
+  missing:
+    - "Remove enableSystem prop from ThemeProvider"
 
 - truth: "Grouped components animate in sequence with stagger effect"
   status: failed
   reason: "User reported: StatItem.tsx uses <div> not <m.div>. Children won't animate because they're not motion components."
   severity: major
   test: 8
-  root_cause: ""
-  artifacts: []
-  missing: []
-  debug_session: ""
+  root_cause: "StatItem.tsx uses regular <div> wrapper instead of motion component"
+  artifacts:
+    - path: "website/components/molecules/StatItem.tsx"
+      issue: "Uses <div> instead of <m.div> with fadeInUp variants"
+  missing:
+    - "Wrap StatItem in m.div with variants={fadeInUp} for stagger animation"
