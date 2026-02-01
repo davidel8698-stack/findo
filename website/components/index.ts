@@ -51,3 +51,18 @@ export {
   staggerContainerFast,
   staggerContainerSlow,
 } from "./motion/variants";
+
+// Social Proof Sections
+export {
+  TestimonialsCarousel,
+  TestimonialCard,
+  VideoTestimonial,
+  SocialProofCounters,
+  FloatingActivityWidget,
+  TrustBadges,
+  GuaranteeBadge,
+} from "./sections/social-proof";
+export type { Testimonial } from "./sections/social-proof";
+
+// Trust Sections
+export { TeamSection, ContactSection } from "./sections/trust";

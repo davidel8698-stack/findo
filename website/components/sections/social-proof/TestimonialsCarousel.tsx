@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { TestimonialCard, type Testimonial } from "./TestimonialCard";
-import { ScrollReveal } from "@/components";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 
 /**
  * Placeholder testimonials with variety per CONTEXT.md:
