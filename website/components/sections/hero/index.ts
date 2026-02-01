@@ -1,3 +1,6 @@
 export { PhoneMockup } from "./PhoneMockup";
+export { ActivityCard } from "./ActivityCard";
+export { ActivityFeed } from "./ActivityFeed";
 export { HeroContent } from "./HeroContent";
-// Hero will be added in the next task
+export { Hero } from "./Hero";
+export { Hero as default } from "./Hero";
