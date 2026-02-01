@@ -178,14 +178,15 @@ Plans:
   6. ROI calculator shows value is 10x+ the cost
   7. FAQ addresses top 5 objections in under 50 words each
   8. Comparison with alternatives makes decision obvious
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 16-01: Pricing section with transparency and comparison
-- [ ] 16-02: ROI calculator implementation
-- [ ] 16-03: Zero risk summary and guarantee displays
-- [ ] 16-04: FAQ section with objection handling
-- [ ] 16-05: "Why Findo" differentiation section
+- [ ] 16-01-PLAN.md — Install Radix primitives, create slider/accordion UI components
+- [ ] 16-02-PLAN.md — Three-guarantee badge system and zero risk summary block
+- [ ] 16-03-PLAN.md — ROI calculator with animated sliders and results
+- [ ] 16-04-PLAN.md — FAQ section with accordion and WhatsApp CTA
+- [ ] 16-05-PLAN.md — Pricing section with comparison table and homepage integration
+- [ ] 16-06-PLAN.md — Human verification checkpoint
 
 ---
 
@@ -273,12 +274,12 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | 13. Design System | v1.1 | 6/6 | Complete | 2026-02-01 |
 | 14. Hero & First Impression | v1.1 | 5/5 | Complete | 2026-02-01 |
 | 15. Social Proof & Trust | v1.1 | 6/6 | Complete | 2026-02-01 |
-| 16. Offer & Objection Handling | v1.1 | 0/5 | Not started | - |
+| 16. Offer & Objection Handling | v1.1 | 0/6 | Planned | - |
 | 17. Conversion Flow & Forms | v1.1 | 0/4 | Not started | - |
 | 18. Emotional Journey & Demo | v1.1 | 0/4 | Not started | - |
 | 19. Performance, SEO & Certification | v1.1 | 0/6 | Not started | - |
 
-**v1.1 Total: 8 phases, ~40 plans, 98 requirements**
+**v1.1 Total: 8 phases, ~41 plans, 98 requirements**
 
 ---
 
