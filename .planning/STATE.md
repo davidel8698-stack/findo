@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 15 - Social Proof & Trust
-Plan: 05 of 5 complete
-Status: COMPLETE ✓ (human verified, 7/7 criteria passed)
-Last activity: 2026-02-01 - Phase 15 complete, ready for Phase 16
+Plan: 06 of 6 complete (gap closure)
+Status: COMPLETE ✓ (UAT gaps closed, ready for re-test)
+Last activity: 2026-02-01 - Completed 15-06 gap closure plan
 
-Progress: [=====================>....] 21/38 plans (v1.1)
+Progress: [======================>...] 22/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -207,10 +207,16 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Completed 15-05-PLAN.md (Phase 15 complete)
+Stopped at: Completed 15-06-PLAN.md (UAT gap closure)
 Resume file: None
 
-**Next step:** Begin Phase 16: Offer & Objection Handling
+**Next step:** UAT re-test Phase 15, then begin Phase 16: Offer & Objection Handling
+
+**15-06 Gap Closure (UAT):**
+- Added 24/7 availability metric to SocialProofCounters (StaticMetric component)
+- Converted all TrustBadges to Lucide icons (no external images)
+- Added "30 יום" to GuaranteeBadge inline variant
+- Build passes, 3/3 UAT gaps should now be closed
 
 **15-01 Re-execution:**
 - carousel.tsx created (shadcn/ui pattern with Embla)
@@ -278,5 +284,11 @@ Resume file: None
 - Testimonials, video, counters, floating widget, trust badges, team, contact all working
 - Mobile responsive verified
 
+**15-06 Decisions (UAT Gap Closure):**
+- StaticMetric component for non-numeric values like 24/7
+- Discriminated union type for mixed metric rendering (animated vs static)
+- Icons as primary display for all trust badges (not fallback)
+- Consistent 30-day messaging across inline and full guarantee variants
+
 ---
-*Updated: 2026-02-01 after Phase 15 complete — Social Proof & Trust VERIFIED ✓*
+*Updated: 2026-02-01 after 15-06 gap closure complete — UAT re-test recommended*
