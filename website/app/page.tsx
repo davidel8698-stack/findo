@@ -16,6 +16,7 @@ import { ROICalculator } from "@/components/sections/offer/ROICalculator";
 import { PricingSection } from "@/components/sections/offer/PricingSection";
 import { ZeroRiskSummary } from "@/components/sections/offer/ZeroRiskSummary";
 import { FAQSection } from "@/components/sections/offer/FAQSection";
+import { ConversionSection } from "@/components/sections/conversion/ConversionSection";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
@@ -23,6 +24,15 @@ export default function HomePage() {
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero Section - Phase 14 */}
       <Hero />
+
+      {/* Hero Form - Phase 17 (target for StickyCtaBar scroll) */}
+      <section className="py-8 -mt-16 relative z-10">
+        <div className="container">
+          <div className="flex justify-center">
+            <ConversionSection id="hero-form" variant="hero" showTrustText={false} />
+          </div>
+        </div>
+      </section>
 
       {/* Guarantee Badge - Below Hero */}
       <section className="container py-8">
@@ -35,6 +45,16 @@ export default function HomePage() {
       <section className={cn("py-16 md:py-24", "bg-muted/30")}>
         <div className="container">
           <SocialProofCounters />
+        </div>
+      </section>
+
+      {/* CTA After Social Proof - Phase 17 (ACTION-01) */}
+      <section className="py-12">
+        <div className="container">
+          <div className="text-center space-y-6">
+            <h3 className="text-2xl font-bold">מוכן להצטרף?</h3>
+            <ConversionSection variant="section" />
+          </div>
         </div>
       </section>
 
@@ -71,6 +91,17 @@ export default function HomePage() {
       {/* Pricing Section - Transparent pricing (OFFER-03) - Phase 16 */}
       <PricingSection className="bg-muted/30" />
 
+      {/* CTA After Pricing - Phase 17 (ACTION-01) */}
+      <section className="py-16">
+        <div className="container">
+          <div className="text-center space-y-6">
+            <h3 className="text-2xl font-bold">התחל היום, בחינם</h3>
+            <p className="text-muted-foreground">ללא כרטיס אשראי. ללא התחייבות.</p>
+            <ConversionSection variant="section" />
+          </div>
+        </div>
+      </section>
+
       {/* Zero Risk Summary - Eliminate risk (OBJ-01) - Phase 16 */}
       <section className="py-16 md:py-24">
         <div className="container">
@@ -90,6 +121,17 @@ export default function HomePage() {
       {/* FAQ Section - Address objections (OBJ-02) - Phase 16 */}
       <FAQSection />
 
+      {/* CTA After FAQ - Phase 17 (ACTION-01) */}
+      <section className="py-16 bg-muted/30">
+        <div className="container">
+          <div className="text-center space-y-6">
+            <h3 className="text-2xl font-bold">יש לך עוד שאלות?</h3>
+            <p className="text-muted-foreground">התחל בחינם או צור קשר עם הצוות שלנו</p>
+            <ConversionSection variant="section" />
+          </div>
+        </div>
+      </section>
+
       {/* Team Section - Real people (TRUST-02) */}
       <section className={cn("py-16 md:py-24", "bg-muted/30")}>
         <div className="container">
@@ -105,7 +147,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer Guarantee Badge */}
-      <section className={cn("py-12", "bg-muted/30")}>
+      <section className={cn("py-12 pb-20 md:pb-12", "bg-muted/30")}>
         <div className="container">
           <div className="flex flex-col items-center gap-4">
             <GuaranteeBadge variant="full" />
