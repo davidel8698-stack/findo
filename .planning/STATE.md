@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 14 - Hero & First Impression
-Plan: 04 of 4 complete
-Status: Phase VERIFIED ✓ (6/6 criteria, 21/21 must-haves)
-Last activity: 2026-02-01 - Phase 14 execution complete
+Plan: 05 of 5 complete (gap closure)
+Status: UAT gaps closed, ready for re-test
+Last activity: 2026-02-01 - Completed 14-05 UAT gap closure
 
-Progress: [===============>..........] 15/38 plans (v1.1)
+Progress: [================>.........] 16/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -154,6 +154,11 @@ All v1 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 - No hero images - pure CSS phone mockup is LCP performance win
 - LCP element is h1 headline text, server-rendered in HeroContent
 
+**14-05 Decisions (UAT Gap Closure):**
+- GSAP fromTo() required when element has CSS opacity-0 class (from() animates TO current CSS state)
+- Outcome-focused headline "More customers. Less work." - 4 words, states benefit directly
+- Subheadline explains 24/7 automation with specific actions (reviews, content, leads)
+
 ### Pending Todos
 
 None.
@@ -182,10 +187,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-01
-Stopped at: Phase 14 execution complete
+Stopped at: Completed 14-05-PLAN.md (UAT gap closure)
 Resume file: None
 
-**Next step:** Begin Phase 15: Social Proof & Trust
+**Next step:** Re-run UAT tests 1, 2, 3, 8, 10, 12 to verify gap closure, then Phase 15
 
 **Phase 12 Deployment:**
 - Production URL: https://website-nine-theta-12.vercel.app
@@ -202,5 +207,10 @@ Resume file: None
 - 8/8 requirements satisfied (5SEC-01 through 5SEC-07, ACTION-02)
 - Human verification: APPROVED (5-second test, LCP, visual, mobile)
 
+**Phase 14 UAT Gap Closure (14-05):**
+- Fixed GSAP animation: fromTo() for explicit opacity 0->1 transition
+- Fixed headline: outcome-focused "More customers. Less work."
+- UAT tests 1, 2, 3, 8, 10, 12 should now pass on re-test
+
 ---
-*Updated: 2026-02-01 after Phase 14 execution complete - Hero & First Impression VERIFIED ✓*
+*Updated: 2026-02-01 after 14-05 UAT gap closure complete*
