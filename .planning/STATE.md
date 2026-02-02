@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 18 - Emotional Journey & Demo
-Plan: 01 of 4 complete
+Plan: 02 of 5 complete
 Status: In progress
-Last activity: 2026-02-02 - Completed 18-01-PLAN.md (Emotional Sections)
+Last activity: 2026-02-02 - Completed 18-02-PLAN.md (Demo Component Implementation)
 
-Progress: [===================================>] 33/38 plans (v1.1)
+Progress: [===================================>] 34/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -46,7 +46,7 @@ Archives:
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | VERIFIED ✓ |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | VERIFIED (6/6) |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | COMPLETE (4/4) |
-| 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | In progress (1/4) |
+| 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | In progress (2/5) |
 | 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | Not started |
 
 ## Performance Metrics
@@ -57,7 +57,7 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 33
+- Total plans completed: 34
 - Average duration: 6.8 min
 - Estimated plans: ~38
 
@@ -207,7 +207,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-02
-Stopped at: Completed 18-01-PLAN.md (Emotional Sections)
+Stopped at: Completed 18-02-PLAN.md (Demo Component Implementation)
 Resume file: None
 
 **Next step:** Phase 18-02 (Video Demo) or continue with remaining 18-* plans
@@ -378,5 +378,20 @@ Resume file: None
 - Integrated both into homepage psychological flow
 - EMOTION-01/02/03/04/06 requirements addressed
 
+**18-02 Decisions (Demo Component):**
+- On-demand fetch: Animation loaded only when user clicks play (saves bandwidth)
+- Four-state machine: poster, loading, playing, completed for clear UX flow
+- URL-based loading: Animation data fetched from URL, not bundled (smaller JS bundle)
+- Poster-first approach: Show lightweight SVG poster immediately, load heavy animation on interaction
+- lottie-react 2.4.1 for Lottie animation playback
+- useInView with amount: 0.2 for lazy mounting when 20% visible
+
+**Phase 18 Progress (18-02):**
+- Installed lottie-react 2.4.1 for animation playback
+- Created LottieDemo component with lazy loading, poster fallback (140 lines)
+- Created DemoSection wrapper with Hebrew headline and CTA (55 lines)
+- Created demo poster SVG with orange play button
+- DEMO-01/03/04/05 requirements addressed
+
 ---
-*Updated: 2026-02-02 after 18-01 complete — Emotional Sections*
+*Updated: 2026-02-02 after 18-02 complete — Demo Component Implementation*
