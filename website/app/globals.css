@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* ============================================
+ * CONTAINER AUTO-CENTERING - CRITICAL FIX
+ * Tailwind 4's container does NOT center by default.
+ * This ensures all .container elements are centered.
+ * ============================================ */
+@layer utilities {
+  .container {
+    margin-inline: auto;
+  }
+}
+
 /* Dark mode custom variant for Tailwind 4 */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -424,4 +435,51 @@
 
 .animate-accordion-up {
   animation: accordion-up 200ms ease-out;
+}
+
+/* ============================================
+ * MICRO-INTERACTION POLISH - Phase 18
+ * Premium feel throughout
+ * ============================================ */
+
+/* Smooth scroll behavior (for non-Lenis browsers) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Focus visible outlines with primary color */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Selection color matching brand */
+::selection {
+  background-color: hsl(var(--primary) / 0.2);
+  color: inherit;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Interactive elements get cursor pointer */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+a[href] {
+  cursor: pointer;
+}
+
+/* Reduced motion: disable animations (WCAG) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

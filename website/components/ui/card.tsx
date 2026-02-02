@@ -1,6 +1,8 @@
 import * as React from "react";
+import { m, type HTMLMotionProps } from "motion/react";
 
 import { cn } from "@/lib/utils";
+import { springGentle } from "@/lib/animation";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -16,6 +18,28 @@ const Card = React.forwardRef<
   />
 ));
 Card.displayName = "Card";
+
+// ===== AnimatedCard with hover elevation =====
+
+const AnimatedCard = React.forwardRef<
+  HTMLDivElement,
+  Omit<HTMLMotionProps<"div">, "ref">
+>(({ className, ...props }, ref) => (
+  <m.div
+    ref={ref}
+    className={cn(
+      "rounded-xl border bg-card text-card-foreground shadow-sm",
+      className
+    )}
+    whileHover={{
+      y: -4,
+      boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)",
+    }}
+    transition={springGentle}
+    {...props}
+  />
+));
+AnimatedCard.displayName = "AnimatedCard";
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -76,4 +100,4 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
+export { Card, AnimatedCard, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
