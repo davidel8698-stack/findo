@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 18 - Emotional Journey & Demo
-Plan: 04 of 5 complete
+Plan: 04 of 5 complete (18-03 also complete)
 Status: In progress
-Last activity: 2026-02-02 - Completed 18-04-PLAN.md (Micro-interactions & Polish)
+Last activity: 2026-02-02 - Completed 18-03-PLAN.md (Interactive Demo Integration)
 
-Progress: [====================================>] 36/38 plans (v1.1)
+Progress: [====================================>] 37/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -207,7 +207,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-02
-Stopped at: Completed 18-04-PLAN.md (Micro-interactions & Polish)
+Stopped at: Completed 18-03-PLAN.md (Interactive Demo Integration)
 Resume file: None
 
 **Next step:** 18-05 (UAT Verification) to complete Phase 18
@@ -410,5 +410,20 @@ Resume file: None
 - Added global CSS polish: focus states, selection, reduced motion (globals.css)
 - EMOTION-05/07 requirements addressed
 
+**18-03 Decisions (Interactive Demo):**
+- Click-to-load iframe pattern: iframe loads only on user click, not page load
+- Storylane embed URL: app.storylane.io/demo/{demoId}?embed=inline
+- Placeholder ID configurable via NEXT_PUBLIC_STORYLANE_DEMO_ID env var
+- Tab switcher with video as default, interactive as opt-in
+- Green theme for interactive poster vs orange for video (visual differentiation)
+- Fullscreen modal with backdrop click to close and X button
+
+**Phase 18 Progress (18-03):**
+- Created InteractiveDemo component with lazy Storylane iframe (136 lines)
+- Updated DemoSection with video/interactive tab switcher
+- Created interactive-demo-poster.svg with green theme
+- Integrated DemoSection into homepage after testimonials
+- DEMO-02/03/04/05 requirements addressed
+
 ---
-*Updated: 2026-02-02 after 18-04 complete — Micro-interactions & Polish*
+*Updated: 2026-02-02 after 18-03 complete — Interactive Demo Integration*
