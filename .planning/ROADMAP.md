@@ -191,7 +191,7 @@ Plans:
 
 ---
 
-### Phase 17: Conversion Flow & Forms
+### Phase 17: Conversion Flow & Forms ✓
 **Goal**: Action path so simple that NOT taking it requires conscious resistance - minimal friction, smart forms, mobile-optimized CTAs
 **Depends on**: Phase 16
 **Requirements**: ACTION-01, ACTION-03, ACTION-04, ACTION-05, ACTION-06, ACTION-07, ACTION-08, MOBILE-03, MOBILE-08, EMOTION-08
@@ -203,8 +203,6 @@ Plans:
   5. Mobile CTA in thumb zone with 48px height, sticky on scroll
   6. Social proof snippet near every CTA
   7. Achievement moment on signup with celebration animation
-**Plans**: 4 plans
-
 **Plans**: 4 plans
 **Completed**: 2026-02-01
 
@@ -229,13 +227,14 @@ Plans:
   6. Demo loads fast (lazy-loaded, thumbnail before play, no LCP impact)
   7. Micro-interactions delight (hover effects, smooth scroll, pleasant animations)
   8. Copy speaks to THEM (conversational Hebrew, "you" focused)
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 18-01: Emotional copy and messaging throughout
-- [ ] 18-02: Video demo production and optimization
-- [ ] 18-03: Interactive demo integration
-- [ ] 18-04: Micro-interactions and polish
+- [ ] 18-01-PLAN.md — Emotional sections (PainPointSection, ReliefSection) with PAS messaging
+- [ ] 18-02-PLAN.md — Lottie demo component with lazy loading and poster fallback
+- [ ] 18-03-PLAN.md — Interactive demo (Storylane) with fullscreen modal
+- [ ] 18-04-PLAN.md — Micro-interactions (AnimatedButton, AnimatedCard, hover effects)
+- [ ] 18-05-PLAN.md — Human verification checkpoint
 
 ---
 
@@ -280,10 +279,10 @@ Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 | 15. Social Proof & Trust | v1.1 | 6/6 | Complete | 2026-02-01 |
 | 16. Offer & Objection Handling | v1.1 | 6/6 | Complete | 2026-02-01 |
 | 17. Conversion Flow & Forms | v1.1 | 4/4 | Complete | 2026-02-01 |
-| 18. Emotional Journey & Demo | v1.1 | 0/4 | Not started | - |
+| 18. Emotional Journey & Demo | v1.1 | 0/5 | Planned | - |
 | 19. Performance, SEO & Certification | v1.1 | 0/6 | Not started | - |
 
-**v1.1 Total: 8 phases, ~41 plans, 98 requirements**
+**v1.1 Total: 8 phases, ~43 plans, 98 requirements**
 
 ---
 
