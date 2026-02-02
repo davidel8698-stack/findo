@@ -17,6 +17,9 @@ import { PricingSection } from "@/components/sections/offer/PricingSection";
 import { ZeroRiskSummary } from "@/components/sections/offer/ZeroRiskSummary";
 import { FAQSection } from "@/components/sections/offer/FAQSection";
 import { ConversionSection } from "@/components/sections/conversion/ConversionSection";
+// Phase 18 - Emotional Journey sections (direct imports for SSR)
+import { PainPointSection } from "@/components/sections/emotional/PainPointSection";
+import { ReliefSection } from "@/components/sections/emotional/ReliefSection";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
@@ -34,6 +37,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Pain Point Section - Phase 18 (EMOTION-01) */}
+      <PainPointSection />
+
       {/* Guarantee Badge - Below Hero */}
       <section className="container py-8">
         <div className="flex justify-center">
@@ -48,6 +54,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Relief Section - Phase 18 (EMOTION-02/03/04) */}
+      <ReliefSection />
+
       {/* CTA After Social Proof - Phase 17 (ACTION-01) */}
       <section className="py-12">
         <div className="container">
@@ -61,9 +70,6 @@ export default function HomePage() {
       {/* Testimonials Carousel - Text testimonials (PROOF-01/02/03) */}
       <section className="py-16 md:py-24">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            מה הלקוחות שלנו אומרים
-          </h2>
           <TestimonialsCarousel />
           {/* Guarantee Badge - After testimonials */}
           <div className="flex justify-center mt-8">
@@ -105,15 +111,17 @@ export default function HomePage() {
       {/* Zero Risk Summary - Eliminate risk (OBJ-01) - Phase 16 */}
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="max-w-xl mx-auto">
-            <ZeroRiskSummary />
-          </div>
+          {/* Component has its own max-w-lg mx-auto for proper centering */}
+          <ZeroRiskSummary />
         </div>
       </section>
 
       {/* Trust Badges - Authority signals (PROOF-08) */}
       <section className={cn("py-16 md:py-24", "bg-muted/30")}>
         <div className="container">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+            למה לבחור ב-Findo
+          </h2>
           <TrustBadges />
         </div>
       </section>
