@@ -20,6 +20,7 @@ import { ConversionSection } from "@/components/sections/conversion/ConversionSe
 // Phase 18 - Emotional Journey sections (direct imports for SSR)
 import { PainPointSection } from "@/components/sections/emotional/PainPointSection";
 import { ReliefSection } from "@/components/sections/emotional/ReliefSection";
+import { DemoSection } from "@/components/sections/demo/DemoSection";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
@@ -77,6 +78,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Demo Section - Interactive product demo (DEMO-01/02/03) - Phase 18 */}
+      <DemoSection className="bg-muted/30" />
 
       {/* Video Testimonial - Video proof (PROOF-04) */}
       <section className={cn("py-16 md:py-24", "bg-muted/30")}>
