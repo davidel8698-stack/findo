@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 18 - Emotional Journey & Demo
-Plan: 02 of 5 complete
+Plan: 04 of 5 complete
 Status: In progress
-Last activity: 2026-02-02 - Completed 18-02-PLAN.md (Demo Component Implementation)
+Last activity: 2026-02-02 - Completed 18-04-PLAN.md (Micro-interactions & Polish)
 
-Progress: [===================================>] 34/38 plans (v1.1)
+Progress: [====================================>] 36/38 plans (v1.1)
 
 ## Milestone Summary
 
@@ -46,7 +46,7 @@ Archives:
 | 15 | Social Proof & Trust | PROOF-*, TRUST-* | VERIFIED ✓ |
 | 16 | Offer & Objection | OFFER-*, OBJ-* | VERIFIED (6/6) |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | COMPLETE (4/4) |
-| 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | In progress (2/5) |
+| 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | In progress (4/5) |
 | 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | Not started |
 
 ## Performance Metrics
@@ -57,7 +57,7 @@ Archives:
 - Total execution time: ~6 hours
 
 **v1.1 Velocity:**
-- Total plans completed: 34
+- Total plans completed: 36
 - Average duration: 6.8 min
 - Estimated plans: ~38
 
@@ -207,10 +207,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-02
-Stopped at: Completed 18-02-PLAN.md (Demo Component Implementation)
+Stopped at: Completed 18-04-PLAN.md (Micro-interactions & Polish)
 Resume file: None
 
-**Next step:** Phase 18-02 (Video Demo) or continue with remaining 18-* plans
+**Next step:** 18-05 (UAT Verification) to complete Phase 18
 
 **15-06 Gap Closure (UAT):**
 - Added 24/7 availability metric to SocialProofCounters (StaticMetric component)
@@ -393,5 +393,22 @@ Resume file: None
 - Created demo poster SVG with orange play button
 - DEMO-01/03/04/05 requirements addressed
 
+**18-04 Decisions (Micro-interactions & Polish):**
+- AnimatedButton/AnimatedCard as separate components (not extending existing)
+- m.button/m.div Motion wrappers for hover/tap effects
+- Regular Button preserved for asChild support (Link components)
+- 7 new hover variants: buttonHover, cardHover, iconSpin, linkUnderline, bounceIn, slideInEnd, slideInStart
+- springBouncy for playful button feel, springGentle for smooth card elevation
+- WCAG reduced motion support via prefers-reduced-motion media query
+- Focus visible with primary color outline
+- Selection color matching brand (orange tint)
+
+**Phase 18 Progress (18-04):**
+- Added 7 new hover variants to variants.ts
+- Created AnimatedButton with scale 1.02/0.98 hover/tap (button.tsx)
+- Created AnimatedCard with y:-4 elevation hover (card.tsx)
+- Added global CSS polish: focus states, selection, reduced motion (globals.css)
+- EMOTION-05/07 requirements addressed
+
 ---
-*Updated: 2026-02-02 after 18-02 complete — Demo Component Implementation*
+*Updated: 2026-02-02 after 18-04 complete — Micro-interactions & Polish*
