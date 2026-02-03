@@ -10,11 +10,11 @@ Requirements for visual excellence milestone. Each maps to roadmap phases.
 ### Gradients & Glows
 
 - [x] **GRAD-01**: Hero headline uses gradient text (orange-500 → amber-500)
-- [ ] **GRAD-02**: CTA buttons have glow effect on hover (orange-500/20 blur)
-- [ ] **GRAD-03**: Primary CTA has subtle pulse animation (glow intensity cycles)
+- [x] **GRAD-02**: CTA buttons have glow effect on hover (orange-500/20 blur)
+- [x] **GRAD-03**: Primary CTA has subtle pulse animation (glow intensity cycles)
 - [x] **GRAD-04**: Section headlines use gradient text where impactful
-- [ ] **GRAD-05**: Multi-layer shadows on elevated elements (4-layer shadow system)
-- [ ] **GRAD-06**: Rim lighting effect on dark mode elements for depth
+- [x] **GRAD-05**: Multi-layer shadows on elevated elements (4-layer shadow system)
+- [x] **GRAD-06**: Rim lighting effect on dark mode elements for depth
 
 ### Background Depth
 
