@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 ## Current Position
 
 Phase: 23 of 27 (3D Phone Mockup)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-03 - Completed 23-02-PLAN.md (Phone Mockup Component)
+Last activity: 2026-02-03 - Completed 23-03-PLAN.md (Parallax Effects)
 
-Progress: [████░░░░░░░░░░░░░░░░] 14/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 23 Plan 02 complete)
+Progress: [████░░░░░░░░░░░░░░░░] 14/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 23 Plan 03 complete)
 
 ## Milestone Summary
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 23-03**: 40px scroll parallax range; 3deg mouse rotation max; Desktop only (>1024px) for mouse parallax; Spring stiffness:100/damping:30; Motion hooks over GSAP for parallax
 - **v2.0 Phase 23-02**: Drop-shadow for PNG transparency-aware shadows; Screen overlay 4.5%/2% inset for thin bezels; Screen glow 20% opacity brand orange
 - **v2.0 Phase 23-01**: 4-layer phone shadow (contact/soft/ambient1/ambient2); Screen glow 15% opacity; Activity feed 8.25s loop (2s in, 4s hold, 0.75s out, 1.5s delay)
 - **v2.0 Phase 22-03**: Primary CTA uses pulse glow on desktop, mobile sticky uses static glow (less distraction); Testimonial cards have rim lighting
@@ -106,8 +107,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-03
-Stopped at: Completed 23-02-PLAN.md (Phone Mockup Component)
-Resume action: Execute 23-03-PLAN.md (Activity Feed Integration)
+Stopped at: Completed 23-03-PLAN.md (Parallax Effects)
+Resume action: Execute 23-04-PLAN.md (Activity Feed Integration)
 
 ---
-*Updated: 2026-02-03 after 23-02 completion*
+*Updated: 2026-02-03 after 23-03 completion*
