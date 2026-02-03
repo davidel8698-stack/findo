@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 ## Current Position
 
 Phase: 22 of 27 (Glow Effects & Multi-Layer Shadows)
-Plan: 1 of 3 in current phase COMPLETE
+Plan: 2 of 3 in current phase COMPLETE
 Status: In progress
-Last activity: 2026-02-03 - Completed 22-01-PLAN.md (CSS Foundation)
+Last activity: 2026-02-03 - Completed 22-02-PLAN.md (UI Component Enhancement)
 
 Progress: [████░░░░░░░░░░░░░░░░] 13/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 22 plan 1 complete)
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 22-02**: Hover glow uses pseudo-element for GPU-accelerated opacity animation; AnimatedCard rimLight defaults true, Card false; Input uses neutral white glow
 - **v2.0 Phase 22-01**: Orange-tinted CTA shadows (24.6 95% 53.1%) for brand reinforcement; 2-second pulse with hover pause; static glow class for mobile
 - **v2.0 Phase 21-02**: BackgroundDepth placed as direct child of body outside Providers; CSS variables for background tuning without component changes
 - **v2.0 Phase 21**: Native scroll parallax (lighter than GSAP); blur per orb wrapper for independent movement; base bg-background layer in component
@@ -102,8 +103,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-03
-Stopped at: Completed 22-01-PLAN.md (CSS Foundation for Glow Effects)
-Resume action: `/gsd:execute-plan 02` to continue Phase 22
+Stopped at: Completed 22-02-PLAN.md (UI Component Enhancement)
+Resume action: `/gsd:execute-plan 03` to continue Phase 22
 
 ---
 *Updated: 2026-02-03 after 22-01-PLAN completion*
