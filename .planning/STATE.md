@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 ## Current Position
 
 Phase: 20 of 27 (Typography & Gradient Foundation)
-Plan: 1 of TBD in current phase
+Plan: 2 of 3 in current phase COMPLETE
 Status: In progress
-Last activity: 2026-02-03 — Completed 20-01-PLAN.md (Gradient Text Foundation)
+Last activity: 2026-02-03 — Completed 20-02-PLAN.md (Hebrew Typography Optimization)
 
-Progress: [██░░░░░░░░░░░░░░░░░░] 11/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 20 Plan 01 done)
+Progress: [██░░░░░░░░░░░░░░░░░░] 11/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 20 Plan 02 done)
 
 ## Milestone Summary
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 20-02**: Letter-spacing intentionally kept normal for Hebrew (user decision); zinc-400 used for explicit secondary text control
 - **v2.0 Phase 20-01**: 135deg fixed angle for RTL-consistent gradient direction; 40%-60% color stops for equal orange/amber presence
 - **v1.1 Phase 19**: 69% certification approved for MVP launch - iterate on content post-launch with real customer data
 - **v1.1 Phase 13**: Motion + GSAP two-library strategy chosen (Motion for React, GSAP for complex timelines) - foundation for v2.0 animations
@@ -98,8 +99,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-03
-Stopped at: Completed 20-01-PLAN.md (Gradient Text Foundation)
-Resume action: Execute next plan in Phase 20
+Stopped at: Completed 20-02-PLAN.md (Hebrew Typography Optimization)
+Resume action: Execute next plan in Phase 20 (20-03 or Phase 21)
 
 ---
-*Updated: 2026-02-03 after 20-01 plan completion*
+*Updated: 2026-02-03 after 20-02 plan completion*
