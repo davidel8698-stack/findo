@@ -33,3 +33,16 @@ drizzle/meta/
 # Temporary files
 *.tmp
 *.temp
+NUL
+
+# Sensitive files
+cookies.txt
+
+# Test files
+test-*.ts
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# MCP config (contains API keys)
+.mcp.json
