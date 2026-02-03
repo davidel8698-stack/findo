@@ -72,14 +72,16 @@ interface ContactSectionProps {
  * - WhatsApp: wa.me deep link
  * - Phone: tel: protocol
  * - Email: mailto: protocol
+ *
+ * Note: This component does NOT include section/container wrappers.
+ * Parent page.tsx provides the section and container wrapper.
  */
 export function ContactSection({ className }: ContactSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className={cn("py-16 md:py-24", className)}>
-      <div className="container mx-auto px-4">
+    <div className={cn("w-full", className)}>
         {/* Section Header */}
         <ScrollReveal className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
@@ -193,7 +195,6 @@ export function ContactSection({ className }: ContactSectionProps) {
             </span>
           </div>
         </ScrollReveal>
-      </div>
-    </section>
+    </div>
   );
 }

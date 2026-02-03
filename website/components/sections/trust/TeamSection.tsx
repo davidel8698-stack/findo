@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { User } from "lucide-react";
+import { useState } from "react";
 
 // ============================================================================
 // CONTENT - Easily replaceable founder information
@@ -41,18 +43,15 @@ interface TeamSectionProps {
  * Layout:
  * - Desktop: Image on right (RTL order-2), story on left (RTL order-1)
  * - Mobile: Image first, story below
+ *
+ * Note: This component does NOT include section/container wrappers.
+ * Parent page.tsx provides the section, background, and container wrapper.
  */
 export function TeamSection({ className }: TeamSectionProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
-    <section
-      className={cn(
-        "py-16 md:py-24",
-        // Subtle background to differentiate from other sections
-        "bg-muted/30",
-        className
-      )}
-    >
-      <div className="container mx-auto px-4">
+    <div className={cn("w-full", className)}>
         {/* Section Header */}
         <ScrollReveal className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
@@ -121,13 +120,20 @@ export function TeamSection({ className }: TeamSectionProps) {
                   "before:absolute before:inset-0 before:rounded-full before:ring-2 before:ring-primary/20"
                 )}
               >
-                <Image
-                  src={FOUNDER.photo}
-                  alt={`${FOUNDER.name}, ${FOUNDER.role}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 192px, 256px"
-                />
+                {imageError ? (
+                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                    <User className="w-20 h-20 md:w-24 md:h-24 text-primary/60" />
+                  </div>
+                ) : (
+                  <Image
+                    src={FOUNDER.photo}
+                    alt={`${FOUNDER.name}, ${FOUNDER.role}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 192px, 256px"
+                    onError={() => setImageError(true)}
+                  />
+                )}
               </div>
 
               {/* Decorative element behind photo */}
@@ -144,7 +150,6 @@ export function TeamSection({ className }: TeamSectionProps) {
             </div>
           </ScrollReveal>
         </div>
-      </div>
-    </section>
+    </div>
   );
 }
