@@ -1,6 +1,11 @@
 /**
  * Animation constants and spring presets for Findo
  * Playful & delightful character per CONTEXT.md
+ *
+ * PERFORMANCE OPTIMIZATIONS (Phase 19):
+ * - GPU-optimized springs for 60fps performance
+ * - Only animate transform and opacity (compositor-only)
+ * - will-change hints for GPU acceleration
  */
 
 // Spring presets - bouncy and expressive
@@ -22,6 +27,28 @@ export const springSnappy = {
   damping: 25,
 };
 
+/**
+ * GPU-OPTIMIZED SPRING - Phase 19
+ * Higher stiffness/damping for snappy 60fps performance
+ * Use for performance-critical animations
+ */
+export const gpuSpring = {
+  type: "spring" as const,
+  stiffness: 300,
+  damping: 30,
+  mass: 1,
+};
+
+/**
+ * GPU-OPTIMIZED TWEEN - Phase 19
+ * Short duration with CSS ease-out for quick transitions
+ * Use for simple opacity/transform changes
+ */
+export const gpuDuration = {
+  duration: 0.3,
+  ease: [0.33, 1, 0.68, 1], // CSS ease-out as cubic bezier
+};
+
 // Duration presets for non-spring animations
 export const duration = {
   fast: 0.15,
@@ -34,6 +61,25 @@ export const stagger = {
   fast: 0.05,
   normal: 0.1,
   slow: 0.15,
+};
+
+/**
+ * STAGGER CONFIG - Phase 19
+ * Optimized stagger timing for smooth cascade
+ */
+export const staggerConfig = {
+  staggerChildren: 0.05,
+  delayChildren: 0,
+};
+
+/**
+ * VIEWPORT CONFIG - Phase 19
+ * Optimized viewport detection for scroll animations
+ */
+export const viewportConfig = {
+  once: true,      // Animate only once (performance)
+  amount: 0.2,     // Trigger at 20% visibility
+  margin: "-50px", // Start slightly before visible
 };
 
 // Easing for CSS transitions (backup for non-Motion elements)

@@ -1,10 +1,15 @@
 /**
  * Reusable Motion variants for consistent animations
  * Uses spring physics for playful character
+ *
+ * PERFORMANCE (Phase 19):
+ * All variants ONLY animate transform and opacity (GPU-only properties).
+ * This ensures 60fps performance without layout thrashing.
+ * NEVER animate: width, height, margin, padding, top, left, right, bottom
  */
 
 import { Variants } from "motion/react";
-import { springBouncy, springGentle, springSnappy, stagger } from "@/lib/animation";
+import { springBouncy, springGentle, stagger } from "@/lib/animation";
 
 // Fade up - most common entrance animation
 export const fadeInUp: Variants = {
@@ -133,11 +138,11 @@ export const iconSpin: Variants = {
   },
 };
 
-// Link underline expand
+// Link underline expand (uses scaleX for GPU-only animation)
 export const linkUnderline: Variants = {
-  initial: { width: 0 },
+  initial: { scaleX: 0, originX: 0 },
   hover: {
-    width: "100%",
+    scaleX: 1,
     transition: { duration: 0.2 },
   },
 };
