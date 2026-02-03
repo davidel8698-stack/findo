@@ -151,39 +151,37 @@ interface SocialProofCountersProps {
  * plus static 24/7 availability metric.
  * Requirements:
  * - PROOF-06: Display impressive metrics to build credibility
+ *
+ * Note: This component does NOT include section/container wrappers.
+ * Parent page.tsx provides the section and container wrapper for proper centering.
  */
 export function SocialProofCounters({ className }: SocialProofCountersProps) {
   return (
-    <section
-      className={cn("py-16 md:py-24 bg-muted/30", className)}
-      aria-labelledby="social-proof-heading"
-    >
-      <div className="container mx-auto px-4">
-        <ScrollReveal>
-          <h2
-            id="social-proof-heading"
-            className="text-2xl md:text-3xl font-bold text-center mb-12"
-          >
-            המספרים מדברים בעד עצמם
-          </h2>
-        </ScrollReveal>
+    <div className={cn("w-full", className)}>
+      <ScrollReveal>
+        <h2
+          id="social-proof-heading"
+          className="text-2xl md:text-3xl font-bold text-center mb-12"
+        >
+          המספרים מדברים בעד עצמם
+        </h2>
+      </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
-          {metrics.map((metric, index) => (
-            <ScrollReveal key={metric.label} delay={index * 0.1}>
-              {metric.type === "animated" ? (
-                <AnimatedCounter
-                  target={metric.target}
-                  suffix={metric.suffix}
-                  label={metric.label}
-                />
-              ) : (
-                <StaticMetric value={metric.value} label={metric.label} />
-              )}
-            </ScrollReveal>
-          ))}
-        </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
+        {metrics.map((metric, index) => (
+          <ScrollReveal key={metric.label} delay={index * 0.1}>
+            {metric.type === "animated" ? (
+              <AnimatedCounter
+                target={metric.target}
+                suffix={metric.suffix}
+                label={metric.label}
+              />
+            ) : (
+              <StaticMetric value={metric.value} label={metric.label} />
+            )}
+          </ScrollReveal>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }

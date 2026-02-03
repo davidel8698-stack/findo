@@ -54,20 +54,23 @@ interface TestimonialsCarouselProps {
 }
 
 /**
- * Testimonials carousel section with RTL support.
+ * Testimonials carousel with RTL support.
  * Displays customer testimonials in a horizontally swipeable carousel.
+ *
+ * Note: This component does NOT include section wrapper.
+ * Parent page.tsx provides the section and container wrapper.
  */
 export function TestimonialsCarousel({ className }: TestimonialsCarouselProps) {
   return (
-    <ScrollReveal>
-      <section className={className}>
+    <ScrollReveal className={className}>
+      <div className="w-full">
         {/* Section heading */}
         <h2 className="text-3xl font-bold text-center mb-8">
           מה הלקוחות שלנו אומרים
         </h2>
 
-        {/* Carousel container with padding for navigation arrows */}
-        <div className="relative px-12">
+        {/* Carousel container with padding for navigation arrows (56px = w-14) */}
+        <div className="relative px-16 md:px-20">
           <Carousel
             dir="rtl"
             opts={{
@@ -100,7 +103,7 @@ export function TestimonialsCarousel({ className }: TestimonialsCarouselProps) {
             <CarouselNext className="rtl:rotate-180" />
           </Carousel>
         </div>
-      </section>
+      </div>
     </ScrollReveal>
   );
 }

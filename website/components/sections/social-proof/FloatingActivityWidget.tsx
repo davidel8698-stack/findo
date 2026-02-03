@@ -191,7 +191,7 @@ export function FloatingActivityWidget({ className }: FloatingActivityWidgetProp
   const colorClasses = colorMap[activity.type];
 
   return (
-    <div className={cn("fixed bottom-4 start-4 z-50", className)}>
+    <div className={cn("fixed bottom-20 md:bottom-4 start-4 z-40", className)}>
       <AnimatePresence mode="wait">
         {isVisible && (
           <m.div
