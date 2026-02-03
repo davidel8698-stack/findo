@@ -28,9 +28,85 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
+/**
+ * SEO Metadata Configuration
+ * - Hebrew-optimized title, description, and keywords
+ * - Open Graph with he_IL locale for proper Hebrew social previews
+ * - Twitter card for social sharing
+ * - metadataBase for canonical URL generation
+ */
 export const metadata: Metadata = {
-  title: "Findo - Automatic Business Growth",
-  description: "Autonomous lead capture, review management, and Google Business Profile optimization for Israeli SMBs",
+  metadataBase: new URL("https://findo.co.il"),
+
+  // Hebrew title and description
+  title: {
+    default: "Findo - יותר לקוחות, פחות עבודה | צמיחה אוטומטית לעסקים",
+    template: "%s | Findo",
+  },
+  description: "מערכת אוטומטית לניהול ביקורות, איסוף לידים ואופטימיזציה של Google Business Profile. העסק שלך עובד 24/7 - אתה לא צריך.",
+
+  // Hebrew keywords
+  keywords: [
+    "ניהול ביקורות",
+    "איסוף לידים",
+    "Google Business Profile",
+    "אוטומציה לעסקים",
+    "שיווק דיגיטלי",
+    "עסקים קטנים ובינוניים",
+    "SMB",
+    "לידים",
+    "ביקורות גוגל",
+    "צמיחה עסקית",
+  ],
+
+  // Authorship and site info
+  authors: [{ name: "Findo" }],
+  creator: "Findo",
+  publisher: "Findo",
+
+  // Open Graph - Hebrew locale
+  openGraph: {
+    type: "website",
+    locale: "he_IL",
+    url: "https://findo.co.il",
+    siteName: "Findo",
+    title: "Findo - יותר לקוחות, פחות עבודה",
+    description: "מערכת אוטומטית לניהול ביקורות, איסוף לידים ואופטימיזציה של Google Business Profile. העסק שלך עובד 24/7 - אתה לא צריך.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Findo - צמיחה אוטומטית לעסקים",
+      },
+    ],
+  },
+
+  // Twitter card
+  twitter: {
+    card: "summary_large_image",
+    title: "Findo - יותר לקוחות, פחות עבודה",
+    description: "מערכת אוטומטית לניהול ביקורות, איסוף לידים ואופטימיזציה של Google Business Profile.",
+    images: ["/og-image.png"],
+  },
+
+  // Robots configuration
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  // Verification (placeholders for future setup)
+  // verification: {
+  //   google: "google-site-verification-code",
+  // },
 };
 
 export default function RootLayout({
