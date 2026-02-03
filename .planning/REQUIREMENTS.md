@@ -9,10 +9,10 @@ Requirements for visual excellence milestone. Each maps to roadmap phases.
 
 ### Gradients & Glows
 
-- [ ] **GRAD-01**: Hero headline uses gradient text (orange-500 → amber-500)
+- [x] **GRAD-01**: Hero headline uses gradient text (orange-500 → amber-500)
 - [ ] **GRAD-02**: CTA buttons have glow effect on hover (orange-500/20 blur)
 - [ ] **GRAD-03**: Primary CTA has subtle pulse animation (glow intensity cycles)
-- [ ] **GRAD-04**: Section headlines use gradient text where impactful
+- [x] **GRAD-04**: Section headlines use gradient text where impactful
 - [ ] **GRAD-05**: Multi-layer shadows on elevated elements (4-layer shadow system)
 - [ ] **GRAD-06**: Rim lighting effect on dark mode elements for depth
 
@@ -73,7 +73,7 @@ Requirements for visual excellence milestone. Each maps to roadmap phases.
 
 ### RTL Adaptations
 
-- [ ] **RTL-01**: Gradient directions work correctly in RTL (start/end not left/right)
+- [x] **RTL-01**: Gradient directions work correctly in RTL (start/end not left/right)
 - [ ] **RTL-02**: Parallax/slide animations work right-to-left
 - [ ] **RTL-03**: Carousel arrows swap sides for RTL
 - [ ] **RTL-04**: Phone mockup positioned correctly for RTL (left side of text)
@@ -82,12 +82,12 @@ Requirements for visual excellence milestone. Each maps to roadmap phases.
 
 ### Hebrew Typography
 
-- [ ] **TYPO-01**: Hebrew body text has line-height 1.8 (readability)
-- [ ] **TYPO-02**: Hebrew headlines have tighter letter-spacing
-- [ ] **TYPO-03**: Secondary text uses muted color (zinc-400)
-- [ ] **TYPO-04**: Typography scale creates clear hierarchy (size AND color)
-- [ ] **TYPO-05**: Bold weights (700-800) for headline impact
-- [ ] **TYPO-06**: Gradient text renders correctly with Hebrew characters
+- [x] **TYPO-01**: Hebrew body text has line-height 1.8 (readability)
+- [~] **TYPO-02**: Hebrew headlines have tighter letter-spacing — *Deferred: User decision to use normal letter-spacing*
+- [x] **TYPO-03**: Secondary text uses muted color (zinc-400)
+- [x] **TYPO-04**: Typography scale creates clear hierarchy (size AND color)
+- [x] **TYPO-05**: Bold weights (700-800) for headline impact
+- [x] **TYPO-06**: Gradient text renders correctly with Hebrew characters
 
 ### Performance Gates
 

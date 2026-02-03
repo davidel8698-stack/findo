@@ -100,7 +100,7 @@ None yet (v2.0 just started).
 
 Last session: 2026-02-03
 Stopped at: Completed Phase 20 (Typography & Gradient Foundation) - all 3 plans done
-Resume action: Begin Phase 21 (Card Design Patterns)
+Resume action: `/gsd:discuss-phase 21` or `/gsd:plan-phase 21` to begin Background Depth System
 
 ---
 *Updated: 2026-02-03 after Phase 20 completion*
