@@ -183,6 +183,46 @@
   --bg-noise-size: 180px;
 
   /* ============================================
+   * GLOW & SHADOW SYSTEM - Phase 22
+   * Multi-layer shadows + glow effects
+   * ============================================ */
+
+  /* 4-layer shadow - medium elevation (cards) */
+  --shadow-elevation-medium:
+    0 1px 1px hsl(0 0% 0% / 0.075),
+    0 2px 2px hsl(0 0% 0% / 0.075),
+    0 4px 4px hsl(0 0% 0% / 0.075),
+    0 8px 8px hsl(0 0% 0% / 0.075);
+
+  /* 4-layer shadow - high elevation (CTAs, modals) */
+  --shadow-elevation-high:
+    0 2px 2px hsl(0 0% 0% / 0.05),
+    0 4px 4px hsl(0 0% 0% / 0.05),
+    0 8px 8px hsl(0 0% 0% / 0.05),
+    0 16px 16px hsl(0 0% 0% / 0.05);
+
+  /* CTA shadow with orange tint (brand reinforcement) */
+  --shadow-cta:
+    0 2px 4px hsl(24.6 95% 53.1% / 0.15),
+    0 4px 8px hsl(24.6 95% 53.1% / 0.1),
+    0 8px 16px hsl(0 0% 0% / 0.05),
+    0 16px 32px hsl(0 0% 0% / 0.05);
+
+  /* Hover shadow - deeper expansion */
+  --shadow-hover:
+    0 4px 6px hsl(0 0% 0% / 0.07),
+    0 8px 12px hsl(0 0% 0% / 0.07),
+    0 16px 24px hsl(0 0% 0% / 0.07),
+    0 32px 48px hsl(0 0% 0% / 0.07);
+
+  /* Glow effect - orange for CTA */
+  --glow-cta: 0 0 20px 8px hsl(24.6 95% 53.1% / 0.2);
+  --glow-cta-intense: 0 0 25px 10px hsl(24.6 95% 53.1% / 0.3);
+
+  /* Glow effect - neutral for secondary elements */
+  --glow-neutral: 0 0 15px 5px hsl(0 0% 100% / 0.1);
+
+  /* ============================================
    * Z-INDEX SCALE
    * Consistent layering
    * ============================================ */
@@ -560,4 +600,48 @@ a[href] {
 /* Secondary text - muted color per CONTEXT.md */
 .text-secondary {
   @apply text-zinc-400;
+}
+
+/* ============================================
+ * CTA PULSE ANIMATION - Phase 22
+ * Draws attention to primary CTA
+ * 2-second cycle, pauses on hover
+ * ============================================ */
+@keyframes cta-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 hsl(24.6 95% 53.1% / 0.4),
+      var(--shadow-cta);
+  }
+  50% {
+    box-shadow:
+      0 0 20px 8px hsl(24.6 95% 53.1% / 0.2),
+      var(--shadow-cta);
+  }
+}
+
+.cta-pulse {
+  animation: cta-pulse 2s ease-in-out infinite;
+}
+
+.cta-pulse:hover {
+  animation-play-state: paused;
+  box-shadow:
+    0 0 25px 10px hsl(24.6 95% 53.1% / 0.3),
+    var(--shadow-cta);
+}
+
+/* Respect reduced motion for pulse */
+@media (prefers-reduced-motion: reduce) {
+  .cta-pulse {
+    animation: none;
+    box-shadow: var(--shadow-cta);
+  }
+}
+
+/* Static CTA glow (for mobile sticky bar) */
+.cta-glow-static {
+  box-shadow:
+    var(--glow-cta),
+    var(--shadow-cta);
 }
