@@ -11,6 +11,8 @@ interface ConversionSectionProps {
   className?: string;
   showTrustText?: boolean;
   variant?: "hero" | "section" | "compact";
+  /** Source attribution for analytics (e.g., "hero", "after_proof") */
+  source?: string;
 }
 
 /**
@@ -32,6 +34,7 @@ export function ConversionSection({
   className,
   showTrustText,
   variant = "section",
+  source,
 }: ConversionSectionProps) {
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -40,6 +43,9 @@ export function ConversionSection({
     showTrustText !== undefined
       ? showTrustText
       : variant !== "hero"; // Default true for section/compact, false for hero
+
+  // Derive source from variant if not explicitly provided
+  const analyticsSource = source || variant;
 
   // Variant-specific styles
   const variantStyles = {
@@ -69,6 +75,7 @@ export function ConversionSection({
             <LeadCaptureForm
               onSuccess={() => setIsSuccess(true)}
               className={variant === "section" ? "mx-auto" : undefined}
+              source={analyticsSource}
             />
           </m.div>
         ) : (
