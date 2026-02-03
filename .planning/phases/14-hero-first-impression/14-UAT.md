@@ -1,5 +1,5 @@
 ---
-status: complete
+status: diagnosed
 phase: 14-hero-first-impression
 source: 14-01-SUMMARY.md, 14-02-SUMMARY.md, 14-03-SUMMARY.md, 14-04-SUMMARY.md
 started: 2026-02-01T16:00:00Z
@@ -88,17 +88,26 @@ skipped: 1
   reason: "User reported: The phone screen is blank! There are no Activity Cards inside the PhoneMockup."
   severity: major
   test: 1
-  root_cause: ""
-  artifacts: []
-  missing: []
-  debug_session: ""
+  root_cause: "GSAP gsap.from() animates TO current CSS state. Cards have opacity-0 class, so animation goes from opacity:0 to opacity:0 - cards stay invisible."
+  artifacts:
+    - path: "website/components/sections/hero/ActivityFeed.tsx"
+      issue: "Line 110: opacity-0 class on cards conflicts with gsap.from() on lines 76-84"
+  missing:
+    - "Use gsap.fromTo() to explicitly set start AND end opacity values"
+    - "OR remove opacity-0 class from ActivityCard since gsap.from() already sets initial opacity"
+  debug_session: ".planning/debug/activityfeed-not-rendering.md"
 
 - truth: "Hebrew headline clearly identifies target audience, what they get, and what problem it solves"
   status: failed
-  reason: "User reported: Title not clear enough. Must identify who we're addressing, help users see themselves as target, explain what they get and problem solved. Reference design bible for improvement."
+  reason: "User reported: Title not clear enough. Must identify who we're addressing, help users see themselves as target, explain what they get and problem solved."
   severity: major
   test: 2
-  root_cause: ""
-  artifacts: []
-  missing: []
+  root_cause: "Headline uses metaphor ('העסק שלך עובד. אתה לא צריך.') instead of direct outcome/problem/audience per design bible principles"
+  artifacts:
+    - path: "website/components/sections/hero/HeroContent.tsx"
+      issue: "Lines 32-34: Headline focuses on mechanism (autonomy) not outcome (leads/customers)"
+  missing:
+    - "Replace with outcome-focused headline like 'יותר לקוחות. יותר ביקורות. אפס מאמץ.' (More customers. More reviews. Zero effort.)"
+    - "OR use target audience identifier: 'בעל עסק? Findo משיג לך לקוחות בשינה'"
+    - "Update subheadline to support new headline angle"
   debug_session: ""

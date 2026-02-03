@@ -1,9 +1,9 @@
 ---
-status: complete
+status: diagnosed
 phase: 15-social-proof-trust
 source: 15-01-SUMMARY.md, 15-02-SUMMARY.md, 15-03-SUMMARY.md, 15-04-SUMMARY.md, 15-05-SUMMARY.md
 started: 2026-02-01T16:30:00Z
-updated: 2026-02-01T17:00:00Z
+updated: 2026-02-01T17:05:00Z
 ---
 
 ## Current Test
@@ -101,9 +101,12 @@ skipped: 0
   reason: "User reported: Missing 24/7 counter. Shows 573+ customers, 12,400+ reviews, 8,500+ leads but no 24/7 availability. 24/7 needs static display or alternative animation."
   severity: minor
   test: 6
-  root_cause: ""
-  artifacts: []
-  missing: []
+  root_cause: "SocialProofCounters.tsx only has 3 numeric metrics, no 24/7 availability display. 24/7 is not animatable as a number."
+  artifacts:
+    - path: "website/components/sections/social-proof/SocialProofCounters.tsx"
+      issue: "Missing 24/7 availability metric - needs static or alternative display"
+  missing:
+    - "Add 24/7 availability as 4th metric with static display or fade-in animation"
   debug_session: ""
 
 - truth: "Trust badges (Google Partner, Meta Partner, PayPlus, SSL) all visible"
@@ -111,8 +114,12 @@ skipped: 0
   reason: "User reported: Only SSL badge appears. Google Partner, Meta Partner, PayPlus badges not loading - missing SVG files in /public/badges/"
   severity: major
   test: 10
-  root_cause: ""
-  artifacts: []
+  root_cause: "TrustBadges.tsx references images at /badges/*.svg but SVG files were never created. SSL works because it uses Shield icon fallback."
+  artifacts:
+    - path: "website/components/sections/social-proof/TrustBadges.tsx"
+      issue: "References non-existent image paths"
+    - path: "website/public/badges/"
+      issue: "Directory exists but only has .gitkeep - no actual SVG files"
   missing:
     - "/public/badges/google-partner.svg"
     - "/public/badges/meta-partner.svg"
@@ -124,8 +131,10 @@ skipped: 0
   reason: "User reported: Inline variant missing '30 days' specification. Badge placement correct, icon and refund text present."
   severity: minor
   test: 11
-  root_cause: ""
-  artifacts: []
+  root_cause: "GuaranteeBadge.tsx inline variant text says 'החזר כספי מלא' without mentioning 30 days timeframe"
+  artifacts:
+    - path: "website/components/sections/social-proof/GuaranteeBadge.tsx"
+      issue: "Inline variant text missing '30 days' specification"
   missing:
-    - "Add '30 days' to inline variant text"
+    - "Update inline variant text to include '30 יום' (30 days)"
   debug_session: ""
