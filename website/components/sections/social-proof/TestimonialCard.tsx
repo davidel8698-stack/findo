@@ -38,7 +38,7 @@ export function TestimonialCard({
       transition={springBouncy}
       className="h-full"
     >
-      <Card className="h-full">
+      <Card className="h-full" rimLight>
         <CardContent className="p-6 flex flex-col gap-4 h-full">
           {/* Quote */}
           <blockquote className="text-lg leading-relaxed flex-1">
