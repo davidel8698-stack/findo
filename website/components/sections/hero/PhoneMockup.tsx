@@ -79,7 +79,11 @@ export function PhoneMockup({ children, className }: PhoneMockupProps) {
   return (
     <m.div
       ref={containerRef}
-      className={cn("relative", className)}
+      className={cn(
+        "relative",
+        "contain-layout", // Prevents CLS from parallax transforms
+        className
+      )}
       style={{
         y: scrollY,
         rotateX: isMobile ? 0 : rotateX,
