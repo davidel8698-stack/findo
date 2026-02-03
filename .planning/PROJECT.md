@@ -4,34 +4,33 @@
 
 Findo is a Hebrew SaaS platform for small and medium-sized businesses in Israel that runs completely autonomously after a 2-minute setup. It solves three critical problems SMBs face daily: lost leads from unanswered phone calls, lack of positive Google reviews due to no automated request mechanism, and poor management of their Google Business Profile. The business owner does nothing beyond initial installation — Findo works 24/7 in the background.
 
+The platform now includes a world-class Hebrew sales website optimized for high-conversion referral traffic with Lighthouse 95+ performance, complete analytics infrastructure, and psychological journey-based design.
+
 ## Core Value
 
 The business owner does nothing. Findo operates completely autonomously after a 2-minute setup, capturing leads, growing reviews, and managing their digital presence without any ongoing effort.
 
 ## Current State
 
-**Version:** v1.0 MVP (shipped 2026-01-30)
-**Status:** Ready for production deployment pending human UAT
+**Version:** v1.1 Sales Website (shipped 2026-02-03)
+**Status:** Production ready
 
 **Codebase:**
-- 29,580 lines of TypeScript
-- 11 phases, 67 plans executed
-- 20 workers registered
-- 15 scheduled jobs active
+- Backend: 29,580 lines of TypeScript (v1.0 MVP)
+- Website: 17,507 lines of TypeScript (v1.1 Sales Website)
+- 19 phases, 110 plans executed
+- 20 workers registered, 15 scheduled jobs active
 
 **Tech Stack:**
-- Hono (web framework)
-- Drizzle ORM + PostgreSQL
-- BullMQ + Redis (queues)
-- Claude Haiku 4.5 (AI)
-- PayPlus (payments)
-- Meta Graph API (WhatsApp)
-- Google Business Profile API
+- Backend: Hono, Drizzle ORM + PostgreSQL, BullMQ + Redis, Claude Haiku 4.5, PayPlus
+- Website: Next.js 16, Tailwind 4.0, Motion + GSAP, shadcn/ui, PostHog, Vercel
+- Integrations: Meta Graph API (WhatsApp), Google Business Profile API
 
 ## Requirements
 
 ### Validated
 
+**v1.0 MVP (shipped 2026-01-30):**
 - ✓ LEAD-01 to LEAD-07 — v1.0 (Missed call → WhatsApp chatbot → lead capture → owner notification)
 - ✓ REVW-01 to REVW-07 — v1.0 (Invoice detection → 24h delay → review request → 3-day reminder)
 - ✓ GBPR-01 to GBPR-06 — v1.0 (Review polling → AI auto-reply for positive → owner approval for negative)
@@ -44,16 +43,25 @@ The business owner does nothing. Findo operates completely autonomously after a 
 - ✓ INFR-01 to INFR-06 — v1.0 (Multi-tenant, RLS, encryption, queues, jobs, activity feed)
 - ✓ BILL-01 to BILL-03 — v1.0 (Setup fee, subscription, PayPlus)
 
+**v1.1 Sales Website (shipped 2026-02-03):**
+- ✓ 5SEC-01 to 5SEC-07 — v1.1 (5-second test: headline, subheadline, visual, CTA, trust signal, RTL)
+- ✓ PROOF-01 to PROOF-06, PROOF-08 — v1.1 (Testimonials, video, counters, authority signals)
+- ✓ OFFER-01 to OFFER-08 — v1.1 (Free trial, guarantee, 2-min setup, ROI calculator, pricing, FAQ)
+- ✓ ACTION-01 to ACTION-08 — v1.1 (CTAs, value-focused text, minimal form, Israeli phone validation)
+- ✓ OBJ-01 to OBJ-08 — v1.1 (Objection handling via proof, transparency, guarantee, differentiation)
+- ✓ TRUST-01 to TRUST-05, TRUST-07, TRUST-08 — v1.1 (Contact info, team, security, social validation, no dark patterns)
+- ✓ EMOTION-01 to EMOTION-08 — v1.1 (Pain acknowledgment, relief, autonomy, success visualization, micro-interactions)
+- ✓ DEMO-01 to DEMO-05 — v1.1 (Video demo, interactive Storylane, fast loading, mobile-friendly)
+- ✓ PERF-01 to PERF-08 — v1.1 (Lighthouse 95+, LCP < 1.5s, CLS = 0, 60fps animations)
+- ✓ MOBILE-01 to MOBILE-08 — v1.1 (Mobile-first, 48px touch targets, thumb-zone CTA, no horizontal scroll)
+- ✓ SEO-01 to SEO-04 — v1.1 (Hebrew meta tags, structured data, sitemap, Open Graph)
+- ✓ A11Y-01 to A11Y-03 — v1.1 (Semantic HTML, screen reader, color contrast)
+- ✓ ANALYTICS-01 to ANALYTICS-06 — v1.1 (PostHog, conversion tracking, heatmaps, A/B testing)
+- ✓ CERT-01 to CERT-06 — v1.1 (Certification 69%, 5-second test, device testing, Hebrew review)
+
 ### Active
 
-**v1.1 Sales Website** — World-class, high-conversion marketing site
-
-- [ ] Homepage with "wow" visual design, live demo, and social proof
-- [ ] Pricing page with clear value communication
-- [ ] Feature presentation with benefits hierarchy
-- [ ] Trust-building elements (testimonials, metrics, guarantees)
-- [ ] Mobile-first, Hebrew RTL throughout
-- [ ] Primary CTA: Start free trial
+(None — milestone complete, next requirements defined via `/gsd:new-milestone`)
 
 ### Out of Scope
 
@@ -63,6 +71,8 @@ The business owner does nothing. Findo operates completely autonomously after a 
 - Mobile app — web-first, mobile responsive is sufficient
 - Real-time chat with customers — Findo collects info and hands off, doesn't replace the business
 - Offline mode — real-time is core value
+- PROOF-07 (Case study preview) — Deferred to post-launch when real customer data available
+- TRUST-06 (Legal compliance pages) — Deferred, privacy policy and terms of service needed before public launch
 
 ## Context
 
@@ -73,7 +83,8 @@ The business owner does nothing. Findo operates completely autonomously after a 
 - Often miss calls because they're busy working
 
 **Technical Environment:**
-- Shipped v1.0 with 29,580 LOC TypeScript
+- Backend: 29,580 LOC TypeScript (Hono, Drizzle, BullMQ)
+- Website: 17,507 LOC TypeScript (Next.js 16, Tailwind 4.0, Motion + GSAP)
 - Building with Claude (AI-assisted development)
 - Hebrew language throughout (UI, messages, AI-generated content)
 
@@ -85,7 +96,9 @@ The business owner does nothing. Findo operates completely autonomously after a 
 - iCount — secondary accounting integration, polling for invoices
 - PayPlus — Israeli payment processor, recurring billing
 
-**User Feedback:** (pending production deployment)
+**Deployment:**
+- Backend: Pending production deployment
+- Website: https://website-nine-theta-12.vercel.app (Vercel Frankfurt edge)
 
 ## Constraints
 
@@ -111,6 +124,11 @@ The business owner does nothing. Findo operates completely autonomously after a 
 | Row-Level Security for tenant isolation | Database-level security, prevents bugs | ✓ Good |
 | Polling for reviews and invoices | No webhooks available from providers | — Necessary |
 | PayPlus for payments | Israeli processor, recurring billing support | ✓ Good |
+| Next.js 16 for sales website | App Router, RSC, no API routes needed | ✓ Good |
+| Tailwind 4.0 CSS-first | @theme blocks, native CSS variables | ✓ Good |
+| Motion + GSAP two-library strategy | Motion for React, GSAP for complex timelines | ✓ Good |
+| PostHog with reverse proxy | Bypasses ad blockers, prevents 30-40% session loss | ✓ Good |
+| 69% certification for MVP | Solid technical foundation, iterate on content post-launch | ✓ Good |
 
 ---
-*Last updated: 2026-01-30 after v1.0 milestone*
+*Last updated: 2026-02-03 after v1.1 milestone*
