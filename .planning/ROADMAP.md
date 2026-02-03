@@ -40,10 +40,12 @@ See MILESTONES.md for full v1.1 details.
   3. Hebrew body text has line-height 1.8 for readability
   4. Typography hierarchy is clear through size AND color (secondary text uses zinc-400)
   5. Gradient directions work correctly in RTL (start/end not left/right)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 20-01: TBD
+- [ ] 20-01-PLAN.md — Gradient text foundation + hero headline
+- [ ] 20-02-PLAN.md — Hebrew typography optimization
+- [ ] 20-03-PLAN.md — Section gradients + visual verification
 
 #### Phase 21: Background Depth System
 **Goal**: Create sophisticated visual environment with layered background elements (grid, orbs, noise) that sets premium tone.
@@ -172,7 +174,7 @@ Phases execute in numeric order: 20 → 21 → 22 → 23 → 24 → 25 → 26 �
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 20. Typography & Gradient Foundation | v2.0 | 0/TBD | Not started | - |
+| 20. Typography & Gradient Foundation | v2.0 | 0/3 | Ready | - |
 | 21. Background Depth System | v2.0 | 0/TBD | Not started | - |
 | 22. Glow Effects & Multi-Layer Shadows | v2.0 | 0/TBD | Not started | - |
 | 23. 3D Phone Mockup | v2.0 | 0/TBD | Not started | - |
@@ -183,4 +185,4 @@ Phases execute in numeric order: 20 → 21 → 22 → 23 → 24 → 25 → 26 �
 
 ---
 *Roadmap created: 2026-02-03*
-*Last updated: 2026-02-03 after v2.0 roadmap creation*
+*Last updated: 2026-02-03 after Phase 20 planning*
