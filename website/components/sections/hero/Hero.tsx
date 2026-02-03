@@ -36,12 +36,14 @@ export function Hero({ className }: HeroProps) {
     >
       {/* Container */}
       <div className="container mx-auto">
-        {/* Grid layout - RTL-native */}
+        {/* Grid layout - RTL-native, bounded for visual balance */}
         <div
           className={cn(
             "grid grid-cols-1 lg:grid-cols-2",
             "gap-8 lg:gap-12",
-            "items-center"
+            "items-center",
+            // Max-width + center ensures visual balance relative to screen center
+            "max-w-6xl mx-auto"
           )}
         >
           {/* Content - order-2 on mobile (below visual), lg:order-1 (right side in RTL) */}
@@ -50,7 +52,8 @@ export function Hero({ className }: HeroProps) {
           </div>
 
           {/* Visual - order-1 on mobile (above content), lg:order-2 (left side in RTL) */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-start">
+          {/* Phone centered in its column for visual balance relative to screen center */}
+          <div className="order-1 lg:order-2 flex justify-center">
             <PhoneMockup>
               <ActivityFeed />
             </PhoneMockup>

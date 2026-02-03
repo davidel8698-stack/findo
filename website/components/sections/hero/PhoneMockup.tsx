@@ -28,15 +28,6 @@ export function PhoneMockup({ children, className }: PhoneMockupProps) {
         className
       )}
     >
-      {/* Notch at top */}
-      <div
-        className={cn(
-          "absolute top-0 start-1/2 -translate-x-1/2",
-          "h-6 w-24 md:h-7 md:w-28",
-          "rounded-b-xl",
-          "bg-card-foreground/90"
-        )}
-      />
 
       {/* Volume buttons - start side (right in RTL) */}
       <div className="absolute start-full top-24 flex flex-col gap-4 ms-1">
