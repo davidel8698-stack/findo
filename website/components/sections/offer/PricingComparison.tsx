@@ -61,7 +61,7 @@ export interface PricingComparisonProps {
  */
 export function PricingComparison({ className }: PricingComparisonProps) {
   return (
-    <div className={cn("overflow-x-auto", className)}>
+    <div className={cn("overflow-x-auto max-w-4xl mx-auto", className)}>
       <table className="w-full min-w-[600px] border-collapse">
         <thead>
           <tr>
