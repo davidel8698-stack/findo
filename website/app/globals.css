@@ -536,3 +536,18 @@ a[href] {
 .contain-layout {
   contain: layout style;
 }
+
+/* ============================================
+ * HEBREW TYPOGRAPHY - Phase 20
+ * Optimized line-height and word handling
+ * Note: Letter-spacing intentionally normal per user decision
+ * ============================================ */
+.prose-hebrew {
+  @apply leading-[1.8];
+  overflow-wrap: normal; /* Never break Hebrew words */
+}
+
+/* Secondary text - muted color per CONTEXT.md */
+.text-secondary {
+  @apply text-zinc-400;
+}
