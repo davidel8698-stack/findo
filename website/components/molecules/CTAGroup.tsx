@@ -8,6 +8,8 @@ interface CTAGroupProps {
   primaryHref?: string;
   primaryIcon?: LucideIcon;
   primaryLoading?: boolean;
+  /** Glow effect for primary button - defaults to "cta" (pulse) */
+  primaryGlow?: "cta" | "cta-static" | "hover" | "none";
   secondaryText?: string;
   secondaryHref?: string;
   onPrimaryClick?: () => void;
@@ -22,6 +24,7 @@ export function CTAGroup({
   primaryHref,
   primaryIcon,
   primaryLoading = false,
+  primaryGlow = "cta",
   secondaryText,
   secondaryHref,
   onPrimaryClick,
@@ -42,6 +45,7 @@ export function CTAGroup({
         onClick={onPrimaryClick}
         loading={primaryLoading}
         size="lg"
+        glow={primaryGlow}
         className="w-full sm:w-auto"
       >
         {primaryHref ? (
@@ -63,6 +67,7 @@ export function CTAGroup({
           onClick={onSecondaryClick}
           variant="outline"
           size="lg"
+          glow="hover"
           className="w-full sm:w-auto"
         >
           {secondaryHref ? (
