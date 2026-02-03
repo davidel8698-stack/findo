@@ -473,7 +473,11 @@ a[href] {
   cursor: pointer;
 }
 
-/* Reduced motion: disable animations (WCAG) */
+/* ============================================
+ * REDUCED MOTION SUPPORT - Phase 19
+ * Respects user's OS-level preference for reduced motion
+ * Required for WCAG 2.1 AA compliance
+ * ============================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -481,5 +485,41 @@ a[href] {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
+
+  /* Disable GSAP animations */
+  .gsap-animate,
+  [data-gsap] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Disable Motion library animations */
+  [data-motion] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================
+ * GPU ACCELERATION HINTS - Phase 19
+ * For smooth 60fps animations
+ * ============================================ */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ============================================
+ * CLS PREVENTION UTILITIES - Phase 19
+ * Prevent Cumulative Layout Shift from animations
+ * ============================================ */
+.animate-in {
+  contain: layout style;
+}
+
+.contain-layout {
+  contain: layout style;
 }
