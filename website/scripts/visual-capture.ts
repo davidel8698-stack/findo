@@ -27,7 +27,7 @@ const MOBILE_VIEWPORT = { width: 390, height: 844 }; // iPhone 14 Pro
 // Uses: CSS selectors, text patterns for heading-based matching, nth-child fallbacks
 interface SectionConfig {
   id: string;
-  selector: string | null;
+  selector?: string | null; // CSS selector (optional if using textMatch)
   textMatch?: string; // Find section containing this heading text
   nthSection?: number; // Fallback: nth section in main (1-indexed)
   fullPage?: boolean;
