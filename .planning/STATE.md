@@ -4,17 +4,17 @@
 
 See: .planning/PROJECT.md (updated 2026-02-03)
 
-**Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** v2.0 Visual Excellence — Transform website to world-class
+**Core value:** The business owner does nothing. Findo operates completely autonomously after a 2-minute setup, capturing leads, growing reviews, and managing their digital presence without any ongoing effort.
+**Current focus:** v2.0 Visual Excellence - Transform website from "functional MVP" to world-class visual quality rivaling Linear, Stripe, Vercel
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements for v2.0
-Last activity: 2026-02-03 — Milestone v2.0 started
+Phase: 20 of 27 (Typography & Gradient Foundation)
+Plan: 0 of TBD in current phase
+Status: Ready to plan
+Last activity: 2026-02-03 — v2.0 roadmap created with 8 phases covering 75 requirements
 
-Progress: [                                            ] 0/? plans (v2.0) - DEFINING
+Progress: [██░░░░░░░░░░░░░░░░░░] 11/19 phases complete (v1.0 + v1.1 shipped)
 
 ## Milestone Summary
 
@@ -61,40 +61,44 @@ Archives:
 - Total execution time: ~10.8 hours
 - Calendar days: 8 days
 
+**v2.0 (Starting):**
+- Total phases: 8 (20-27)
+- Total plans: TBD (estimated during phase planning)
+- Total requirements: 75
+
 ## Accumulated Context
 
 ### Decisions
 
 All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
+Recent decisions affecting v2.0 work:
+
+- **v1.1 Phase 19**: 69% certification approved for MVP launch - iterate on content post-launch with real customer data
+- **v1.1 Phase 13**: Motion + GSAP two-library strategy chosen (Motion for React, GSAP for complex timelines) - foundation for v2.0 animations
+- **v1.1 Phase 12**: Tailwind 4.0 CSS-first approach with @theme blocks - enables v2.0 gradient/glow effects without overhead
+
 ### Pending Todos
 
-None.
+None yet (v2.0 just started).
 
 ### Blockers/Concerns
 
-**Production Readiness:**
+**Production Readiness (v1.0/v1.1):**
 - RLS enforcement requires findo_app database user creation (documented in docs/rls-setup.md)
 - Human UAT required before production deployment
-
-**External Dependencies:**
 - Meta Business Verification: Required for WhatsApp Business API
-- Google API Access: OAuth consent screen approved
-- PayPlus: Sandbox tested, production credentials needed
 
-**v1.1 Post-Launch Improvements:**
-- Replace placeholder testimonials with real customer stories
-- Professional Hebrew copywriter review
-- Privacy policy and terms of service pages
-- Real Lottie animation and Storylane demo configuration
+**v2.0 Performance Risks (From Research):**
+- **Phase 26 (Glassmorphism)**: backdrop-filter is DANGER ZONE - 15-30ms per element, may blow performance budget on Galaxy A24 4G. Escape hatch: solid backgrounds if Lighthouse drops below 95.
+- **Performance Gates**: Must test on physical Samsung Galaxy A24 4G (mid-range baseline) throughout phases. Desktop DevTools 4x CPU slowdown is NOT sufficient proxy.
+- **Mobile Budget**: Phase 26 must defer backdrop-filter to desktop only if mobile performance fails. Validate after Phase 25 animation choreography complete.
 
 ## Session Continuity
 
 Last session: 2026-02-03
-Stopped at: Milestone v2.0 started, defining requirements
-Resume file: None
-
-**Next step:** Complete requirements definition → roadmap creation → `/gsd:plan-phase 20`
+Stopped at: v2.0 ROADMAP.md and STATE.md written, REQUIREMENTS.md traceability updated
+Resume action: `/gsd:plan-phase 20` to begin Typography & Gradient Foundation
 
 ---
-*Updated: 2026-02-03 after v2.0 milestone start*
+*Updated: 2026-02-03 after v2.0 roadmap creation*
