@@ -432,12 +432,29 @@ Resume file: None
 - Integrated DemoSection into homepage after testimonials
 - DEMO-02/03/04/05 requirements addressed
 
+**19-01 Decisions (PostHog Analytics):**
+- Reverse proxy via /ingest/* to bypass ad blockers (prevents 30-40% session loss)
+- PostHogProvider conditional rendering - only after client initialization
+- autocapture: true for heatmap support (ANALYTICS-04)
+- Manual pageview capture for App Router compatibility
+- Provider nesting: DirectionProvider > ThemeProvider > PostHogProvider > MotionProvider > SmoothScroll
+
 **19-02 Decisions (SEO Infrastructure):**
 - schema-dts 1.1.5 for type-safe JSON-LD schemas
 - metadataBase: https://findo.co.il for canonical URLs
 - og:locale: he_IL for Hebrew social previews
 - next/script with afterInteractive strategy for JSON-LD injection in client component
 - StructuredData component pattern for page-level schema injection
+
+**Phase 19 Progress (19-01):**
+- Installed posthog-js@1.337.0 and posthog-node@5.24.8
+- Configured reverse proxy in next.config.ts (/ingest/* -> PostHog)
+- Created lib/posthog/client.ts with initPostHog function
+- Created lib/posthog/events.ts with typed tracking functions (trackCtaClick, trackFormSubmit, trackDemoView)
+- Created components/PostHogPageview.tsx for App Router pageview tracking
+- Updated providers.tsx with PostHogProvider
+- Updated layout.tsx with PostHogPageview in Suspense
+- ANALYTICS-01/02/03/04/06 infrastructure ready
 
 **Phase 19 Progress (19-02):**
 - Complete Hebrew metadata in layout.tsx (title, description, keywords, Open Graph, Twitter)
@@ -448,4 +465,4 @@ Resume file: None
 - SEO-01 through SEO-04 requirements addressed
 
 ---
-*Updated: 2026-02-03 after 19-02 complete — SEO Infrastructure*
+*Updated: 2026-02-03 after 19-01 complete — PostHog Analytics Setup*
