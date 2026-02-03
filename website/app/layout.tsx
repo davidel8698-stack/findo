@@ -3,6 +3,7 @@ import { Heebo } from "next/font/google";
 import { Suspense } from "react";
 import { Providers } from "./providers";
 import { PostHogPageview } from "@/components/PostHogPageview";
+import { BackgroundDepth } from "@/components/background";
 import "./globals.css";
 
 /**
@@ -112,6 +113,7 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl" className={heebo.variable} suppressHydrationWarning>
       <body className={`${heebo.className} antialiased`}>
+        <BackgroundDepth />
         <Providers>
           <Suspense fallback={null}>
             <PostHogPageview />
