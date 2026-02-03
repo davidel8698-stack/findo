@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { type ReactNode, useRef } from "react";
-import { m, useScroll, useTransform } from "motion/react";
+import { type ReactNode, useRef, useState, useEffect } from "react";
+import { m, useScroll, useTransform, useMotionValue, useSpring } from "motion/react";
 
 interface PhoneMockupProps {
   children?: ReactNode;
@@ -12,12 +12,15 @@ interface PhoneMockupProps {
 
 /**
  * Premium 3D phone mockup with pre-rendered image, multi-layer shadows, screen glow,
- * and scroll parallax. Uses Next.js Image for optimized loading (AVIF/WebP automatic).
+ * scroll parallax, and mouse parallax (desktop only).
+ * Uses Next.js Image for optimized loading (AVIF/WebP automatic).
  * Activity feed renders inside the screen overlay area.
  */
 export function PhoneMockup({ children, className }: PhoneMockupProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(true);
 
+  // ----- Scroll Parallax -----
   // Track scroll progress from hero start to hero exit
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -27,11 +30,62 @@ export function PhoneMockup({ children, className }: PhoneMockupProps) {
   // Map scroll to Y offset (0 to 40px - phone moves slower than scroll)
   const scrollY = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
+  // ----- Mouse Parallax (Desktop Only) -----
+  // Mouse position normalized to -0.5 to 0.5
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth spring for natural feel
+  const springConfig = { stiffness: 100, damping: 30 };
+  const rotateX = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], [3, -3]),
+    springConfig
+  );
+  const rotateY = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], [-3, 3]),
+    springConfig
+  );
+
+  // Detect mobile/tablet
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 1024px)").matches);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Mouse tracking for desktop only
+  useEffect(() => {
+    if (isMobile) return;
+
+    // Respect reduced motion preference
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+      mouseX.set(e.clientX / innerWidth - 0.5);
+      mouseY.set(e.clientY / innerHeight - 0.5);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [isMobile, mouseX, mouseY]);
+
   return (
     <m.div
       ref={containerRef}
       className={cn("relative", className)}
-      style={{ y: scrollY }}
+      style={{
+        y: scrollY,
+        rotateX: isMobile ? 0 : rotateX,
+        rotateY: isMobile ? 0 : rotateY,
+        transformStyle: "preserve-3d",
+      }}
     >
       {/* Screen Glow - behind phone, brand orange tint */}
       <div
