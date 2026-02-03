@@ -31,11 +31,28 @@ const buttonVariants = cva(
         true: "pointer-events-none animate-shimmer bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--primary)/0.8)] to-[hsl(var(--primary))] bg-[length:200%_100%]",
         false: "",
       },
+      glow: {
+        // No glow (default)
+        none: "",
+        // CTA glow with pulse (hero primary only)
+        cta: "cta-pulse",
+        // Static CTA glow (mobile sticky bar)
+        "cta-static": "cta-glow-static",
+        // Hover glow for secondary buttons - uses pseudo-element technique
+        hover: [
+          "relative",
+          "after:absolute after:inset-0 after:rounded-lg after:-z-10",
+          "after:opacity-0 after:transition-opacity after:duration-200",
+          "after:shadow-[0_0_15px_5px_hsl(0_0%_100%_/_0.1)]",
+          "hover:after:opacity-100",
+        ].join(" "),
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
       loading: false,
+      glow: "none",
     },
   }
 );
@@ -48,11 +65,11 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, loading = false, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, glow, loading = false, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, loading, className }))}
+        className={cn(buttonVariants({ variant, size, glow, loading, className }))}
         ref={ref}
         disabled={loading || props.disabled}
         {...props}
@@ -71,11 +88,11 @@ export interface AnimatedButtonProps
 }
 
 const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
-  ({ className, variant, size, loading = false, children, ...props }, ref) => {
+  ({ className, variant, size, glow, loading = false, children, ...props }, ref) => {
     return (
       <m.button
         ref={ref}
-        className={cn(buttonVariants({ variant, size, loading, className }))}
+        className={cn(buttonVariants({ variant, size, glow, loading, className }))}
         disabled={loading || props.disabled}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
