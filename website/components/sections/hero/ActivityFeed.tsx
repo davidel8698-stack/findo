@@ -47,7 +47,7 @@ interface ActivityFeedProps {
 /**
  * Animated activity feed showing Findo's automated actions.
  * Uses GSAP timeline with bouncy spring easing for playful personality.
- * Animation plays once on mount and holds final state (no loop).
+ * Animation loops continuously every 8-12 seconds (Phase 23).
  */
 export function ActivityFeed({ className }: ActivityFeedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -80,28 +80,37 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
           ease: "back.out(1.7)", // Bouncy spring per CONTEXT.md
           duration: 0.5,
         },
-        onComplete: removeWillChange, // Clean up will-change after animation
+        repeat: -1, // Infinite loop (Phase 23)
+        repeatDelay: 1.5, // Pause between cycles
+        onRepeat: removeWillChange, // Clean up will-change after first cycle
       });
 
+      // Phase 1: Animate IN (staggered entrance) ~2s total for 5 cards
       tl.fromTo(
         cards,
         {
-          // FROM values (start state)
           y: 40,
           opacity: 0,
           scale: 0.9,
         },
         {
-          // TO values (end state)
           y: 0,
           opacity: 1,
           scale: 1,
-          stagger: {
-            each: 0.3,
-            from: "start",
-          },
+          stagger: 0.4,
         }
       );
+
+      // Phase 2: HOLD for reading (4s pause)
+      tl.to({}, { duration: 4 });
+
+      // Phase 3: Animate OUT (faster exit) ~0.75s
+      tl.to(cards, {
+        y: -30,
+        opacity: 0,
+        stagger: 0.15,
+        ease: "power2.in",
+      });
     };
 
     // Use requestIdleCallback to defer animation until browser idle
