@@ -6,6 +6,7 @@ import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { Play, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { trackDemoView, trackDemoComplete } from "@/lib/posthog/events";
 
 type DemoState = "poster" | "loading" | "playing" | "completed";
 
@@ -37,6 +38,9 @@ export function LottieDemo({
 
   // Fetch animation from URL when play is clicked
   const handlePlay = useCallback(async () => {
+    // Track lottie demo view on play
+    trackDemoView("lottie");
+
     if (animationData) {
       setState("playing");
       lottieRef.current?.goToAndPlay(0);
@@ -62,6 +66,7 @@ export function LottieDemo({
 
   const handleComplete = useCallback(() => {
     setState("completed");
+    trackDemoComplete("lottie");
     onComplete?.();
   }, [onComplete]);
 

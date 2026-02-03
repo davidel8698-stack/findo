@@ -5,6 +5,7 @@ import { useInView } from "motion/react";
 import { Play, Maximize2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { trackDemoView } from "@/lib/posthog/events";
 
 interface InteractiveDemoProps {
   /** Storylane demo ID (from embed URL) */
@@ -32,6 +33,7 @@ export function InteractiveDemo({
 
   const handleActivate = () => {
     setIsActivated(true);
+    trackDemoView("interactive");
   };
 
   const handleFullscreen = () => {

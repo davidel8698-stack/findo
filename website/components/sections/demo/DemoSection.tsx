@@ -7,6 +7,7 @@ import { InteractiveDemo } from "./InteractiveDemo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Play, MousePointer } from "lucide-react";
+import { trackDemoView } from "@/lib/posthog/events";
 
 interface DemoSectionProps {
   className?: string;
@@ -29,6 +30,12 @@ export function DemoSection({
 }: DemoSectionProps) {
   const [activeTab, setActiveTab] = useState<DemoTab>("video");
 
+  // Track tab changes with analytics
+  const handleTabChange = (tab: DemoTab) => {
+    setActiveTab(tab);
+    trackDemoView(tab);
+  };
+
   return (
     <section className={cn("py-16 md:py-24", className)}>
       <div className="container">
@@ -46,7 +53,7 @@ export function DemoSection({
         <div className="flex justify-center gap-2 mb-8">
           <Button
             variant={activeTab === "video" ? "default" : "outline"}
-            onClick={() => setActiveTab("video")}
+            onClick={() => handleTabChange("video")}
             className="gap-2"
           >
             <Play className="w-4 h-4" />
@@ -54,7 +61,7 @@ export function DemoSection({
           </Button>
           <Button
             variant={activeTab === "interactive" ? "default" : "outline"}
-            onClick={() => setActiveTab("interactive")}
+            onClick={() => handleTabChange("interactive")}
             className="gap-2"
           >
             <MousePointer className="w-4 h-4" />
