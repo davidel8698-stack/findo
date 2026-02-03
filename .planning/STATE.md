@@ -12,9 +12,9 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 Phase: 19 - Performance, SEO & Certification
 Plan: 04 of 5 complete
 Status: In progress
-Last activity: 2026-02-03 - Completed 19-04-PLAN.md (Animation Performance)
+Last activity: 2026-02-03 - Completed 19-03-PLAN.md (Conversion Tracking Integration)
 
-Progress: [==========================================>] 41/42 plans (v1.1)
+Progress: [==========================================>] 42/42 plans (v1.1)
 
 ## Milestone Summary
 
@@ -47,7 +47,7 @@ Archives:
 | 16 | Offer & Objection | OFFER-*, OBJ-* | VERIFIED (6/6) |
 | 17 | Conversion Flow | ACTION-*, MOBILE-03/08, EMOTION-08 | COMPLETE (4/4) |
 | 18 | Emotional Journey & Demo | EMOTION-*, DEMO-* | COMPLETE ✓ |
-| 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | In progress (2/5) |
+| 19 | Performance & Certification | PERF-*, SEO-*, ANALYTICS-*, CERT-* | In progress (4/5) |
 
 ## Performance Metrics
 
@@ -207,10 +207,20 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-03
-Stopped at: Completed 19-04-PLAN.md (Animation Performance)
+Stopped at: Completed 19-03-PLAN.md (Conversion Tracking Integration)
 Resume file: None
 
 **Next step:** 19-05-PLAN.md (Final Testing & Certification)
+
+**Phase 19 Progress (19-03):**
+- Integrated PostHog event tracking into conversion-critical components
+- LeadCaptureForm: trackFormStart on focus, trackFormSubmit on state change
+- DemoSection: trackDemoView on tab switch
+- LottieDemo: trackDemoView on play, trackDemoComplete on finish
+- InteractiveDemo: trackDemoView on activation
+- StickyCtaBar: trackCtaClick with location "sticky_bar"
+- ConversionSection: source prop flows to LeadCaptureForm for attribution
+- ANALYTICS-02/03/06 requirements addressed
 
 **Phase 18 Complete:**
 - 5/5 plans executed
@@ -479,5 +489,11 @@ Resume file: None
 - gpuSpring config: stiffness:300, damping:30, mass:1 for snappy performance
 - contain-layout CSS property to isolate animated elements from CLS
 
+**19-03 Decisions (Conversion Tracking):**
+- Source attribution derived from variant prop if not explicitly provided
+- Form tracking: form_started on first input focus (not mount)
+- Demo tracking: Tab switches + individual component plays tracked separately
+- Excluded scripts/ from tsconfig to fix pre-existing type error blocking build
+
 ---
-*Updated: 2026-02-03 after 19-04 complete - Animation Performance Optimization*
+*Updated: 2026-02-03 after 19-03 complete - Conversion Tracking Integration*
