@@ -38,7 +38,8 @@ export function HeroContent({ className }: HeroContentProps) {
       <p
         className={cn(
           "text-lg md:text-xl",
-          "text-muted-foreground",
+          "leading-[1.8]",
+          "text-zinc-400",
           "max-w-lg",
           "mx-auto lg:mx-0"
         )}
@@ -58,7 +59,7 @@ export function HeroContent({ className }: HeroContentProps) {
           className="justify-center lg:justify-start"
         />
         {/* OFFER-01: Trust reassurance near CTA */}
-        <p className="text-sm text-muted-foreground mt-3 text-center lg:text-start">
+        <p className="text-sm text-zinc-400 mt-3 text-center lg:text-start">
           ללא כרטיס אשראי • ביטול בכל עת
         </p>
       </div>

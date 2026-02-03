@@ -36,7 +36,7 @@ export function PricingSection({ className }: PricingSectionProps) {
           >
             השוואה מהירה
           </h2>
-          <p className="text-muted-foreground text-center mb-12">
+          <p className="text-zinc-400 text-center mb-12">
             ראו למה עסקים בוחרים ב-Findo
           </p>
         </ScrollReveal>
@@ -52,7 +52,7 @@ export function PricingSection({ className }: PricingSectionProps) {
               <span className="text-4xl md:text-5xl font-bold">350</span>
               <span className="text-xl md:text-2xl"> ₪/חודש</span>
             </div>
-            <p className="text-muted-foreground mb-6">+ 500 ₪ הקמה חד פעמית</p>
+            <p className="text-zinc-400 mb-6">+ 500 ₪ הקמה חד פעמית</p>
 
             {/* CTA Button */}
             <Button size="lg">
@@ -61,7 +61,7 @@ export function PricingSection({ className }: PricingSectionProps) {
             </Button>
 
             {/* Trust reassurance - CRITICAL OFFER-01 */}
-            <p className="text-sm text-muted-foreground mt-4">
+            <p className="text-sm text-zinc-400 mt-4">
               ללא כרטיס אשראי • ביטול בכל עת
             </p>
           </div>

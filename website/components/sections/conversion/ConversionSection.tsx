@@ -92,7 +92,7 @@ export function ConversionSection({
 
       {/* Social proof near CTA (ACTION-08) */}
       {displayTrustText && !isSuccess && (
-        <p className="text-sm text-muted-foreground text-center mt-4">
+        <p className="text-sm text-zinc-400 text-center mt-4">
           573+ עסקים כבר משתמשים ב-Findo
         </p>
       )}

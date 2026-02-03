@@ -60,7 +60,7 @@ function AnimatedCounter({
           </span>
         )}
       </div>
-      <p className="text-sm md:text-base text-muted-foreground mt-2">{label}</p>
+      <p className="text-sm md:text-base text-zinc-400 mt-2">{label}</p>
     </div>
   );
 }
@@ -88,7 +88,7 @@ function StaticMetric({ value, label, className }: StaticMetricProps) {
           {value}
         </span>
       </div>
-      <p className="text-sm md:text-base text-muted-foreground mt-2">{label}</p>
+      <p className="text-sm md:text-base text-zinc-400 mt-2">{label}</p>
     </div>
   );
 }
