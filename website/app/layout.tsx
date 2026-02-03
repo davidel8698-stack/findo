@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Heebo } from "next/font/google";
+import { Suspense } from "react";
 import { Providers } from "./providers";
+import { PostHogPageview } from "@/components/PostHogPageview";
 import "./globals.css";
 
 /**
@@ -118,6 +120,9 @@ export default function RootLayout({
     <html lang="he" dir="rtl" className={heebo.variable} suppressHydrationWarning>
       <body className={`${heebo.className} antialiased`}>
         <Providers>
+          <Suspense fallback={null}>
+            <PostHogPageview />
+          </Suspense>
           {children}
         </Providers>
       </body>
