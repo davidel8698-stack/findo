@@ -21,11 +21,16 @@ import { ConversionSection } from "@/components/sections/conversion/ConversionSe
 import { PainPointSection } from "@/components/sections/emotional/PainPointSection";
 import { ReliefSection } from "@/components/sections/emotional/ReliefSection";
 import { DemoSection } from "@/components/sections/demo/DemoSection";
+// Phase 19 - SEO structured data
+import { StructuredData } from "@/components/seo/StructuredData";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      {/* SEO Structured Data - Phase 19 */}
+      <StructuredData />
+
       {/* Hero Section - Phase 14 */}
       <Hero />
 
