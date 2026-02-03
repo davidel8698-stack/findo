@@ -161,7 +161,13 @@ export function SocialProofCounters({ className }: SocialProofCountersProps) {
       <ScrollReveal>
         <h2
           id="social-proof-heading"
-          className="text-2xl md:text-3xl font-bold text-center mb-12"
+          className={cn(
+            "text-2xl md:text-3xl",
+            "font-bold",
+            "text-center mb-12",
+            "text-gradient-brand",
+            "text-shadow-[0_0_15px_rgba(249,115,22,0.35)]"
+          )}
         >
           המספרים מדברים בעד עצמם
         </h2>
