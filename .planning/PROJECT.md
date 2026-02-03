@@ -46,7 +46,14 @@ The business owner does nothing. Findo operates completely autonomously after a 
 
 ### Active
 
-(No active requirements — planning next milestone)
+**v1.1 Sales Website** — World-class, high-conversion marketing site
+
+- [ ] Homepage with "wow" visual design, live demo, and social proof
+- [ ] Pricing page with clear value communication
+- [ ] Feature presentation with benefits hierarchy
+- [ ] Trust-building elements (testimonials, metrics, guarantees)
+- [ ] Mobile-first, Hebrew RTL throughout
+- [ ] Primary CTA: Start free trial
 
 ### Out of Scope
 
