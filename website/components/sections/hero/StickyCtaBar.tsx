@@ -61,7 +61,7 @@ export function StickyCtaBar({ className, formId = "hero-form" }: StickyCtaBarPr
         className
       )}
     >
-      <Button size="lg" className="w-full" onClick={handleClick}>
+      <Button size="lg" glow="cta-static" className="w-full" onClick={handleClick}>
         התחל בחינם
       </Button>
     </div>
