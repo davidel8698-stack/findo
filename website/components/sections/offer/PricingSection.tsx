@@ -32,7 +32,13 @@ export function PricingSection({ className }: PricingSectionProps) {
         <ScrollReveal>
           <h2
             id="pricing-heading"
-            className="text-3xl md:text-4xl font-bold text-center mb-2"
+            className={cn(
+              "text-3xl md:text-4xl",
+              "font-bold",
+              "text-center mb-2",
+              "text-gradient-brand",
+              "text-shadow-[0_0_15px_rgba(249,115,22,0.35)]"
+            )}
           >
             השוואה מהירה
           </h2>
