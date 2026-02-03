@@ -334,8 +334,9 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* bg-background moved to BackgroundDepth component for layered depth effect */
   }
 
   /* Hebrew text optimization */
