@@ -26,8 +26,9 @@ export function HeroContent({ className }: HeroContentProps) {
         className={cn(
           "text-4xl md:text-5xl lg:text-6xl",
           "font-bold",
-          "text-foreground",
-          "leading-tight"
+          "leading-tight",
+          "text-gradient-brand",
+          "text-shadow-[0_0_15px_rgba(249,115,22,0.35)]"
         )}
       >
         יותר לקוחות. פחות עבודה.
