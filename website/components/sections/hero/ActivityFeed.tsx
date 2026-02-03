@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useCallback } from "react";
-import { gsap, useGSAP } from "@/lib/gsapConfig";
+import { useRef, useCallback, useEffect } from "react";
+import { gsap } from "@/lib/gsapConfig";
 import { ActivityCard, type ActivityType } from "./ActivityCard";
 import { cn } from "@/lib/utils";
 
@@ -62,9 +62,19 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
     }
   }, []);
 
-  // GSAP animation - plays once on mount, removes will-change after completion
-  useGSAP(
-    () => {
+  /**
+   * GSAP animation with requestIdleCallback wrapper (Phase 19)
+   * - Defers animation start until browser is idle (non-blocking LCP)
+   * - Removes will-change after completion (memory cleanup)
+   * - Uses contain-layout to prevent CLS
+   */
+  useEffect(() => {
+    const startAnimation = () => {
+      if (!containerRef.current) return;
+
+      const cards = containerRef.current.querySelectorAll(".activity-card");
+      if (cards.length === 0) return;
+
       const tl = gsap.timeline({
         defaults: {
           ease: "back.out(1.7)", // Bouncy spring per CONTEXT.md
@@ -74,7 +84,7 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
       });
 
       tl.fromTo(
-        ".activity-card",
+        cards,
         {
           // FROM values (start state)
           y: 40,
@@ -92,11 +102,21 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
           },
         }
       );
+    };
 
-      // Animation plays once, holds final state (no repeat)
-    },
-    { scope: containerRef, dependencies: [removeWillChange] }
-  );
+    // Use requestIdleCallback to defer animation until browser idle
+    // This ensures LCP (hero headline) is not blocked by animation setup
+    if ("requestIdleCallback" in window) {
+      const idleCallbackId = window.requestIdleCallback(startAnimation, {
+        timeout: 1000, // Max wait 1 second
+      });
+      return () => window.cancelIdleCallback(idleCallbackId);
+    } else {
+      // Fallback for Safari (no requestIdleCallback support)
+      const timeoutId = setTimeout(startAnimation, 100);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [removeWillChange]);
 
   return (
     <div
@@ -106,6 +126,8 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
         "flex flex-col gap-3",
         // Padding within phone screen
         "p-2",
+        // Contain layout to prevent CLS (Phase 19)
+        "contain-layout",
         className
       )}
     >
