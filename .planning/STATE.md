@@ -75,7 +75,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 Recent decisions affecting v2.0 work:
 
 - **v2.0 Phase 21-02**: BackgroundDepth placed as direct child of body outside Providers; CSS variables for background tuning without component changes
-- **v2.0 Phase 21-01**: blur(80px) on container not orbs for GPU performance; scrub: 1.5 for organic parallax feel; 3 orbs within will-change budget
+- **v2.0 Phase 21**: Native scroll parallax (lighter than GSAP); blur per orb wrapper for independent movement; base bg-background layer in component
 - **v2.0 Phase 20-02**: Letter-spacing intentionally kept normal for Hebrew (user decision); zinc-400 used for explicit secondary text control
 - **v2.0 Phase 20-01**: 135deg fixed angle for RTL-consistent gradient direction; 40%-60% color stops for equal orange/amber presence
 - **v1.1 Phase 19**: 69% certification approved for MVP launch - iterate on content post-launch with real customer data
@@ -101,8 +101,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-03
-Stopped at: Completed Phase 21 (Background Depth System)
-Resume action: `/gsd:execute-phase 22` to start Phase 22 (Scroll Polish)
+Stopped at: Completed Phase 21 (Background Depth System) - all 2 plans done
+Resume action: `/gsd:discuss-phase 22` or `/gsd:plan-phase 22` to begin Glow Effects & Multi-Layer Shadows
 
 ---
 *Updated: 2026-02-03 after Phase 21 completion*

@@ -18,12 +18,12 @@ Requirements for visual excellence milestone. Each maps to roadmap phases.
 
 ### Background Depth
 
-- [ ] **BG-01**: Subtle grid pattern overlay (5% opacity, covers full viewport)
-- [ ] **BG-02**: Gradient orbs/blobs as ambient background elements (blurred, orange/20)
-- [ ] **BG-03**: Noise texture overlay for premium feel (inline SVG, subtle)
-- [ ] **BG-04**: Background layers work at all breakpoints (mobile, tablet, desktop)
-- [ ] **BG-05**: Background transitions smoothly between sections (not jarring)
-- [ ] **BG-06**: Orbs have subtle parallax movement on scroll
+- [x] **BG-01**: Subtle grid pattern overlay (5% opacity, covers full viewport)
+- [x] **BG-02**: Gradient orbs/blobs as ambient background elements (blurred, orange/20)
+- [x] **BG-03**: Noise texture overlay for premium feel (inline SVG, subtle)
+- [x] **BG-04**: Background layers work at all breakpoints (mobile, tablet, desktop)
+- [x] **BG-05**: Background transitions smoothly between sections (not jarring)
+- [x] **BG-06**: Orbs have subtle parallax movement on scroll
 
 ### Glassmorphism
 
