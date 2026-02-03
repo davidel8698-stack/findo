@@ -12,8 +12,8 @@ The business owner does nothing. Findo operates completely autonomously after a 
 
 ## Current State
 
-**Version:** v1.1 Sales Website (shipped 2026-02-03)
-**Status:** Production ready
+**Version:** v2.0 Visual Excellence (in progress)
+**Status:** Defining requirements
 
 **Codebase:**
 - Backend: 29,580 lines of TypeScript (v1.0 MVP)
@@ -61,7 +61,19 @@ The business owner does nothing. Findo operates completely autonomously after a 
 
 ### Active
 
-(None — milestone complete, next requirements defined via `/gsd:new-milestone`)
+**v2.0 Visual Excellence (in progress):**
+
+Goal: Transform the website from "functional MVP" (69% certification) to world-class visual excellence rivaling Linear, Stripe, and Vercel. Target first reaction: "WOW" not "nice".
+
+Target features:
+- Gradient text on headlines (orange → amber)
+- Glow effects on CTA buttons with subtle pulse
+- Background depth: grid patterns + gradient orbs + noise texture
+- Glassmorphism cards with hover lift effects
+- Pre-rendered 3D phone mockup with realistic shadows
+- Orchestrated entrance animations (choreographed, not simultaneous)
+- Sophisticated micro-interactions on every interactive element
+- Full page overhaul (all sections)
 
 ### Out of Scope
 
@@ -131,4 +143,4 @@ The business owner does nothing. Findo operates completely autonomously after a 
 | 69% certification for MVP | Solid technical foundation, iterate on content post-launch | ✓ Good |
 
 ---
-*Last updated: 2026-02-03 after v1.1 milestone*
+*Last updated: 2026-02-03 after v2.0 milestone start*

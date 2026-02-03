@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-03)
 
 **Core value:** Business owner does nothing after 2-minute setup. Findo operates autonomously 24/7.
-**Current focus:** Next milestone planning
+**Current focus:** v2.0 Visual Excellence — Transform website to world-class
 
 ## Current Position
 
-Phase: Ready for next milestone
-Plan: None active
-Status: v1.1 complete, ready for `/gsd:new-milestone`
-Last activity: 2026-02-03 — v1.1 Sales Website milestone archived
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements for v2.0
+Last activity: 2026-02-03 — Milestone v2.0 started
 
-Progress: [============================================] 110/110 plans (v1.0 + v1.1) - SHIPPED ✅
+Progress: [                                            ] 0/? plans (v2.0) - DEFINING
 
 ## Milestone Summary
 
@@ -91,10 +91,10 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-03
-Stopped at: v1.1 milestone archived
+Stopped at: Milestone v2.0 started, defining requirements
 Resume file: None
 
-**Next step:** `/gsd:new-milestone` — define v1.2 or v2.0 scope with questioning → research → requirements → roadmap
+**Next step:** Complete requirements definition → roadmap creation → `/gsd:plan-phase 20`
 
 ---
-*Updated: 2026-02-03 after v1.1 milestone complete*
+*Updated: 2026-02-03 after v2.0 milestone start*
