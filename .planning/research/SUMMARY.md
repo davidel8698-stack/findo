@@ -1,512 +1,623 @@
-# Project Research Summary: Findo Sales Website
+# v2.0 Visual Excellence Research Summary
 
-**Project:** Findo Sales Website (v1.1 Milestone)
-**Domain:** High-Conversion SaaS Marketing Website (Hebrew RTL, Animation-Rich)
-**Target Market:** Israeli SMB owners seeking automation solutions
-**Researched:** 2026-01-31
+**Project:** Findo v2.0 Visual Excellence Milestone
+**Domain:** Premium website visual effects with performance optimization
+**Researched:** 2026-02-03
 **Confidence:** HIGH
 
 ## Executive Summary
 
-The Findo sales website is a standalone marketing site designed to convert Israeli SMB owners into trial users. Research reveals that world-class SaaS landing pages in 2026 achieve 7-15% conversion rates (vs 3.8% median) by combining table stakes elements—clear value proposition, social proof, transparent pricing—with strategic differentiators like interactive demos (2x conversion lift) and purposeful micro-animations. For Findo's Hebrew-first Israeli market, success demands specific adaptations: WhatsApp as primary contact, conversational Hebrew tone, local trust signals, and deep skepticism toward fake urgency tactics.
+Findo's transformation from 69% to world-class visual quality requires surgical implementation of four effect categories: gradient text, glow effects, background depth layers, and glassmorphism cards - combined with pre-rendered 3D phone mockups and orchestrated animations. Research confirms all techniques are production-ready with existing stack (Next.js 16, Tailwind 4.0, Motion, GSAP), but maintaining Lighthouse 95+ demands aggressive optimization for mid-range Android devices (Samsung Galaxy A24 4G baseline).
 
-The recommended technical approach is a **Next.js 15.5-based, animation-rich, performance-first website** using Motion for UI transitions, GSAP ScrollTrigger for scroll effects, and Tailwind CSS 4.0 with logical properties for native RTL support. The architecture prioritizes server-first rendering with client islands for interactivity, centralized content layer enabling placeholder-to-real swaps, and disciplined performance optimization targeting 90+ Lighthouse scores (LCP < 2.5s, INP < 200ms, CLS < 0.1). This standalone marketing site is independent from the main Findo backend, deployed on Vercel with global CDN.
+The critical finding: premium sites like Linear and Stripe achieve polish through **restraint and precision**, not effect overload. They use CSS-based techniques over image-heavy approaches, limit GPU-intensive effects to 1-2 strategic elements, and orchestrate animations with staggered timing (100-300ms overlaps) rather than simultaneous reveals. The path to "$10M startup aesthetic" is selective application of expensive effects combined with fast, lightweight foundations.
 
-Critical risks center on performance degradation from animation bloat (hero animations can tank LCP beyond 2.5s, killing conversion 5-15%), Hebrew RTL implementation failures (CSS physical properties break entire layouts, requiring complete rebuilds), and conversion killers like vague value propositions failing the 5-second test or excessive form friction (each field reduces completion 5-10%). The Israeli market presents unique challenges: WhatsApp integration is non-negotiable (90%+ business communication), fake urgency tactics trigger immediate credibility destruction (Design Bible critical failure), and Hebrew copy must be written by native copywriters (not translated) to avoid "this isn't local" perception. The path to 90+ Lighthouse certification and 7%+ conversion requires architectural discipline from Phase 1, real device testing (not just browser emulators), and ruthless elimination of conversion killers.
+Key risk: backdrop-filter blur is the performance killer - it degrades LCP by 40-60% on target devices and causes scroll jank. Use sparingly (1-2 elements maximum), keep blur radius under 20px, and remove entirely on mobile if performance drops below budget. All four researchers independently flagged this as the most dangerous technique.
 
 ## Key Findings
 
-### Recommended Stack
+### Visual Effects Stack
 
-The stack is optimized for visual impact, Core Web Vitals performance, and Hebrew RTL native support. Next.js 15.5 (not 16—maintains synchronous request API access while providing Turbopack stability) provides the foundation with App Router, React Server Components reducing client JS, and streaming for fast perceived performance. Tailwind CSS 4.0 offers native logical properties for RTL (`ms-`, `me-`, `ps-`, `pe-`), 5x faster builds, and CSS-first configuration eliminating tailwind.config.js complexity.
+**From VISUAL-EFFECTS-STACK.md - Confidence: HIGH**
 
-**Core technologies:**
-- **Next.js 15.5:** Server-first framework with App Router, RSC reduces client bundle size, built-in image optimization (WebP/AVIF), Metadata API for type-safe SEO, stable production support through 2026
-- **React 19.x:** Concurrent rendering, Server Components, improved suspense required by Next.js 15
-- **TypeScript 5.5+:** End-to-end type safety, catches errors early, better developer experience
-- **Tailwind CSS 4.0:** Logical properties for RTL (`margin-inline-start` not `margin-left`), CSS variables for theming, 40-60% faster builds, modern browser target (Safari 16.4+)
-- **Motion 12.27 (formerly Framer Motion):** Primary animations, React-native API, 32KB gzipped, excellent layout animations, AnimatePresence for exit effects, MIT licensed
-- **GSAP 3.14 + ScrollTrigger:** Complex scroll sequences, timeline control, SplitText for text reveals, now 100% FREE including all plugins (pricing change 2025)
-- **Lenis:** Smooth scrolling, lightweight, integrates with ScrollTrigger, standard for modern marketing sites
-- **shadcn/ui + Radix UI:** Copy-paste components (you own the code), accessible primitives, RTL support via DirectionProvider
-- **React Hook Form + Zod:** Form validation, 9KB bundle, type-safe schemas shared client/server, minimal re-renders
-- **PostHog:** All-in-one analytics (session replay, funnels, A/B testing, feature flags), open-source, self-hostable, no data sampling
-- **Vercel:** Native Next.js hosting, global CDN, preview deployments per PR, Edge Functions, analytics built-in, free tier for MVP
+All four core techniques are CSS-based and compatible with existing stack:
 
-**Why these choices:** The two-library animation strategy balances React integration (Motion for UI) with timeline power (GSAP for scroll). Motion's useScroll is 75% smaller than ScrollTrigger for simple cases, but GSAP's timeline control is unmatched for complex hero animations. Tailwind 4.0's logical properties eliminate need for RTL-specific overrides. Hebrew fonts (Heebo primary, Assistant fallback) are optimized with next/font for no FOUT. PostHog replaces Google Analytics + Hotjar + Mixpanel with single platform. Vercel provides zero-config deployment with instant preview URLs for design feedback.
+**Gradient Text (background-clip: text):**
+- Browser support: 97%+ with webkit prefixes
+- Performance: Negligible impact (5-10ms per element)
+- Implementation: Tailwind 4.0 handles prefixing automatically
+- Recommendation: Use for headlines only, limit to 2-3 color stops
 
-**Version specifics:**
-- Next.js 15.5 (not 16) maintains API access patterns while stable
-- Tailwind 4.0 released January 2025 with logical properties
-- Motion 12.27 is tree-shakeable (v12 milestone)
-- GSAP 3.14 now fully free (2025 licensing change)
+**Glow Effects (layered box-shadow):**
+- Browser support: Universal (99%+)
+- Performance: Moderate (3-8ms per element), force GPU with translateZ(0)
+- Implementation: 2-3 shadow layers maximum, stay under 30px blur radius
+- Recommendation: Primary CTAs only, use pseudo-elements for animated glows
 
-### Expected Features
+**Background Depth Layers (grid + orbs + noise):**
+- Components: CSS radial gradients + inline SVG noise + pseudo-element orbs
+- Performance: Moderate-high (10-20ms cumulative)
+- Critical optimization: Inline SVG noise as data URI (no HTTP request), limit blur radius to 80px
+- Recommendation: Desktop gets full effect, mobile gets grid only
 
-Research identified clear hierarchy based on SaaS landing page conversion analysis across 50+ high-performing sites and documented A/B tests.
+**Glassmorphism (backdrop-filter: blur):**
+- Browser support: 95.94% with webkit prefixes
+- Performance: EXPENSIVE (15-30ms per element, worst offender)
+- Implementation: backdrop-blur-md (12px) or backdrop-blur-lg (16px)
+- Recommendation: Hero section + 1-2 feature cards maximum, remove on mobile
 
-**Must have (table stakes):**
-- **Clear Hebrew headline (< 8 words)** — 5-second test determines if visitor stays, average high-performing H1 is under 8 words
-- **Benefit-driven subheadline** — Answers "What? Who? Why?" in Hebrew, uses What-Why-How formula
-- **Primary CTA above fold** — "Start Free Trial" visible without scrolling, first-person text increases clicks 90%
-- **Hero visual (product screenshot/video)** — Show value in 3-5 seconds, not stock photos (35% conversion penalty)
-- **Social proof section** — Client logos (4-6), testimonials with photos/names, usage metrics, increases conversion 34%
-- **3-4 core benefits** — Feature-benefit pairing, before/after transformation, outcome-driven not feature-dumping
-- **Transparent pricing** — 350 NIS/month clearly displayed, hidden pricing is top conversion killer
-- **Pricing clarity** — Monthly/annual toggle, feature list per plan, "No hidden fees" messaging
-- **Mobile-optimized** — 44x44px minimum tap targets, simplified forms, responsive images, 50%+ traffic is mobile
-- **Hebrew RTL throughout** — Logical properties, right-aligned text, mirrored layouts, right-to-left visual hierarchy
-- **WhatsApp contact** — Click-to-chat prominently displayed, 90%+ Israeli business communication penetration
-- **Real photos & attribution** — Full testimonial details (name, photo, company, specific results), not generic stock
+**Additional Stack Requirements:**
+- No new dependencies needed beyond existing Motion + GSAP
+- Tailwind config extensions for custom animations (pulse-glow, gradient-shift)
+- CSS variables for design tokens (shadow colors, gradient stops)
+- Next.js Image optimization for mockup assets
 
-**Should have (differentiators):**
-- **Interactive product demo** — Embedded click-through tour converts 2x better than screenshots, leads close 20-25% faster (Storylane/Navattic/Arcade)
-- **Scroll-triggered animations** — Sections fade in on scroll, guide eye to CTA, 2026 trend is "minimal motion with meaning"
-- **CTA hover animations** — Subtle scale/glow on hover, draws attention without distraction
-- **Animated feature icons** — Motion as features enter viewport, demonstrates functionality
-- **90-second demo video** — Video testimonials increase conversion 80% over text, autoplay muted background
-- **Live activity feed** — "X just signed up" creates urgency, dynamic social proof raises conversions 98%
-- **Minimal form fields** — Name + email only for lead gen (each field reduces completion 5-10%)
-- **Sticky mobile CTA** — Visible as user scrolls, easy access without hunting
-- **Counter animations** — "500+ businesses" counts up on scroll into view
-- **Before/after metrics** — Quantified transformation ("40% more leads captured")
+### 3D Phone Mockups
 
-**Defer to v2+:**
-- **AI-driven personalization** — Industry-specific messaging is HIGH complexity, 42% bounce reduction but not MVP-critical
-- **Video testimonials carousel** — Strong trust builder but requires video production resources
-- **Founder/team video** — Personal connection valuable in Israeli market but not blocking for launch
-- **Progressive profiling** — Capture more data after initial conversion reduces friction
-- **Blog/content marketing** — SEO value but not critical for paid acquisition launch strategy
+**From 3D-MOCKUPS.md - Confidence: HIGH**
 
-**Anti-features (explicitly avoid):**
-- **Multiple conflicting CTAs** — Decreases conversions 266%, create decision fatigue, one focused CTA per section
-- **Hidden pricing** — Top conversion killer, erodes trust, forces "contact sales" friction
-- **Long forms (5+ fields)** — Abandoned at field 4, phone number alone drops completion 5%
-- **Generic stock photos** — "Diverse team at laptop" lowers conversion 35% vs real photos
-- **CTA text "Submit"/"Click Here"** — 50% lower conversion than value-focused "Get My Free Trial"
-- **Fake urgency** — Countdown timers that reset, "only 3 spots left" for unlimited product = critical failure in Israeli market
-- **Full navigation on landing page** — Conversion drops 16-28%, multiple exit paths kill funnel
-- **Auto-playing video with sound** — Immediate bounce, poor mobile experience
-- **Feature dumping without benefits** — "AI-powered" means nothing without "Never miss a lead again"
-- **Testimonials without attribution** — Initials only ("M.K.") looks fake, reduces trust instead of building it
+**Recommended Tool: Rotato (speed) or Device Frames (free alternative)**
 
-### Architecture Approach
+Pre-rendered 3D mockups offer premium visuals without real-time 3D overhead:
+- Export at 2400x3000px (2-3x display size for retina)
+- Convert to AVIF (50% smaller) with WebP fallback
+- Use Next.js Image with preload={true} for hero mockup
+- Implement multi-layer CSS shadows (contact + directional + ambient)
+- Add subtle parallax with simple-parallax-js (~5KB)
 
-The architecture is **static-first with client islands for interactivity**, using Next.js App Router with route groups for marketing, legal, and blog sections. Component structure follows atomic design (atoms → molecules → organisms → templates) with clear separation: Server Components (90%+) for content and Client Components for animations, forms, analytics only. RTL is Hebrew-first with Tailwind logical properties and DirectionProvider wrapping the entire app.
-
-**Major components:**
-1. **Site Structure** — App Router with route groups: `(marketing)` for main pages, `(legal)` for privacy/terms, `blog` for future content, minimal API routes for contact/analytics
-2. **Animation System** — Motion for UI transitions (hover states, layout animations, page transitions), GSAP ScrollTrigger for scroll effects (parallax, reveal, pinned sections), Lenis for smooth scrolling, all GPU-accelerated (`transform` and `opacity` only to prevent CLS)
-3. **Content Layer** — Centralized `content/*.ts` files with all text, images, configuration, typed interfaces, enables placeholder-to-real swap without code changes, future CMS integration path
-4. **Design System** — shadcn/ui with CVA variants, Tailwind 4.0 CSS variables for tokens, Hebrew-optimized typography scale (16px+ body for character density), atomic component library with Storybook/documentation
-5. **Performance Architecture** — `next/image` with priority flags and blur placeholders, font preloading (Heebo with `display: swap`), dynamic imports for heavy components, code splitting by route, Core Web Vitals targets (LCP < 2.5s, INP < 200ms, CLS < 0.1)
-6. **SEO Infrastructure** — Type-safe Metadata API per page, JSON-LD structured data (SoftwareApplication schema), automatic sitemap generation, OpenGraph images per page, robots.txt configuration
-7. **Analytics Layer** — PostHog with session replay and conversion funnels, Vercel Analytics for Core Web Vitals monitoring, consent-aware tracking (GDPR compliant), key events (lead form started/completed, demo watched, pricing viewed)
-
-**Key architectural patterns:**
-- **Server-first rendering** reduces client JavaScript bundle (90%+ Server Components)
-- **Client islands** wrap only interactive components (animations, forms, mobile menu, carousels)
-- **GPU-accelerated animations** use `transform`/`opacity` exclusively (no `width`, `height`, `margin`, `padding` animations that cause CLS)
-- **RTL logical properties** eliminate manual overrides (`margin-inline-start` not `margin-left`, `text-align: start` not `text-align: left`)
-- **Centralized content** enables non-developer edits and clean CMS migration path
-- **Image dimensions** always specified to prevent CLS (width/height attributes or aspect-ratio CSS)
-- **Font optimization** with preload, display: swap, adjustFontFallback to reduce CLS
-- **Route-based code splitting** automatically via Next.js for smaller initial bundles
-
-**Project structure:**
+**Shadow Implementation (Critical for Realism):**
+```css
+.hero-phone-mockup {
+  box-shadow:
+    0px 2px 4px rgba(0, 0, 0, 0.25),      /* Contact shadow */
+    0px 8px 16px rgba(0, 0, 0, 0.2),      /* Directional shadow */
+    0px 24px 48px rgba(0, 0, 0, 0.15),    /* Ambient shadow */
+    0px 48px 96px rgba(0, 0, 0, 0.1);     /* Extended ambient */
+  border-left: 1px solid rgba(255, 255, 255, 0.08); /* Rim light */
+  filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.12)); /* Screen glow */
+}
 ```
-findo-website/
-├── src/app/              # Next.js App Router
-├── components/           # Atomic design (atoms/molecules/organisms/templates)
-├── content/              # Centralized content layer (*.ts files)
-├── lib/                  # Utilities, animations, fonts
-├── public/               # Static assets (images, videos)
-└── styles/               # Global styles, Tailwind imports
+
+**Performance Optimization:**
+- LCP target: <1.5s (requires preloading hero mockup)
+- Image format: AVIF primary, WebP fallback, PNG last resort
+- Responsive sizes: 300px mobile, 400px tablet, 600px desktop
+- Lazy load all non-hero mockups
+
+**Workflow (15 minutes total):**
+1. Create mockup in Rotato (5 min)
+2. Export at 2400x3000px PNG
+3. Next.js auto-optimizes to AVIF/WebP
+4. Add multi-layer CSS shadows
+5. Wrap with simple-parallax-js
+
+### Animation Choreography
+
+**From ANIMATION-CHOREOGRAPHY.md - Confidence: HIGH**
+
+Premium polish comes from **orchestrated sequences**, not simultaneous animations.
+
+**Hero Timeline Pattern (GSAP):**
 ```
+0-300ms:   Background gradient fades in
+200-500ms: Navigation slides down (overlaps background)
+300-800ms: Hero headline reveals word-by-word (100ms stagger)
+600-900ms: Subheadline fades up (starts before headline completes)
+800-1100ms: CTA buttons scale in with bounce
+500-1200ms: Phone mockup slides in (overlaps everything)
+1000ms+:   Activity feed cards animate (150ms stagger)
+```
+
+**Key Timing Principles:**
+- Overlap is better than gaps: Start next animation 100-300ms before previous completes
+- Duration sweet spot: 200-500ms for UI elements
+- Mobile optimization: Reduce durations by 33% (200-300ms)
+- Stagger formula: 100ms for text words, 150ms for cards
+
+**Micro-Interaction Library (Motion Variants):**
+- Button hover: scale 1.02, duration 250ms
+- Card lift: translateY(-4px), duration 300ms
+- Link underline: scaleX animation with transform-origin
+- Input focus: box-shadow glow with 4px spread
+
+**Performance Rules:**
+- GPU-only properties: transform, opacity (never width, height, top, left)
+- Limit simultaneous animations to <10 elements
+- Use will-change toggle pattern (add before, remove after)
+- Respect prefers-reduced-motion via MotionConfig
+
+**Easing Reference:**
+- Entrance animations: power3.out (easeOutCubic)
+- Dramatic entrances: expo.out (easeOutExpo)
+- Hover interactions: sine.out (easeOutSine)
+- Bounce effects: back.out(1.7)
 
 ### Critical Pitfalls
 
-Research identified 26 sales website pitfalls across performance, RTL, conversion, mobile, content, design, technical, and Israeli market categories. Top priorities:
+**From VISUAL-PERFORMANCE-PITFALLS.md - Confidence: HIGH**
 
-1. **Hero animations tank LCP (Largest Contentful Paint)** — Cinematic hero section with autoplay video or complex entrance animations delays LCP beyond 2.5s, PageSpeed drops below 90, conversion falls 5-15%. **Prevention:** LCP element (headline/hero image) must render in < 2.5s, preload with `<link rel="preload">`, use WebP/AVIF (60-90% smaller than PNG/JPG), poster image first then lazy-load video, keep animation library to core only (~18-23KB), fast static visual often converts better than cinematic. **Phase:** Website Phase 1 (Foundation) - Hero architecture decision. **Detection:** PageSpeed Insights LCP metric.
+**Pitfall 1: Backdrop-Filter Overuse (CRITICAL)**
+- Problem: Each backdrop-filter element creates expensive compositing layer
+- Consequence: LCP degrades 40-60%, scroll jank on mid-range Android
+- Prevention: Limit to 1-2 elements maximum, blur radius <10px, remove on mobile
+- Detection: Paint tasks >16ms in DevTools, frame drops during scroll
 
-2. **CSS uses left/right instead of logical properties** — Developer writes `margin-left: 20px`. Works in English. Hebrew users see content misaligned, forms broken, buttons in wrong positions. Complete UI rebuild for Hebrew required. **Prevention:** Use CSS logical properties EVERYWHERE (`margin-inline-start` not `margin-left`, `padding-inline-end` not `padding-right`, `text-align: start` not `text-align: left`), set `dir="rtl"` on HTML element from day one, use RTLCSS for automated conversion if needed. **Phase:** Website Phase 1 (Foundation) - CSS architecture. **Detection:** Search codebase for `left:`, `right:`, `margin-left`, `margin-right`.
+**Pitfall 2: Large Blur Radius (>20px)**
+- Problem: Gaussian blur cost grows quadratically with radius
+- Consequence: 40px blur is 4x slower than 20px
+- Prevention: Stay under 20px, use opacity tricks to appear larger
+- Mobile budget: 10px = 3-5ms, 20px = 10-15ms, 40px = 40-80ms (blown)
 
-3. **Vague value proposition fails 5-second test** — Visitor lands on page, after 5 seconds cannot answer "What is this? What can I do here? Who is it for?", bounces immediately. High bounce (>70%), wasted ad spend. **Prevention:** Headline under 10 words, benefit-focused (not feature-focused), test with 3 real users ("What is this about?" after 5 seconds), primary CTA above fold, subheadline adds specific detail. **Phase:** Website Phase 3 (Content) - Headline copy. **Detection:** 5-second test with non-team-members.
+**Pitfall 3: Will-Change Memory Exhaustion**
+- Problem: Each will-change reserves 4-8MB GPU memory
+- Consequence: 50 elements = 200-400MB reserved, causes texture swapping
+- Prevention: Toggle with JavaScript (add before animation, remove after), max 5-10 elements
+- Detection: Layers tab shows >30 compositing layers
 
-4. **Form asks for too much information** — Lead form asks for name, email, phone, company, company size, budget, timeline, "how you heard about us". Visitor abandons at field 4. Each additional field reduces completion 5-10%, phone number alone drops 5%. **Prevention:** Lead gen form limited to name + email only (or just email), progressive profiling after conversion, enrichment tools for company data, if phone required explain why and show value. **Phase:** Website Phase 4 (Forms) - Form design. **Detection:** Count form fields (more than 3 = problem).
+**Pitfall 4: Animating Non-Composited Properties**
+- Problem: Animating width, height, top, left triggers layout recalculation
+- Consequence: Guaranteed jank, impossible to maintain 60fps
+- Prevention: Use transform (translate, scale) instead of position/size
+- The Four Safe Properties: transform, opacity, filter, clip-path
 
-5. **Generic stock photos destroy trust** — Hero image is "diverse team looking at laptop", testimonial has no photo, about section uses "hands shaking" stock image. 35% lower conversion with stock photos vs real photos (Marketing Experiments A/B test). **Prevention:** Real photos of team and customers, product screenshots not stock "dashboard" images, testimonials with real faces (name, photo, company, specific results), if stock necessary choose context-appropriate not generic. **Phase:** Website Phase 5 (Visual Content) - Photo strategy. **Detection:** Every image answers "Is this real or generic?"
+**Pitfall 5: LCP Element with Heavy Effects**
+- Problem: Visual effects delay paint completion, blocking LCP measurement
+- Consequence: LCP >2.5s, failing Core Web Vitals
+- Prevention: Keep LCP element clean, defer effects with JavaScript after load
+- Critical: Preload LCP image with fetchpriority="high"
 
-6. **Scroll animations cause CLS (Cumulative Layout Shift)** — Elements animate into view by changing size/position, layout jumps, CLS > 0.1, users click wrong button. **Prevention:** ONLY animate `transform` and `opacity` (GPU-accelerated, no layout impact), reserve space for images (width/height or aspect-ratio), skeleton loaders for lazy content, cookie banners use fixed position not pushing content. **Phase:** Website Phase 2 (Animation System) - All scroll animations. **Detection:** Chrome DevTools > Performance > Experience > Layout Shift.
+**Mobile Performance Budget (Samsung Galaxy A24 4G):**
+- Frame budget: 16.67ms total (JavaScript <8ms, Paint <4ms, Composite <2ms)
+- Backdrop-filter: 15-30ms per element (EXCEEDS BUDGET)
+- Box-shadow glow: 3-8ms per element
+- Gradient text: 5-10ms per element
+- Background layers: 10-20ms cumulative
+- Budget rule: These are cumulative during scroll - test together, not in isolation
 
-7. **Animation library bloat delays interactivity** — Import entire Motion (32KB) + GSAP (23KB) + plugins, bundle explodes, INP (Interaction to Next Paint) > 200ms, JavaScript parsing blocks main thread. **Prevention:** Choose ONE animation approach (recommend Motion for React), Motion's scroll function is 75% smaller than GSAP ScrollTrigger, tree-shake imports, lazy-load animation code for below-fold content, CSS for simple hover effects. **Phase:** Website Phase 1 (Foundation) - Technology selection. **Detection:** Bundle analyzer, Lighthouse Performance audit.
+**Reference: Premium Site Performance**
+- Linear: Lighthouse 97, LCP 1.4s, 18 compositing layers - NO backdrop-filter
+- Stripe: Lighthouse 94, LCP 1.8s, 24 layers - gradients via transform not background-position
+- Vercel: Lighthouse 98, LCP 1.2s, 12 layers - noise as data URI, single background layer
+- Framer: Lighthouse 89, LCP 2.3s, 42 layers - USES backdrop-filter, pays performance price
 
-8. **Missing local trust signals** — Website has global trust signals (random logos, international awards) but nothing Israeli SMBs recognize. "This isn't for us" perception. **Prevention:** Israeli customer testimonials prominently featured, local business logos Israeli SMBs recognize, Israeli phone number visible (not just form), Hebrew-first tone appropriate for Israeli business culture, WhatsApp support option (expected in market). **Phase:** Website Phase 5 (Social Proof) - Trust elements. **Detection:** Show page to Israeli SMB owner, ask "Is this for Israeli businesses?"
+## Recommended Stack Additions
 
-9. **No mobile testing on real devices** — Site looks perfect in Chrome DevTools responsive mode, launches, real users report broken layouts, missing functionality, slow performance. Browser emulators don't capture real touch events, GPU capabilities, network conditions. **Prevention:** Test on real iPhone (Safari) + real Android (Chrome), include mid-range 2-3 year old Android, test on real cellular network (not WiFi), BrowserStack/Sauce Labs for device coverage. **Phase:** Website Phase 6 (QA) - Real device testing. **Detection:** Real device testing checklist.
+**No new major dependencies required.** Extend existing stack:
 
-10. **CTA button says "Submit" or "Click Here"** — Generic button text, no value communicated, visitor doesn't know what happens next. 50% lower conversion than value-focused CTAs. **Prevention:** CTA communicates value ("Start Free Trial", "Get My Demo", "See Pricing"), first-person when appropriate ("Start MY Free Trial" increases clicks 90%), supporting text ("No credit card required"), match CTA to page stage. **Phase:** Website Phase 4 (Forms & CTAs) - CTA copy. **Detection:** Read CTA out loud - does it communicate benefit?
+**Tailwind Config (tailwind.config.js):**
+```javascript
+extend: {
+  keyframes: {
+    'pulse-glow': {
+      '0%, 100%': { boxShadow: '0 0 20px rgba(255,107,0,0.4), 0 0 40px rgba(255,107,0,0.2)' },
+      '50%': { boxShadow: '0 0 30px rgba(255,107,0,0.6), 0 0 60px rgba(255,107,0,0.4)' }
+    },
+    'gradient-shift': {
+      '0%, 100%': { backgroundPosition: '0% 50%' },
+      '50%': { backgroundPosition: '100% 50%' }
+    }
+  },
+  animation: {
+    'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+    'gradient-shift': 'gradient-shift 3s ease infinite'
+  }
+}
+```
 
-**Additional high-impact pitfalls:**
-- **Fake urgency** (countdown timers that reset) = critical failure in Israeli market, permanent credibility destruction (Design Bible: automatic disqualification)
-- **Navigation menu on landing page** drops conversion 16-28% (Mutiny data)
-- **Small tap targets** (< 44px) on mobile = 50%+ traffic unusable
-- **Sticky header eats mobile viewport** (> 60px = 12%+ of screen gone)
-- **Animations break on low-end Android** (SMB owners have 2-3 year old devices)
-- **Hebrew AI-generated copy** feels like translation if not written by native copywriter
-- **Feature dumping** without benefits ("AI-powered" vs "Never leave customer waiting")
-- **Testimonials without photos** look fake, reduce trust instead of building
-- **Fonts load late** causing flash (Hebrew fonts especially large)
-- **No WhatsApp contact** contradicts Israeli expectation
+**Parallax Library (Optional, Lightweight):**
+- simple-parallax-js (~5KB) for hero phone mockup
+- Alternative: GSAP ScrollTrigger (already in stack, no new dependency)
+
+**Image Optimization:**
+- Next.js Image component (already in stack)
+- Export workflow: Rotato → PNG → Next.js auto-converts to AVIF/WebP
+
+**Component Library Structure:**
+```
+src/components/ui/
+├── GradientText.tsx         # Reusable gradient headlines
+├── GlowButton.tsx           # CTAs with glow effects
+├── GlassCard.tsx            # Glassmorphic feature cards
+├── PremiumBackground.tsx    # Layered background (grid + orbs + noise)
+└── GradientOrbs.tsx         # Animated gradient orbs
+```
 
 ## Implications for Roadmap
 
-Based on research, the website requires 6 phases prioritizing foundation (architecture decisions cascade), design system (component consistency), then page implementation.
+Based on combined research, suggested phase structure prioritizes performance-critical foundations before expensive effects:
 
-### Phase 1: Foundation & Setup (Days 1-3)
-**Rationale:** Architecture decisions cascade through entire project. Hebrew RTL must be native (not adapted from LTR). Performance targets set from day one. Animation discipline established upfront prevents bloat.
+### Phase 1: Foundation & Gradient Text
+**Rationale:** Gradient text is the easiest, lowest-risk effect with highest ROI. Start here to establish visual direction while maintaining performance.
 
 **Delivers:**
-- Next.js 15.5 project with App Router and TypeScript
-- Tailwind CSS 4.0 with logical properties configuration
-- Hebrew font loading (Heebo) with preload optimization
-- RTL layout (`dir="rtl"`, DirectionProvider from Radix)
-- Basic atomic components (Button, Text, Icon)
-- Layout templates with Header/Footer shells
-- Content layer structure (`content/*.ts` files with types)
-- Analytics setup (PostHog base configuration)
-- Project structure (atomic design folders)
-- Vercel deployment configuration
+- Gradient text on hero headline (orange → amber)
+- CSS variable system for gradient colors
+- Tailwind config extensions
+- Component: GradientText.tsx
 
-**Addresses from FEATURES-SALES-WEBSITE.md:**
-- Hebrew RTL throughout (foundational architecture)
-- Mobile-first design (responsive utilities)
+**Technical Stack:**
+- CSS background-clip with webkit prefixes (Tailwind handles automatically)
+- 2-3 color stops maximum
 
-**Addresses from SALES-WEBSITE-STACK.md:**
-- Next.js 15.5 with App Router and RSC
-- Tailwind CSS 4.0 with logical properties
-- Heebo font with next/font optimization
-- PostHog analytics integration
+**Performance Impact:** Negligible (5-10ms total)
 
-**Addresses from ARCHITECTURE.md:**
-- Server-first rendering pattern
-- Client islands approach
-- Centralized content layer
-- Font optimization strategy
+**Avoids Pitfalls:**
+- No layout-triggering animations
+- No GPU memory issues
+- Fast to implement, low debugging risk
 
-**Avoids from PITFALLS.md:**
-- Pitfall SW-4 (CSS physical properties) by using logical from start
-- Pitfall SW-22 (font flash) with preload strategy
-- Pitfall SW-3 (animation bloat) by establishing discipline
-
-**Research Flag:** Standard Next.js patterns, skip additional research
+**Research Flag:** SKIP - Well-documented pattern, no deeper research needed
 
 ---
 
-### Phase 2: Design System & Components (Days 4-6)
-**Rationale:** Component library must be complete before page implementation. Hebrew typography requires specific scale and spacing. Animation infrastructure must prevent performance pitfalls from day one.
+### Phase 2: Background Depth Layers
+**Rationale:** Establish visual environment before adding foreground effects. Background sets the stage for glassmorphism cards to stand out against.
 
 **Delivers:**
-- All atomic components (Input, Badge, Logo, Card variants, FormField)
-- Molecules (CTAGroup, StatItem, NavLink)
-- Motion animation variants library (fadeInUp, staggerContainer, scaleIn)
-- ScrollReveal component (Intersection Observer + Motion)
-- Responsive breakpoints and utilities
-- shadcn/ui integration with RTL adaptations
-- Typography scale for Hebrew (16px+ body, tight leading)
-- CVA variants for button/card states
-- Component testing/documentation (Storybook optional)
+- Grid pattern overlay (CSS radial gradients)
+- Noise texture (inline SVG data URI)
+- Animated gradient orbs (pseudo-elements)
+- Component: PremiumBackground.tsx
 
-**Addresses from FEATURES-SALES-WEBSITE.md:**
-- 44px minimum tap targets for mobile (atomic Button component)
-- Scroll-triggered animations (ScrollReveal component)
-- CTA hover animations (Button variants)
+**Technical Stack:**
+- CSS multiple background-image layers
+- SVG feTurbulence filter for noise
+- GSAP for orb animation (slow float)
 
-**Addresses from SALES-WEBSITE-STACK.md:**
-- Motion for UI animations
-- shadcn/ui with DirectionProvider for RTL
-- CVA for variant management
+**Performance Impact:** Moderate (10-20ms cumulative)
 
-**Addresses from ARCHITECTURE.md:**
-- Atomic design structure
-- GPU-accelerated animation patterns
-- Hebrew-optimized typography
+**Mobile Optimization:**
+- Remove orbs and noise on mobile (grid only)
+- Reduce blur radius from 80px to 40px if needed
 
-**Avoids from PITFALLS.md:**
-- Pitfall SW-13 (small tap targets) with 44px minimum
-- Pitfall SW-14 (sticky header size) with mobile optimization
-- Pitfall SW-2 (CLS from animations) with transform/opacity only
+**Avoids Pitfalls:**
+- Layer budget: 3-4 layers max (desktop), 1-2 (mobile)
+- Inline SVG as data URI (no HTTP request)
+- Static backgrounds (no animated background-position)
 
-**Research Flag:** Standard component patterns, skip additional research
+**Research Flag:** SKIP - Established patterns, performance characteristics well-documented
 
 ---
 
-### Phase 3: Homepage Implementation (Days 7-10)
-**Rationale:** Homepage is the conversion engine and validates entire design system. Hero with "wow" animation must balance visual impact with LCP performance (< 2.5s target). This phase tests all architectural decisions.
+### Phase 3: Glow Effects on CTAs
+**Rationale:** Bring attention to conversion points. Glow effects are moderate cost but high visual impact when applied strategically.
 
 **Delivers:**
-- Hero section with GSAP ScrollTrigger animation (parallax, reveal)
-- Features section with scroll reveals (Motion IntersectionObserver)
-- Social proof section (stats with counter animation, client logos, testimonials)
-- Pricing display (350 NIS/month transparent, monthly/annual toggle)
-- CTA sections with hierarchy (primary above fold, sticky mobile CTA)
-- Homepage content population (`content/homepage.ts`)
-- Mobile-optimized layouts (responsive grid, stacked on mobile)
-- Performance optimization (image preload, font preload, lazy-load below fold)
+- Pulsing glow on primary CTA (hero section)
+- Hover glow intensification
+- Static glow on secondary CTAs
+- Component: GlowButton.tsx
 
-**Addresses from FEATURES-SALES-WEBSITE.md:**
-- Clear Hebrew headline (< 8 words) + benefit-driven subheadline
-- Product screenshot/video in hero
-- Primary CTA above fold with action-oriented text
-- Social proof (logos, testimonials, metrics)
-- 3-4 core benefits with before/after framing
-- Transparent pricing (350 NIS/month)
-- Scroll-triggered animations guiding to CTA
+**Technical Stack:**
+- Layered box-shadow (2-3 layers)
+- CSS keyframes animation for pulse
+- Pseudo-element approach for better performance
 
-**Addresses from SALES-WEBSITE-STACK.md:**
-- GSAP + ScrollTrigger for hero scene
-- Lenis for smooth scrolling
-- next/image with priority for hero
-- Motion for UI transitions
+**Performance Impact:** Moderate (3-8ms per button)
 
-**Addresses from ARCHITECTURE.md:**
-- Server Component default with Client islands
-- Content layer consumption pattern
-- Animation performance guidelines
-- Image optimization strategy
+**Budget:**
+- Max 5-8 glowing elements per viewport
+- Blur radius <30px
+- Force GPU compositing with translateZ(0)
 
-**Avoids from PITFALLS.md:**
-- Pitfall SW-1 (LCP) with preload and optimization
-- Pitfall SW-7 (vague value prop) with 5-second test
-- Pitfall SW-11 (generic CTA) with value-focused text
-- Pitfall SW-19 (distracting animations) with conversion focus
-- Pitfall SW-20 (no focal point) with clear visual hierarchy
+**Avoids Pitfalls:**
+- Single shadow approach (not 5+ layers)
+- Animate opacity, never blur radius
+- Pseudo-element isolation for complex glows
 
-**Research Flag:** **NEEDS PHASE RESEARCH** - GSAP ScrollTrigger + Lenis integration patterns, scroll animation performance on low-end mobile devices, hero LCP optimization techniques (preload strategy, image formats, animation timing)
+**Research Flag:** MINOR - Test pseudo-element vs direct box-shadow performance on Galaxy A24
 
 ---
 
-### Phase 4: Secondary Pages (Days 11-14)
-**Rationale:** Complete page suite enables full funnel testing. Pricing page addresses transparency (top conversion factor). Features page prevents feature dumping with benefit-focused copy.
+### Phase 4: 3D Phone Mockup
+**Rationale:** Hero visual centerpiece. Pre-rendered approach avoids real-time 3D complexity while delivering premium aesthetic.
 
 **Delivers:**
-- Pricing page with comparison table and trust signals
-- Features page with benefit-focused copy (feature → functional → emotional)
-- How It Works page with step visualization (numbered flow)
-- About page with team photos (real, not stock) and story
-- Contact page with minimal form (name + email) and WhatsApp prominent
-- All pages with SEO metadata (title, description, OG images)
-- Legal pages (privacy, terms, accessibility) with minimal layout
-- Footer with navigation and social links
+- iPhone mockup with activity feed UI
+- Multi-layer realistic shadows
+- Subtle parallax effect
+- Optimized AVIF/WebP images
 
-**Addresses from FEATURES-SALES-WEBSITE.md:**
-- Transparent pricing (feature list, no hidden fees, trust badges)
-- Feature-benefit pairing (outcome-driven storytelling)
-- Minimal form fields (name + email only)
-- WhatsApp contact prominent
-- Mobile-first forms (larger inputs, simplified layout)
+**Technical Stack:**
+- Rotato for mockup creation (5 minutes)
+- Next.js Image with preload={true}
+- simple-parallax-js (~5KB)
+- Multi-layer CSS shadows
 
-**Addresses from ARCHITECTURE.md:**
-- Route groups for page organization
-- SEO metadata per page
-- Server Components for static content
+**Performance Impact:** Moderate (5-10ms if optimized)
 
-**Avoids from PITFALLS.md:**
-- Pitfall SW-9 (form friction) with 2-3 fields maximum
-- Pitfall SW-17 (feature dumping) with benefit hierarchy
-- Pitfall SW-26 (no WhatsApp) with prominent contact option
-- Pitfall SW-8 (full navigation) with minimal distractions
+**Critical Optimizations:**
+- Export at 2x display size (not larger)
+- AVIF format (50% smaller than PNG)
+- Preload hero mockup for LCP
+- Lazy load all other mockups
 
-**Research Flag:** Standard page patterns, skip additional research
+**Avoids Pitfalls:**
+- LCP element optimization (preload, fetchpriority="high")
+- No backdrop-filter on mockup container
+- Static transforms (no 3D animation on mobile)
+
+**Research Flag:** SKIP - Clear workflow documented, tools proven
 
 ---
 
-### Phase 5: Interactive Demo & Polish (Days 15-16)
-**Rationale:** Interactive demo is #1 differentiator (2x conversion, 20-25% faster deal velocity) but requires careful implementation. Polish phase optimizes what's built with real content.
+### Phase 5: Glassmorphism Cards (DANGER ZONE)
+**Rationale:** Most expensive effect, defer until performance budget is understood. Requires heavy testing on target devices.
 
 **Delivers:**
-- Demo page with embedded interactive tour (Storylane/Navattic/Arcade evaluation)
-- 90-second product demo video (autoplay muted, poster image)
-- Image optimization audit (WebP/AVIF conversion, blur placeholders)
-- Animation performance audit (remove unnecessary, optimize heavy)
-- Testimonial implementation with full attribution (photo, name, company, results)
-- Social proof with real Israeli customers (local logos, Hebrew testimonials)
-- Trust signals (security badges, money-back guarantee, contact info)
-- Video testimonials (30-60 second clips from real customers)
+- Glassmorphic feature cards (3-5 cards)
+- Subtle backdrop blur (8-12px)
+- Hover lift effect
+- Component: GlassCard.tsx
 
-**Addresses from FEATURES-SALES-WEBSITE.md:**
-- Interactive product demo (embedded click-through tour)
-- 90-second demo video (background or hero video)
-- Real photos & attribution (testimonials with specifics)
-- Local trust signals (Israeli customers, Hebrew support)
+**Technical Stack:**
+- backdrop-filter: blur(12px) with webkit prefix
+- Semi-transparent background (rgba)
+- Subtle border with light transparency
 
-**Addresses from SALES-WEBSITE-STACK.md:**
-- next-video or Mux for video optimization
-- Interactive demo platform integration
+**Performance Impact:** HIGH (15-30ms per element)
 
-**Avoids from PITFALLS.md:**
-- Pitfall SW-10 (stock photos) with real team/customer photos
-- Pitfall SW-18 (weak testimonials) with full attribution
-- Pitfall SW-25 (missing local trust) with Israeli signals
+**Critical Requirements:**
+- MUST test on Samsung Galaxy A24 4G before shipping
+- Limit to 3-5 cards maximum (desktop)
+- Remove backdrop-filter on mobile (solid background fallback)
+- Blur radius 8-12px only (NOT 20px+)
 
-**Research Flag:** **NEEDS PHASE RESEARCH** - Interactive demo platform comparison (Storylane $40/month vs Navattic free tier vs Arcade), embed performance impact on LCP, recording/hosting workflow, mobile compatibility
+**Avoids Pitfalls:**
+- Backdrop-filter budget: 1-2 elements (hero + cards section)
+- Mobile fallback: solid rgba() background, no blur
+- Progressive enhancement: @supports query for fallback
+
+**Research Flag:** CRITICAL - Requires phase-specific performance research on target device
+
+**Escape Hatch:** If Lighthouse drops below 95, remove backdrop-filter entirely and use solid backgrounds with subtle shadow instead.
 
 ---
 
-### Phase 6: Performance, SEO & QA (Days 17-20)
-**Rationale:** 90+ Lighthouse certification is Design Bible requirement. Real device testing catches mobile issues browser emulators miss. Analytics verification ensures conversion tracking from day one.
+### Phase 6: Orchestrated Entrance Animations
+**Rationale:** Final polish layer. Animations are the "icing on the cake" - add only after all visual foundations are performance-validated.
 
 **Delivers:**
-- Lighthouse optimization (90+ mobile and desktop scores)
-- SEO implementation (meta tags, JSON-LD structured data, sitemap.xml, robots.txt)
-- Analytics integration verification (PostHog events firing correctly)
-- Accessibility audit (WCAG 2.1 AA compliance, WAVE scan)
-- Cross-browser testing (Chrome, Safari, Firefox, Edge)
-- Real device testing (iPhone 14, Samsung Galaxy A54, mid-range Android)
-- Hebrew copy review by native speakers (tone, grammar, cultural appropriateness)
-- Performance monitoring setup (Vercel Analytics, PostHog session replay)
-- Load testing (throttled 3G, measure LCP/INP/CLS)
-- Pre-launch checklist (analytics, SEO, accessibility, performance, mobile)
+- GSAP timeline for hero sequence (7 elements, 1200ms total)
+- Motion variants for micro-interactions (buttons, cards, links)
+- ScrollTrigger reveals for below-fold sections
+- Accessibility: prefers-reduced-motion support
 
-**Addresses from FEATURES-SALES-WEBSITE.md:**
-- Mobile-first experience (real device validation)
-- Hebrew-native throughout (native speaker review)
+**Technical Stack:**
+- GSAP timeline with labels
+- Motion variants library
+- ScrollTrigger for scroll reveals
+- MotionConfig with reducedMotion="user"
 
-**Addresses from ARCHITECTURE.md:**
-- Core Web Vitals targets (LCP < 2.5s, INP < 200ms, CLS < 0.1)
-- Performance monitoring
-- SEO infrastructure validation
+**Performance Impact:** Variable (depends on orchestration quality)
 
-**Avoids from PITFALLS.md:**
-- Pitfall SW-23 (no real device testing) with physical device QA
-- Pitfall SW-24 (analytics not set up) with pre-launch verification
-- Pitfall SW-15 (animations on low-end) with budget device testing
-- Pitfall SW-16 (translated Hebrew) with native speaker review
-- Pitfall SW-21 (no image dimensions) with CLS audit
-- Pitfall SW-1 (LCP) with Lighthouse optimization
+**Critical Orchestration:**
+- Stagger overlaps: 100-300ms
+- Total hero sequence: <1.5s
+- Simultaneous animations: <10 elements
+- GPU-only properties (transform, opacity)
 
-**Research Flag:** Standard QA patterns, skip additional research
+**Avoids Pitfalls:**
+- will-change toggle pattern (add/remove dynamically)
+- No layout-triggering properties (width, height, top, left)
+- Limit stagger to 20-30 elements at once
+- ScrollTrigger lazy loading (only animate in viewport)
+
+**Research Flag:** MINOR - Test orchestration complexity vs performance, profile frame drops
+
+---
+
+### Phase 7: Full Page Overhaul
+**Rationale:** Apply validated patterns to all sections. By this phase, performance budget is known and effects are proven.
+
+**Delivers:**
+- Apply gradient text to section headlines
+- Add glow effects to conversion CTAs throughout
+- Extend background layers to feature sections
+- Apply glass cards to testimonials/pricing
+- Orchestrate scroll reveals for every section
+
+**Technical Stack:**
+- Reuse components from Phases 1-6
+- ScrollTrigger for section reveals
+- Consistent timing/easing across all animations
+
+**Performance Budget:**
+- Maintain Lighthouse 95+ (final gate)
+- LCP <1.5s (unchanged from current)
+- No CLS from animations
+- 60fps during scroll
+
+**Avoids Pitfalls:**
+- Progressive testing: validate each section before moving to next
+- Performance monitoring: Lighthouse CI on every section addition
+- Mobile optimization: reduce/remove effects that blow budget
+
+**Research Flag:** SKIP - All patterns established, execution phase
 
 ---
 
 ### Phase Ordering Rationale
 
-**Dependency-driven sequence:**
-- Foundation (Phase 1) provides architecture for Design System (Phase 2)
-- Design System (Phase 2) enables Homepage (Phase 3) and Secondary Pages (Phase 4)
-- Homepage (Phase 3) validates all architectural decisions early
-- Interactive Demo (Phase 5) requires working pages to embed into
-- Performance/QA (Phase 6) optimizes everything built
+**Why this sequence:**
+1. **Start cheap → end expensive:** Gradient text (cheap) before glassmorphism (expensive)
+2. **Foundation before foreground:** Background layers establish environment before cards
+3. **Static before animated:** Visual effects validated before adding animation complexity
+4. **Test escape hatches early:** Phase 5 (glassmorphism) is the make-or-break moment - if it fails, phases 6-7 proceed without it
 
-**Risk mitigation early:**
-- Hebrew RTL and animation architecture decisions in Phase 1 prevent late-stage rewrites (weeks of rework if discovered in Phase 5)
-- Component library in Phase 2 ensures consistency and prevents duplicate implementations
-- Homepage in Phase 3 validates design system with highest-stakes page
-- Real device testing in Phase 6 catches mobile issues before launch (50%+ of traffic)
+**Dependency chain:**
+- Phase 2 (background) must precede Phase 5 (glass cards) - cards need backdrop to blur
+- Phase 4 (mockup) can run parallel to Phases 2-3 if resources available
+- Phase 6 (animations) depends on Phases 1-5 completion - can't orchestrate what doesn't exist
 
-**Conversion focus prioritization:**
-- Homepage (Phase 3) is critical path for paid acquisition campaigns
-- Interactive demo (Phase 5) is key differentiator (2x conversion)
-- Performance optimization (Phase 6) prevents conversion killers (each 100ms delay = 1% conversion drop)
+**Performance validation gates:**
+- After Phase 3: Lighthouse should be 95+ (gradient + background + glow)
+- After Phase 4: LCP should be <1.5s (mockup optimized)
+- After Phase 5: Lighthouse critical check - if <95, remove backdrop-filter
+- After Phase 6: Frame rate must be 60fps on Galaxy A24
+- After Phase 7: Final Core Web Vitals validation
 
-**Why this grouping makes sense:**
-- Phases 1-2 are infrastructure (foundation + design system)
-- Phases 3-4 are page implementation (homepage + secondary pages)
-- Phases 5-6 are optimization (demo/polish + performance/QA)
+**Mobile-first strategy:**
+- Phases 1-3: Full effects on mobile (cheap enough)
+- Phase 4: Reduced parallax intensity on mobile
+- Phase 5: NO backdrop-filter on mobile (solid fallback)
+- Phase 6: Reduced animation durations (33% faster)
+- Phase 7: Conditional effects based on device capability detection
 
 ### Research Flags
 
-**Phases likely needing `/gsd:research-phase` during planning:**
+**Needs deeper phase-specific research:**
+- **Phase 5 (Glassmorphism):** Critical - Must profile backdrop-filter on Samsung Galaxy A24 4G with actual Findo codebase. Research should include: exact blur radius budget, compositing layer count, scroll performance with GSAP animations active. High risk of performance failure.
 
-- **Phase 3 (Homepage Implementation)** — GSAP ScrollTrigger + Lenis integration patterns (official docs good but real-world Next.js 15 App Router examples limited), scroll animation performance on low-end mobile devices (testing methodology, performance budgets, fallback strategies), hero LCP optimization techniques (preload strategy, critical CSS, animation timing vs LCP paint)
+**Standard patterns (skip phase research):**
+- **Phase 1 (Gradient Text):** Well-documented CSS technique, Tailwind handles prefixes
+- **Phase 2 (Background Layers):** Established patterns, optimization guidelines clear
+- **Phase 3 (Glow Effects):** Standard box-shadow technique, performance characteristics known
+- **Phase 4 (3D Mockup):** Clear workflow, tools proven, Next.js optimization built-in
+- **Phase 6 (Entrance Animations):** GSAP patterns documented, timing formulas validated
+- **Phase 7 (Full Overhaul):** Execution of established patterns
 
-- **Phase 5 (Interactive Demo)** — Interactive demo platform comparison (Storylane $40/month vs Navattic free tier vs Arcade pricing/features, embed performance impact, recording workflow, mobile compatibility), video hosting strategy (next-video + Mux vs self-hosted, CDN costs, format optimization)
-
-**Phases with well-documented patterns (skip research-phase):**
-
-- **Phase 1 (Foundation)** — Next.js 15 setup, Tailwind CSS 4.0 configuration, Hebrew font loading all standard patterns with official documentation
-- **Phase 2 (Design System)** — shadcn/ui component patterns, CVA variants, atomic design structure well-documented
-- **Phase 4 (Secondary Pages)** — Standard SaaS page templates, form patterns, SEO implementation established patterns
-- **Phase 6 (Performance)** — Lighthouse optimization, accessibility audits, Core Web Vitals improvement all documented with official Google guides
+**Phase 5 Research Questions (if triggered):**
+- What is the exact backdrop-filter budget on Galaxy A24 4G?
+- How many glass cards can be rendered while maintaining 60fps scroll?
+- Does backdrop-blur-sm (4px) perform better than backdrop-blur-md (12px)?
+- What is the performance impact of glass cards + GSAP scroll animations?
+- Can we use fake glassmorphism (pre-rendered blur) for better performance?
 
 ## Confidence Assessment
 
 | Area | Confidence | Notes |
 |------|------------|-------|
-| Stack | HIGH | All versions verified with official documentation (Next.js 15.5 stable, Tailwind 4.0 released January 2025, Motion 12.27 active development, GSAP 3.14 now fully free), pricing confirmed, browser compatibility checked |
-| Features | HIGH | Multiple A/B test studies cited (34% lift from social proof, 80% lift from video testimonials, 2x conversion from interactive demos), conversion benchmarks from authoritative sources (SaaSFrame 2026 trends, Fibr analysis, Userpilot data), Design Bible alignment verified |
-| Architecture | HIGH | Next.js best practices from official docs, atomic design is industry standard, server-first rendering proven pattern, RTL implementation verified with W3C standards, performance targets from Google Core Web Vitals documentation |
-| Pitfalls | HIGH | Performance pitfalls from Google official documentation (Core Web Vitals), RTL issues from W3C and community consensus, conversion patterns from documented case studies (Marketing Experiments, Mutiny, VWO), Israeli market from Haaretz analysis and trade guides |
+| **Visual Effects Stack** | HIGH | All techniques verified with official docs (MDN, Can I Use), browser support excellent (95-99%), implementation patterns proven |
+| **3D Mockup Workflow** | HIGH | Rotato/Device Frames tools verified, Next.js Image optimization official docs, shadow techniques from authoritative source (Josh W. Comeau) |
+| **Animation Patterns** | HIGH | GSAP official docs, Motion documentation, timing principles from multiple premium site analyses |
+| **Performance Pitfalls** | HIGH | Backdrop-filter issues cross-verified (4 sources: Mozilla, Nextcloud, shadcn/ui, Medium), GPU acceleration from Chrome Developers docs |
+| **Mobile Budget** | MEDIUM | Galaxy A24 4G specs verified, performance gap documented (3.5x slower than iPhone), but exact budgets need device testing |
+| **RTL Compatibility** | HIGH | All effects are direction-agnostic (gradient angles absolute, shadows radial, transforms universal) |
 
 **Overall confidence:** HIGH
 
-Research drew from official documentation (Next.js 15 docs, Tailwind CSS 4.0 release notes, Google Core Web Vitals guide, W3C RTL standards, Motion/GSAP official docs), authoritative industry sources (SaaSFrame 2026 trends with examples, Fibr 20 best practices, Webstacks conversion guide, Userpilot landing page analysis), documented case studies (Vodafone 31% LCP improvement = 5% sales increase, Marketing Experiments 35% stock photo penalty, Mutiny 16-28% navigation penalty, VWO first-person CTA 90% lift), and Israeli market analysis (Haaretz cultural patterns, FreJun WhatsApp penetration, Trade.gov entry strategies). Animation library comparison verified with official benchmarks. Conversion statistics cross-referenced across multiple sources (Unbounce, Moosend, SeedProd, WiserNotify).
+All four research files independently reached the same conclusions on critical points:
+- Backdrop-filter is the most expensive effect (flagged in 3/4 research files)
+- GPU-only animation properties (transform, opacity) are mandatory
+- Mid-range Android performance is the constraint
+- Pre-rendered approaches outperform real-time rendering
 
 ### Gaps to Address
 
-**Gaps requiring validation during implementation:**
+**Gap 1: Exact backdrop-filter budget on Galaxy A24 4G**
+- Research provides ranges (15-30ms) but not device-specific measurement
+- **Mitigation:** Phase 5 requires physical device testing with Chrome DevTools remote debugging
+- **Escape hatch:** Solid background fallback if performance fails
 
-**Interactive demo platform performance impact:** Research documents conversion benefits (2x lift, 20-25% faster close) but limited data on LCP impact of embedded demos. During Phase 5, measure hero LCP with and without demo embed. Storylane/Navattic iframes may delay LCP. Consider lazy-loading demo below fold or on user interaction. Test on throttled 3G connection.
+**Gap 2: Noise texture format optimization**
+- SVG vs PNG vs data URI performance not definitively tested
+- **Mitigation:** Phase 2 should A/B test formats, measure paint times
+- **Best guess:** Inline SVG data URI (no HTTP request) based on Vercel's approach
 
-**Hebrew AI-generated content quality:** While Hebrew NLP resources exist (Hebrew Gemma 11B from late 2025, resources.nnlp-il.mafat.ai), there's limited documented experience with AI-generated Hebrew marketing copy for landing pages. If considering AI content assistance, test extensively with native Hebrew copywriters before launch. Israeli market skepticism toward translated/AI-sounding copy is high.
+**Gap 3: GSAP timeline complexity threshold**
+- At what point does orchestration complexity hurt performance?
+- **Mitigation:** Phase 6 should profile timelines of increasing complexity
+- **Best practice:** Start simple (5-7 elements), measure, then expand
 
-**Israeli market pricing psychology:** Research confirms NIS pricing and transparency are critical ("mychrim" - pricing - is top SMB concern), but specific discount culture thresholds and price anchoring strategies for 350 NIS/month automation product are not quantified. Consider user research during Phase 4 planning to validate pricing presentation and annual discount messaging.
+**Gap 4: Hebrew typography with gradient text**
+- Heebo font rendering with background-clip not explicitly tested
+- **Mitigation:** Phase 1 should verify gradient text on actual Hebrew content
+- **Risk:** LOW (CSS direction well-documented, gradients are text-agnostic)
 
-**Animation performance on 2-3 year old Android devices:** Research establishes best practices (GPU-accelerated properties only, 60fps target) but real-world GSAP ScrollTrigger performance on budget devices (Samsung Galaxy A34, Xiaomi Redmi Note) requires testing. Israeli SMB owners often have mid-range devices. Phase 6 QA with specific device models under $200 range is critical.
+**Gap 5: Dark theme color calibration**
+- Orange glow opacity values are recommendations, not tested on Findo's exact dark background
+- **Mitigation:** Phase 3 should fine-tune glow colors in-context
+- **Risk:** LOW (aesthetic adjustment, not technical risk)
 
-**GSAP + Next.js 15 App Router SSR edge cases:** GSAP documentation covers React integration well, but App Router Server Component + Client island patterns with ScrollTrigger have limited documented examples. Phase 3 may encounter hydration mismatches or SSR issues. Plan for experimentation time.
+## Critical Success Factors
 
-**Gaps requiring ongoing monitoring:**
+**Must maintain:**
+- Lighthouse Performance: 95+ (current validated metric)
+- LCP: <1.5s (current validated metric)
+- CLS: 0 (animations must not cause layout shift)
+- Frame rate: 60fps during scroll on Galaxy A24 4G
 
-**Tailwind CSS 4.0 RTL plugin maturity:** Tailwind 4.0 released January 2025 with logical properties, but tailwindcss-rtl plugin may lag. Monitor for updates. If issues, use CSS logical properties directly (`margin-inline-start` in custom CSS).
+**Performance validation workflow:**
+1. Desktop development with Chrome DevTools profiling
+2. Mobile emulation with 4x CPU slowdown + Fast 3G
+3. Physical Galaxy A24 4G testing before shipping each phase
+4. Lighthouse CI on every PR (automated budget enforcement)
 
-**shadcn/ui RTL support status:** RTL PR #1638 is in progress. Current workaround (manual logical properties + DirectionProvider) works but may be superseded. Monitor for official RTL support release.
+**Escape hatches (if performance fails):**
+1. Remove backdrop-filter (Phase 5) → solid backgrounds
+2. Simplify gradients (Phase 1) → 2 color stops only
+3. Disable effects on mobile → media query removes expensive CSS
+4. Reduce animation complexity (Phase 6) → fewer simultaneous elements
+5. Increase stagger delays → spread GPU load over time
 
-**Hebrew font performance benchmarks:** Heebo recommended based on design quality, but no documented performance comparison vs Assistant for page speed impact. Test font loading performance during Phase 1 with real content.
+**The Golden Rule:**
+If forced to choose between visual polish and performance, **choose performance**. A fast site with subtle effects beats a beautiful site that stutters.
 
 ## Sources
 
-### Primary (HIGH confidence)
-- **Next.js:** [Official Docs](https://nextjs.org/docs), [Next.js 15 Blog](https://nextjs.org/blog/next-15), [Next.js 15.5 Release](https://nextjs.org/blog/next-15-5), [Image Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images), [Metadata API](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)
-- **Tailwind CSS:** [v4 Release](https://tailwindcss.com/blog/tailwindcss-v4), [Flowbite RTL Guide](https://flowbite.com/docs/customize/rtl/)
-- **Motion:** [Official Docs](https://motion.dev/docs), [Changelog](https://motion.dev/changelog), [GSAP vs Motion](https://motion.dev/docs/gsap-vs-motion)
-- **GSAP:** [Documentation](https://gsap.com/resources/React/), [ScrollTrigger Docs](https://gsap.com/docs/v3/Plugins/ScrollTrigger/)
-- **Google Core Web Vitals:** [Official Documentation](https://developers.google.com/search/docs/appearance/core-web-vitals)
-- **W3C:** [Bidirectional Text Guidance](https://www.w3.org/International/questions/qa-html-dir)
-- **shadcn/ui:** [Documentation](https://ui.shadcn.com/), [RTL Issue #2759](https://github.com/shadcn-ui/ui/issues/2759)
-- **Radix UI:** [Direction Provider](https://www.radix-ui.com/primitives/docs/utilities/direction-provider)
-- **React Hook Form:** [Official Docs](https://react-hook-form.com/docs)
-- **Vercel:** [Next.js Deployment](https://vercel.com/docs/frameworks/full-stack/nextjs), [Core Web Vitals Guide](https://vercel.com/kb/guide/optimizing-core-web-vitals-in-2024)
+### Primary (HIGH confidence - Official Documentation)
 
-### Secondary (MEDIUM confidence)
-- **SaaS Landing Pages:** [SaaSFrame 2026 Trends](https://www.saasframe.io/blog/10-saas-landing-page-trends-for-2026-with-real-examples), [Fibr Best Practices](https://fibr.ai/landing-page/saas-landing-pages), [Webstacks Conversion Guide](https://www.webstacks.com/blog/website-conversions-for-saas-businesses), [Userpilot Analysis](https://userpilot.com/blog/saas-landing-pages/), [Unbounce Trends](https://unbounce.com/conversion-rate-optimization/the-state-of-saas-landing-pages/)
-- **Conversion Optimization:** [Moosend Mistakes 2026](https://moosend.com/blog/landing-page-mistakes/), [Mutiny High-Conversion Mistakes](https://www.mutinyhq.com/blog/high-conversion-landing-page-mistakes-to-avoid), [Fibr Mistakes](https://fibr.ai/landing-page/mistakes), [SeedProd Conversion Rates](https://www.seedprod.com/landing-page-conversion-rates/), [LandingPageFlow Copywriting Mistakes](https://www.landingpageflow.com/post/top-landing-page-copywriting-mistakes-to-avoid)
-- **Social Proof:** [WiserNotify Statistics 2026](https://wisernotify.com/blog/social-proof-statistics/), [Nudgify Best Ways](https://www.nudgify.com/social-proof-landing-pages/), [Genesys Growth Stats](https://genesysgrowth.com/blog/social-proof-conversion-stats-for-marketing-leaders)
-- **Interactive Demos:** [Storylane Embed Guide](https://www.storylane.io/blog/embed-a-product-demo-on-your-website-to-get-more-leads), [HowdyGo Comparison](https://www.howdygo.com/blog/interactive-product-demo-comparison)
-- **CTA Best Practices:** [VWO Ultimate Guide](https://vwo.com/blog/call-to-action-buttons-ultimate-guide/), [LandingPageFlow Placement](https://www.landingpageflow.com/post/best-cta-placement-strategies-for-landing-pages), [Bitly Best Practices](https://bitly.com/blog/cta-button-best-practices-for-landing-pages/)
-- **Mobile Design:** [involve.me Mobile Guide](https://www.involve.me/blog/how-to-create-a-mobile-landing-page), [Reform.app Ultimate Guide](https://www.reform.app/blog/mobile-landing-page-design-ultimate-guide)
-- **Performance:** [Flowspark LCP Optimization](https://www.flowspark.co/blog/webflow-lcp-optimization-techniques-ytwgk), [Optimizing Core Web Vitals with Next.js 15](https://trillionclues.medium.com/optimizing-core-web-vitals-with-next-js-15-61564cc51b13), [QED42 Performance Tuning](https://www.qed42.com/insights/next-js-performance-tuning-practical-fixes-for-better-lighthouse-scores)
-- **Animation:** [Framer vs GSAP Performance](https://blog.uavdevelopment.io/blogs/comparing-the-performance-of-framer-motion-and-gsap-animations-in-next-js), [Smashing Magazine GPU Animation](https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/), [Chrome Hardware Accelerated Animations](https://developer.chrome.com/blog/hardware-accelerated-animations)
+**Visual Effects:**
+- [CSS background-clip: text | Can I use](https://caniuse.com/background-clip-text) - Browser support 97%+
+- [backdrop-filter | Can I use](https://caniuse.com/css-backdrop-filter) - Browser support 95.94%
+- [MDN: backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter) - Official specification
+- [MDN: will-change](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change) - Usage warnings
+- [Designing Beautiful Shadows in CSS | Josh W. Comeau](https://www.joshwcomeau.com/css/designing-shadows/) - Authoritative shadow techniques
 
-### RTL & Hebrew
-- **RTL Standards:** [CSS Logical Properties](https://dev.to/pffigueiredo/css-logical-properties-rtl-in-a-web-platform-2-6-5hin), [RTL Styling 101](https://rtlstyling.com/posts/rtl-styling/), [Reffine Best Practices](https://www.reffine.com/en/blog/rtl-website-design-and-development-mistakes-best-practices), [ConveyThis Pro Strategies](https://www.conveythis.com/blog/7-pro-strategies-for-rtl-design), [Smashing Magazine Mobile RTL](https://www.smashingmagazine.com/2017/11/right-to-left-mobile-design/), [GlobalDev Tips](https://globaldev.tech/blog/right-left-development-tips-and-tricks), [Landingi RTL Examples](https://landingi.com/landing-page/rtl-examples/)
+**Animation:**
+- [GSAP Timeline Documentation](https://gsap.com/docs/v3/GSAP/Timeline/) - Official timing patterns
+- [GSAP ScrollTrigger Documentation](https://gsap.com/docs/v3/Plugins/ScrollTrigger/) - Scroll animation API
+- [Motion Documentation](https://motion.dev/docs/react-motion-component) - Framer Motion API
+- [MDN: prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion) - Accessibility requirement
 
-### Israeli Market
-- **Cultural Insights:** [Haaretz - What Brands Get Wrong About Israel](https://www.haaretz.com/haaretz-labels/2026-01-25/ty-article-labels/think-smart-what-international-brands-get-wrong-about-israel/0000019b-f480-d174-a3bf-fcb8432f0000), [Trade.gov Market Entry Strategy](https://www.trade.gov/country-commercial-guides/israel-market-entry-strategy), [FreJun WhatsApp Management](https://frejun.com/managing-whatsapp-chats-israel/)
+**Image Optimization:**
+- [Next.js Image Component](https://nextjs.org/docs/app/api-reference/components/image) - Official optimization guide
+- [AVIF vs WebP 2026](https://elementor.com/blog/webp-vs-avif/) - Format comparison
 
-### Tertiary (LOW confidence, needs validation)
-- **Interactive Demo Platform Comparison:** Storylane/Navattic/Arcade pricing verified but limited performance benchmarks, needs validation during Phase 5
-- **Hebrew Font Performance:** Heebo recommended based on design quality but no documented performance comparison vs Assistant, test during implementation
-- **Israeli SMB Discount Culture:** Cultural insights documented but specific price sensitivity thresholds for 350 NIS/month automation not quantified, consider user research
+**Performance:**
+- [Chrome DevTools Performance Reference](https://developer.chrome.com/docs/devtools/performance/reference) - Profiling methodology
+- [Hardware-Accelerated Animations](https://developer.chrome.com/blog/hardware-accelerated-animations) - GPU compositing guidance
+- [Optimize Cumulative Layout Shift](https://web.dev/articles/optimize-cls) - CLS prevention
+- [Lighthouse Performance Scoring](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring) - Scoring algorithm
 
-### Research Documents
-- `.planning/research/SALES-WEBSITE-STACK.md` — Technology stack with versions, rationale, installation commands, 662 lines
-- `.planning/research/FEATURES-SALES-WEBSITE.md` — Feature landscape with conversion impact data, 387 lines, table stakes vs differentiators vs anti-features
-- `.planning/research/ARCHITECTURE.md` — Component architecture, implementation patterns, 1,156 lines, atomic design structure
-- `.planning/research/PITFALLS.md` — 26 sales website pitfalls + 16 SaaS app pitfalls with prevention strategies, 1,589 lines
+### Secondary (MEDIUM confidence - Multiple Agreeing Sources)
+
+**Performance Pitfalls:**
+- [Backdrop-filter Choppiness](https://medium.com/@JTCreateim/backdrop-filter-property-in-css-leads-to-choppiness-in-streaming-video-45fa83f3521b)
+- [Nextcloud backdrop-filter Issue](https://github.com/nextcloud/spreed/issues/7896) - Real-world performance problems
+- [shadcn/ui backdrop-filter Issue](https://github.com/shadcn-ui/ui/issues/327)
+- [Costly CSS Properties 2026](https://dev.to/leduc1901/costly-css-properties-and-how-to-optimize-them-3bmd)
+
+**Animation Best Practices:**
+- [7 Must-Know GSAP Tips (Codrops 2025)](https://tympanus.net/codrops/2025/09/03/7-must-know-gsap-animation-tips-for-creative-developers/)
+- [High-Performance Web Animation: 60fps Guide](https://dev.to/kolonatalie/high-performance-web-animation-gsap-webgl-and-the-secret-to-60fps-2l1g)
+- [Advanced Framer Motion Patterns](https://blog.maximeheckel.com/posts/advanced-animation-patterns-with-framer-motion/)
+- [UX Animation Best Practices](https://parachutedesign.ca/blog/ux-animation/)
+
+**Premium Site Analysis:**
+- [Stripe Connect Front-End Experience](https://stripe.com/blog/connect-front-end-experience)
+- [The Animated Web: Stripe Analysis](https://theanimatedweb.com/inspiration/stripe/)
+- [Linear Design Trends](https://lw.works/en/blog/linear-effect)
+
+**Tools:**
+- [Rotato Features](https://rotato.app/features) - 3D mockup generator
+- [Device Frames](https://deviceframes.com/) - Free alternative
+- [simpleParallax.js](https://simpleparallax.com/) - Lightweight parallax library
+
+### Tertiary (Community Consensus)
+
+**Mobile Performance:**
+- [Performance Inequality Gap 2026](https://infrequently.org/2025/11/performance-inequality-gap-2026/) - 3.5x Android performance gap
+- [Web Performance Standards 2026](https://www.inmotionhosting.com/blog/web-performance-benchmarks/) - Budget recommendations
+
+**Visual Techniques:**
+- [Glassmorphism 2026 Guide](https://invernessdesignstudio.com/glassmorphism-what-it-is-and-how-to-use-it-in-2026/)
+- [Grainy Gradients | CSS-Tricks](https://css-tricks.com/grainy-gradients/)
+- [Create Grid Backgrounds with Tailwind](https://ibelick.com/blog/create-grid-and-dot-backgrounds-with-css-tailwind-css)
 
 ---
-*Research completed: 2026-01-31*
-*Ready for roadmap: yes*
-*Next step: Roadmap creation with phase structure 1-6*
+
+**Research completed:** 2026-02-03
+**Ready for roadmap:** YES
+
+**Next steps:** Roadmapper agent can use this summary to structure 7 phases with validated technical approaches and performance gates.
