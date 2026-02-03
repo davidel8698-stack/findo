@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { type ReactNode } from "react";
+import { type ReactNode, useRef } from "react";
+import { m, useScroll, useTransform } from "motion/react";
 
 interface PhoneMockupProps {
   children?: ReactNode;
@@ -10,13 +11,28 @@ interface PhoneMockupProps {
 }
 
 /**
- * Premium 3D phone mockup with pre-rendered image, multi-layer shadows, and screen glow.
- * Uses Next.js Image for optimized loading (AVIF/WebP automatic).
+ * Premium 3D phone mockup with pre-rendered image, multi-layer shadows, screen glow,
+ * and scroll parallax. Uses Next.js Image for optimized loading (AVIF/WebP automatic).
  * Activity feed renders inside the screen overlay area.
  */
 export function PhoneMockup({ children, className }: PhoneMockupProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Track scroll progress from hero start to hero exit
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Map scroll to Y offset (0 to 40px - phone moves slower than scroll)
+  const scrollY = useTransform(scrollYProgress, [0, 1], [0, 40]);
+
   return (
-    <div className={cn("relative", className)}>
+    <m.div
+      ref={containerRef}
+      className={cn("relative", className)}
+      style={{ y: scrollY }}
+    >
       {/* Screen Glow - behind phone, brand orange tint */}
       <div
         className={cn(
@@ -72,6 +88,6 @@ export function PhoneMockup({ children, className }: PhoneMockupProps) {
           aria-hidden="true"
         />
       </div>
-    </div>
+    </m.div>
   );
 }
