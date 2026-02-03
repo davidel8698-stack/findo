@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 
 ## Current Position
 
-Phase: 20 of 27 (Typography & Gradient Foundation) COMPLETE
-Plan: 3 of 3 in current phase COMPLETE
-Status: Phase complete
-Last activity: 2026-02-03 — Completed 20-03-PLAN.md (Section Gradients & Visual Verification)
+Phase: 21 of 27 (Background Depth System) IN PROGRESS
+Plan: 1 of 2 in current phase COMPLETE
+Status: In progress
+Last activity: 2026-02-03 — Completed 21-01-PLAN.md (BackgroundDepth Component)
 
-Progress: [███░░░░░░░░░░░░░░░░░] 12/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 20 COMPLETE)
+Progress: [███░░░░░░░░░░░░░░░░░] 12/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 21 plan 1/2)
 
 ## Milestone Summary
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 21-01**: blur(80px) on container not orbs for GPU performance; scrub: 1.5 for organic parallax feel; 3 orbs within will-change budget
 - **v2.0 Phase 20-02**: Letter-spacing intentionally kept normal for Hebrew (user decision); zinc-400 used for explicit secondary text control
 - **v2.0 Phase 20-01**: 135deg fixed angle for RTL-consistent gradient direction; 40%-60% color stops for equal orange/amber presence
 - **v1.1 Phase 19**: 69% certification approved for MVP launch - iterate on content post-launch with real customer data
@@ -99,8 +100,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-03
-Stopped at: Completed Phase 20 (Typography & Gradient Foundation) - all 3 plans done
-Resume action: `/gsd:discuss-phase 21` or `/gsd:plan-phase 21` to begin Background Depth System
+Stopped at: Completed 21-01-PLAN.md (BackgroundDepth Component)
+Resume action: `/gsd:execute-phase 21` to continue with 21-02-PLAN.md (Layout Integration)
 
 ---
-*Updated: 2026-02-03 after Phase 20 completion*
+*Updated: 2026-02-03 after 21-01-PLAN completion*
