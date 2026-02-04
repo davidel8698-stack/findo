@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 
 ## Current Position
 
-Phase: 24 of 27 (Micro-Interactions) - IN PROGRESS
-Plan: 2 of 3 in current phase - COMPLETE
-Status: Phase 24 in progress
-Last activity: 2026-02-04 - Completed 24-02-PLAN.md (Button & Input Interactions)
+Phase: 24 of 27 (Micro-Interactions) - COMPLETE
+Plan: 3 of 3 in current phase - COMPLETE
+Status: Phase 24 complete, ready for Phase 25
+Last activity: 2026-02-04 - Completed 24-03-PLAN.md (Link & Nav Hover Effects)
 
-Progress: [█████░░░░░░░░░░░░░░░] 15/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 24 in progress)
+Progress: [██████░░░░░░░░░░░░░░] 16/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 24 complete)
 
 ## Milestone Summary
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 24-03**: NavLink uses bg-accent background fill hover (distinct from inline links); AnimatedLink uses link-underline CSS utility; External links get arrow icon; All transitions 200ms ease-out
 - **v2.0 Phase 24-02**: Shadow-lift (y:-1, shadow) as button hover, not scale; HeroCTAButton retains scale:1.02 exception; Disabled buttons no hover; Input 4px focus glow; useShake with severity levels
 - **v2.0 Phase 24-01**: Shake 2px amplitude; Error graduation: hint<gentle<shake; Link underline center-out transform; Touch devices 50% opacity fallback
 - **v2.0 Phase 23-04**: User approved visual quality as premium/world-class; All MOCK requirements verified
@@ -110,8 +111,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-04
-Stopped at: Completed 24-02-PLAN.md (Button & Input Interactions)
-Resume action: Continue Phase 24 with 24-03-PLAN.md (Card Hover Effects)
+Stopped at: Completed 24-03-PLAN.md (Link & Nav Hover Effects) - Phase 24 complete
+Resume action: Start Phase 25 (Animation Choreography)
 
 ---
-*Updated: 2026-02-04 after 24-02-PLAN.md completion*
+*Updated: 2026-02-04 after 24-03-PLAN.md completion - Phase 24 complete*
