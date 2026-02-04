@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 
 ## Current Position
 
-Phase: 24 of 27 (Micro-Interactions) - Gap closure in progress
-Plan: Gap closure plan 04 of 05 complete
-Status: Executing gap closure plans for Phase 24
-Last activity: 2026-02-04 - Completed 24-04-PLAN.md (Button Micro-Interactions Wiring)
+Phase: 24 of 27 (Micro-Interactions) - Gap closure COMPLETE
+Plan: Gap closure plans 04-05 complete
+Status: Phase 24 gap closure complete, ready for Phase 25
+Last activity: 2026-02-04 - Completed 24-05-PLAN.md (Form Error State Integration)
 
-Progress: [██████░░░░░░░░░░░░░░] 16/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 24 gap closure)
+Progress: [██████░░░░░░░░░░░░░░] 16/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 24 complete with gap closure)
 
 ## Milestone Summary
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 24-05**: PhoneInput wrapped in div for shake (Input forwards ref); Gentle severity for form validation; Error clears on both focus and typing
 - **v2.0 Phase 24-03**: NavLink uses bg-accent background fill hover (distinct from inline links); AnimatedLink uses link-underline CSS utility; External links get arrow icon; All transitions 200ms ease-out
 - **v2.0 Phase 24-02**: Shadow-lift (y:-1, shadow) as button hover, not scale; HeroCTAButton retains scale:1.02 exception; Disabled buttons no hover; Input 4px focus glow; useShake with severity levels
 - **v2.0 Phase 24-01**: Shake 2px amplitude; Error graduation: hint<gentle<shake; Link underline center-out transform; Touch devices 50% opacity fallback
@@ -111,8 +112,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-04
-Stopped at: Completed 24-04-PLAN.md (Button Micro-Interactions Wiring)
-Resume action: Execute 24-05-PLAN.md (remaining gap closure)
+Stopped at: Completed 24-05-PLAN.md (Form Error State Integration) - Phase 24 gap closure complete
+Resume action: Start Phase 25 (Animation Choreography)
 
 ---
-*Updated: 2026-02-04 after 24-04-PLAN.md completion - Phase 24 gap closure*
+*Updated: 2026-02-04 after 24-05-PLAN.md completion - Phase 24 gap closure complete*
