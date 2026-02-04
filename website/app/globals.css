@@ -655,3 +655,129 @@ a[href] {
     var(--glow-cta),
     var(--shadow-cta);
 }
+
+/* ============================================
+ * MICRO-INTERACTION SYSTEM - Phase 24
+ * Snappy & precise animations for buttons, cards, links
+ * Per CONTEXT.md: 150-200ms, playful & delightful
+ * ============================================ */
+
+/* Shake animation - for blocking errors (MICRO-06)
+ * 2px amplitude, 2 oscillations
+ * GPU-accelerated via translateX
+ */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-2px);
+  }
+  40%, 80% {
+    transform: translateX(2px);
+  }
+}
+
+/* Error pulse animation - red glow for validation errors (MICRO-06)
+ * Pulses destructive color glow 0-4px spread
+ */
+@keyframes error-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(var(--destructive) / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 4px 2px hsl(var(--destructive) / 0.3);
+  }
+}
+
+/* Error state classes - graduated by severity per CONTEXT.md */
+
+/* Error hint - border-color only (inline validation) */
+.error-hint {
+  border-color: hsl(var(--destructive)) !important;
+}
+
+/* Error gentle - gentle pulse for field validation (1-2 cycles) */
+.error-gentle {
+  border-color: hsl(var(--destructive)) !important;
+  animation: error-pulse 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) 2;
+}
+
+/* Error shake - shake + glow for blocking errors */
+.error-shake {
+  border-color: hsl(var(--destructive)) !important;
+  animation:
+    shake 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97),
+    error-pulse 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) 2;
+}
+
+/* ============================================
+ * LINK UNDERLINE UTILITIES - Phase 24
+ * MICRO-04, RTL-06 requirements
+ * Underline scales from center outward
+ * Uses inset-inline-start/end for RTL support
+ * ============================================ */
+.link-underline {
+  position: relative;
+  transition: filter var(--transition-duration-200) var(--transition-timing-out);
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-duration-200) var(--transition-timing-out);
+}
+
+.link-underline:hover {
+  filter: brightness(1.1);
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* ============================================
+ * MICRO-INTERACTION REDUCED MOTION - Phase 24
+ * Respects prefers-reduced-motion
+ * ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable shake and pulse animations */
+  .error-gentle,
+  .error-shake {
+    animation: none !important;
+  }
+
+  /* Link underline: show at 50% opacity always (no animation) */
+  .link-underline::after {
+    transform: scaleX(1);
+    opacity: 0.5;
+    transition: none;
+  }
+
+  .link-underline:hover {
+    filter: none;
+  }
+}
+
+/* ============================================
+ * MICRO-INTERACTION TOUCH DEVICE HANDLING - Phase 24
+ * Touch devices: show underline at 50% opacity (no hover)
+ * ============================================ */
+@media (hover: none) {
+  .link-underline::after {
+    transform: scaleX(1);
+    opacity: 0.5;
+  }
+
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    opacity: 0.5;
+  }
+}
