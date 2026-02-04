@@ -13,6 +13,7 @@ interface PhoneInputProps {
   name: string;
   disabled?: boolean;
   error?: string;
+  onFocus?: () => void;
 }
 
 /**
@@ -24,7 +25,7 @@ interface PhoneInputProps {
  * - dir="ltr" to prevent RTL number reversal (critical for Hebrew pages)
  * - Mobile-friendly tel keyboard
  */
-export function PhoneInput({ name, disabled, error }: PhoneInputProps) {
+export function PhoneInput({ name, disabled, error, onFocus }: PhoneInputProps) {
   const [value, setValue] = useState("");
 
   // Derive validity from current value
@@ -43,6 +44,7 @@ export function PhoneInput({ name, disabled, error }: PhoneInputProps) {
         name={name}
         value={value}
         onChange={handleChange}
+        onFocus={onFocus}
         disabled={disabled}
         dir="ltr"
         placeholder="050-123-4567"
