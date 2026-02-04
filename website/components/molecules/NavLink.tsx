@@ -38,9 +38,17 @@ export function NavLink({
       href={href}
       onClick={onClick}
       className={cn(
-        "text-foreground hover:text-primary transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm",
-        isActive && "text-primary font-medium",
+        // Base styles with padding for touch target and background area
+        "px-3 py-2 rounded-md",
+        "text-foreground",
+        // Hover: background fill (per CONTEXT.md - different from inline links)
+        "hover:bg-accent hover:text-accent-foreground",
+        // Transition for smooth background fill (MICRO-07, MICRO-08)
+        "transition-[background-color,color] duration-200 ease-out",
+        // Focus visible
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        // Active state
+        isActive && "bg-accent text-accent-foreground font-medium",
         className
       )}
     >
