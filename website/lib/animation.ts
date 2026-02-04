@@ -96,7 +96,7 @@ export const easing = {
  */
 export const microInteraction = {
   duration: 0.15, // 150ms - fast and snappy
-  ease: [0, 0, 0.2, 1], // ease-out cubic-bezier
+  ease: [0, 0, 0.2, 1] as const, // ease-out cubic-bezier
 };
 
 /**
