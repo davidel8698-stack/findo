@@ -45,23 +45,23 @@ export function ActivityCard({
     <div
       className={cn(
         // Layout
-        "activity-card flex items-center gap-3",
-        // Spacing and shape
-        "p-3 rounded-lg",
+        "activity-card flex items-center gap-2",
+        // Compact spacing for phone screen
+        "px-2 py-1.5 rounded-md",
         // Background and border
         "bg-card border border-border shadow-sm",
         className
       )}
     >
       {/* Icon wrapper with colored background */}
-      <div className={cn("p-2 rounded-lg", colorClasses)}>
+      <div className={cn("p-1.5 rounded-md shrink-0", colorClasses)}>
         <Icon icon={IconComponent} size="sm" />
       </div>
 
       {/* Text container */}
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium text-foreground truncate">{title}</p>
-        <p className="text-xs text-muted-foreground truncate">{subtitle}</p>
+        <p className="text-xs font-medium text-foreground truncate">{title}</p>
+        <p className="text-[10px] text-muted-foreground truncate">{subtitle}</p>
       </div>
     </div>
   );

@@ -131,10 +131,10 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
     <div
       ref={containerRef}
       className={cn(
-        // Layout
-        "flex flex-col gap-3",
-        // Padding within phone screen
-        "p-2",
+        // Layout - fill available space and distribute cards
+        "flex flex-col gap-2 h-full justify-center",
+        // Minimal padding to maximize screen usage
+        "p-1",
         // Contain layout to prevent CLS (Phase 19)
         "contain-layout",
         className

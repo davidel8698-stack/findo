@@ -114,13 +114,13 @@ export function BackgroundDepth({ className }: BackgroundDepthProps) {
       >
         <div className="w-[40vw] h-[40vw] max-w-[400px] max-h-[400px] rounded-full bg-amber-500/15" />
       </div>
-      {/* Orb 3: Left side middle - subtle secondary */}
+      {/* Orb 3: Bottom-right - subtle secondary */}
       <div
         ref={orb3Ref}
         className="absolute will-change-transform"
-        style={{ top: "40%", left: "5%", filter: "blur(80px)" }}
+        style={{ bottom: "20%", right: "10%", filter: "blur(80px)" }}
       >
-        <div className="w-[30vw] h-[30vw] max-w-[300px] max-h-[300px] rounded-full bg-orange-400/15" />
+        <div className="w-[25vw] h-[25vw] max-w-[250px] max-h-[250px] rounded-full bg-amber-400/20" />
       </div>
 
       {/* Layer 3: Noise Texture (BG-05) - feTurbulence for premium grain */}

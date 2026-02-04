@@ -17,7 +17,7 @@ import * as path from 'path';
 
 // Configuration
 const OUTPUT_DIR = '.visual-verification';
-const DEFAULT_URL = 'https://website-nine-theta-12.vercel.app';
+const DEFAULT_URL = 'http://localhost:3000';
 
 // Viewports
 const DESKTOP_VIEWPORT = { width: 1440, height: 900 };

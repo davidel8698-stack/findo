@@ -101,10 +101,12 @@ export function PhoneMockup({ children, className }: PhoneMockupProps) {
         aria-hidden="true"
       />
 
-      {/* Phone Frame with Multi-Layer Shadow */}
+      {/* Phone Container - NEW mockup 515x1020, aspect ratio 0.505 */}
       <div
         className={cn(
           "relative",
+          // Mobile: 230x456px, Desktop: 270x535px (exact 515:1020 ratio)
+          "w-[230px] h-[456px] md:w-[270px] md:h-[535px]",
           // Multi-layer shadow for realistic depth
           "drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]",
           "drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]",
@@ -112,35 +114,41 @@ export function PhoneMockup({ children, className }: PhoneMockupProps) {
           "drop-shadow-[0_32px_64px_rgba(0,0,0,0.06)]"
         )}
       >
-        {/* Pre-rendered 3D Phone Image */}
-        <Image
-          src="/images/phone-mockup.png"
-          alt=""
-          width={290}
-          height={580}
-          priority
-          className="w-[240px] md:w-[290px] h-auto"
-        />
-
-        {/* Screen Content Overlay - positioned to match mockup screen area */}
+        {/* Screen Content - BEHIND the phone frame (z-0) */}
+        {/* Reduced top/bottom further to close remaining gaps */}
         <div
           className={cn(
-            "absolute overflow-hidden rounded-[2rem]",
-            // Position overlay to match actual phone bezel dimensions
-            // Thin bezels: ~4% sides, ~2% top/bottom (inside the frame)
-            "left-[4.5%] right-[4.5%] top-[2%] bottom-[2%]",
-            "bg-background"
+            "absolute overflow-hidden bg-background",
+            // Corner radius matching screen corners
+            "rounded-[20px] md:rounded-[24px]",
+            // FINAL positioning - top gap closed
+            // Mobile (230x456): left/right=13px, top=14px, bottom=13px
+            // Desktop (270x535): left/right=15px, top=17px, bottom=16px
+            "left-[13px] right-[13px] top-[14px] bottom-[13px]",
+            "md:left-[15px] md:right-[15px] md:top-[17px] md:bottom-[16px]"
           )}
         >
-          <div className="h-full w-full overflow-hidden p-3">
+          {/* Content fills entire screen area */}
+          <div className="h-full w-full overflow-hidden flex flex-col">
             {children}
           </div>
         </div>
 
+        {/* Phone Frame Image - ON TOP with multiply blend to show content through white screen */}
+        <Image
+          src="/images/phone-mockup.png"
+          alt=""
+          width={270}
+          height={535}
+          priority
+          className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          style={{ mixBlendMode: "multiply" }}
+        />
+
         {/* Rim Light - subtle top edge highlight for dark mode */}
         <div
           className={cn(
-            "absolute inset-0 pointer-events-none",
+            "absolute inset-0 pointer-events-none z-20",
             "border-t border-t-white/5 rounded-[2rem]"
           )}
           aria-hidden="true"
