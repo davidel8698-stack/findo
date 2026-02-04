@@ -88,3 +88,40 @@ export const easing = {
   easeInOut: "cubic-bezier(0.65, 0, 0.35, 1)",
   bounce: "cubic-bezier(0.68, -0.6, 0.32, 1.6)",
 };
+
+/**
+ * MICRO-INTERACTION CONFIG - Phase 24
+ * Snappy & precise feel (150-200ms per CONTEXT.md)
+ * For button hover, card lift, link underlines
+ */
+export const microInteraction = {
+  duration: 0.15, // 150ms - fast and snappy
+  ease: [0, 0, 0.2, 1], // ease-out cubic-bezier
+};
+
+/**
+ * Shadow-lift hover effect for buttons
+ * Primary effect per CONTEXT.md: translateY + shadow increase, NOT scale
+ */
+export const shadowLiftHover = {
+  y: -1,
+  boxShadow: "var(--shadow-hover)",
+};
+
+/**
+ * Press/tap feedback for buttons
+ * Scale down + reduced shadow
+ */
+export const shadowLiftTap = {
+  scale: 0.98,
+  boxShadow: "var(--shadow-elevation-medium)",
+};
+
+/**
+ * Card lift on hover
+ * Already implemented in card.tsx, exported for consistency
+ */
+export const cardLiftHover = {
+  y: -4,
+  boxShadow: "var(--shadow-hover)",
+};
