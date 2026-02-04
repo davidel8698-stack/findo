@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 
 ## Current Position
 
-Phase: 23 of 27 (3D Phone Mockup) - COMPLETE
-Plan: 4 of 4 in current phase - COMPLETE
-Status: Phase complete, ready for Phase 24
-Last activity: 2026-02-04 - Completed 23-04-PLAN.md (Visual Verification)
+Phase: 24 of 27 (Micro-Interactions) - IN PROGRESS
+Plan: 1 of 3 in current phase - COMPLETE
+Status: Phase 24 in progress
+Last activity: 2026-02-04 - Completed 24-01-PLAN.md (CSS Foundation)
 
-Progress: [█████░░░░░░░░░░░░░░░] 15/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 23 complete)
+Progress: [█████░░░░░░░░░░░░░░░] 15/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 24 started)
 
 ## Milestone Summary
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 24-01**: Shake 2px amplitude; Error graduation: hint<gentle<shake; Link underline center-out transform; Touch devices 50% opacity fallback
 - **v2.0 Phase 23-04**: User approved visual quality as premium/world-class; All MOCK requirements verified
 - **v2.0 Phase 23-03**: 40px scroll parallax range; 3deg mouse rotation max; Desktop only (>1024px) for mouse parallax; Spring stiffness:100/damping:30; Motion hooks over GSAP for parallax
 - **v2.0 Phase 23-02**: Drop-shadow for PNG transparency-aware shadows; Screen overlay 4.5%/2% inset for thin bezels; Screen glow 20% opacity brand orange
@@ -108,8 +109,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-04
-Stopped at: Completed Phase 23 (3D Phone Mockup) - all 4 plans complete
-Resume action: Start Phase 24 (Micro-Interactions)
+Stopped at: Completed 24-01-PLAN.md (CSS Foundation)
+Resume action: Continue Phase 24 with 24-02-PLAN.md (Button Micro-Interactions)
 
 ---
-*Updated: 2026-02-04 after Phase 23 completion*
+*Updated: 2026-02-04 after 24-01-PLAN.md completion*
