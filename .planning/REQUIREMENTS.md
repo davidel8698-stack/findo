@@ -63,20 +63,20 @@ Requirements for visual excellence milestone. Each maps to roadmap phases.
 
 ### 3D Mockup
 
-- [ ] **MOCK-01**: Pre-rendered 3D phone mockup with realistic shadows
-- [ ] **MOCK-02**: Activity feed animation plays inside mockup (story sequence)
-- [ ] **MOCK-03**: Multi-layer CSS shadows create depth (4 shadow layers)
-- [ ] **MOCK-04**: Parallax movement on scroll (simple-parallax-js)
-- [ ] **MOCK-05**: Screen has subtle glow effect
-- [ ] **MOCK-06**: Mockup optimized for LCP (AVIF/WebP, preload)
-- [ ] **MOCK-07**: Dark mode lighting looks premium (rim light, reflections)
+- [x] **MOCK-01**: Pre-rendered 3D phone mockup with realistic shadows
+- [x] **MOCK-02**: Activity feed animation plays inside mockup (story sequence)
+- [x] **MOCK-03**: Multi-layer CSS shadows create depth (4 shadow layers)
+- [x] **MOCK-04**: Parallax movement on scroll (simple-parallax-js)
+- [x] **MOCK-05**: Screen has subtle glow effect
+- [x] **MOCK-06**: Mockup optimized for LCP (AVIF/WebP, preload)
+- [x] **MOCK-07**: Dark mode lighting looks premium (rim light, reflections)
 
 ### RTL Adaptations
 
 - [x] **RTL-01**: Gradient directions work correctly in RTL (start/end not left/right)
 - [ ] **RTL-02**: Parallax/slide animations work right-to-left
 - [ ] **RTL-03**: Carousel arrows swap sides for RTL
-- [ ] **RTL-04**: Phone mockup positioned correctly for RTL (left side of text)
+- [x] **RTL-04**: Phone mockup positioned correctly for RTL (left side of text)
 - [ ] **RTL-05**: All animation directions respect document direction
 - [ ] **RTL-06**: Link underlines animate from right in RTL
 
@@ -156,14 +156,14 @@ Requirements for visual excellence milestone. Each maps to roadmap phases.
 | GRAD-03 | Phase 22 | Pending |
 | GRAD-05 | Phase 22 | Pending |
 | GRAD-06 | Phase 22 | Pending |
-| MOCK-01 | Phase 23 | Pending |
-| MOCK-02 | Phase 23 | Pending |
-| MOCK-03 | Phase 23 | Pending |
-| MOCK-04 | Phase 23 | Pending |
-| MOCK-05 | Phase 23 | Pending |
-| MOCK-06 | Phase 23 | Pending |
-| MOCK-07 | Phase 23 | Pending |
-| RTL-04 | Phase 23 | Pending |
+| MOCK-01 | Phase 23 | Complete |
+| MOCK-02 | Phase 23 | Complete |
+| MOCK-03 | Phase 23 | Complete |
+| MOCK-04 | Phase 23 | Complete |
+| MOCK-05 | Phase 23 | Complete |
+| MOCK-06 | Phase 23 | Complete |
+| MOCK-07 | Phase 23 | Complete |
+| RTL-04 | Phase 23 | Complete |
 | MICRO-01 | Phase 24 | Pending |
 | MICRO-02 | Phase 24 | Pending |
 | MICRO-03 | Phase 24 | Pending |
