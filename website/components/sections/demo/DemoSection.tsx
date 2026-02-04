@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { LottieDemo } from "./LottieDemo";
 import { InteractiveDemo } from "./InteractiveDemo";
-import { Button } from "@/components/ui/button";
+import { Button, AnimatedButton } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Play, MousePointer } from "lucide-react";
 import { trackDemoView } from "@/lib/posthog/events";
@@ -51,22 +51,22 @@ export function DemoSection({
 
         {/* Tab switcher */}
         <div className="flex justify-center gap-2 mb-8">
-          <Button
+          <AnimatedButton
             variant={activeTab === "video" ? "default" : "outline"}
             onClick={() => handleTabChange("video")}
             className="gap-2"
           >
             <Play className="w-4 h-4" />
             צפה בסרטון
-          </Button>
-          <Button
+          </AnimatedButton>
+          <AnimatedButton
             variant={activeTab === "interactive" ? "default" : "outline"}
             onClick={() => handleTabChange("interactive")}
             className="gap-2"
           >
             <MousePointer className="w-4 h-4" />
             נסה בעצמך
-          </Button>
+          </AnimatedButton>
         </div>
 
         {/* Demo players - conditionally render based on active tab */}
