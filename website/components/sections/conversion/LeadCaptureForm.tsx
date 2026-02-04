@@ -7,6 +7,7 @@ import { PhoneInput } from "./PhoneInput";
 import { submitLead } from "@/app/actions";
 import { cn } from "@/lib/utils";
 import { trackFormStart, trackFormSubmit } from "@/lib/posthog/events";
+import { useShake } from "@/lib/hooks/useShake";
 
 interface LeadCaptureFormProps {
   onSuccess: () => void;
@@ -30,6 +31,13 @@ export function LeadCaptureForm({ onSuccess, className, source = "unknown" }: Le
     success: false,
     error: null,
   });
+
+  // Shake animation refs for error feedback
+  const { ref: nameRef, triggerShake: shakeName, clearError: clearNameError } = useShake<HTMLInputElement>();
+  const { ref: phoneRef, triggerShake: shakePhone, clearError: clearPhoneError } = useShake<HTMLDivElement>();
+
+  // Field error state tracking
+  const [fieldErrors, setFieldErrors] = useState<{ name?: boolean; phone?: boolean }>({});
 
   // Track form start - only once when user first interacts
   const [hasTrackedStart, setHasTrackedStart] = useState(false);
@@ -55,6 +63,16 @@ export function LeadCaptureForm({ onSuccess, className, source = "unknown" }: Le
     }
   }, [state.success, state.error, source]);
 
+  // Handle error state and trigger shake animations
+  useEffect(() => {
+    if (state.error) {
+      // Server returned error - shake both fields with gentle animation
+      setFieldErrors({ name: true, phone: true });
+      shakeName("gentle");
+      shakePhone("gentle");
+    }
+  }, [state.error, shakeName, shakePhone]);
+
   return (
     <form
       action={formAction}
@@ -63,18 +81,34 @@ export function LeadCaptureForm({ onSuccess, className, source = "unknown" }: Le
       {/* Name field */}
       <div>
         <Input
+          ref={nameRef}
           name="name"
           type="text"
           placeholder="השם שלך"
           required
           disabled={isPending}
           autoComplete="name"
+          error={fieldErrors.name}
           onFocus={handleFocus}
+          onChange={() => {
+            setFieldErrors(prev => ({ ...prev, name: false }));
+            clearNameError();
+          }}
         />
       </div>
 
       {/* Phone field */}
-      <PhoneInput name="phone" disabled={isPending} />
+      <div ref={phoneRef}>
+        <PhoneInput
+          name="phone"
+          disabled={isPending}
+          error={fieldErrors.phone ? " " : undefined}
+          onFocus={() => {
+            setFieldErrors(prev => ({ ...prev, phone: false }));
+            clearPhoneError();
+          }}
+        />
+      </div>
 
       {/* Error message (warm style, not harsh) */}
       {state.error && (
