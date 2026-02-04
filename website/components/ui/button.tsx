@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { m, type HTMLMotionProps } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { springBouncy } from "@/lib/animation";
+import { springBouncy, microInteraction, shadowLiftHover, shadowLiftTap } from "@/lib/animation";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
@@ -89,14 +89,22 @@ export interface AnimatedButtonProps
 
 const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
   ({ className, variant, size, glow, loading = false, children, ...props }, ref) => {
+    const isDisabled = loading || props.disabled;
+
     return (
       <m.button
         ref={ref}
-        className={cn(buttonVariants({ variant, size, glow, loading, className }))}
-        disabled={loading || props.disabled}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        transition={springBouncy}
+        className={cn(
+          buttonVariants({ variant, size, glow, loading, className }),
+          isDisabled && "cursor-not-allowed"
+        )}
+        disabled={isDisabled}
+        // Shadow-lift on hover (not scale for standard buttons per CONTEXT.md)
+        whileHover={isDisabled ? {} : shadowLiftHover}
+        // Press: scale down + reduce shadow
+        whileTap={isDisabled ? {} : shadowLiftTap}
+        // Snappy 150ms transition
+        transition={microInteraction}
         {...props}
       >
         {children}
@@ -106,4 +114,44 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
 );
 AnimatedButton.displayName = "AnimatedButton";
 
-export { Button, AnimatedButton, buttonVariants };
+/**
+ * Hero CTA Button - special variant with scale + glow intensification
+ * Only for hero primary CTA where scale is acceptable
+ */
+export interface HeroCTAButtonProps extends AnimatedButtonProps {
+  /** Intensify glow on hover (default: true) */
+  intensifyGlow?: boolean;
+}
+
+const HeroCTAButton = React.forwardRef<HTMLButtonElement, HeroCTAButtonProps>(
+  ({ className, intensifyGlow = true, children, ...props }, ref) => {
+    const isDisabled = props.loading || props.disabled;
+
+    return (
+      <m.button
+        ref={ref}
+        className={cn(
+          buttonVariants({ variant: "default", size: "lg", glow: "cta", className }),
+          isDisabled && "cursor-not-allowed"
+        )}
+        disabled={isDisabled}
+        whileHover={isDisabled ? {} : {
+          scale: 1.02,
+          y: -1,
+          // Intensify glow: +8px spread, +0.1 opacity per CONTEXT.md
+          boxShadow: intensifyGlow
+            ? "0 0 25px 10px hsl(24.6 95% 53.1% / 0.3), var(--shadow-cta)"
+            : shadowLiftHover.boxShadow,
+        }}
+        whileTap={isDisabled ? {} : shadowLiftTap}
+        transition={microInteraction}
+        {...props}
+      >
+        {children}
+      </m.button>
+    );
+  }
+);
+HeroCTAButton.displayName = "HeroCTAButton";
+
+export { Button, AnimatedButton, HeroCTAButton, buttonVariants };
