@@ -2,7 +2,7 @@
 
 import { useEffect, useActionState, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Button, AnimatedButton } from "@/components/ui/button";
 import { PhoneInput } from "./PhoneInput";
 import { submitLead } from "@/app/actions";
 import { cn } from "@/lib/utils";
@@ -84,13 +84,13 @@ export function LeadCaptureForm({ onSuccess, className, source = "unknown" }: Le
       )}
 
       {/* Submit button */}
-      <Button
+      <AnimatedButton
         type="submit"
         loading={isPending}
         className="w-full"
       >
         {isPending ? "שולח..." : "התחל עכשיו"}
-      </Button>
+      </AnimatedButton>
 
       {/* Time expectation (ACTION-03 requirement) */}
       <p className="text-sm text-muted-foreground text-center">

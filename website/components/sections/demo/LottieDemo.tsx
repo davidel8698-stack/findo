@@ -4,7 +4,7 @@ import { useRef, useState, useCallback } from "react";
 import { useInView } from "motion/react";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { Play, RotateCcw } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, AnimatedButton } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { trackDemoView, trackDemoComplete } from "@/lib/posthog/events";
 
@@ -126,7 +126,7 @@ export function LottieDemo({
       {/* Completed state with replay + CTA */}
       {state === "completed" && (
         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-4">
-          <Button
+          <AnimatedButton
             onClick={handleReplay}
             variant="outline"
             size="lg"
@@ -134,7 +134,7 @@ export function LottieDemo({
           >
             <RotateCcw className="w-5 h-5 me-2" />
             צפה שוב
-          </Button>
+          </AnimatedButton>
           <Button size="lg" asChild>
             <a href="#hero-form">התחל ניסיון חינם</a>
           </Button>
