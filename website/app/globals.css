@@ -233,6 +233,26 @@
   --glow-screen: 0 0 40px 20px hsl(24.6 95% 53.1% / 0.15);
 
   /* ============================================
+   * GLASSMORPHISM SYSTEM - Phase 26
+   * Subtle glass effects per CONTEXT.md decisions
+   * ============================================ */
+
+  /* Glass blur values - 8-12px range */
+  --glass-blur-strong: 12px;
+  --glass-blur-light: 8px;
+
+  /* Glass background opacities - with blur active */
+  --glass-bg-strong: rgb(24 24 27 / 0.2);
+  --glass-bg-light: rgb(24 24 27 / 0.15);
+
+  /* Fallback background - solid dark (mobile/no-support) */
+  --glass-bg-fallback: rgb(24 24 27 / 0.8);
+
+  /* Glass borders - thinner with blur, stronger without */
+  --glass-border: rgb(255 255 255 / 0.1);
+  --glass-border-fallback: rgb(255 255 255 / 0.2);
+
+  /* ============================================
    * Z-INDEX SCALE
    * Consistent layering
    * ============================================ */
