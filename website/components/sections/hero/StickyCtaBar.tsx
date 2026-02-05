@@ -12,8 +12,13 @@ interface StickyCtaBarProps {
 
 /**
  * Mobile sticky CTA bar that appears after scrolling past hero.
- * Shows on mobile only (md:hidden) with frosted glass effect.
+ * Shows on mobile only (md:hidden) with solid glass fallback.
  * Includes iOS safe area support for notched devices.
+ *
+ * Per Phase 26 glass system:
+ * - Mobile-only component uses solid fallback (no backdrop-blur)
+ * - bg-[rgb(24_24_27/0.8)] = --glass-bg-fallback equivalent
+ * - border-white/20 = --glass-border-fallback equivalent
  */
 export function StickyCtaBar({ className, formId = "hero-form" }: StickyCtaBarProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,10 +57,11 @@ export function StickyCtaBar({ className, formId = "hero-form" }: StickyCtaBarPr
         "fixed bottom-0 inset-x-0 z-50",
         // Only show on mobile
         "md:hidden",
-        // Frosted glass effect
-        "bg-background/80 backdrop-blur-md",
-        // Separation from content
-        "border-t border-border",
+        // Glass effect - using glass system fallback pattern
+        // Mobile gets solid background (StickyCtaBar is md:hidden)
+        "bg-[rgb(24_24_27/0.8)]",
+        // Glass border fallback
+        "border-t border-white/20",
         // Padding with iOS safe area support
         "p-4 pb-[env(safe-area-inset-bottom,1rem)]",
         className
