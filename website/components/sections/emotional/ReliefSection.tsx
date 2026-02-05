@@ -60,9 +60,11 @@ function SuccessCard({ data }: SuccessCardProps) {
       whileHover={{ scale: 1.02, y: -4 }}
       className={cn(
         "relative p-6 rounded-xl",
-        "bg-card shadow-sm",
-        "border border-border/50",
+        // Glass effect - strong intensity for feature cards
+        // Per CONTEXT.md: "Feature cards: Primary focus - strongest glass treatment"
+        "glass-strong",
         "text-center",
+        // Maintain hover behavior from Phase 24
         "transition-shadow hover:shadow-md"
       )}
     >
