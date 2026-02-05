@@ -110,20 +110,17 @@ export function ContactSection({ className }: ContactSectionProps) {
               rel={method.id === "whatsapp" ? "noopener noreferrer" : undefined}
               variants={fadeInUp}
               className={cn(
-                // Base card styling
+                // Base card styling with glass treatment
                 "group relative flex flex-col items-center",
                 "p-6 rounded-xl",
-                "bg-card border border-border",
+                "glass-strong",
                 // Hover effects
                 "transition-all duration-300 ease-out",
                 "hover:scale-105 hover:shadow-lg hover:shadow-black/5",
-                "hover:border-primary/30",
                 // Touch-friendly size
                 "min-h-[160px]",
                 // Primary (WhatsApp) gets special treatment
                 method.isPrimary && [
-                  "border-green-500/30",
-                  "hover:border-green-500/50",
                   "hover:shadow-green-500/10",
                 ]
               )}
