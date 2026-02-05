@@ -9,7 +9,7 @@
  */
 
 import { Variants } from "motion/react";
-import { springBouncy, springGentle, stagger } from "@/lib/animation";
+import { springBouncy, springGentle, stagger, fastStagger } from "@/lib/animation";
 
 // Fade up - most common entrance animation
 export const fadeInUp: Variants = {
@@ -181,6 +181,73 @@ export const slideInStart: Variants = {
     opacity: 0,
     x: -50, // Negative = from start in RTL
   },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: springGentle,
+  },
+};
+
+// ===== SECTION REVEAL VARIANTS - Phase 25 =====
+
+/**
+ * Standard fade + rise (30px) per CONTEXT.md
+ * Default personality for most sections
+ */
+export const fadeInRise: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: springGentle,
+  },
+};
+
+/**
+ * Fast cascade container for section reveals
+ * 50-75ms stagger per CONTEXT.md
+ */
+export const fastStaggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      ...fastStagger,
+    },
+  },
+};
+
+/**
+ * Reduced motion fallback - opacity only, 150-200ms
+ * Per CONTEXT.md accessibility requirements
+ */
+export const reducedMotionFade: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.15 },
+  },
+};
+
+/**
+ * Slide from start (left in LTR, right in RTL)
+ * For testimonials alternating pattern
+ */
+export const slideFromStart: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: springGentle,
+  },
+};
+
+/**
+ * Slide from end (right in LTR, left in RTL)
+ * For testimonials alternating pattern
+ */
+export const slideFromEnd: Variants = {
+  hidden: { opacity: 0, x: 50 },
   visible: {
     opacity: 1,
     x: 0,
