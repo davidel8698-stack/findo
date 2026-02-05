@@ -477,9 +477,22 @@
   );
 }
 
-/* Glass effect for cards */
+/* Glass effect for cards (legacy utility - use .glass-strong or .glass-light for new code)
+ * Kept for backward compatibility with existing components
+ */
 .glass {
-  @apply bg-card/80 backdrop-blur-md;
+  /* Fallback */
+  background-color: var(--glass-bg-fallback);
+}
+
+@media (min-width: 768px) {
+  @supports (backdrop-filter: blur(1px)) {
+    .glass {
+      background-color: var(--glass-bg-strong);
+      backdrop-filter: blur(var(--glass-blur-light));
+      -webkit-backdrop-filter: blur(var(--glass-blur-light));
+    }
+  }
 }
 
 /* Subtle gradient backgrounds */
