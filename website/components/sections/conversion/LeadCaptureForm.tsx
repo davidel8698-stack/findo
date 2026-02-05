@@ -76,7 +76,7 @@ export function LeadCaptureForm({ onSuccess, className, source = "unknown" }: Le
   return (
     <form
       action={formAction}
-      className={cn("flex flex-col gap-4 max-w-sm mx-auto", className)}
+      className={cn("flex flex-col gap-4 max-w-sm mx-auto glass-strong rounded-xl p-6", className)}
     >
       {/* Name field */}
       <div>
