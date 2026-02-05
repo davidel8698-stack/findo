@@ -48,13 +48,10 @@ export function ConversionSection({
   const analyticsSource = source || variant;
 
   // Variant-specific styles
+  // Note: LeadCaptureForm handles glass styling, so section variant is simplified
   const variantStyles = {
     hero: "w-full",
-    section: cn(
-      "max-w-md mx-auto",
-      "bg-card rounded-xl p-6 shadow-lg",
-      "border border-border"
-    ),
+    section: "max-w-md mx-auto",
     compact: "max-w-sm mx-auto p-4",
   };
 
