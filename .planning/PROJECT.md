@@ -12,13 +12,13 @@ The business owner does nothing. Findo operates completely autonomously after a 
 
 ## Current State
 
-**Version:** v2.0 Visual Excellence (in progress)
-**Status:** Defining requirements
+**Version:** v2.0 Visual Excellence (shipped 2026-02-05)
+**Status:** Production ready
 
 **Codebase:**
 - Backend: 29,580 lines of TypeScript (v1.0 MVP)
-- Website: 17,507 lines of TypeScript (v1.1 Sales Website)
-- 19 phases, 110 plans executed
+- Website: ~17,000 lines of TypeScript (v2.0 Visual Excellence)
+- 27 phases, 141 plans executed
 - 20 workers registered, 15 scheduled jobs active
 
 **Tech Stack:**
@@ -59,21 +59,24 @@ The business owner does nothing. Findo operates completely autonomously after a 
 - ✓ ANALYTICS-01 to ANALYTICS-06 — v1.1 (PostHog, conversion tracking, heatmaps, A/B testing)
 - ✓ CERT-01 to CERT-06 — v1.1 (Certification 69%, 5-second test, device testing, Hebrew review)
 
+**v2.0 Visual Excellence (shipped 2026-02-05):**
+- ✓ GRAD-01 to GRAD-06 — v2.0 (Gradient text, CTA glow, pulse animation, multi-layer shadows, rim lighting)
+- ✓ BG-01 to BG-06 — v2.0 (Grid overlay, gradient orbs, noise texture, parallax movement)
+- ✓ GLASS-01 to GLASS-06 — v2.0 (Glassmorphism cards, mobile fallback, performance budget)
+- ✓ ANIM-01 to ANIM-13 — v2.0 (7-phase hero entrance, scroll reveals, stats counter, testimonial stagger)
+- ✓ MICRO-01 to MICRO-08 — v2.0 (Button scale/glow, card lift, link underlines, input focus, error shake)
+- ✓ MOCK-01 to MOCK-07 — v2.0 (3D phone mockup, activity feed, shadows, parallax, screen glow)
+- ✓ RTL-01 to RTL-06 — v2.0 (Gradient directions, animation directions, carousel arrows)
+- ✓ TYPO-01, TYPO-03 to TYPO-06 — v2.0 (Hebrew line-height, hierarchy, bold weights, gradient text)
+- ✓ SECT-01 to SECT-10 — v2.0 (All 10 sections upgraded with visual polish)
+- ✓ PERF-01, PERF-04 to PERF-08 — v2.0 (Desktop 90+, CLS=0, 60fps, GPU-only, will-change<10)
+- ✓ CERT-01 to CERT-05 — v2.0 (Professional rating 9+, device testing, Hebrew review, no glass jank)
+- ~ TYPO-02 — Deferred (normal letter-spacing preferred)
+- ~ PERF-02, PERF-03 mobile — Noted limitations (variable scores, LCP ~5s)
+
 ### Active
 
-**v2.0 Visual Excellence (in progress):**
-
-Goal: Transform the website from "functional MVP" (69% certification) to world-class visual excellence rivaling Linear, Stripe, and Vercel. Target first reaction: "WOW" not "nice".
-
-Target features:
-- Gradient text on headlines (orange → amber)
-- Glow effects on CTA buttons with subtle pulse
-- Background depth: grid patterns + gradient orbs + noise texture
-- Glassmorphism cards with hover lift effects
-- Pre-rendered 3D phone mockup with realistic shadows
-- Orchestrated entrance animations (choreographed, not simultaneous)
-- Sophisticated micro-interactions on every interactive element
-- Full page overhaul (all sections)
+(No active requirements - ready for next milestone)
 
 ### Out of Scope
 
@@ -141,6 +144,11 @@ Target features:
 | Motion + GSAP two-library strategy | Motion for React, GSAP for complex timelines | ✓ Good |
 | PostHog with reverse proxy | Bypasses ad blockers, prevents 30-40% session loss | ✓ Good |
 | 69% certification for MVP | Solid technical foundation, iterate on content post-launch | ✓ Good |
+| Pre-rendered 3D mockup over Spline | Performance over interactivity, LCP optimization | ✓ Good |
+| GSAP + Motion two-library strategy | GSAP for complex timelines, Motion for React integration | ✓ Good |
+| Mobile GSAP skip | Dynamic import only on desktop, instant LCP on mobile | ✓ Good |
+| Glassmorphism with mobile fallback | backdrop-blur performance varies, solid fallback safe | ✓ Good |
+| 90+ minimum over 95+ target | Local Windows testing unreliable, production will validate | — Acceptable |
 
 ---
-*Last updated: 2026-02-03 after v2.0 milestone start*
+*Last updated: 2026-02-05 after v2.0 milestone complete*

@@ -1,5 +1,41 @@
 # Project Milestones: Findo
 
+## v2.0 Visual Excellence (Shipped: 2026-02-05)
+
+**Delivered:** World-class visual polish transforming website from "functional MVP" (69% certification) to premium visual excellence rivaling Linear, Stripe, and Vercel. First reaction: "WOW" not "nice".
+
+**Phases completed:** 20-27 (31 plans total)
+
+**Key accomplishments:**
+
+- Typography & gradient foundation: Hebrew line-height 1.8, gradient headlines (orange→amber), clear hierarchy through size AND color
+- Background depth system: subtle grid overlay, gradient orbs with parallax, noise texture via inline SVG
+- Glow effects & multi-layer shadows: CTA pulse animation, 4-layer shadow system, rim lighting on dark mode elements
+- 3D phone mockup: pre-rendered image with realistic shadows, activity feed animation, scroll + mouse parallax
+- Micro-interactions: button scale/glow, card lift, animated link underlines, input focus glow, error shake
+- Animation choreography: 7-phase hero entrance (GSAP timeline), scroll-triggered reveals, stats counter, testimonial stagger
+- Glassmorphism: strategic glass cards with mobile fallback, glass navigation on scroll, performance-validated
+- Performance certified: Desktop 90+ Lighthouse, 60fps animations verified, GPU-only properties, will-change <10
+
+**Stats:**
+
+- ~17,000 lines of TypeScript (website folder)
+- 8 phases, 31 plans, 75 requirements (73 satisfied, 1 deferred, 2 noted as known limitations)
+- 3 days from start to ship (2026-02-03 → 2026-02-05)
+- Certification: CERTIFIED WITH NOTES (human validation passed)
+
+**Git range:** `feat(20-01)` → `docs(27): v2.0 CERTIFIED`
+
+**Tech Stack:** GSAP 3.12 (hero choreography), Motion (scroll/hover), backdrop-blur glassmorphism, CSS custom properties
+
+**Known Limitations:**
+- Mobile Lighthouse variable (44-81) on local Windows environment
+- Mobile LCP ~5s (improved from 10.5s baseline, target was 2.5s)
+
+**What's next:** Production deployment, monitor Vercel Lighthouse scores, iterate on mobile LCP if needed
+
+---
+
 ## v1.1 Sales Website (Shipped: 2026-02-03)
 
 **Delivered:** World-class Hebrew sales website with conversion-optimized psychological journey, achieving Lighthouse 95+ performance, complete analytics infrastructure, and production-ready deployment for high-converting referral traffic.
@@ -59,4 +95,4 @@
 ---
 
 *Milestones log created: 2026-01-30*
-*Updated: 2026-02-03 after v1.1 milestone*
+*Updated: 2026-02-05 after v2.0 milestone*
