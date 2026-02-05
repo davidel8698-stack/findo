@@ -183,10 +183,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 27-01-PLAN.md — Lighthouse Performance Testing (desktop + mobile audits)
-- [ ] 27-02-PLAN.md — Animation & GPU Testing (60fps, will-change, GPU properties)
-- [ ] 27-03-PLAN.md — Human Validation Materials (rating form, Hebrew checklist)
-- [ ] 27-04-PLAN.md — Certification Checkpoint (human verification + final certification)
+- [x] 27-01-PLAN.md — Lighthouse Performance Testing (desktop + mobile audits)
+- [x] 27-02-PLAN.md — Animation & GPU Testing (60fps, will-change, GPU properties)
+- [x] 27-03-PLAN.md — Human Validation Materials (rating form, Hebrew checklist)
+- [~] 27-04-PLAN.md — Certification Checkpoint (human verification pending)
 
 ## Progress
 
@@ -202,8 +202,8 @@ Phases execute in numeric order: 20 → 21 → 22 → 23 → 24 → 25 → 26 �
 | 24. Micro-Interactions | v2.0 | 5/5 | ✅ Complete | 2026-02-04 |
 | 25. Animation Choreography | v2.0 | 5/5 | ✅ Complete | 2026-02-05 |
 | 26. Glassmorphism & Section Upgrades | v2.0 | 5/5 | ✅ Complete | 2026-02-05 |
-| 27. Performance Certification | v2.0 | 0/4 | Ready | - |
+| 27. Performance Certification | v2.0 | 3.5/4 | 🚧 Human checkpoints pending | - |
 
 ---
 *Roadmap created: 2026-02-03*
-*Last updated: 2026-02-05 after Phase 26 execution complete*
+*Last updated: 2026-02-05 after Phase 27 automated testing complete*
