@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 
 ## Current Position
 
-Phase: 24 of 27 (Micro-Interactions) - VERIFIED COMPLETE
-Plan: 5 of 5 in current phase - COMPLETE (including gap closure)
-Status: Phase 24 verified complete, ready for Phase 25
-Last activity: 2026-02-04 - Phase 24 verified (7/9 must-haves, 2 architectural deferrals)
+Phase: 25 of 27 (Animation Choreography) - IN PROGRESS
+Plan: 2 of 5 in current phase - COMPLETE
+Status: Plan 25-02 complete, continuing Phase 25
+Last activity: 2026-02-05 - Completed 25-02-PLAN.md (Scroll Reveal System)
 
-Progress: [███████░░░░░░░░░░░░░] 17/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 24 verified)
+Progress: [███████░░░░░░░░░░░░░] 17/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 25 in progress)
 
 ## Milestone Summary
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 25-02**: 65ms stagger delay (middle of 50-75ms range); 20% visibility threshold for scroll trigger; 30px rise for fadeInRise; 150ms reduced motion fade duration
 - **v2.0 Phase 24-05**: PhoneInput wrapped in div for shake (Input forwards ref); Gentle severity for form validation; Error clears on both focus and typing
 - **v2.0 Phase 24-03**: NavLink uses bg-accent background fill hover (distinct from inline links); AnimatedLink uses link-underline CSS utility; External links get arrow icon; All transitions 200ms ease-out
 - **v2.0 Phase 24-02**: Shadow-lift (y:-1, shadow) as button hover, not scale; HeroCTAButton retains scale:1.02 exception; Disabled buttons no hover; Input 4px focus glow; useShake with severity levels
@@ -111,9 +112,9 @@ None yet (v2.0 just started).
 
 ## Session Continuity
 
-Last session: 2026-02-04
-Stopped at: Phase 24 verified complete (gap closure executed + verified)
-Resume action: Plan Phase 25 (Animation Choreography)
+Last session: 2026-02-05
+Stopped at: Completed 25-02-PLAN.md (Scroll Reveal System)
+Resume action: Continue Phase 25 with plan 25-03
 
 ---
-*Updated: 2026-02-04 after Phase 24 verification passed*
+*Updated: 2026-02-05 after 25-02-PLAN.md complete*
