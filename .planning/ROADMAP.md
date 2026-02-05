@@ -157,10 +157,14 @@ Plans:
   6. All 10 sections (Hero, Stats, Testimonials, ROI Calculator, FAQ, Pricing, Founder, Contact, Footer, Navigation) upgraded with full visual language
   7. Carousel arrows swap sides for RTL correctly
   8. Lighthouse Performance remains 95+ after glassmorphism implementation (critical gate)
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 26-01: TBD
+- [ ] 26-01-PLAN.md — CSS glass foundation (variables, utilities, @supports fallback)
+- [ ] 26-02-PLAN.md — Card glass effects (SuccessCard, Stats, Testimonials)
+- [ ] 26-03-PLAN.md — Navigation + StickyCtaBar glass
+- [ ] 26-04-PLAN.md — ContactSection + LeadCaptureForm glass
+- [ ] 26-05-PLAN.md — Section upgrades verification + RTL carousel + Lighthouse gate
 
 #### Phase 27: Performance Certification
 **Goal**: Validate all performance gates, conduct device testing, and achieve 9+ professional rating for v2.0 certification.
@@ -194,9 +198,9 @@ Phases execute in numeric order: 20 → 21 → 22 → 23 → 24 → 25 → 26 �
 | 23. 3D Phone Mockup | v2.0 | 4/4 | ✅ Complete | 2026-02-04 |
 | 24. Micro-Interactions | v2.0 | 5/5 | ✅ Complete | 2026-02-04 |
 | 25. Animation Choreography | v2.0 | 5/5 | ✅ Complete | 2026-02-05 |
-| 26. Glassmorphism & Section Upgrades | v2.0 | 0/TBD | Not started | - |
+| 26. Glassmorphism & Section Upgrades | v2.0 | 0/5 | 🚧 Planned | - |
 | 27. Performance Certification | v2.0 | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-02-03*
-*Last updated: 2026-02-05 after Phase 25 complete (gap closure executed)*
+*Last updated: 2026-02-05 after Phase 26 planning complete*
