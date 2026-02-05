@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 ## Current Position
 
 Phase: 27 of 27 (Performance Certification)
-Plan: 3 of 4 in current phase
+Plan: 2 of 4 in current phase (27-02 + 27-03 complete)
 Status: In progress
-Last activity: 2026-02-05 - Completed 27-03-PLAN.md (Human Validation Materials)
+Last activity: 2026-02-05 - Completed 27-02-PLAN.md (Animation & GPU Testing)
 
 Progress: [██████████░░░░░░░░░░] 19/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 27 in progress)
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 27-02**: PERF-07 PASS - All animations use GPU-only properties (transform, opacity); PERF-08 PASS - will-change budget at 8 max (3 orbs + 5 cards), 3 steady state; 60fps testing protocol documented for Plan 04
 - **v2.0 Phase 26-05**: Dev server Lighthouse (34) expected - CLS=0 is critical metric (achieved); Production performance certification deferred to Phase 27; RTL carousel verified correct with -start-14/-end-14
 - **v2.0 Phase 26-04**: Glass applied to LeadCaptureForm directly; ConversionSection simplified to avoid double-nesting; ContactSection cards use glass-strong
 - **v2.0 Phase 26-03**: StickyCtaBar uses solid fallback only (mobile-only); GlassNav uses @supports for desktop glass; 50px scroll threshold; 300ms ease-out transition
@@ -122,8 +123,14 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-05
-Stopped at: Completed 27-03-PLAN.md (Human Validation Materials)
-Resume action: Continue with 27-04-PLAN.md (Certification Execution)
+Stopped at: Completed 27-02-PLAN.md (Animation & GPU Testing)
+Resume action: Execute 27-01-PLAN.md (Lighthouse Metrics) or 27-04-PLAN.md (Certification Execution)
+
+Phase 27 completion status:
+- 27-01: NOT COMPLETE (Lighthouse Metrics)
+- 27-02: COMPLETE (Animation & GPU Testing)
+- 27-03: COMPLETE (Human Validation Materials)
+- 27-04: NOT COMPLETE (Certification Execution checkpoint)
 
 ---
-*Updated: 2026-02-05 after 27-03-PLAN.md complete*
+*Updated: 2026-02-05 after 27-02-PLAN.md complete*
