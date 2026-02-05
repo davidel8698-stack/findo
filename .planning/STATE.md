@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 ## Current Position
 
 Phase: 25 of 27 (Animation Choreography) - IN PROGRESS
-Plan: 3 of 5 in current phase - COMPLETE
-Status: Plan 25-03 complete, continuing Phase 25
-Last activity: 2026-02-05 - Completed 25-03-PLAN.md (Social Proof Animations)
+Plan: 4 of 5 in current phase - COMPLETE
+Status: Plan 25-04 complete, continuing Phase 25
+Last activity: 2026-02-05 - Completed 25-04-PLAN.md (Section Reveals & Animation Verification)
 
 Progress: [███████░░░░░░░░░░░░░] 17/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 25 in progress)
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 25-04**: SectionReveal applied at page level for sections without internal animation; useShake uses Motion's useReducedMotion + CSS fallback for defense-in-depth accessibility; Footer GuaranteeBadge uses noStagger for subtle single-element fade
 - **v2.0 Phase 25-01**: 7-phase timeline with ~30% overlap using position parameters; 60px rise for phone mockup (special treatment); gsap.matchMedia for reduced motion; Custom event 'hero-entrance-complete' for activity feed sync
 - **v2.0 Phase 25-03**: 50ms stagger for stats (unified impact); Alternating slide pattern (even from start, odd from end); RTL direction mapping (start=right, end=left); Individual whileInView for carousel items
 - **v2.0 Phase 25-02**: 65ms stagger delay (middle of 50-75ms range); 20% visibility threshold for scroll trigger; 30px rise for fadeInRise; 150ms reduced motion fade duration
@@ -115,8 +116,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-05
-Stopped at: Completed 25-03-PLAN.md (Social Proof Animations)
-Resume action: Continue Phase 25 with plan 25-04
+Stopped at: Completed 25-04-PLAN.md (Section Reveals & Animation Verification)
+Resume action: Continue Phase 25 with plan 25-05
 
 ---
-*Updated: 2026-02-05 after 25-03-PLAN.md complete*
+*Updated: 2026-02-05 after 25-04-PLAN.md complete*
