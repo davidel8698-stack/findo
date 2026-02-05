@@ -46,3 +46,9 @@ test-*.ts
 
 # MCP config (contains API keys)
 .mcp.json
+
+# Separate video project
+Videos-for-Findo/
+
+# Temporary work documents
+*.docx
