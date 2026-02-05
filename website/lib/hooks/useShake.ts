@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef } from "react";
+import { useReducedMotion } from "motion/react";
 
 type ShakeSeverity = "hint" | "gentle" | "blocking";
 
@@ -12,6 +13,10 @@ type ShakeSeverity = "hint" | "gentle" | "blocking";
  * - gentle: pulse animation (1-2 cycles)
  * - blocking: shake + glow (payment failed, auth errors)
  *
+ * Accessibility: Respects prefers-reduced-motion via:
+ * 1. CSS media query fallback (globals.css disables shake animations)
+ * 2. Motion's useReducedMotion hook (skips animation trigger entirely)
+ *
  * @example
  * const { ref, triggerShake } = useShake<HTMLInputElement>();
  * // On error:
@@ -19,6 +24,7 @@ type ShakeSeverity = "hint" | "gentle" | "blocking";
  */
 export function useShake<T extends HTMLElement>() {
   const ref = useRef<T>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   const triggerShake = useCallback((severity: ShakeSeverity = "gentle") => {
     const element = ref.current;
@@ -31,8 +37,11 @@ export function useShake<T extends HTMLElement>() {
     void element.offsetWidth;
 
     // Apply severity-appropriate class
-    const className =
-      severity === "hint"
+    // For reduced motion: apply hint (color only) instead of animated classes
+    // CSS also provides fallback via @media (prefers-reduced-motion: reduce)
+    const className = prefersReducedMotion
+      ? "error-hint"
+      : severity === "hint"
         ? "error-hint"
         : severity === "blocking"
           ? "error-shake"
@@ -40,19 +49,17 @@ export function useShake<T extends HTMLElement>() {
 
     element.classList.add(className);
 
-    // Clean up after animation completes
-    const cleanup = () => {
-      // Keep error-hint (it's not animated, just styling)
-      if (severity !== "hint") {
-        element.classList.remove(className);
-      }
-      element.removeEventListener("animationend", cleanup);
-    };
+    // Clean up after animation completes (skip if reduced motion or hint)
+    const shouldCleanup = !prefersReducedMotion && severity !== "hint";
 
-    if (severity !== "hint") {
+    if (shouldCleanup) {
+      const cleanup = () => {
+        element.classList.remove(className);
+        element.removeEventListener("animationend", cleanup);
+      };
       element.addEventListener("animationend", cleanup);
     }
-  }, []);
+  }, [prefersReducedMotion]);
 
   const clearError = useCallback(() => {
     const element = ref.current;
