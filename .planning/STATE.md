@@ -75,6 +75,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 Recent decisions affecting v2.0 work:
 
 - **v2.0 Phase 26-04**: Glass applied to LeadCaptureForm directly; ConversionSection simplified to avoid double-nesting; ContactSection cards use glass-strong
+- **v2.0 Phase 26-03**: StickyCtaBar uses solid fallback only (mobile-only); GlassNav uses @supports for desktop glass; 50px scroll threshold; 300ms ease-out transition
 - **v2.0 Phase 26-02**: SuccessCard uses glass-strong; Stats/testimonial cards use glass-light; TestimonialCard disables rimLight since glass replaces it
 - **v2.0 Phase 26-01**: 12px blur strong, 8px light; 20%/15% background opacity; zinc-900/80 fallback; 10% border with blur, 20% without; Mobile-first @supports pattern for desktop glass
 - **v2.0 Phase 25-05**: ActivityFeed waits for hero-entrance-complete event (2000ms fallback); 50ms delay after event for DOM readiness; requestIdleCallback replaced with event-driven trigger
