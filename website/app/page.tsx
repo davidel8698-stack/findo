@@ -23,6 +23,8 @@ import { ReliefSection } from "@/components/sections/emotional/ReliefSection";
 import { DemoSection } from "@/components/sections/demo/DemoSection";
 // Phase 19 - SEO structured data
 import { StructuredData } from "@/components/seo/StructuredData";
+// Phase 25 - Section scroll reveals
+import { SectionReveal, SectionRevealItem } from "@/components/motion/SectionReveal";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
@@ -85,26 +87,44 @@ export default function HomePage() {
       </section>
 
       {/* Demo Section - Interactive product demo (DEMO-01/02/03) - Phase 18 */}
-      <DemoSection className="bg-muted/30" />
+      <SectionReveal>
+        <SectionRevealItem>
+          <DemoSection className="bg-muted/30" />
+        </SectionRevealItem>
+      </SectionReveal>
 
       {/* Video Testimonial - Video proof (PROOF-04) */}
       <section className={cn("py-16 md:py-24", "bg-muted/30")}>
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            סיפור הצלחה
-          </h2>
-          <VideoTestimonial
-            src="/videos/testimonial.mp4"
-            poster="/videos/testimonial-poster.jpg"
-          />
+          <SectionReveal>
+            <SectionRevealItem>
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                סיפור הצלחה
+              </h2>
+            </SectionRevealItem>
+            <SectionRevealItem>
+              <VideoTestimonial
+                src="/videos/testimonial.mp4"
+                poster="/videos/testimonial-poster.jpg"
+              />
+            </SectionRevealItem>
+          </SectionReveal>
         </div>
       </section>
 
       {/* ROI Calculator - Show value before price (OFFER-02) - Phase 16 */}
-      <ROICalculator />
+      <SectionReveal>
+        <SectionRevealItem>
+          <ROICalculator />
+        </SectionRevealItem>
+      </SectionReveal>
 
       {/* Pricing Section - Transparent pricing (OFFER-03) - Phase 16 */}
-      <PricingSection className="bg-muted/30" />
+      <SectionReveal>
+        <SectionRevealItem>
+          <PricingSection className="bg-muted/30" />
+        </SectionRevealItem>
+      </SectionReveal>
 
       {/* CTA After Pricing - Phase 17 (ACTION-01) */}
       <section className="py-16">
@@ -120,23 +140,37 @@ export default function HomePage() {
       {/* Zero Risk Summary - Eliminate risk (OBJ-01) - Phase 16 */}
       <section className="py-16 md:py-24">
         <div className="container">
-          {/* Component has its own max-w-lg mx-auto for proper centering */}
-          <ZeroRiskSummary />
+          <SectionReveal>
+            <SectionRevealItem>
+              {/* Component has its own max-w-lg mx-auto for proper centering */}
+              <ZeroRiskSummary />
+            </SectionRevealItem>
+          </SectionReveal>
         </div>
       </section>
 
       {/* Trust Badges - Authority signals (PROOF-08) */}
       <section className={cn("py-16 md:py-24", "bg-muted/30")}>
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-            למה לבחור ב-Findo
-          </h2>
-          <TrustBadges />
+          <SectionReveal>
+            <SectionRevealItem>
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+                למה לבחור ב-Findo
+              </h2>
+            </SectionRevealItem>
+            <SectionRevealItem>
+              <TrustBadges />
+            </SectionRevealItem>
+          </SectionReveal>
         </div>
       </section>
 
       {/* FAQ Section - Address objections (OBJ-02) - Phase 16 */}
-      <FAQSection />
+      <SectionReveal>
+        <SectionRevealItem>
+          <FAQSection />
+        </SectionRevealItem>
+      </SectionReveal>
 
       {/* CTA After FAQ - Phase 17 (ACTION-01) */}
       <section className="py-16 bg-muted/30">
@@ -152,23 +186,35 @@ export default function HomePage() {
       {/* Team Section - Real people (TRUST-02) */}
       <section className={cn("py-16 md:py-24", "bg-muted/30")}>
         <div className="container">
-          <TeamSection />
+          <SectionReveal>
+            <SectionRevealItem>
+              <TeamSection />
+            </SectionRevealItem>
+          </SectionReveal>
         </div>
       </section>
 
       {/* Contact Section - Easy contact (TRUST-01) */}
       <section className="py-16 md:py-24">
         <div className="container">
-          <ContactSection />
+          <SectionReveal>
+            <SectionRevealItem>
+              <ContactSection />
+            </SectionRevealItem>
+          </SectionReveal>
         </div>
       </section>
 
       {/* Footer Guarantee Badge */}
       <section className={cn("py-12 pb-20 md:pb-12", "bg-muted/30")}>
         <div className="container">
-          <div className="flex flex-col items-center gap-4">
-            <GuaranteeBadge variant="full" />
-          </div>
+          <SectionReveal noStagger>
+            <SectionRevealItem>
+              <div className="flex flex-col items-center gap-4">
+                <GuaranteeBadge variant="full" />
+              </div>
+            </SectionRevealItem>
+          </SectionReveal>
         </div>
       </section>
 
