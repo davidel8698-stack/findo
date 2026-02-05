@@ -13,8 +13,11 @@ interface PhoneMockupProps {
 /**
  * Premium 3D phone mockup with pre-rendered image, multi-layer shadows, screen glow,
  * scroll parallax, and mouse parallax (desktop only).
- * Uses Next.js Image for optimized loading (AVIF/WebP automatic).
- * Activity feed renders inside the screen overlay area.
+ *
+ * LCP OPTIMIZATION:
+ * - m.div renders with initial: false to skip initial animation
+ * - Phone image has priority loading and is visible immediately
+ * - Motion effects enhance after hydration without blocking LCP
  */
 export function PhoneMockup({ children, className }: PhoneMockupProps) {
   const containerRef = useRef<HTMLDivElement>(null);

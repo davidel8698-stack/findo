@@ -17,14 +17,15 @@ interface HeroProps {
  * On mobile, visual appears first, then content below.
  *
  * LCP Strategy:
- * - Headline text (h1) is the LCP element, rendered via server-side HeroContent
- * - ActivityFeed animation runs after initial paint (client-only)
- * - No images in hero - pure CSS phone mockup optimizes LCP
- * - Animation uses GPU-accelerated properties (transform, opacity)
+ * - Phone mockup image is the LCP element (largest contentful paint)
+ * - Mockup is visible immediately (opacity:1) - NOT hidden by GSAP initial state
+ * - Animation uses transform-only (Y offset) to avoid blocking LCP
+ * - ActivityFeed animation runs after hero-entrance-complete event
  *
  * Entrance Choreography:
  * - 7-phase GSAP timeline completing in ~1.2s
  * - Elements marked with data-hero-* attributes for timeline targeting
+ * - Mockup uses data-hero-mockup ONLY (not data-hero-animate) for transform-only animation
  * - Reduced motion: opacity-only fallback
  */
 export function Hero({ className }: HeroProps) {
@@ -34,7 +35,6 @@ export function Hero({ className }: HeroProps) {
     <section
       ref={scopeRef as React.RefObject<HTMLElement>}
       data-hero-bg
-      data-hero-animate
       className={cn(
         // Full viewport height with dynamic viewport units for mobile
         "min-h-[100dvh]",
@@ -64,10 +64,11 @@ export function Hero({ className }: HeroProps) {
 
           {/* Visual - order-1 on mobile (above content), lg:order-2 (left side in RTL) */}
           {/* Phone centered in its column for visual balance relative to screen center */}
+          {/* LCP FIX: Removed data-hero-animate to keep mockup visible immediately (prevents 10.5s LCP delay) */}
+          {/* Animation uses transform-only via data-hero-mockup (opacity stays 1) */}
           <div
             className="order-1 lg:order-2 flex justify-center"
             data-hero-mockup
-            data-hero-animate
           >
             <PhoneMockup>
               <ActivityFeed />
