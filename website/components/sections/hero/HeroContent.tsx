@@ -23,6 +23,8 @@ export function HeroContent({ className }: HeroContentProps) {
     >
       {/* Headline - Outcome-focused, under 8 words */}
       <h1
+        data-hero-headline
+        data-hero-animate
         className={cn(
           "text-4xl md:text-5xl lg:text-6xl",
           "font-bold",
@@ -36,6 +38,8 @@ export function HeroContent({ className }: HeroContentProps) {
 
       {/* Subheadline - Explains the automation */}
       <p
+        data-hero-subheadline
+        data-hero-animate
         className={cn(
           "text-lg md:text-xl",
           "leading-[1.8]",
@@ -49,7 +53,7 @@ export function HeroContent({ className }: HeroContentProps) {
       </p>
 
       {/* CTA Group */}
-      <div className="mt-8">
+      <div className="mt-8" data-hero-cta data-hero-animate>
         <CTAGroup
           primaryText="התחל בחינם"
           primaryIcon={ArrowLeft}
@@ -65,11 +69,13 @@ export function HeroContent({ className }: HeroContentProps) {
       </div>
 
       {/* Trust Signal - subtle social proof below CTA */}
-      <TrustSignal
-        value="573"
-        label="עסקים סומכים על Findo"
-        className="mt-6 justify-center lg:justify-start"
-      />
+      <div data-hero-animate>
+        <TrustSignal
+          value="573"
+          label="עסקים סומכים על Findo"
+          className="mt-6 justify-center lg:justify-start"
+        />
+      </div>
     </div>
   );
 }

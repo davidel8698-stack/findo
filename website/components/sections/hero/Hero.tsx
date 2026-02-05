@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { HeroContent } from "./HeroContent";
 import { PhoneMockup } from "./PhoneMockup";
 import { ActivityFeed } from "./ActivityFeed";
+import { useHeroEntrance } from "@/lib/hooks";
 
 interface HeroProps {
   className?: string;
@@ -20,10 +21,20 @@ interface HeroProps {
  * - ActivityFeed animation runs after initial paint (client-only)
  * - No images in hero - pure CSS phone mockup optimizes LCP
  * - Animation uses GPU-accelerated properties (transform, opacity)
+ *
+ * Entrance Choreography:
+ * - 7-phase GSAP timeline completing in ~1.2s
+ * - Elements marked with data-hero-* attributes for timeline targeting
+ * - Reduced motion: opacity-only fallback
  */
 export function Hero({ className }: HeroProps) {
+  const { scopeRef } = useHeroEntrance();
+
   return (
     <section
+      ref={scopeRef as React.RefObject<HTMLElement>}
+      data-hero-bg
+      data-hero-animate
       className={cn(
         // Full viewport height with dynamic viewport units for mobile
         "min-h-[100dvh]",
@@ -53,7 +64,11 @@ export function Hero({ className }: HeroProps) {
 
           {/* Visual - order-1 on mobile (above content), lg:order-2 (left side in RTL) */}
           {/* Phone centered in its column for visual balance relative to screen center */}
-          <div className="order-1 lg:order-2 flex justify-center">
+          <div
+            className="order-1 lg:order-2 flex justify-center"
+            data-hero-mockup
+            data-hero-animate
+          >
             <PhoneMockup>
               <ActivityFeed />
             </PhoneMockup>
