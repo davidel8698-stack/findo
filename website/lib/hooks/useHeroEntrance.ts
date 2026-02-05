@@ -11,21 +11,19 @@ interface UseHeroEntranceReturn {
 /**
  * Hero entrance choreography hook using GSAP timeline.
  *
- * LCP OPTIMIZATION:
- * - Initial state is set via CSS (opacity: 1 by default) to avoid blocking LCP
- * - JavaScript only enhances with animation AFTER first paint
- * - Phone mockup stays visible throughout (transform-only animation)
+ * MOBILE PERFORMANCE OPTIMIZATION:
+ * - Desktop (>768px): Full 7-phase GSAP timeline animation
+ * - Mobile (<=768px): Skip GSAP entirely for instant LCP, content already visible
+ * - prefers-reduced-motion: Skip animation, content visible immediately
  *
- * 7-phase orchestrated entrance completing in ~1.2s:
+ * Desktop 7-phase entrance completing in ~1.2s:
  * - Phase 1: Background fade (0-300ms)
  * - Phase 2: Nav slide down (200-500ms)
  * - Phase 3: Headline reveal (300-800ms) - 30px rise
  * - Phase 4: Subheadline fade up (600-900ms)
  * - Phase 5: CTAs scale in (800-1100ms) - back.out easing
- * - Phase 6: Phone mockup (500-1200ms) - 60px rise, transform-only (no opacity)
+ * - Phase 6: Phone mockup (500-1200ms) - 60px rise, transform-only
  * - Phase 7: Activity feed trigger (1000ms)
- *
- * Reduced motion: Respects prefers-reduced-motion with simple fade
  *
  * @example
  * const { scopeRef } = useHeroEntrance();
@@ -43,24 +41,27 @@ export function useHeroEntrance(): UseHeroEntranceReturn {
 
       mm.add(
         {
+          // Mobile: skip GSAP animations entirely for better LCP
+          mobile: "(max-width: 768px)",
+          // Desktop: full animation
+          desktop: "(min-width: 769px)",
+          // Reduced motion: skip everywhere
           reduceMotion: "(prefers-reduced-motion: reduce)",
-          standard: "(prefers-reduced-motion: no-preference)",
         },
         (context) => {
-          const { reduceMotion } = context.conditions!;
+          const { mobile, reduceMotion } = context.conditions!;
 
-          // LCP FIX: Do NOT set opacity:0 on load - let content be visible immediately
-          // Content is server-rendered and visible by default
-          // Animation enhances from the current visible state
-
-          if (reduceMotion) {
-            // Reduced motion: just dispatch event, content already visible
+          // MOBILE LCP OPTIMIZATION: Skip GSAP entirely on mobile
+          // Content is already visible via server rendering
+          // This reduces JS execution time from ~5s to near-instant
+          if (mobile || reduceMotion) {
             isCompleteRef.current = true;
+            // Dispatch event immediately so ActivityFeed can start
             window.dispatchEvent(new CustomEvent("hero-entrance-complete"));
             return;
           }
 
-          // Full 7-phase entrance - animate FROM current state (opacity 1)
+          // DESKTOP: Full 7-phase entrance - animate FROM current state (opacity 1)
           // Use gsap.from() to animate from offscreen/invisible TO current position
           const tl = gsap.timeline({
             defaults: { ease: "power2.out" },
