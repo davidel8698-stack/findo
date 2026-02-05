@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import { ActivityCard, type ActivityType } from "./ActivityCard";
 import { cn } from "@/lib/utils";
@@ -48,9 +48,35 @@ interface ActivityFeedProps {
  * Animated activity feed showing Findo's automated actions.
  * Uses GSAP timeline with bouncy spring easing for playful personality.
  * Animation loops continuously every 8-12 seconds (Phase 23).
+ *
+ * Synchronization (Phase 25):
+ * - Waits for 'hero-entrance-complete' event before starting animation
+ * - Event dispatched by useHeroEntrance hook at 1000ms mark
+ * - Fallback timeout (2000ms) ensures animation starts even if event missed
  */
 export function ActivityFeed({ className }: ActivityFeedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [heroEntranceComplete, setHeroEntranceComplete] = useState(false);
+
+  // Listen for hero-entrance-complete event to synchronize animation
+  useEffect(() => {
+    const handleHeroComplete = () => {
+      setHeroEntranceComplete(true);
+    };
+
+    window.addEventListener("hero-entrance-complete", handleHeroComplete);
+
+    // Fallback: if event doesn't fire within 2000ms, start anyway
+    // This handles edge cases like component mounting after hero is already complete
+    const fallbackTimeout = setTimeout(() => {
+      setHeroEntranceComplete(true);
+    }, 2000);
+
+    return () => {
+      window.removeEventListener("hero-entrance-complete", handleHeroComplete);
+      clearTimeout(fallbackTimeout);
+    };
+  }, []);
 
   // Remove will-change after animation completes (performance optimization)
   const removeWillChange = useCallback(() => {
@@ -63,12 +89,15 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
   }, []);
 
   /**
-   * GSAP animation with requestIdleCallback wrapper (Phase 19)
-   * - Defers animation start until browser is idle (non-blocking LCP)
+   * GSAP animation triggered by hero-entrance-complete event (Phase 25)
+   * - Waits for hero entrance choreography to complete
+   * - Starts animation within 50ms of event firing
    * - Removes will-change after completion (memory cleanup)
    * - Uses contain-layout to prevent CLS
    */
   useEffect(() => {
+    if (!heroEntranceComplete) return;
+
     const startAnimation = () => {
       if (!containerRef.current) return;
 
@@ -113,19 +142,10 @@ export function ActivityFeed({ className }: ActivityFeedProps) {
       });
     };
 
-    // Use requestIdleCallback to defer animation until browser idle
-    // This ensures LCP (hero headline) is not blocked by animation setup
-    if ("requestIdleCallback" in window) {
-      const idleCallbackId = window.requestIdleCallback(startAnimation, {
-        timeout: 1000, // Max wait 1 second
-      });
-      return () => window.cancelIdleCallback(idleCallbackId);
-    } else {
-      // Fallback for Safari (no requestIdleCallback support)
-      const timeoutId = setTimeout(startAnimation, 100);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [removeWillChange]);
+    // Small delay to ensure DOM is ready after state change
+    const timeoutId = setTimeout(startAnimation, 50);
+    return () => clearTimeout(timeoutId);
+  }, [heroEntranceComplete, removeWillChange]);
 
   return (
     <div
