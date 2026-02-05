@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { useInView, useSpring, useTransform, m } from "motion/react";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { SectionReveal, SectionRevealItem } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 interface AnimatedCounterProps {
@@ -152,30 +152,42 @@ interface SocialProofCountersProps {
  * Requirements:
  * - PROOF-06: Display impressive metrics to build credibility
  *
+ * Animation per CONTEXT.md:
+ * - Stats reveal with SectionReveal (fast cascade 50ms stagger)
+ * - Simultaneous count-up creates "unified impact, single moment of arrival"
+ * - Counter uses ease-out spring (fast start, slow landing)
+ *
  * Note: This component does NOT include section/container wrappers.
  * Parent page.tsx provides the section and container wrapper for proper centering.
  */
 export function SocialProofCounters({ className }: SocialProofCountersProps) {
   return (
     <div className={cn("w-full", className)}>
-      <ScrollReveal>
-        <h2
-          id="social-proof-heading"
-          className={cn(
-            "text-2xl md:text-3xl",
-            "font-bold",
-            "text-center mb-12",
-            "text-gradient-brand",
-            "text-shadow-[0_0_15px_rgba(249,115,22,0.35)]"
-          )}
-        >
-          המספרים מדברים בעד עצמם
-        </h2>
-      </ScrollReveal>
+      {/* Heading with separate reveal */}
+      <SectionReveal noStagger>
+        <SectionRevealItem>
+          <h2
+            id="social-proof-heading"
+            className={cn(
+              "text-2xl md:text-3xl",
+              "font-bold",
+              "text-center mb-12",
+              "text-gradient-brand",
+              "text-shadow-[0_0_15px_rgba(249,115,22,0.35)]"
+            )}
+          >
+            המספרים מדברים בעד עצמם
+          </h2>
+        </SectionRevealItem>
+      </SectionReveal>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
-        {metrics.map((metric, index) => (
-          <ScrollReveal key={metric.label} delay={index * 0.1}>
+      {/* Stats grid with fast stagger (50ms) for unified impact */}
+      <SectionReveal
+        staggerMs={50}
+        className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto"
+      >
+        {metrics.map((metric) => (
+          <SectionRevealItem key={metric.label}>
             {metric.type === "animated" ? (
               <AnimatedCounter
                 target={metric.target}
@@ -185,9 +197,9 @@ export function SocialProofCounters({ className }: SocialProofCountersProps) {
             ) : (
               <StaticMetric value={metric.value} label={metric.label} />
             )}
-          </ScrollReveal>
+          </SectionRevealItem>
         ))}
-      </div>
+      </SectionReveal>
     </div>
   );
 }
