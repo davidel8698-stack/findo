@@ -801,3 +801,50 @@ a[href] {
     opacity: 0.5;
   }
 }
+
+/* ============================================
+ * GLASSMORPHISM UTILITIES - Phase 26
+ * Mobile-first with desktop glass enhancement
+ * Per CONTEXT.md: desktop gets glass, mobile gets solid
+ * ============================================ */
+
+/* Glass strong - Feature cards (primary focus)
+ * Per CONTEXT.md: 12px blur, 20% bg opacity, 10% border
+ */
+.glass-strong {
+  /* Fallback (mobile and no-support) */
+  background-color: var(--glass-bg-fallback);
+  border: 1px solid var(--glass-border-fallback);
+}
+
+/* Glass light - Stats/Testimonials (lighter treatment)
+ * Per CONTEXT.md: 8px blur, 15% bg opacity, 8% border
+ */
+.glass-light {
+  /* Fallback (mobile and no-support) */
+  background-color: var(--glass-bg-fallback);
+  border: 1px solid var(--glass-border-fallback);
+}
+
+/* Desktop enhancement with @supports */
+@media (min-width: 768px) {
+  @supports (backdrop-filter: blur(1px)) {
+    .glass-strong {
+      background-color: var(--glass-bg-strong);
+      backdrop-filter: blur(var(--glass-blur-strong));
+      -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+      border: 1px solid var(--glass-border);
+    }
+
+    .glass-light {
+      background-color: var(--glass-bg-light);
+      backdrop-filter: blur(var(--glass-blur-light));
+      -webkit-backdrop-filter: blur(var(--glass-blur-light));
+      border: 1px solid var(--glass-border);
+    }
+  }
+}
+
+/* Reduced motion: keep glass (it's visual, not motion)
+ * Per CONTEXT.md: "Reduced-motion users keep glass"
+ */
