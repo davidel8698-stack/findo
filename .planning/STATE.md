@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 25-01**: 7-phase timeline with ~30% overlap using position parameters; 60px rise for phone mockup (special treatment); gsap.matchMedia for reduced motion; Custom event 'hero-entrance-complete' for activity feed sync
 - **v2.0 Phase 25-02**: 65ms stagger delay (middle of 50-75ms range); 20% visibility threshold for scroll trigger; 30px rise for fadeInRise; 150ms reduced motion fade duration
 - **v2.0 Phase 24-05**: PhoneInput wrapped in div for shake (Input forwards ref); Gentle severity for form validation; Error clears on both focus and typing
 - **v2.0 Phase 24-03**: NavLink uses bg-accent background fill hover (distinct from inline links); AnimatedLink uses link-underline CSS utility; External links get arrow icon; All transitions 200ms ease-out
