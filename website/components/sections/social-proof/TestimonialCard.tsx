@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { m } from "motion/react";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { springBouncy } from "@/lib/animation";
 
 export interface Testimonial {
@@ -38,7 +39,15 @@ export function TestimonialCard({
       transition={springBouncy}
       className="h-full"
     >
-      <Card className="h-full" rimLight>
+      <Card
+        className={cn(
+          "h-full",
+          // Glass effect - light intensity for testimonials
+          "glass-light"
+        )}
+        // Per CONTEXT.md: "Glass replaces existing rim lighting effect"
+        rimLight={false}
+      >
         <CardContent className="p-6 flex flex-col gap-4 h-full">
           {/* Quote */}
           <blockquote className="text-lg leading-relaxed flex-1">
