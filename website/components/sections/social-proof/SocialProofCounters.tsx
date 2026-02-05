@@ -49,7 +49,15 @@ function AnimatedCounter({
   }, [isInView, target, springValue]);
 
   return (
-    <div ref={ref} className={cn("text-center", className)}>
+    <div
+      ref={ref}
+      className={cn(
+        "text-center",
+        // Glass effect - light intensity for stats
+        "glass-light rounded-xl p-6",
+        className
+      )}
+    >
       <div className="flex items-baseline justify-center gap-1">
         <m.span className="text-4xl md:text-5xl font-bold text-primary">
           {display}
@@ -82,7 +90,14 @@ interface StaticMetricProps {
  */
 function StaticMetric({ value, label, className }: StaticMetricProps) {
   return (
-    <div className={cn("text-center", className)}>
+    <div
+      className={cn(
+        "text-center",
+        // Glass effect - light intensity for stats
+        "glass-light rounded-xl p-6",
+        className
+      )}
+    >
       <div className="flex items-baseline justify-center gap-1">
         <span className="text-4xl md:text-5xl font-bold text-primary">
           {value}
