@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 
 ## Current Position
 
-Phase: 25 of 27 (Animation Choreography) - IN PROGRESS
-Plan: 4 of 5 in current phase - COMPLETE
-Status: Plan 25-04 complete, continuing Phase 25
-Last activity: 2026-02-05 - Completed 25-04-PLAN.md (Section Reveals & Animation Verification)
+Phase: 25 of 27 (Animation Choreography) - COMPLETE
+Plan: 5 of 5 in current phase - COMPLETE
+Status: Phase 25 complete, ready for Phase 26
+Last activity: 2026-02-05 - Completed 25-05-PLAN.md (ActivityFeed Event Synchronization)
 
-Progress: [███████░░░░░░░░░░░░░] 17/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 25 in progress)
+Progress: [████████░░░░░░░░░░░░] 18/27 phases complete (v1.0 + v1.1 shipped, v2.0 Phase 25 complete)
 
 ## Milestone Summary
 
@@ -63,8 +63,8 @@ Archives:
 
 **v2.0 (In Progress):**
 - Total phases: 8 (20-27)
-- Phases complete: 5 (20, 21, 22, 23, 24)
-- Requirements satisfied: 36/75 (Phase 20-24)
+- Phases complete: 6 (20, 21, 22, 23, 24, 25)
+- Requirements satisfied: 41/75 (Phase 20-25)
 
 ## Accumulated Context
 
@@ -74,6 +74,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 Recent decisions affecting v2.0 work:
 
+- **v2.0 Phase 25-05**: ActivityFeed waits for hero-entrance-complete event (2000ms fallback); 50ms delay after event for DOM readiness; requestIdleCallback replaced with event-driven trigger
 - **v2.0 Phase 25-04**: SectionReveal applied at page level for sections without internal animation; useShake uses Motion's useReducedMotion + CSS fallback for defense-in-depth accessibility; Footer GuaranteeBadge uses noStagger for subtle single-element fade
 - **v2.0 Phase 25-01**: 7-phase timeline with ~30% overlap using position parameters; 60px rise for phone mockup (special treatment); gsap.matchMedia for reduced motion; Custom event 'hero-entrance-complete' for activity feed sync
 - **v2.0 Phase 25-03**: 50ms stagger for stats (unified impact); Alternating slide pattern (even from start, odd from end); RTL direction mapping (start=right, end=left); Individual whileInView for carousel items
@@ -116,8 +117,8 @@ None yet (v2.0 just started).
 ## Session Continuity
 
 Last session: 2026-02-05
-Stopped at: Completed 25-04-PLAN.md (Section Reveals & Animation Verification)
-Resume action: Continue Phase 25 with plan 25-05
+Stopped at: Completed 25-05-PLAN.md (ActivityFeed Event Synchronization)
+Resume action: Begin Phase 26 (Glassmorphism)
 
 ---
-*Updated: 2026-02-05 after 25-04-PLAN.md complete*
+*Updated: 2026-02-05 after 25-05-PLAN.md complete (Phase 25 Animation Choreography complete)*
