@@ -180,10 +180,13 @@ Plans:
   7. 5-person "professional rating" test averages 9+ out of 10
   8. No glassmorphism on elements that cause jank (performance-validated)
   9. Hebrew typography review by native speaker completed with approval
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 27-01: TBD
+- [ ] 27-01-PLAN.md — Lighthouse Performance Testing (desktop + mobile audits)
+- [ ] 27-02-PLAN.md — Animation & GPU Testing (60fps, will-change, GPU properties)
+- [ ] 27-03-PLAN.md — Human Validation Materials (rating form, Hebrew checklist)
+- [ ] 27-04-PLAN.md — Certification Checkpoint (human verification + final certification)
 
 ## Progress
 
@@ -199,7 +202,7 @@ Phases execute in numeric order: 20 → 21 → 22 → 23 → 24 → 25 → 26 �
 | 24. Micro-Interactions | v2.0 | 5/5 | ✅ Complete | 2026-02-04 |
 | 25. Animation Choreography | v2.0 | 5/5 | ✅ Complete | 2026-02-05 |
 | 26. Glassmorphism & Section Upgrades | v2.0 | 5/5 | ✅ Complete | 2026-02-05 |
-| 27. Performance Certification | v2.0 | 0/TBD | Not started | - |
+| 27. Performance Certification | v2.0 | 0/4 | Ready | - |
 
 ---
 *Roadmap created: 2026-02-03*
