@@ -1,5 +1,6 @@
 "use client";
 
+import { m, type Variants, useReducedMotion } from "motion/react";
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +9,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { TestimonialCard, type Testimonial } from "./TestimonialCard";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { SectionReveal, SectionRevealItem, reducedMotionFade } from "@/components/motion";
+import { useDirection, getSlideX } from "@/lib/hooks";
+import { springGentle } from "@/lib/animation";
 
 /**
  * Placeholder testimonials with variety per CONTEXT.md:
@@ -57,17 +60,51 @@ interface TestimonialsCarouselProps {
  * Testimonials carousel with RTL support.
  * Displays customer testimonials in a horizontally swipeable carousel.
  *
+ * Animation per CONTEXT.md:
+ * - Testimonials: slide from sides (alternating pattern)
+ * - Fast cascade (65ms stagger) for unified group feel
+ * - RTL-aware slide direction via useDirection hook
+ *
  * Note: This component does NOT include section wrapper.
  * Parent page.tsx provides the section and container wrapper.
  */
 export function TestimonialsCarousel({ className }: TestimonialsCarouselProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const direction = useDirection();
+  const isRTL = direction === "rtl";
+
+  /**
+   * Create alternating slide variants based on card index
+   * Even indices (0, 2) slide from start, odd indices (1) slide from end
+   */
+  const getSlideVariant = (index: number): Variants => {
+    if (prefersReducedMotion) {
+      return reducedMotionFade;
+    }
+
+    // Alternate: even from start, odd from end
+    const fromStart = index % 2 === 0;
+    const xOffset = getSlideX(fromStart ? "start" : "end", 50, isRTL);
+
+    return {
+      hidden: { opacity: 0, x: xOffset },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: springGentle,
+      },
+    };
+  };
+
   return (
-    <ScrollReveal className={className}>
+    <SectionReveal className={className}>
       <div className="w-full">
         {/* Section heading */}
-        <h2 className="text-3xl font-bold text-center mb-8">
-          מה הלקוחות שלנו אומרים
-        </h2>
+        <SectionRevealItem>
+          <h2 className="text-3xl font-bold text-center mb-8">
+            מה הלקוחות שלנו אומרים
+          </h2>
+        </SectionRevealItem>
 
         {/* Carousel container with padding for navigation arrows (56px = w-14) */}
         <div className="relative px-16 md:px-20">
@@ -81,19 +118,26 @@ export function TestimonialsCarousel({ className }: TestimonialsCarouselProps) {
             className="w-full"
           >
             <CarouselContent className="-ms-4">
-              {testimonials.map((testimonial) => (
+              {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={testimonial.id}
                   className="ps-4 basis-full md:basis-1/2 lg:basis-1/3"
                 >
-                  <TestimonialCard
-                    quote={testimonial.quote}
-                    name={testimonial.name}
-                    business={testimonial.business}
-                    metric={testimonial.metric}
-                    avatarSrc={testimonial.avatarSrc}
-                    industry={testimonial.industry}
-                  />
+                  <m.div
+                    variants={getSlideVariant(index)}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                  >
+                    <TestimonialCard
+                      quote={testimonial.quote}
+                      name={testimonial.name}
+                      business={testimonial.business}
+                      metric={testimonial.metric}
+                      avatarSrc={testimonial.avatarSrc}
+                      industry={testimonial.industry}
+                    />
+                  </m.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -104,6 +148,6 @@ export function TestimonialsCarousel({ className }: TestimonialsCarouselProps) {
           </Carousel>
         </div>
       </div>
-    </ScrollReveal>
+    </SectionReveal>
   );
 }
