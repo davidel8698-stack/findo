@@ -125,3 +125,24 @@ export const cardLiftHover = {
   y: -4,
   boxShadow: "var(--shadow-hover)",
 };
+
+/**
+ * FAST STAGGER CONFIG - Phase 25
+ * Fast cascade (50-75ms) per CONTEXT.md for unified group feel
+ * Use for scroll-triggered section reveals
+ */
+export const fastStagger = {
+  staggerChildren: 0.065, // 65ms - middle of 50-75ms range
+  delayChildren: 0.1,
+};
+
+/**
+ * SECTION REVEAL VIEWPORT - Phase 25
+ * Early trigger (20-30% visible) per CONTEXT.md
+ * Anticipatory - ensures animations are seen, feels responsive
+ */
+export const sectionViewport = {
+  once: true,      // Animate once only - page "locks in"
+  amount: 0.2,     // 20% visibility threshold
+  margin: "-50px", // Trigger slightly before visible
+};
