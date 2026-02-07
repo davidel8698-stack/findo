@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { HeroContent } from "./HeroContent";
-import { HeroPanel } from "./HeroPanel";
 
 interface HeroProps {
   className?: string;
@@ -119,11 +118,6 @@ export function Hero({ className }: HeroProps) {
           {/* Content - right aligned (start in RTL) */}
           <div className="w-full max-w-2xl">
             <HeroContent />
-          </div>
-
-          {/* Panels - New design from scratch */}
-          <div className="w-full mt-12">
-            <HeroPanel />
           </div>
         </div>
       </div>
