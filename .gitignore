@@ -52,3 +52,9 @@ Videos-for-Findo/
 
 # Temporary work documents
 *.docx
+
+# Claude skills (local tooling)
+.claude/skills/
+
+# Reference screenshots
+Screenshots*/
