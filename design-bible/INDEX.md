@@ -1,5 +1,26 @@
 # FINDO Design Bible - Index
 
+> Based on three foundational books + Linear Design Blueprint
+
+---
+
+## PRIMARY REFERENCE: Linear Design Blueprint
+
+> **[LINEAR-BLUEPRINT.md](./LINEAR-BLUEPRINT.md)** - Visual design specifications for Linear-quality output
+>
+> This is the **#1 reference** for ALL visual/design work. Contains:
+> - Color palette, typography, spacing
+> - Component specifications with exact CSS
+> - Animation timings and easing curves
+> - Quality checklist
+> - Reference screenshots index
+
+**For design phases, ALWAYS read LINEAR-BLUEPRINT.md first!**
+
+---
+
+## Conversion & UX Books
+
 > Based on three foundational books:
 > - "Making Websites Win" by Karl Blanks & Ben Jesson
 > - "Don't Make Me Think" by Steve Krug

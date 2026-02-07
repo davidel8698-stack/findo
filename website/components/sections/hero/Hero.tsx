@@ -3,30 +3,26 @@
 import { useRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { HeroContent } from "./HeroContent";
-import { PhoneMockup } from "./PhoneMockup";
-import { ActivityFeed } from "./ActivityFeed";
+import { HeroPanel } from "./HeroPanel";
 
 interface HeroProps {
   className?: string;
 }
 
 /**
- * Main hero section with RTL-native grid layout.
- * Content appears on the RIGHT side in RTL desktop (natural for Hebrew).
- * Phone mockup appears on the LEFT side in RTL desktop.
- * On mobile, visual appears first, then content below.
+ * Main hero section with centered vertical layout.
+ * - Content: Centered headline + Subtitle + CTAs
+ * - Panels: 3-panel cascade with Linear-style adjacency
  *
  * LCP Strategy:
- * - Phone mockup image is the LCP element (largest contentful paint)
- * - Mockup is visible immediately (opacity:1) - NOT hidden by GSAP initial state
  * - Desktop: GSAP animations loaded dynamically after initial render
  * - Mobile: No GSAP animations - content visible immediately for fast LCP
- * - ActivityFeed animation runs after hero-entrance-complete event
+ * - ActivityFeed panel self-animates via motion/react
  *
  * Entrance Choreography (Desktop only):
- * - 7-phase GSAP timeline completing in ~1.2s
+ * - 6-phase GSAP timeline completing in ~1.2s
  * - Elements marked with data-hero-* attributes for timeline targeting
- * - Mockup uses data-hero-mockup ONLY for transform-only animation
+ * - Activity Feed panel handles its own entrance (motion/react)
  */
 export function Hero({ className }: HeroProps) {
   const scopeRef = useRef<HTMLElement>(null);
@@ -89,14 +85,7 @@ export function Hero({ className }: HeroProps) {
         0.8
       );
 
-      // Phase 6: Phone mockup (500-1200ms) - transform-only
-      tl.from(
-        "[data-hero-mockup]",
-        { y: 60, duration: 0.7 },
-        0.5
-      );
-
-      // Phase 7: Activity feed trigger (1000ms)
+      // Phase 6: Activity feed trigger (1000ms)
       tl.call(
         () => {
           window.dispatchEvent(new CustomEvent("hero-entrance-complete"));
@@ -112,43 +101,29 @@ export function Hero({ className }: HeroProps) {
       ref={scopeRef as React.RefObject<HTMLElement>}
       data-hero-bg
       className={cn(
-        // Full viewport height with dynamic viewport units for mobile
-        "min-h-[100dvh]",
-        // Vertical centering
-        "flex items-center",
-        // Breathing room
-        "py-16 md:py-20",
+        // Minimal top gap (nav clearance already in layout.tsx pt-16)
+        "pt-4 md:pt-6",
+        // Bottom padding - extra space for the large 3D panel
+        "pb-48 md:pb-64 lg:pb-[400px]",
+        // Extend below the fold for immersive effect
+        "min-h-screen lg:min-h-[140vh]",
+        // Allow panels to overflow for Linear-style effect
+        "overflow-visible",
         className
       )}
     >
       {/* Container */}
       <div className="container mx-auto">
-        {/* Grid layout - RTL-native, bounded for visual balance */}
-        <div
-          className={cn(
-            "grid grid-cols-1 lg:grid-cols-2",
-            "gap-8 lg:gap-12",
-            "items-center",
-            // Max-width + center ensures visual balance relative to screen center
-            "max-w-6xl mx-auto"
-          )}
-        >
-          {/* Content - order-2 on mobile (below visual), lg:order-1 (right side in RTL) */}
-          <div className="order-2 lg:order-1">
+        {/* Content above panels, right-aligned (start in RTL) */}
+        <div className="flex flex-col max-w-7xl mx-auto">
+          {/* Content - right aligned (start in RTL) */}
+          <div className="w-full max-w-2xl">
             <HeroContent />
           </div>
 
-          {/* Visual - order-1 on mobile (above content), lg:order-2 (left side in RTL) */}
-          {/* Phone centered in its column for visual balance relative to screen center */}
-          {/* LCP FIX: Removed data-hero-animate to keep mockup visible immediately (prevents 10.5s LCP delay) */}
-          {/* Animation uses transform-only via data-hero-mockup (opacity stays 1) */}
-          <div
-            className="order-1 lg:order-2 flex justify-center"
-            data-hero-mockup
-          >
-            <PhoneMockup>
-              <ActivityFeed />
-            </PhoneMockup>
+          {/* Panels - New design from scratch */}
+          <div className="w-full mt-12">
+            <HeroPanel />
           </div>
         </div>
       </div>

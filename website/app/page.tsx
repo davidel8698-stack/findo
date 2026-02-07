@@ -11,6 +11,8 @@ import { GuaranteeBadge } from "@/components/sections/social-proof/GuaranteeBadg
 import { FloatingActivityWidget } from "@/components/sections/social-proof/FloatingActivityWidget";
 import { TeamSection } from "@/components/sections/trust/TeamSection";
 import { ContactSection } from "@/components/sections/trust/ContactSection";
+// Phase 30 - Footer CTA section (COMP-10)
+import { FooterCTA } from "@/components/sections/FooterCTA";
 // Phase 16 - Offer & Objection sections (direct imports for SSR)
 import { ROICalculator } from "@/components/sections/offer/ROICalculator";
 import { PricingSection } from "@/components/sections/offer/PricingSection";
@@ -36,27 +38,18 @@ export default function HomePage() {
       {/* Hero Section - Phase 14 */}
       <Hero />
 
-      {/* Hero Form - Phase 17 (target for StickyCtaBar scroll) */}
-      <section className="py-8 -mt-16 relative z-10">
-        <div className="container">
-          <div className="flex justify-center">
-            <ConversionSection id="hero-form" variant="hero" showTrustText={false} />
-          </div>
-        </div>
-      </section>
-
       {/* Pain Point Section - Phase 18 (EMOTION-01) */}
       <PainPointSection />
 
       {/* Guarantee Badge - Below Hero */}
-      <section className="container py-8">
+      <section className="container py-section-cta">
         <div className="flex justify-center">
           <GuaranteeBadge variant="inline" />
         </div>
       </section>
 
       {/* Social Proof Counters - Metrics that matter (PROOF-06) */}
-      <section className={cn("py-16 md:py-24", "bg-muted/30")}>
+      <section className={cn("py-section-feature", "bg-muted/30")}>
         <div className="container">
           <SocialProofCounters />
         </div>
@@ -66,7 +59,7 @@ export default function HomePage() {
       <ReliefSection />
 
       {/* CTA After Social Proof - Phase 17 (ACTION-01) */}
-      <section className="py-12">
+      <section className="py-section-cta">
         <div className="container">
           <div className="text-center space-y-6">
             <h3 className="text-2xl font-bold">מוכן להצטרף?</h3>
@@ -76,7 +69,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Carousel - Text testimonials (PROOF-01/02/03) */}
-      <section className="py-16 md:py-24">
+      <section className="py-section-feature">
         <div className="container">
           <TestimonialsCarousel />
           {/* Guarantee Badge - After testimonials */}
@@ -94,7 +87,7 @@ export default function HomePage() {
       </SectionReveal>
 
       {/* Video Testimonial - Video proof (PROOF-04) */}
-      <section className={cn("py-16 md:py-24", "bg-muted/30")}>
+      <section className={cn("py-section-feature", "bg-muted/30")}>
         <div className="container">
           <SectionReveal>
             <SectionRevealItem>
@@ -127,7 +120,7 @@ export default function HomePage() {
       </SectionReveal>
 
       {/* CTA After Pricing - Phase 17 (ACTION-01) */}
-      <section className="py-16">
+      <section className="py-section-cta">
         <div className="container">
           <div className="text-center space-y-6">
             <h3 className="text-2xl font-bold">התחל היום, בחינם</h3>
@@ -138,7 +131,7 @@ export default function HomePage() {
       </section>
 
       {/* Zero Risk Summary - Eliminate risk (OBJ-01) - Phase 16 */}
-      <section className="py-16 md:py-24">
+      <section className="py-section-feature">
         <div className="container">
           <SectionReveal>
             <SectionRevealItem>
@@ -150,7 +143,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust Badges - Authority signals (PROOF-08) */}
-      <section className={cn("py-16 md:py-24", "bg-muted/30")}>
+      <section className={cn("py-section-feature", "bg-muted/30")}>
         <div className="container">
           <SectionReveal>
             <SectionRevealItem>
@@ -159,7 +152,7 @@ export default function HomePage() {
               </h2>
             </SectionRevealItem>
             <SectionRevealItem>
-              <TrustBadges />
+              <TrustBadges withCard />
             </SectionRevealItem>
           </SectionReveal>
         </div>
@@ -173,7 +166,7 @@ export default function HomePage() {
       </SectionReveal>
 
       {/* CTA After FAQ - Phase 17 (ACTION-01) */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-section-cta bg-muted/30">
         <div className="container">
           <div className="text-center space-y-6">
             <h3 className="text-2xl font-bold">יש לך עוד שאלות?</h3>
@@ -184,7 +177,7 @@ export default function HomePage() {
       </section>
 
       {/* Team Section - Real people (TRUST-02) */}
-      <section className={cn("py-16 md:py-24", "bg-muted/30")}>
+      <section className={cn("py-section-feature", "bg-muted/30")}>
         <div className="container">
           <SectionReveal>
             <SectionRevealItem>
@@ -195,7 +188,7 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section - Easy contact (TRUST-01) */}
-      <section className="py-16 md:py-24">
+      <section className="py-section-feature">
         <div className="container">
           <SectionReveal>
             <SectionRevealItem>
@@ -205,8 +198,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Footer CTA - Final conversion opportunity (COMP-10) */}
+      <FooterCTA className="bg-muted/30" />
+
       {/* Footer Guarantee Badge */}
-      <section className={cn("py-12 pb-20 md:pb-12", "bg-muted/30")}>
+      <section className={cn("py-section-footer pb-20 md:pb-12")}>
         <div className="container">
           <SectionReveal noStagger>
             <SectionRevealItem>
