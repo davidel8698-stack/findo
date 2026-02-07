@@ -65,7 +65,7 @@ export function CTAGroup({
         <Button
           asChild={!!secondaryHref}
           onClick={onSecondaryClick}
-          variant="outline"
+          variant="ghost"
           size="lg"
           glow="hover"
           className="w-full sm:w-auto"

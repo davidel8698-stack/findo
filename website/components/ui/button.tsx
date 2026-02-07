@@ -4,28 +4,28 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { m, type HTMLMotionProps } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { springBouncy, microInteraction, shadowLiftHover, shadowLiftTap } from "@/lib/animation";
+import { springLinear, microInteraction, shadowLiftHover, shadowLiftTap } from "@/lib/animation";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+          "bg-transparent border border-white/20 text-foreground hover:bg-white/5",
+        ghost: "bg-transparent text-muted-foreground hover:text-foreground hover:bg-transparent",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-12 px-6 py-3 text-base", // 48px touch target
-        sm: "h-12 px-4 text-sm",
-        lg: "h-14 px-8 text-lg",
-        icon: "h-12 w-12", // 48px square
+        default: "h-10 px-6 py-3 text-base", // 40px height (M)
+        sm: "h-8 px-4 py-2 text-sm", // 32px height (S)
+        lg: "h-12 px-8 py-4 text-base", // 48px height (L)
+        icon: "h-10 w-10", // 40px square (matches default)
       },
       loading: {
         true: "pointer-events-none animate-shimmer bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--primary)/0.8)] to-[hsl(var(--primary))] bg-[length:200%_100%]",
@@ -99,12 +99,12 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
           isDisabled && "cursor-not-allowed"
         )}
         disabled={isDisabled}
-        // Shadow-lift on hover (not scale for standard buttons per CONTEXT.md)
-        whileHover={isDisabled ? {} : shadowLiftHover}
-        // Press: scale down + reduce shadow
-        whileTap={isDisabled ? {} : shadowLiftTap}
-        // Snappy 150ms transition
-        transition={microInteraction}
+        // Linear-style -2px hover lift (COMP-01)
+        whileHover={isDisabled ? {} : { y: -2 }}
+        // Linear-style 0.95 active scale with bouncy spring (COMP-01)
+        whileTap={isDisabled ? {} : { scale: 0.95 }}
+        // Bouncy spring transition for playful feel
+        transition={springLinear}
         {...props}
       >
         {children}

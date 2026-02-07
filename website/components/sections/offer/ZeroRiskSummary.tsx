@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ShieldCheck, Clock, Star, Zap, type LucideIcon } from "lucide-react";
+import { AnimatedCard } from "@/components/ui/card";
 
 interface RiskEliminator {
   icon: LucideIcon;
@@ -37,9 +38,8 @@ export interface ZeroRiskSummaryProps {
  */
 export function ZeroRiskSummary({ className }: ZeroRiskSummaryProps) {
   return (
-    <div
+    <AnimatedCard
       className={cn(
-        "bg-card border rounded-xl p-6 md:p-8",
         "shadow-sm",
         "w-full max-w-lg mx-auto",
         className
@@ -64,6 +64,6 @@ export function ZeroRiskSummary({ className }: ZeroRiskSummaryProps) {
           );
         })}
       </div>
-    </div>
+    </AnimatedCard>
   );
 }

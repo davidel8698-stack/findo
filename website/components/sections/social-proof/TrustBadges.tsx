@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Shield, BadgeCheck, CreditCard, Award } from "lucide-react";
+import { GradientBorderCard } from "@/components/ui/card";
 
 interface Badge {
   icon: React.ComponentType<{ className?: string }>;
@@ -38,6 +39,8 @@ interface TrustBadgesProps {
   className?: string;
   /** Badge size - affects icon dimensions */
   size?: "sm" | "md";
+  /** Wrap badges in a GradientBorderCard for premium appearance */
+  withCard?: boolean;
 }
 
 // Size configurations
@@ -52,16 +55,22 @@ const sizeConfig = {
  *
  * Uses Lucide icons for all badges to ensure consistent display
  * without relying on external image files.
+ *
+ * @param withCard - When true, wraps badges in GradientBorderCard for premium appearance
  */
-export function TrustBadges({ className, size = "md" }: TrustBadgesProps) {
+export function TrustBadges({
+  className,
+  size = "md",
+  withCard = false,
+}: TrustBadgesProps) {
   const config = sizeConfig[size];
 
-  return (
+  const content = (
     <div
       className={cn(
         "flex flex-wrap justify-center items-center",
         config.gap,
-        "py-6",
+        !withCard && "py-6", // Only add py-6 when not wrapped (card has its own padding)
         className
       )}
     >
@@ -83,4 +92,10 @@ export function TrustBadges({ className, size = "md" }: TrustBadgesProps) {
       ))}
     </div>
   );
+
+  if (withCard) {
+    return <GradientBorderCard gradient="subtle">{content}</GradientBorderCard>;
+  }
+
+  return content;
 }

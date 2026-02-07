@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ShieldCheck, Clock, Star, type LucideIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 /**
  * Three distinct guarantee types per CONTEXT.md:
@@ -74,7 +75,9 @@ export function GuaranteeBadge({
           className
         )}
       >
-        <Icon className="h-4 w-4 text-primary shrink-0" />
+        <Badge variant="success" className="text-[10px] px-1.5 py-0">
+          <Icon className="h-3 w-3 me-0.5" />
+        </Badge>
         <span>{config.badge}</span>
       </div>
     );
@@ -89,7 +92,9 @@ export function GuaranteeBadge({
       )}
     >
       <div className="flex items-center gap-2 mb-2">
-        <Icon className="h-5 w-5 text-primary shrink-0" />
+        <Badge variant="success" className="text-[10px] px-1.5 py-0">
+          <Icon className="h-3 w-3" />
+        </Badge>
         <span className="font-semibold text-foreground">{config.title}</span>
       </div>
       <p className="text-sm text-muted-foreground">{config.description}</p>

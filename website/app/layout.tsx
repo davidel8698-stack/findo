@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import { Providers } from "./providers";
 import { PostHogPageview } from "@/components/PostHogPageview";
 import { BackgroundDepth } from "@/components/background";
+import { Navigation } from "@/components/navigation/Navigation";
+import { SkipLink } from "@/components/ui/skip-link";
 import "./globals.css";
 
 /**
@@ -18,7 +20,7 @@ import "./globals.css";
 const heebo = Heebo({
   subsets: ["hebrew"],
   display: "swap",
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-heebo",
   fallback: ["Arial", "sans-serif"],
   preload: true,
@@ -113,12 +115,16 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl" className={heebo.variable} suppressHydrationWarning>
       <body className={`${heebo.className} antialiased`}>
+        <SkipLink />
         <BackgroundDepth />
         <Providers>
+          <Navigation />
           <Suspense fallback={null}>
             <PostHogPageview />
           </Suspense>
-          {children}
+          <main id="main-content" className="pt-16">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
