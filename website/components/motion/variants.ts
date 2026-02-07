@@ -9,7 +9,7 @@
  */
 
 import { Variants } from "motion/react";
-import { springBouncy, springGentle, stagger, fastStagger } from "@/lib/animation";
+import { springBouncy, springGentle, stagger, fastStagger, cssDuration } from "@/lib/animation";
 
 // Fade up - most common entrance animation
 export const fadeInUp: Variants = {
@@ -218,15 +218,36 @@ export const fastStaggerContainer: Variants = {
 };
 
 /**
- * Reduced motion fallback - opacity only, 150-200ms
+ * Reduced motion fallback - opacity only, 150ms
  * Per CONTEXT.md accessibility requirements
+ * Uses cssDuration.hover token for consistency
  */
 export const reducedMotionFade: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.15 },
+    transition: { duration: cssDuration.hover }, // 150ms from token
   },
+};
+
+/**
+ * Standard hover transition - 150-200ms per MOTION-02
+ * Use for micro-interactions (buttons, cards, links)
+ */
+export const hoverTransition = {
+  type: "tween" as const,
+  duration: cssDuration.hover,
+  ease: [0.34, 1.56, 0.64, 1] as const, // bouncy
+};
+
+/**
+ * Standard reveal transition - 400ms per MOTION-03
+ * Use for scroll-triggered section reveals
+ */
+export const revealTransition = {
+  type: "tween" as const,
+  duration: cssDuration.reveal,
+  ease: [0.33, 1, 0.68, 1] as const, // standard
 };
 
 /**

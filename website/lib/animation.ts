@@ -6,6 +6,14 @@
  * - GPU-optimized springs for 60fps performance
  * - Only animate transform and opacity (compositor-only)
  * - will-change hints for GPU acceleration
+ *
+ * MOTION-08 RULE (Phase 31):
+ * All animations MUST use GPU-accelerated properties ONLY:
+ * - ALLOWED: transform (translate, scale, rotate), opacity
+ * - FORBIDDEN: width, height, margin, padding, top, left, right, bottom
+ *
+ * This ensures 60fps performance without layout thrashing.
+ * Violations cause jank and battery drain.
  */
 
 // Spring presets - bouncy and expressive
@@ -146,3 +154,41 @@ export const sectionViewport = {
   amount: 0.2,     // 20% visibility threshold
   margin: "-50px", // Trigger slightly before visible
 };
+
+/**
+ * LINEAR BOUNCY SPRING - Phase 30
+ * Per CONTEXT.md: "Bouncy spring press feel - Linear-style slight overshoot, playful"
+ * Higher stiffness (260) + moderate damping (20) creates slight overshoot
+ */
+export const springLinear = {
+  type: "spring" as const,
+  stiffness: 260,
+  damping: 20,
+};
+
+/**
+ * CSS EASING CURVES - Phase 31
+ * Matches CSS custom properties in globals.css
+ * Use for Motion transitions that need to match CSS animations
+ */
+export const cssEasing = {
+  standard: [0.33, 1, 0.68, 1] as const,
+  bouncy: [0.34, 1.56, 0.64, 1] as const,
+  material: [0.4, 0, 0.2, 1] as const,
+  quickPress: [0, 0, 0.2, 1] as const,
+} as const;
+
+/**
+ * CSS DURATION VALUES - Phase 31
+ * Matches CSS custom properties in globals.css
+ * Use for Motion transitions
+ */
+export const cssDuration = {
+  hover: 0.15,     // 150ms - MOTION-02
+  hoverMax: 0.2,   // 200ms
+  reveal: 0.4,     // 400ms - MOTION-03
+  revealMin: 0.3,  // 300ms
+  revealMax: 0.5,  // 500ms
+  shimmer: 1.5,    // MOTION-04
+  shimmerDelay: 3, // MOTION-04
+} as const;
