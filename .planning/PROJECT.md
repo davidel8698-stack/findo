@@ -10,6 +10,22 @@ The platform now includes a world-class Hebrew sales website optimized for high-
 
 The business owner does nothing. Findo operates completely autonomously after a 2-minute setup, capturing leads, growing reviews, and managing their digital presence without any ongoing effort.
 
+## Current Milestone: v3.0 Linear Design System
+
+**Goal:** Redesign website following Linear's design principles — achieving premium SaaS aesthetic while maintaining brand identity for Israeli SMBs.
+
+**Target features:**
+- Dark theme refinement (#08090A background, precise color tokens)
+- Typography system overhaul (Inter-inspired hierarchy, 4px spacing scale)
+- Shimmer border effects (signature Linear animation)
+- Component standardization (buttons, cards, badges per Linear spec)
+- Animation refinement (specific easing curves, restrained motion)
+- Content patterns (short CTAs, declarative headlines)
+
+**Reference:** Linear_Design_Blueprint_Distilled.docx (12 principles, 11 sections)
+
+**Constraint:** NOT copying Linear 1:1 — adapting principles to Findo brand (orange accent, Hebrew typography, Israeli SMB context).
+
 ## Current State
 
 **Version:** v2.0 Visual Excellence (shipped 2026-02-05)
@@ -151,4 +167,4 @@ The business owner does nothing. Findo operates completely autonomously after a 
 | 90+ minimum over 95+ target | Local Windows testing unreliable, production will validate | — Acceptable |
 
 ---
-*Last updated: 2026-02-05 after v2.0 milestone complete*
+*Last updated: 2026-02-05 after v3.0 milestone started*
