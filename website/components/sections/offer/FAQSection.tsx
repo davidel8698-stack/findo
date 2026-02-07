@@ -39,7 +39,7 @@ const faqItems = [
 
 export function FAQSection() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-section-feature">
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <h2 className="text-3xl font-bold text-center mb-12">שאלות נפוצות</h2>

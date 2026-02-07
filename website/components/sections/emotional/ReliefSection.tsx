@@ -108,7 +108,7 @@ export function ReliefSection({ className }: ReliefSectionProps) {
   return (
     <section
       className={cn(
-        "py-16 md:py-24",
+        "py-section-feature",
         "bg-gradient-to-b from-primary/5 to-primary/10",
         className
       )}

@@ -25,7 +25,7 @@ export interface PricingSectionProps {
 export function PricingSection({ className }: PricingSectionProps) {
   return (
     <section
-      className={cn("py-16 md:py-24", className)}
+      className={cn("py-section-feature", className)}
       aria-labelledby="pricing-heading"
     >
       <div className="container mx-auto px-4">

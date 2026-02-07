@@ -103,7 +103,7 @@ interface PainPointSectionProps {
  */
 export function PainPointSection({ className }: PainPointSectionProps) {
   return (
-    <section className={cn("py-16 md:py-24 bg-muted/30", className)}>
+    <section className={cn("py-section-feature bg-muted/30", className)}>
       <div className="container">
         {/* Main headline */}
         <ScrollReveal className="mb-12">

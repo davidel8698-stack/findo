@@ -37,7 +37,7 @@ export function DemoSection({
   };
 
   return (
-    <section className={cn("py-16 md:py-24", className)}>
+    <section className={cn("py-section-feature", className)}>
       <div className="container">
         {/* Section headline */}
         <ScrollReveal className="text-center mb-8">
