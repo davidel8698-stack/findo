@@ -75,15 +75,11 @@ Requirements for Linear Design System adaptation. Each maps to roadmap phases.
 ### Conceptual Visualizations
 
 - [x] **VIZ-01**: Build "Autopilot Hero" — 3D dashboard with real-time status indicators, animated notifications/updates
-- [ ] **VIZ-02**: Build "Lead Recovery Flow" — Animated missed call -> WhatsApp -> recovered lead sequence with glassmorphism cards
-- [ ] **VIZ-03**: Build "Review Engine" — GBP card with filling stars, counter, rating climbing 4.2 -> 4.8 visualization
-- [ ] **VIZ-04**: Build "WhatsApp Center" — Messages flowing automatically from multiple triggers (lead, reminder, review request)
-- [ ] **VIZ-05**: Build "Lead Pipeline" — Funnel visualization with items moving through stages, live counters
-- [ ] **VIZ-06**: Build "Chaos -> Serenity" — Before/after or morphing visualization (scattered -> organized)
-- [ ] **VIZ-07**: Build "GBP Optimization Loop" — Circular self-learning cycle showing continuous improvement
 - [x] **VIZ-08**: All visualizations use 3D perspective on floating UI elements
 - [x] **VIZ-09**: All visualizations use scroll-triggered animations (Motion + GSAP)
 - [x] **VIZ-10**: Each visualization communicates ONE clear story/value proposition
+
+*Note (2026-02-10): VIZ-02 through VIZ-07 removed — plan changed to section-by-section approach instead of specific visualizations.*
 
 ### Performance
 
@@ -167,29 +163,23 @@ Requirements for Linear Design System adaptation. Each maps to roadmap phases.
 | VIZ-08 | Phase 32 | Complete |
 | VIZ-09 | Phase 32 | Complete |
 | VIZ-10 | Phase 32 | Complete |
-| VIZ-02 | Phase 33 | Pending |
-| VIZ-03 | Phase 33 | Pending |
-| VIZ-04 | Phase 34 | Pending |
-| VIZ-05 | Phase 34 | Pending |
-| VIZ-06 | Phase 35 | Pending |
-| VIZ-07 | Phase 35 | Pending |
-| PERF-01 | Phase 36 | Pending |
-| PERF-02 | Phase 36 | Pending |
-| PERF-03 | Phase 36 | Pending |
-| PERF-04 | Phase 36 | Pending |
-| PERF-05 | Phase 36 | Pending |
-| PERF-06 | Phase 36 | Pending |
-| CERT-01 | Phase 36 | Pending |
-| CERT-02 | Phase 36 | Pending |
-| CERT-03 | Phase 36 | Pending |
-| CERT-04 | Phase 36 | Pending |
-| CERT-05 | Phase 36 | Pending |
+| PERF-01 | TBD | Pending |
+| PERF-02 | TBD | Pending |
+| PERF-03 | TBD | Pending |
+| PERF-04 | TBD | Pending |
+| PERF-05 | TBD | Pending |
+| PERF-06 | TBD | Pending |
+| CERT-01 | TBD | Pending |
+| CERT-02 | TBD | Pending |
+| CERT-03 | TBD | Pending |
+| CERT-04 | TBD | Pending |
+| CERT-05 | TBD | Pending |
 
 **Coverage:**
-- v3.0 requirements: 68 total
-- Mapped to phases: 68
-- Unmapped: 0
+- v3.0 requirements: 62 total (6 removed: VIZ-02 to VIZ-07)
+- Mapped to phases: 51 complete + 11 TBD
+- Complete: 51/62
 
 ---
 *Requirements defined: 2026-02-05*
-*Last updated: 2026-02-10 - Phase 32 requirements complete (51/68)*
+*Last updated: 2026-02-10 - Roadmap restructured, VIZ-02 to VIZ-07 removed (51/62 complete)*

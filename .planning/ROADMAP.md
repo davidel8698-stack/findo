@@ -41,7 +41,7 @@ See milestones/v2.0-REQUIREMENTS.md for requirements archive.
 
 ### v3.0 Linear Design System (In Progress)
 
-**Milestone Goal:** Transform the Findo sales website with Linear's signature design system — semantic color tokens, refined typography, comprehensive component library, motion system, and 7 conceptual visualizations that tell clear value stories. The result: a premium SaaS aesthetic that rivals Linear itself while maintaining Findo's Hebrew brand identity.
+**Milestone Goal:** Transform the Findo sales website with Linear's signature design system — semantic color tokens, refined typography, comprehensive component library, motion system, and Linear-quality sections built one-by-one. The result: a premium SaaS aesthetic that rivals Linear itself while maintaining Findo's Hebrew brand identity.
 
 #### Phase 28: Design Foundation
 **Goal**: Establish the complete color and typography token system as CSS custom properties
@@ -131,68 +131,23 @@ Plans:
 - [x] 32-01-PLAN.md — Static layout: 3D container, DashboardPanel shell, 3 panel content components, Hebrew data, sub-components
 - [x] 32-02-PLAN.md — Animations + Hero integration: entrance stagger, count-up, periodic updates, usePeriodicUpdates hook, Hero.tsx integration
 
-#### Phase 33: Value Visualizations Part 1
-**Goal**: Build Lead Recovery Flow and Review Engine visualizations
+#### Phase 33+: Website Sections (TBD)
+**Goal**: Build website sections one-by-one to Linear-quality standard
 **Depends on**: Phase 32
-**Requirements**: VIZ-02, VIZ-03
-**Success Criteria** (what must be TRUE):
-  1. Lead Recovery shows missed call -> WhatsApp -> recovered lead animated sequence
-  2. Review Engine shows GBP card with stars filling and rating climbing 4.2 -> 4.8
-  3. Both use glassmorphism cards with proper 3D perspective
-  4. Each communicates ONE clear value proposition
-**Plans**: TBD
+**Note**: Each new section will be defined as a separate Phase when work begins.
 
-Plans:
-- [ ] 33-01: Lead Recovery Flow visualization
-- [ ] 33-02: Review Engine visualization
+Sections to rebuild (priority TBD):
+- Social Proof / Testimonials
+- Pricing / Offer
+- FAQ / Objections
+- Demo / Product Showcase
+- Contact / Trust
+- Footer CTA
+- Final Certification
 
-#### Phase 34: Value Visualizations Part 2
-**Goal**: Build WhatsApp Center and Lead Pipeline visualizations
-**Depends on**: Phase 33
-**Requirements**: VIZ-04, VIZ-05
-**Success Criteria** (what must be TRUE):
-  1. WhatsApp Center shows messages flowing from multiple triggers (lead, reminder, review)
-  2. Lead Pipeline shows funnel with items moving through stages and live counters
-  3. Both use scroll-triggered animations with GSAP/Motion
-  4. Each communicates ONE clear value proposition
-**Plans**: TBD
+*Phases will be defined incrementally as each section is planned.*
 
-Plans:
-- [ ] 34-01: WhatsApp Center visualization
-- [ ] 34-02: Lead Pipeline visualization
-
-#### Phase 35: Value Visualizations Part 3
-**Goal**: Build Chaos-to-Serenity and GBP Optimization Loop visualizations
-**Depends on**: Phase 34
-**Requirements**: VIZ-06, VIZ-07
-**Success Criteria** (what must be TRUE):
-  1. Chaos->Serenity shows before/after or morphing visualization (scattered -> organized)
-  2. GBP Loop shows circular self-learning cycle with continuous improvement indicators
-  3. Both use 3D perspective and scroll-triggered animations
-  4. Each communicates ONE clear value proposition
-**Plans**: TBD
-
-Plans:
-- [ ] 35-01: Chaos-to-Serenity visualization
-- [ ] 35-02: GBP Optimization Loop visualization
-
-#### Phase 36: Certification & Polish
-**Goal**: Full design system audit, cross-browser testing, RTL/mobile validation, performance verification
-**Depends on**: Phase 35
-**Requirements**: PERF-01, PERF-02, PERF-03, PERF-04, PERF-05, PERF-06, CERT-01, CERT-02, CERT-03, CERT-04, CERT-05
-**Success Criteria** (what must be TRUE):
-  1. Desktop Lighthouse score 90+ maintained (no regression from v2.0)
-  2. All animations run at 60fps with CLS = 0
-  3. Full Linear blueprint audit checklist passes
-  4. RTL (Hebrew) works correctly for all effects
-  5. Mobile renders and animates correctly on all 7 visualizations
-**Plans**: TBD
-
-Plans:
-- [ ] 36-01: Performance optimization and verification
-- [ ] 36-02: Design system audit against Linear blueprint
-- [ ] 36-03: RTL and mobile validation
-- [ ] 36-04: Cross-browser testing and final certification
+**Plan Change (2026-02-10):** Original Phases 33-36 (specific visualizations) removed. New approach: build sections one-by-one to Linear-quality standard.
 
 ## Progress
 
@@ -206,13 +161,10 @@ Plans:
 | 30 - Component Library | v3.0 | 8 | Complete | 2026-02-06 |
 | 31 - Motion & Accessibility | v3.0 | 5 | Complete | 2026-02-06 |
 | 32 - Autopilot Hero | v3.0 | 2 | Complete | 2026-02-10 |
-| 33 - Value Viz Part 1 | v3.0 | TBD | Not started | - |
-| 34 - Value Viz Part 2 | v3.0 | TBD | Not started | - |
-| 35 - Value Viz Part 3 | v3.0 | TBD | Not started | - |
-| 36 - Certification | v3.0 | TBD | Not started | - |
+| 33+ - Sections (TBD) | v3.0 | TBD | Not started | - |
 
-**Total:** 36 phases across 4 milestones
+**Total:** 32 phases complete + TBD sections across 4 milestones
 
 ---
 *Roadmap created: 2026-02-03*
-*Last updated: 2026-02-10 - Phase 32 COMPLETE (Linear-quality hero visualization shipped)*
+*Last updated: 2026-02-10 - Roadmap restructured (Phases 33-36 removed, section-by-section approach)*

@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** The business owner does nothing. Findo operates completely autonomously after a 2-minute setup, capturing leads, growing reviews, and managing their digital presence without any ongoing effort.
-**Current focus:** v3.0 Linear Design System - Phase 32 Autopilot Hero Visualization COMPLETE
+**Current focus:** v3.0 Linear Design System - Building sections one-by-one to Linear-quality standard
 
 ## Current Position
 
-Phase: 32 of 36 (Autopilot Hero Visualization) - **COMPLETE**
-Plan: 2 of 2 (completed via iterative implementation)
-Status: Complete - Linear-quality autopilot dashboard achieved
-Last activity: 2026-02-10 - Phase 32 COMPLETE (Linear-quality hero visualization shipped)
+Phase: 32 complete (Autopilot Hero) - **Ready for Phase 33**
+Plan: Section-by-section approach (each section = one Phase)
+Status: Foundation complete, building sections incrementally
+Last activity: 2026-02-10 - Roadmap restructured for section-by-section approach
 
-Progress: [##########################] 32/36 phases complete (v1.0 + v1.1 + v2.0 + v3.0 phases 28-32)
+Progress: [##########################] 32 phases complete + TBD sections (v1.0 + v1.1 + v2.0 + v3.0 foundation)
 
 ## Milestone Summary
 
@@ -34,8 +34,9 @@ Progress: [##########################] 32/36 phases complete (v1.0 + v1.1 + v2.0
 - 3 days from start to ship
 
 **v3.0 Linear Design System (in progress)**
-- 9 phases (28-36), TBD plans, 68 requirements
-- Phases: Foundation, Layout, Components, Motion, 4x Visualizations, Certification
+- Foundation complete (Phases 28-32): Design tokens, Layout, Components, Motion, Hero
+- Remaining: Build sections one-by-one to Linear-quality standard
+- Requirements: 62 total (51 complete, 11 remaining)
 
 ## Performance Metrics
 
@@ -124,7 +125,7 @@ None - Phase 32 complete, ready for Phase 33.
 
 **v3.0 Considerations:**
 - Mobile Lighthouse variable (44-81) on local Windows - monitor during v3.0
-- 7 new visualizations may impact performance - gate each phase
+- Each new section may impact performance - verify after each build
 - OneDrive path causes Next.js build cache issues (verified CSS compiles correctly)
 
 **Phase 30-08 Decisions:**
@@ -174,11 +175,18 @@ None - Phase 32 complete, ready for Phase 33.
 - Preserved: motion/ components (SectionReveal, FadeIn, etc. for future use)
 - Preserved: seo/StructuredData.tsx (non-section utility)
 
+**Roadmap Restructure (2026-02-10):**
+- Removed Phases 33-36 (specific visualizations: Lead Recovery, Review Engine, WhatsApp Center, Lead Pipeline, Chaos-to-Serenity, GBP Loop)
+- Removed requirements VIZ-02 through VIZ-07
+- New approach: Build sections one-by-one, each section = one Phase
+- Reason: Original visualization plan no longer matches desired website structure
+- See: .planning/ROADMAP-RESTRUCTURE-2026-02-10.md for full change record
+
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Phase 32 COMPLETE - ready for Phase 33
-Resume action: `/gsd:plan-phase 33` (Value Visualizations Part 1 - Lead Recovery Flow & Review Engine)
+Stopped at: Roadmap restructured - ready to build sections one-by-one
+Resume action: Define Phase 33 (next website section to build)
 
 ---
-*Updated: 2026-02-10 - Phase 32 complete, sections cleaned for Linear-quality rebuild*
+*Updated: 2026-02-10 - Roadmap restructured for section-by-section approach*
