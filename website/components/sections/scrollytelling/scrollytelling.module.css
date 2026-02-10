@@ -1,5 +1,5 @@
 /* Scrollytelling Section - Terminal Industries Inspired */
-/* Phase 33 - Emotional storytelling with scroll-driven animations */
+/* Phase 33 Enhanced - Premium gradient orbs + split-text reveal */
 
 /* ============================================
    Container & Layout
@@ -9,9 +9,31 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: var(--bg-base, #08090a);
+  background: linear-gradient(180deg,
+    #050506 0%,
+    var(--bg-base, #08090a) 10%,
+    var(--bg-base, #08090a) 100%
+  );
   overflow: hidden;
   direction: rtl;
+  /* Performance: contain layout shifts */
+  contain: layout style paint;
+}
+
+/* Hero transition - seamless blend from above */
+.heroTransition {
+  position: absolute;
+  top: -150px;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(180deg,
+    #050506 0%,
+    var(--bg-base, #08090a) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .content {
@@ -23,6 +45,30 @@
   align-items: center;
   height: 100%;
   padding: 2rem;
+}
+
+/* ============================================
+   Gradient Orbs - Premium Abstract Background
+   ============================================ */
+
+.gradientOrbsContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gradientOrb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  /* GPU acceleration */
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  /* Smooth parallax movement */
+  transition: transform 0.1s linear;
 }
 
 /* ============================================
@@ -130,6 +176,65 @@
 }
 
 /* ============================================
+   Split-Text Reveal - Terminal-Quality Typography
+   ============================================ */
+
+.splitTextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  padding: 0 1rem;
+}
+
+/* Massive typography for emphasis */
+.splitTextMassive {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary, #fefffe);
+}
+
+/* Terminal-size for finale (even bigger) */
+.splitTextTerminal {
+  font-size: clamp(3.5rem, 12vw, 10rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: var(--text-primary, #fefffe);
+}
+
+/* Individual character */
+.splitChar {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  transition:
+    opacity 0.15s ease-out,
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.splitChar.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Space character */
+.splitCharSpace {
+  width: 0.25em;
+}
+
+/* Word wrapper for better line breaks */
+.splitWord {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+/* ============================================
    Phase Content
    ============================================ */
 
@@ -165,7 +270,7 @@
 }
 
 /* ============================================
-   Dramatic Reveal (Finale)
+   Dramatic Reveal (Finale) - Enhanced
    ============================================ */
 
 .dramaticReveal {
@@ -183,6 +288,30 @@
   opacity: 1;
 }
 
+/* Radial glow background behind text */
+.dramaticReveal::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(249, 115, 22, 0.12) 0%,
+    rgba(249, 115, 22, 0.05) 30%,
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+.dramaticReveal.complete::before {
+  opacity: 1;
+}
+
 .dramaticText {
   display: flex;
   flex-direction: row;
@@ -190,6 +319,8 @@
   flex-wrap: wrap;
   gap: 0.1em;
   direction: rtl;
+  position: relative;
+  z-index: 1;
 }
 
 .dramaticLetter {
@@ -199,6 +330,8 @@
   opacity: 0;
   transform: scale(0.5) translateY(50px);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* GPU acceleration */
+  will-change: transform, opacity;
 }
 
 .dramaticLetter.visible {
@@ -210,15 +343,36 @@
   width: 0.3em;
 }
 
-/* Glow effect on final state */
+/* Enhanced glow effect on final state */
 .dramaticReveal.complete .dramaticLetter {
   text-shadow:
     0 0 20px var(--accent-orange, #f97316),
-    0 0 40px rgba(249, 115, 22, 0.5),
-    0 0 60px rgba(249, 115, 22, 0.3);
-  animation: pulse 2s ease-in-out infinite;
+    0 0 40px rgba(249, 115, 22, 0.6),
+    0 0 80px rgba(249, 115, 22, 0.4),
+    0 0 120px rgba(249, 115, 22, 0.2);
+  animation: finaleBreath 3s ease-in-out infinite;
 }
 
+@keyframes finaleBreath {
+  0%, 100% {
+    text-shadow:
+      0 0 20px var(--accent-orange, #f97316),
+      0 0 40px rgba(249, 115, 22, 0.5),
+      0 0 80px rgba(249, 115, 22, 0.3),
+      0 0 120px rgba(249, 115, 22, 0.15);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow:
+      0 0 30px var(--accent-orange, #f97316),
+      0 0 60px rgba(249, 115, 22, 0.7),
+      0 0 100px rgba(249, 115, 22, 0.5),
+      0 0 150px rgba(249, 115, 22, 0.25);
+    filter: brightness(1.08);
+  }
+}
+
+/* Legacy pulse keyframe - kept for compatibility */
 @keyframes pulse {
   0%, 100% {
     text-shadow:
@@ -255,6 +409,30 @@
   .dramaticLetter {
     font-size: clamp(2rem, 10vw, 5rem);
   }
+
+  /* Split-text mobile */
+  .splitTextMassive {
+    font-size: clamp(2rem, 7vw, 4rem);
+  }
+
+  .splitTextTerminal {
+    font-size: clamp(2.5rem, 10vw, 6rem);
+  }
+
+  .splitChar {
+    /* Simpler animation on mobile */
+    transform: none;
+    transition: opacity 0.1s ease;
+  }
+
+  .splitChar.visible {
+    transform: none;
+  }
+
+  /* Gradient orbs mobile - handled in component, but ensure smooth rendering */
+  .gradientOrb {
+    transition: transform 0.15s linear;
+  }
 }
 
 /* ============================================
@@ -282,5 +460,24 @@
 
   .dramaticReveal.complete .dramaticLetter {
     animation: none;
+  }
+
+  /* Gradient orbs - static position */
+  .gradientOrb {
+    transition: none;
+  }
+
+  /* Split-text - opacity only */
+  .splitChar {
+    transition: opacity 0.1s ease;
+    transform: none !important;
+  }
+
+  /* Finale - static glow */
+  .dramaticReveal.complete .dramaticLetter {
+    animation: none;
+    text-shadow:
+      0 0 20px var(--accent-orange, #f97316),
+      0 0 40px rgba(249, 115, 22, 0.4);
   }
 }

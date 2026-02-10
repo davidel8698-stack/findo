@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
+import { ScrollTrigger, useGSAP } from "@/lib/gsapConfig";
 import { cn } from "@/lib/utils";
+import { GradientOrbs } from "./GradientOrbs";
 import { GridPattern } from "./GridPattern";
 import { ParticleField } from "./ParticleField";
 import { TypewriterLines } from "./TypewriterText";
@@ -15,9 +16,9 @@ import {
 import styles from "./scrollytelling.module.css";
 
 /**
- * Emotional Scrollytelling Section
+ * Emotional Scrollytelling Section - Enhanced
  * Terminal Industries-inspired scroll experience for Hebrew content
- * Phase 33 - Connects emotionally with Israeli SMB owners
+ * Phase 33 Enhanced - Gradient orbs + premium typography
  */
 export function ScrollytellingSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -94,8 +95,8 @@ export function ScrollytellingSection() {
   const finaleProgress = getFinaleProgress();
   const isInFinale = progress >= scrollytellingContent.finale.range[0];
 
-  // Grid intensity increases as we progress
-  const gridIntensity = 0.2 + progress * 0.3;
+  // Grid intensity - subtle background, reduced from before
+  const gridIntensity = 0.1 + progress * 0.1;
 
   return (
     <section
@@ -103,9 +104,21 @@ export function ScrollytellingSection() {
       className={styles.container}
       aria-label="הסיפור שלנו"
     >
-      {/* Background layers */}
+      {/* Hero transition - seamless blend from above */}
+      <div className={styles.heroTransition} aria-hidden="true" />
+
+      {/* Background layers - ordered by z-index */}
+      {/* 1. Gradient orbs - primary abstract background */}
+      <GradientOrbs
+        scrollProgress={progress}
+        isMobile={isMobile}
+      />
+
+      {/* 2. Grid pattern - subtle texture overlay */}
       <GridPattern intensity={gridIntensity} />
-      <ParticleField isMobile={isMobile} />
+
+      {/* 3. Particles - subtle floating elements (optional, can disable on mobile) */}
+      {!isMobile && <ParticleField isMobile={isMobile} />}
 
       {/* Content phases */}
       <div className={styles.content}>
