@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   padding: 80px 0;
-  background: #09090b;
+  background: #050506;
   overflow: hidden;
 }
 
@@ -44,12 +44,12 @@
 
 .fadeLeft {
   left: 0;
-  background: linear-gradient(to right, #09090b 0%, transparent 100%);
+  background: linear-gradient(to right, #050506 0%, transparent 100%);
 }
 
 .fadeRight {
   right: 0;
-  background: linear-gradient(to left, #09090b 0%, transparent 100%);
+  background: linear-gradient(to left, #050506 0%, transparent 100%);
 }
 
 /* Scrolling Track */
