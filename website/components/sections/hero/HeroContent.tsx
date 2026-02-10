@@ -1,84 +1,55 @@
 import { cn } from "@/lib/utils";
-import { CTAGroup, SocialProofRow } from "@/components/molecules";
-import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 interface HeroContentProps {
   className?: string;
 }
 
-// Placeholder logos - replace with actual customer logos when available
-const socialProofLogos = [
-  { src: "/logos/business-1.svg", alt: "לקוח 1" },
-  { src: "/logos/business-2.svg", alt: "לקוח 2" },
-  { src: "/logos/business-3.svg", alt: "לקוח 3" },
-  { src: "/logos/business-4.svg", alt: "לקוח 4" },
-];
-
 /**
- * Hero content component following Linear hero pattern (COMP-11):
- * Badge -> H1 -> Subheadline -> CTAs -> Social Proof
- *
- * Renders problem-focused Hebrew messaging for the target audience.
- * Uses RTL-native layout with logical properties.
+ * Hero content component following Linear hero pattern.
+ * Matches Linear.app styling exactly with RTL Hebrew layout.
  */
 export function HeroContent({ className }: HeroContentProps) {
   return (
-    <div
-      className={cn(
-        "flex flex-col space-y-4",
-        "text-start", // Right-aligned in RTL
-        className
-      )}
-    >
-      {/* Headline - Outcome-focused, under 8 words */}
+    <div className={cn("text-center lg:text-start", className)}>
+      {/* Headline - Linear style, responsive - centered on mobile */}
       <h1
         data-hero-headline
         data-hero-animate
-        className={cn(
-          "text-4xl md:text-5xl lg:text-6xl",
-          "font-bold",
-          "leading-tight",
-          "text-gradient-brand",
-          "text-shadow-[0_0_15px_rgba(249,115,22,0.35)]"
-        )}
+        className="text-[clamp(32px,7vw,64px)] md:text-[clamp(42px,6vw,64px)] font-bold text-white leading-[1.08] md:leading-[1.1] tracking-[-0.02em] max-w-[720px] mx-auto lg:mx-0 mb-4 md:mb-5"
       >
         יותר לקוחות. פחות עבודה.
       </h1>
 
-      {/* Subheadline - Explains the automation */}
+      {/* Subheadline - Linear style, responsive - centered on mobile */}
       <p
         data-hero-subheadline
         data-hero-animate
-        className={cn(
-          "text-lg md:text-xl",
-          "leading-[1.8]",
-          "text-zinc-400",
-          "max-w-lg"
-        )}
+        className="text-[16px] md:text-[18px] text-white/40 max-w-[520px] mx-auto lg:mx-0 mb-6 md:mb-9 leading-[1.5] md:leading-[1.6] tracking-[0]"
       >
         Findo מנהל את הנוכחות הדיגיטלית של העסק שלך 24/7. תגובות לביקורות, פרסום
         תוכן, לכידת לידים - הכל אוטומטי.
       </p>
 
-      {/* CTA Group - Primary + Ghost pairing per COMP-11 */}
-      <div className="mt-4" data-hero-cta data-hero-animate>
-        <CTAGroup
-          primaryText="התחל בחינם"
-          primaryIcon={ArrowLeft}
-          primaryHref="#signup"
-          secondaryText="איך זה עובד?"
-          secondaryHref="#how-it-works"
-          className="justify-start"
-        />
+      {/* CTA Row - Linear style, responsive - centered on mobile */}
+      <div
+        data-hero-cta
+        data-hero-animate
+        className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 sm:gap-7 mb-10 md:mb-16"
+      >
+        <Link
+          href="#signup"
+          className="px-6 py-[11px] rounded-[10px] bg-white text-black text-[15px] font-medium border border-white/90 hover:bg-white/90 transition-colors tracking-[-0.2px]"
+        >
+          התחילו עכשיו
+        </Link>
+        <Link
+          href="#how-it-works"
+          className="text-white/45 text-[15px] tracking-[-0.2px] hover:text-white/65 transition-colors before:content-['←_']"
+        >
+          איך זה עובד?
+        </Link>
       </div>
-
-      {/* Social proof logos per COMP-12 - hidden until actual logos available */}
-      {/*
-      <SocialProofRow
-        logos={socialProofLogos}
-        className="mt-8 justify-center lg:justify-start"
-      />
-      */}
     </div>
   );
 }

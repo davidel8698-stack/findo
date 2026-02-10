@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { HeroContent } from "./HeroContent";
+import { LinearHeroPanel } from "./LinearHeroPanel";
 
 interface HeroProps {
   className?: string;
@@ -84,13 +85,26 @@ export function Hero({ className }: HeroProps) {
         0.8
       );
 
-      // Phase 6: Activity feed trigger (1000ms)
+      // Phase 6: 3D Panel reveal (1000-1500ms) - rises into view
+      tl.from(
+        "[data-hero-panel]",
+        {
+          opacity: 0,
+          y: 60,
+          rotateX: 25, // Start more tilted back
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        1.0
+      );
+
+      // Phase 7: Activity feed trigger (1400ms)
       tl.call(
         () => {
           window.dispatchEvent(new CustomEvent("hero-entrance-complete"));
         },
         [],
-        1.0
+        1.4
       );
     });
   }, [isDesktop]);
@@ -100,27 +114,38 @@ export function Hero({ className }: HeroProps) {
       ref={scopeRef as React.RefObject<HTMLElement>}
       data-hero-bg
       className={cn(
-        // Minimal top gap (nav clearance already in layout.tsx pt-16)
-        "pt-4 md:pt-6",
-        // Bottom padding - extra space for the large 3D panel
-        "pb-48 md:pb-64 lg:pb-[400px]",
-        // Extend below the fold for immersive effect
-        "min-h-screen lg:min-h-[140vh]",
-        // Allow panels to overflow for Linear-style effect
-        "overflow-visible",
+        // Match Linear hero section - exact tone match
+        "pt-24 md:pt-28 relative",
+        // Background - Linear's near-pure black
+        "bg-[#09090b]",
+        // Prevent horizontal scroll from 3D panel overflow
+        "overflow-x-hidden",
         className
       )}
     >
-      {/* Container */}
-      <div className="container mx-auto">
-        {/* Content above panels, right-aligned (start in RTL) */}
-        <div className="flex flex-col max-w-7xl mx-auto">
-          {/* Content - right aligned (start in RTL) */}
-          <div className="w-full max-w-2xl">
-            <HeroContent />
-          </div>
-        </div>
+      {/* Minimal radial glow - Linear-style neutral */}
+      <div
+        className="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[800px] h-[500px] pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse, rgba(255,255,255,0.015) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Hero Header - centered on mobile, right-aligned on desktop */}
+      <div className="relative z-[2] max-w-[1294px] mx-auto px-5 md:px-6 lg:pr-[18%] lg:pl-6 lg:text-right">
+        <HeroContent />
       </div>
+
+      {/* 3D Panel - Linear-style tilted dashboard showcase */}
+      <LinearHeroPanel />
+
+      {/* Bottom spacer - smooth gradient transition, Linear-style */}
+      <div
+        className="h-[100px] md:h-[240px]"
+        style={{
+          background: "linear-gradient(to bottom, #09090b 0%, #050506 100%)"
+        }}
+      />
     </section>
   );
 }

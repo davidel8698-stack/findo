@@ -114,7 +114,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="he" dir="rtl" className={heebo.variable} suppressHydrationWarning>
-      <body className={`${heebo.className} antialiased`}>
+      <body className={`${heebo.className} antialiased overflow-x-hidden`}>
         <SkipLink />
         <BackgroundDepth />
         <Providers>

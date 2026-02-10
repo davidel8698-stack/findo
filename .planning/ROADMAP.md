@@ -128,8 +128,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 32-01-PLAN.md — Static layout: 3D container, DashboardPanel shell, 3 panel content components, Hebrew data, sub-components
-- [ ] 32-02-PLAN.md — Animations + Hero integration: entrance stagger, count-up, periodic updates, usePeriodicUpdates hook, Hero.tsx integration
+- [x] 32-01-PLAN.md — Static layout: 3D container, DashboardPanel shell, 3 panel content components, Hebrew data, sub-components
+- [x] 32-02-PLAN.md — Animations + Hero integration: entrance stagger, count-up, periodic updates, usePeriodicUpdates hook, Hero.tsx integration
 
 #### Phase 33: Value Visualizations Part 1
 **Goal**: Build Lead Recovery Flow and Review Engine visualizations
@@ -205,7 +205,7 @@ Plans:
 | 29 - Layout System | v3.0 | 2 | Complete | 2026-02-05 |
 | 30 - Component Library | v3.0 | 8 | Complete | 2026-02-06 |
 | 31 - Motion & Accessibility | v3.0 | 5 | Complete | 2026-02-06 |
-| 32 - Autopilot Hero | v3.0 | 2 | Planned | - |
+| 32 - Autopilot Hero | v3.0 | 2 | Complete | 2026-02-10 |
 | 33 - Value Viz Part 1 | v3.0 | TBD | Not started | - |
 | 34 - Value Viz Part 2 | v3.0 | TBD | Not started | - |
 | 35 - Value Viz Part 3 | v3.0 | TBD | Not started | - |
@@ -215,4 +215,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-02-03*
-*Last updated: 2026-02-06 - Phase 32 RESET (needs re-planning with new design workflow)*
+*Last updated: 2026-02-10 - Phase 32 COMPLETE (Linear-quality hero visualization shipped)*

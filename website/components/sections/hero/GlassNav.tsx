@@ -13,9 +13,8 @@ interface GlassNavProps {
  *
  * Linear Design System specifications:
  * - COMP-08: 64px height (h-16), sticky position, semi-transparent + blur on scroll
- * - COMP-09: 85% opacity + stronger 16px blur when scrolled
- * - Mobile fallback: solid dark background (85% opacity)
- * - Desktop with @supports: glass effect (15% bg + 16px blur)
+ * - COMP-09: Glass effect (15% bg + 16px blur) when scrolled
+ * - Same glass effect for both mobile and desktop
  * - Transition timing: 300ms ease-out
  * - Height consistent throughout scroll (no compacting)
  */
@@ -45,12 +44,9 @@ export function GlassNav({ className, children }: GlassNavProps) {
         isScrolled
           ? cn(
               // Glass effect when scrolled (COMP-09)
-              // Mobile fallback: 85% opacity solid
-              "bg-[rgb(24_24_27/0.85)] border-b border-white/10",
-              // Desktop glass: lighter bg (15%) + stronger blur (16px)
-              "md:supports-[backdrop-filter:blur(1px)]:bg-[rgb(24_24_27/0.15)]",
-              "md:supports-[backdrop-filter:blur(1px)]:backdrop-blur-[16px]",
-              "md:supports-[backdrop-filter:blur(1px)]:border-white/10"
+              // Same glass effect for both mobile and desktop
+              "bg-[rgb(24_24_27/0.15)] backdrop-blur-[16px]",
+              "border-b border-white/10"
             )
           : // Transparent when not scrolled
             "bg-transparent border-b border-transparent",

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+  <defs>
+    <!-- Bottom fade gradient (follows 15deg angle) -->
+    <linearGradient id="fadeBottom" gradientTransform="rotate(15)">
+      <stop offset="0%" stop-color="white" stop-opacity="0"/>
+      <stop offset="30%" stop-color="white" stop-opacity="1"/>
+    </linearGradient>
+
+    <!-- Left fade gradient (follows 105deg angle) -->
+    <linearGradient id="fadeLeft" gradientTransform="rotate(105)">
+      <stop offset="0%" stop-color="white" stop-opacity="0"/>
+      <stop offset="25%" stop-color="white" stop-opacity="1"/>
+    </linearGradient>
+
+    <!-- Combined mask -->
+    <mask id="combinedFade">
+      <rect width="100" height="100" fill="url(#fadeBottom)"/>
+    </mask>
+  </defs>
+
+  <!-- Parallelogram shape matching panel perspective -->
+  <!-- Points: top-left, top-right, bottom-right, bottom-left -->
+  <polygon
+    points="5,-5 105,5 100,105 -5,95"
+    fill="url(#fadeLeft)"
+    mask="url(#combinedFade)"
+  />
+</svg>
