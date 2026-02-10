@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   padding: 80px 0;
-  background: var(--bg-base, #08090a);
+  background: #09090b;
   overflow: hidden;
 }
 
@@ -44,20 +44,20 @@
 
 .fadeLeft {
   left: 0;
-  background: linear-gradient(to right, var(--bg-base, #08090a) 0%, transparent 100%);
+  background: linear-gradient(to right, #09090b 0%, transparent 100%);
 }
 
 .fadeRight {
   right: 0;
-  background: linear-gradient(to left, var(--bg-base, #08090a) 0%, transparent 100%);
+  background: linear-gradient(to left, #09090b 0%, transparent 100%);
 }
 
 /* Scrolling Track */
 .track {
   display: flex;
-  gap: 64px;
+  gap: 80px;
   width: max-content;
-  animation: scroll 40s linear infinite;
+  animation: scroll 45s linear infinite;
 }
 
 /* Logo Item */
@@ -66,15 +66,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
-  padding: 0 16px;
+  height: 140px;
+  padding: 0 24px;
 }
 
 /* Logo Image */
 .logo {
   width: auto;
-  height: 64px;
-  max-width: 200px;
+  height: 100px;
+  max-width: 280px;
   object-fit: contain;
 
   /* Grayscale + brightness for white appearance */
@@ -130,13 +130,13 @@
   }
 
   .logoItem {
-    height: 80px;
-    padding: 0 8px;
+    height: 100px;
+    padding: 0 16px;
   }
 
   .logo {
-    height: 48px;
-    max-width: 160px;
+    height: 70px;
+    max-width: 200px;
   }
 }
 
@@ -155,8 +155,12 @@
     animation-duration: 25s;
   }
 
+  .logoItem {
+    height: 80px;
+  }
+
   .logo {
-    height: 36px;
-    max-width: 120px;
+    height: 50px;
+    max-width: 150px;
   }
 }
