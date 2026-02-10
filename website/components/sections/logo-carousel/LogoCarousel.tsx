@@ -12,14 +12,14 @@ const logos = Array.from({ length: 15 }, (_, i) => ({
 
 export function LogoCarousel() {
   return (
-    <section className={styles.section} dir="rtl">
-      {/* Heading */}
-      <div className={styles.header}>
+    <section className={styles.section}>
+      {/* Heading - RTL for Hebrew */}
+      <div className={styles.header} dir="rtl">
         <h2 className={styles.title}>עוזרים לעסקים הקטנים לצמוח!</h2>
       </div>
 
-      {/* Carousel Container */}
-      <div className={styles.carouselWrapper}>
+      {/* Carousel Container - LTR for animation */}
+      <div className={styles.carouselWrapper} dir="ltr">
         {/* Fade edges */}
         <div className={styles.fadeLeft} />
         <div className={styles.fadeRight} />
