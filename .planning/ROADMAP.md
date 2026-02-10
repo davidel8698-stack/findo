@@ -131,12 +131,33 @@ Plans:
 - [x] 32-01-PLAN.md — Static layout: 3D container, DashboardPanel shell, 3 panel content components, Hebrew data, sub-components
 - [x] 32-02-PLAN.md — Animations + Hero integration: entrance stagger, count-up, periodic updates, usePeriodicUpdates hook, Hero.tsx integration
 
-#### Phase 33+: Website Sections (TBD)
-**Goal**: Build website sections one-by-one to Linear-quality standard
+#### Phase 33: Emotional Scrollytelling Section
+**Goal**: Build Terminal Industries-inspired scrollytelling section that emotionally connects with Israeli SMB owners
 **Depends on**: Phase 32
-**Note**: Each new section will be defined as a separate Phase when work begins.
+**Inspiration**: terminal-industries.com scroll effect
+**Requirements**: SECTION-01 (new)
+**Success Criteria** (what must be TRUE):
+  1. Scroll-driven typewriter effect renders Hebrew text RTL correctly
+  2. Abstract grid + particle system animates with Findo orange accents
+  3. 7 text phases reveal progressively as user scrolls
+  4. Dramatic "הגעתם למקום הנכון" ending with large letter reveal
+  5. Smooth 60fps animations on desktop, graceful mobile fallback
+  6. prefers-reduced-motion respected
+**Plans**: TBD
 
-Sections to rebuild (priority TBD):
+Content structure:
+1. Hook: "אם הגעתם לכאן, יתכן שמשהו בשיווק של העסק שלכם לא מרגיש יציב."
+2. Pain: "יש תקופות עם פניות ויש תקופות שפחות."
+3. Confusion: "לא תמיד ברור: מה באמת מביא לקוחות? על מה שווה להשקיע? ומה סתם שטויות..."
+4. Problem: "הפתרונות הקיימים היום דורשים: הרבה כסף, הרבה ניהול שוטף, הרבה ידע."
+5. Mismatch: "וזה לא מותאם לאופן שבו עסק קטן באמת מתנהל."
+6. Tease: "אם אתם מחפשים שיווק אמיתי שמתאים בדיוק לאופן שבו עסק קטן מתנהל."
+7. Arrival: "הגעתם למקום הנכון." (dramatic reveal)
+
+#### Phase 34+: Future Sections (TBD)
+**Note**: Each section will be defined as a separate Phase when work begins.
+
+Remaining sections:
 - Social Proof / Testimonials
 - Pricing / Offer
 - FAQ / Objections
@@ -146,8 +167,6 @@ Sections to rebuild (priority TBD):
 - Final Certification
 
 *Phases will be defined incrementally as each section is planned.*
-
-**Plan Change (2026-02-10):** Original Phases 33-36 (specific visualizations) removed. New approach: build sections one-by-one to Linear-quality standard.
 
 ## Progress
 
@@ -161,10 +180,11 @@ Sections to rebuild (priority TBD):
 | 30 - Component Library | v3.0 | 8 | Complete | 2026-02-06 |
 | 31 - Motion & Accessibility | v3.0 | 5 | Complete | 2026-02-06 |
 | 32 - Autopilot Hero | v3.0 | 2 | Complete | 2026-02-10 |
-| 33+ - Sections (TBD) | v3.0 | TBD | Not started | - |
+| 33 - Emotional Scrollytelling | v3.0 | TBD | In progress | - |
+| 34+ - Sections (TBD) | v3.0 | TBD | Not started | - |
 
-**Total:** 32 phases complete + TBD sections across 4 milestones
+**Total:** 32 phases complete + Phase 33 in progress across 4 milestones
 
 ---
 *Roadmap created: 2026-02-03*
-*Last updated: 2026-02-10 - Roadmap restructured (Phases 33-36 removed, section-by-section approach)*
+*Last updated: 2026-02-10 - Phase 33 defined (Emotional Scrollytelling Section)*

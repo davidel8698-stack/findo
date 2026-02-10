@@ -2,6 +2,7 @@
 
 import Hero from "@/components/sections/hero";
 import { StickyCtaBar } from "@/components/sections/hero";
+import { ScrollytellingSection } from "@/components/sections/scrollytelling";
 // Phase 19 - SEO structured data
 import { StructuredData } from "@/components/seo/StructuredData";
 
@@ -13,6 +14,9 @@ export default function HomePage() {
 
       {/* Hero Section - Phase 32 Complete (Linear-quality) */}
       <Hero />
+
+      {/* Emotional Scrollytelling - Phase 33 */}
+      <ScrollytellingSection />
 
       {/* Sticky CTA Bar - Phase 14 */}
       <StickyCtaBar />
