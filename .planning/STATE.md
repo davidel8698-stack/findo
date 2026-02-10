@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 
 ## Current Position
 
-Phase: 32 complete (Autopilot Hero) - **Ready for Phase 33**
+Phase: 33 complete (Emotional Scrollytelling) - **Ready for Phase 34**
 Plan: Section-by-section approach (each section = one Phase)
-Status: Foundation complete, building sections incrementally
-Last activity: 2026-02-10 - Roadmap restructured for section-by-section approach
+Status: Foundation + 1 section complete, building sections incrementally
+Last activity: 2026-02-10 - Phase 33 complete (Terminal Industries-inspired scrollytelling)
 
-Progress: [##########################] 32 phases complete + TBD sections (v1.0 + v1.1 + v2.0 + v3.0 foundation)
+Progress: [###########################] 33 phases complete + TBD sections (v1.0 + v1.1 + v2.0 + v3.0)
 
 ## Milestone Summary
 
@@ -115,7 +115,7 @@ Key v2.0 decisions affecting v3.0:
 
 ### Pending Todos
 
-None - Phase 32 complete, ready for Phase 33.
+None - Phase 33 complete, ready for Phase 34.
 
 ### Blockers/Concerns
 
@@ -182,11 +182,22 @@ None - Phase 32 complete, ready for Phase 33.
 - Reason: Original visualization plan no longer matches desired website structure
 - See: .planning/ROADMAP-RESTRUCTURE-2026-02-10.md for full change record
 
+**Phase 33 Decisions (2026-02-10):**
+- Terminal Industries-inspired scrollytelling with GSAP ScrollTrigger
+- Custom TypewriterText component for Hebrew RTL (SplitText is paid)
+- Deterministic particle generation for hydration safety
+- CSS-only particles (60 desktop, 25 mobile) for performance
+- Grid pattern with 60px cells and orange accent dots
+- 7 emotional phases with scroll-driven reveal (5000px scroll distance)
+- DramaticReveal finale with pulse glow animation
+- Module CSS for scoped styling (scrollytelling.module.css)
+- direction: rtl on flex container (not row-reverse) for proper Hebrew display
+
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Roadmap restructured - ready to build sections one-by-one
-Resume action: Define Phase 33 (next website section to build)
+Stopped at: Phase 33 complete - Emotional Scrollytelling section built
+Resume action: Define Phase 34 (next website section to build)
 
 ---
-*Updated: 2026-02-10 - Roadmap restructured for section-by-section approach*
+*Updated: 2026-02-10 - Phase 33 complete (Emotional Scrollytelling)*
