@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 
 ## Current Position
 
-Phase: 33 complete (Emotional Scrollytelling) - **Ready for Phase 34**
+Phase: 33 complete (Logo Carousel) - **Ready for Phase 34**
 Plan: Section-by-section approach (each section = one Phase)
-Status: Foundation + 1 section complete, building sections incrementally
-Last activity: 2026-02-10 - Phase 33 complete (Terminal Industries-inspired scrollytelling)
+Status: Foundation + 2 sections complete (Hero + Logo Carousel), building sections incrementally
+Last activity: 2026-02-10 - Phase 33 complete (Premium logo carousel with infinite scroll)
 
 Progress: [###########################] 33 phases complete + TBD sections (v1.0 + v1.1 + v2.0 + v3.0)
 
@@ -183,21 +183,21 @@ None - Phase 33 complete, ready for Phase 34.
 - See: .planning/ROADMAP-RESTRUCTURE-2026-02-10.md for full change record
 
 **Phase 33 Decisions (2026-02-10):**
-- Terminal Industries-inspired scrollytelling with GSAP ScrollTrigger
-- Custom TypewriterText component for Hebrew RTL (SplitText is paid)
-- Deterministic particle generation for hydration safety
-- CSS-only particles (60 desktop, 25 mobile) for performance
-- Grid pattern with 60px cells and orange accent dots
-- 7 emotional phases with scroll-driven reveal (5000px scroll distance)
-- DramaticReveal finale with pulse glow animation
-- Module CSS for scoped styling (scrollytelling.module.css)
-- direction: rtl on flex container (not row-reverse) for proper Hebrew display
+- Replaced Scrollytelling with Logo Carousel (simpler, more effective)
+- 15 customer logos in infinite scroll loop
+- Grayscale + invert filter for white logo appearance on dark bg
+- Seamless background transition from Hero (#050506)
+- Hebrew heading: "עוזרים לעסקים הקטנים לצמוח!"
+- dir="ltr" on carousel wrapper (dir="rtl" breaks translateX animation)
+- Module CSS for scoped styling (logo-carousel.module.css)
+- Responsive sizes: 100px desktop, 70px tablet, 50px mobile
+- Fade edges with gradient for premium look
 
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Phase 33 complete - Emotional Scrollytelling section built
-Resume action: Define Phase 34 (next website section to build)
+Stopped at: Phase 33 complete - Logo Carousel section built
+Resume action: Define Phase 34 (third website section to build)
 
 ---
-*Updated: 2026-02-10 - Phase 33 complete (Emotional Scrollytelling)*
+*Updated: 2026-02-10 - Phase 33 complete (Logo Carousel)*

@@ -131,31 +131,27 @@ Plans:
 - [x] 32-01-PLAN.md — Static layout: 3D container, DashboardPanel shell, 3 panel content components, Hebrew data, sub-components
 - [x] 32-02-PLAN.md — Animations + Hero integration: entrance stagger, count-up, periodic updates, usePeriodicUpdates hook, Hero.tsx integration
 
-#### Phase 33: Emotional Scrollytelling Section
-**Goal**: Build Terminal Industries-inspired scrollytelling section that emotionally connects with Israeli SMB owners
+#### Phase 33: Logo Carousel Section
+**Goal**: Build premium infinite-scroll logo carousel showcasing customer trust
 **Depends on**: Phase 32
-**Inspiration**: terminal-industries.com scroll effect
-**Requirements**: SECTION-01 (new)
+**Requirements**: SECTION-01 (social proof)
 **Success Criteria** (what must be TRUE):
-  1. Scroll-driven typewriter effect renders Hebrew text RTL correctly
-  2. Abstract grid + particle system animates with Findo orange accents
-  3. 7 text phases reveal progressively as user scrolls
-  4. Dramatic "הגעתם למקום הנכון" ending with large letter reveal
-  5. Smooth 60fps animations on desktop, graceful mobile fallback
-  6. prefers-reduced-motion respected
+  1. 15 customer logos in infinite scroll loop
+  2. Grayscale/white filter on dark background
+  3. Seamless visual transition from Hero section
+  4. Hebrew heading: "עוזרים לעסקים הקטנים לצמוח!"
+  5. Responsive logo sizes (100px desktop, 70px tablet, 50px mobile)
+  6. Pause on hover for accessibility
 **Plans**: 1 plan
 
 Plans:
-- [x] 33-01-PLAN.md — Full section: GridPattern, ParticleField, TypewriterText, DramaticReveal, ScrollytellingSection with ScrollTrigger
+- [x] 33-01-PLAN.md — LogoCarousel component with infinite CSS animation
 
-Content structure:
-1. Hook: "אם הגעתם לכאן, יתכן שמשהו בשיווק של העסק שלכם לא מרגיש יציב."
-2. Pain: "יש תקופות עם פניות ויש תקופות שפחות."
-3. Confusion: "לא תמיד ברור: מה באמת מביא לקוחות? על מה שווה להשקיע? ומה סתם שטויות..."
-4. Problem: "הפתרונות הקיימים היום דורשים: הרבה כסף, הרבה ניהול שוטף, הרבה ידע."
-5. Mismatch: "וזה לא מותאם לאופן שבו עסק קטן באמת מתנהל."
-6. Tease: "אם אתם מחפשים שיווק אמיתי שמתאים בדיוק לאופן שבו עסק קטן מתנהל."
-7. Arrival: "הגעתם למקום הנכון." (dramatic reveal)
+Files created:
+- website/components/sections/logo-carousel/LogoCarousel.tsx
+- website/components/sections/logo-carousel/logo-carousel.module.css
+- website/components/sections/logo-carousel/index.ts
+- website/public/assets/logos/ (15 PNG files)
 
 #### Phase 34+: Future Sections (TBD)
 **Note**: Each section will be defined as a separate Phase when work begins.
@@ -183,11 +179,11 @@ Remaining sections:
 | 30 - Component Library | v3.0 | 8 | Complete | 2026-02-06 |
 | 31 - Motion & Accessibility | v3.0 | 5 | Complete | 2026-02-06 |
 | 32 - Autopilot Hero | v3.0 | 2 | Complete | 2026-02-10 |
-| 33 - Emotional Scrollytelling | v3.0 | 1 | Complete | 2026-02-10 |
+| 33 - Logo Carousel | v3.0 | 1 | Complete | 2026-02-10 |
 | 34+ - Sections (TBD) | v3.0 | TBD | Not started | - |
 
 **Total:** 33 phases complete + TBD sections across 4 milestones
 
 ---
 *Roadmap created: 2026-02-03*
-*Last updated: 2026-02-10 - Phase 33 complete (Emotional Scrollytelling Section)*
+*Last updated: 2026-02-10 - Phase 33 complete (Logo Carousel Section)*
