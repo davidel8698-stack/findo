@@ -81,6 +81,11 @@ Requirements for Linear Design System adaptation. Each maps to roadmap phases.
 
 *Note (2026-02-10): VIZ-02 through VIZ-07 removed — plan changed to section-by-section approach instead of specific visualizations.*
 
+### Website Sections
+
+- [x] **SECTION-01**: Logo Carousel — infinite scroll, grayscale logos, Hebrew heading, seamless background
+- [x] **SECTION-02**: Text Journey — scroll-driven emotional narrative (7 blocks → resolution), cinematic atmosphere, word-level animation
+
 ### Performance
 
 - [ ] **PERF-01**: Maintain Desktop Lighthouse score 90+ (no regression from v2.0)
@@ -163,6 +168,8 @@ Requirements for Linear Design System adaptation. Each maps to roadmap phases.
 | VIZ-08 | Phase 32 | Complete |
 | VIZ-09 | Phase 32 | Complete |
 | VIZ-10 | Phase 32 | Complete |
+| SECTION-01 | Phase 33 | Complete |
+| SECTION-02 | Phase 34 | Complete |
 | PERF-01 | TBD | Pending |
 | PERF-02 | TBD | Pending |
 | PERF-03 | TBD | Pending |
@@ -176,10 +183,10 @@ Requirements for Linear Design System adaptation. Each maps to roadmap phases.
 | CERT-05 | TBD | Pending |
 
 **Coverage:**
-- v3.0 requirements: 62 total (6 removed: VIZ-02 to VIZ-07)
-- Mapped to phases: 51 complete + 11 TBD
-- Complete: 51/62
+- v3.0 requirements: 64 total (6 removed: VIZ-02 to VIZ-07, 2 added: SECTION-01, SECTION-02)
+- Mapped to phases: 53 complete + 11 TBD
+- Complete: 53/64
 
 ---
 *Requirements defined: 2026-02-05*
-*Last updated: 2026-02-10 - Roadmap restructured, VIZ-02 to VIZ-07 removed (51/62 complete)*
+*Last updated: 2026-02-11 - Phase 34 complete, SECTION-01 and SECTION-02 added (53/64 complete)*

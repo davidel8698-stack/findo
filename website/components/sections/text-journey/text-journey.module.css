@@ -2,18 +2,26 @@
    Text Journey Section — CSS Module
 
    Apple-quality scroll-reveal for Hebrew display text.
-   Background: #050506 | RTL | Heebo font | 5 emotional blocks
+   Background: #050506 | RTL | Heebo font | Cinematic scroll-linked animation
 
    Architecture:
-   - .section: full-width dark container
-   - .block: individual text group, animated via .visible class
-   - .line: <p> element with display typography
-   - .resolution: variant class for final dramatic block
+   - .section:           Full-width dark container with stacking context
+   - .grain:             CSS-only SVG noise texture overlay (z-index: 3)
+   - .vignette:          Cinematic edge darkening radial gradient (z-index: 1)
+   - .topMask:           Top edge multi-stop gradient fade (cinematic masking)
+   - .bottomMask:        Bottom edge multi-stop gradient fade (cinematic masking)
+   - .ambientLight:      Scroll-reactive radial glow (section-level atmosphere)
+   - .deepAmbientLight:  Wider, softer second ambient layer (depth layering)
+   - .warmthOverlay:     Scroll-linked warm color temperature shift
+   - .resolutionGlow:    Brand-green radial glow behind resolution block
+   - .block:             Individual text group (layout only — animation via Framer Motion)
+   - .line:              <p> element with display typography
+   - .resolution:        Variant class for final dramatic block
 
    Animation strategy:
-   - JS adds/removes .visible class based on scroll position
-   - CSS transitions handle the visual change
-   - No JS-driven inline styles for animation properties
+   - Framer Motion useScroll + useTransform drives all animation
+   - CSS handles layout, typography, and atmospheric effects only
+   - No CSS transitions on animated elements (Framer Motion controls timing)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -24,51 +32,258 @@
   direction: rtl;
   background: #050506;
   width: 100%;
-  padding: 200px 24px;
+  padding: 220px 24px;
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* --------------------------------------------------------------------------
+   Edge Masks — Cinematic Multi-Stop Gradient Fades
+
+   Multi-stop gradients create a more natural, filmic falloff than a simple
+   two-stop linear gradient. The 260px masks ensure text dissolves smoothly
+   at both edges. The curve holds solid longer (25%) then falls off
+   progressively, matching how the eye perceives depth in cinema.
+   -------------------------------------------------------------------------- */
+
+.topMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 280px;
+  background: linear-gradient(
+    to bottom,
+    #050506 0%,
+    rgba(5, 5, 6, 0.97) 20%,
+    rgba(5, 5, 6, 0.8) 45%,
+    rgba(5, 5, 6, 0.5) 65%,
+    rgba(5, 5, 6, 0.2) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bottomMask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 280px;
+  background: linear-gradient(
+    to top,
+    #050506 0%,
+    rgba(5, 5, 6, 0.97) 20%,
+    rgba(5, 5, 6, 0.8) 45%,
+    rgba(5, 5, 6, 0.5) 65%,
+    rgba(5, 5, 6, 0.2) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   Ambient Light — Scroll-Reactive Radial Glow
+
+   A larger, softer radial gradient (900x600) that follows scroll position.
+   The two-stop falloff creates a wide, diffused pool of light — not a
+   focused spotlight. 0.015 peak opacity is subliminal: felt, not seen.
+   -------------------------------------------------------------------------- */
+
+.ambientLight {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.015) 0%,
+    rgba(255, 255, 255, 0.005) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Resolution Glow — Brand-Green Atmospheric Shift
+
+   Wider, softer green aura (1000x600) behind the resolution block.
+   Two-stop gradient for natural radial falloff. Brand green (#388839)
+   at 0.035 opacity — barely a whisper, signals "arrival" subliminally.
+   -------------------------------------------------------------------------- */
+
+.resolutionGlow {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  transform: translateX(-50%);
+  width: 1200px;
+  height: 700px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(56, 136, 57, 0.035) 0%,
+    rgba(56, 136, 57, 0.01) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Resolution Inner Glow — Concentrated Green Core
+
+   A smaller, more concentrated glow layered inside the main resolution
+   glow. At 600x400 it creates a tighter luminance center, giving the
+   impression of a light source behind the text. The two layers together
+   produce a multi-stop falloff that feels natural and dimensional.
+   -------------------------------------------------------------------------- */
+
+.resolutionGlowInner {
+  position: absolute;
+  left: 50%;
+  bottom: 14%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(56, 136, 57, 0.05) 0%,
+    rgba(56, 136, 57, 0.015) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Film Grain — CSS-Only Noise Texture Overlay
+
+   A barely-perceptible noise layer that adds analog film texture to the
+   entire section. Uses an SVG feTurbulence filter encoded as a data URI —
+   no image assets, zero network requests, pure CSS.
+
+   At 0.03 opacity with overlay blend mode, the grain is subliminal: it
+   adds depth and tactile quality without being consciously visible.
+   z-index: 3 places it above everything; pointer-events: none makes it
+   invisible to interaction.
+   -------------------------------------------------------------------------- */
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: overlay;
+}
+
+/* --------------------------------------------------------------------------
+   Cinematic Vignette — Edge Darkening
+
+   A radial gradient that darkens the corners and edges of the section,
+   creating a cinematic "frame" effect reminiscent of anamorphic lenses.
+   The transparent center (60%) ensures text readability is untouched.
+   rgba(0,0,0,0.3) at edges is strong enough to feel but subtle enough
+   to not clip content.
+   -------------------------------------------------------------------------- */
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.08) 78%,
+    rgba(0, 0, 0, 0.18) 90%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Deep Ambient Light — Second Atmospheric Layer
+
+   A wider, softer companion to the primary ambient light. At 1200x800
+   it creates a broader, more diffused atmospheric presence. The two
+   layers at different scales produce a sense of depth — like overlapping
+   pools of light in a darkened theater.
+   -------------------------------------------------------------------------- */
+
+.deepAmbientLight {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1200px;
+  height: 800px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.01) 0%,
+    rgba(255, 255, 255, 0.004) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Color Temperature Shift — Subtle Warmth Progression
+
+   A very faint warm radial overlay that becomes slightly more visible
+   as the user scrolls toward the resolution. At 0.025 peak opacity
+   the warmth is subliminal — it shifts the emotional register from
+   cold/clinical to warm/welcoming as the narrative resolves.
+   -------------------------------------------------------------------------- */
+
+.warmthOverlay {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse 80% 70% at 50% 70%,
+    rgba(180, 140, 80, 0.025) 0%,
+    rgba(180, 140, 80, 0.008) 50%,
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* --------------------------------------------------------------------------
    Block — Individual Text Group
 
-   Each block is a "scene" in the scroll narrative.
-   Transitions are class-driven: .block → .block.visible
+   Layout properties only. All animation (opacity, transform, filter)
+   is handled by Framer Motion via motion.div style prop.
 
-   Apple timing: 0.7s ease-out is the signature curve for content reveals.
-   translateY(20px) is subtle — enough to feel directional, not enough to
-   feel like a "slide in" animation from a WordPress theme.
-   Blur of 2px adds depth without making text illegible during transition.
+   200px margin-bottom creates generous breathing room — each block is
+   a "scene" with dramatic pause between. position: relative and z-index: 1
+   ensure text renders above the atmospheric gradient elements (z-index: 0).
    -------------------------------------------------------------------------- */
 
 .block {
   text-align: center;
   max-width: 900px;
-  margin: 0 auto 180px;
-
-  /* Initial state: invisible, slightly below, subtly blurred */
-  opacity: 0;
-  transform: translateY(20px);
-  filter: blur(2px);
-
-  /* Transition all three properties together for cohesive reveal */
-  transition:
-    opacity 0.7s ease-out,
-    transform 0.7s ease-out,
-    filter 0.7s ease-out;
-
-  /* GPU compositing hint — only set here, not on children */
-  will-change: opacity, transform, filter;
+  margin: 0 auto 200px;
+  position: relative;
+  z-index: 1;
 }
 
 .block:last-child {
   margin-bottom: 100px;
-}
-
-/* Visible state: toggled by scroll JS */
-.visible {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
 }
 
 /* --------------------------------------------------------------------------
@@ -79,14 +294,15 @@
    - line-height: 1.2                       — tight for Hebrew display
    - letter-spacing: -0.02em                — tightens Hebrew at display sizes
    - font-weight: 500                       — Heebo Medium (matches SF Pro Medium)
-   - color: #fefffe                         — text-primary from design system
+   - color: inherit                          — inherited from block (Framer Motion drives scroll-linked color)
 
-   No word-level styling. Lines are plain <p> elements.
-   font-family is inherited from the section/body (Heebo via CSS variable).
+   No transition properties — Framer Motion handles all animation via
+   motion.p style prop. No will-change — animated within block's layer.
+   font-family is inherited from body (Heebo via CSS variable).
    -------------------------------------------------------------------------- */
 
 .line {
-  color: var(--text-primary, #fefffe);
+  color: inherit;
   font-size: clamp(48px, 4.2vw, 58px);
   font-weight: 500;
   line-height: 1.2;
@@ -95,39 +311,22 @@
   margin: 0;
   padding: 4px 0;
   display: block;
-
-  /* Per-line stagger: --line-index is set via inline style in TextBlock */
-  opacity: 0;
-  transform: translateY(10px);
-  transition:
-    opacity 0.7s ease-out,
-    transform 0.7s ease-out;
-  transition-delay: calc(var(--line-index, 0) * 80ms);
-}
-
-/* Lines become visible when parent block is visible */
-.visible .line {
-  opacity: 1;
-  transform: translateY(0);
+  position: relative;
 }
 
 /* --------------------------------------------------------------------------
    Resolution — Final Dramatic Block
 
    Larger, bolder typography for emotional climax.
-   Uses weight 700 and tighter tracking instead of gradients or glow.
-   The size increase alone creates the "payoff" moment.
+   Uses weight 700 and tighter tracking — the size + weight shift
+   IS the emphasis. No gradients, no shimmer, no glow on text itself.
 
-   Values from TYPOGRAPHY-SPEC.md Section 3:
-   - font-size: clamp(56px, 7vw, 88px)
-   - font-weight: 700
-   - line-height: 1.1
-   - letter-spacing: -0.03em
-   - margin-top: 280px (dramatic pause before reveal)
+   320px margin-top creates a longer dramatic pause before the finale —
+   the extra breath makes the reveal feel more earned and impactful.
    -------------------------------------------------------------------------- */
 
 .resolution {
-  margin-top: 280px;
+  margin-top: 500px;
   margin-bottom: 100px;
 }
 
@@ -136,6 +335,139 @@
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
+  text-shadow:
+    0 0 60px rgba(56, 136, 57, 0.12),
+    0 0 120px rgba(56, 136, 57, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   Resolution Word-Level Animation
+
+   Individual words within the resolution block are animated separately
+   for a dramatic word-by-word reveal. display: inline-block allows
+   per-word transforms while flex layout handles RTL centering.
+   -------------------------------------------------------------------------- */
+
+.resolutionWords {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 0.15em;
+}
+
+.resolutionWord {
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   Block Divider — Scroll-Animated Accent Separator
+
+   Thin horizontal lines between journey blocks that draw from center outward.
+   Inspired by Linear's minimal divider language. The center dot appears first,
+   then the line extends — creating rhythm and breathing room between blocks.
+
+   Architecture:
+   - .dividerContainer:  Flex-centered wrapper with vertical margin
+   - .dividerDot:        4px center circle, scroll-linked opacity
+   - .dividerLine:       120px × 1px line, scaleX from center, GPU-composited
+   -------------------------------------------------------------------------- */
+
+.dividerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.dividerDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  position: absolute;
+  z-index: 1;
+}
+
+.dividerLine {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 30%,
+    rgba(255, 255, 255, 0.12) 70%,
+    transparent 100%
+  );
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   Progress Line — Linear-Style Vertical Journey Indicator
+
+   A thin vertical track positioned to the left of the centered RTL content
+   (visually on the left side of the viewport for RTL layouts). The fill
+   uses scaleY for GPU-composited animation with no layout thrash.
+
+   Architecture:
+   - .progressContainer: Absolute positioned wrapper, full section height
+   - .progressTrack:     1px ghost line (always visible)
+   - .progressFill:      scaleY(0->1) fill driven by scroll progress
+   - .progressNode:      6px circle dots along the track
+   - .progressNodeGlow:  Active node glow ring (brand green)
+   -------------------------------------------------------------------------- */
+
+.progressContainer {
+  position: absolute;
+  top: 220px;
+  bottom: 220px;
+  left: calc(50% + 520px);
+  width: 1px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.progressTrack {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.progressFill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.progressNode {
+  position: absolute;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.progressNodeGlow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px rgba(56, 136, 57, 0.35),
+    0 0 16px 4px rgba(56, 136, 57, 0.15);
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -153,12 +485,12 @@
 
 @media (max-width: 1199px) {
   .section {
-    padding: 160px 24px;
+    padding: 180px 24px;
   }
 
   .block {
     max-width: 800px;
-    margin-bottom: 150px;
+    margin-bottom: 170px;
   }
 
   .line {
@@ -167,7 +499,7 @@
   }
 
   .resolution {
-    margin-top: 220px;
+    margin-top: 400px;
   }
 
   .resolution .line {
@@ -175,20 +507,43 @@
     line-height: 1.12;
     letter-spacing: -0.025em;
   }
+
+  .topMask,
+  .bottomMask {
+    height: 200px;
+  }
+
+  .dividerContainer {
+    height: 30px;
+  }
+
+  .dividerLine {
+    width: 80px;
+  }
+
+  /* Progress line: not enough horizontal space on tablet */
+  .progressContainer {
+    display: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
    Mobile (481px - 767px)
+
+   Atmospheric elements are hidden on mobile:
+   - GPU budget is limited — radial gradients compete for VRAM
+   - Smaller viewport means subtle effects are wasted
+   - Edge masks reduced to 140px (proportional to viewport)
    -------------------------------------------------------------------------- */
 
 @media (max-width: 767px) {
   .section {
-    padding: 120px 20px;
+    padding: 140px 20px;
   }
 
   .block {
     max-width: 100%;
-    margin-bottom: 120px;
+    margin-bottom: 130px;
   }
 
   .line {
@@ -198,13 +553,35 @@
   }
 
   .resolution {
-    margin-top: 180px;
+    margin-top: 300px;
   }
 
   .resolution .line {
     font-size: clamp(36px, 10vw, 52px);
     line-height: 1.15;
     letter-spacing: -0.02em;
+  }
+
+  .topMask,
+  .bottomMask {
+    height: 140px;
+  }
+
+  .dividerContainer {
+    height: 24px;
+  }
+
+  .dividerLine {
+    display: none;
+  }
+
+  .ambientLight,
+  .resolutionGlow,
+  .resolutionGlowInner,
+  .vignette,
+  .deepAmbientLight,
+  .warmthOverlay {
+    display: none;
   }
 }
 
@@ -228,7 +605,7 @@
   }
 
   .resolution {
-    margin-top: 140px;
+    margin-top: 220px;
   }
 
   .resolution .line {
@@ -236,27 +613,61 @@
     line-height: 1.18;
     letter-spacing: -0.02em;
   }
+
+  .dividerContainer {
+    height: 20px;
+  }
 }
 
 /* ==========================================================================
    Reduced Motion
 
-   Users who prefer reduced motion see all blocks immediately.
-   No transitions, no transforms, no blur. Content is fully visible.
+   Users who prefer reduced motion see all content immediately.
+   All animation-driven properties are forced visible.
+   Atmospheric elements are hidden — they serve no purpose without motion.
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .block {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    transition: none;
-    will-change: auto;
+  .block,
+  .line,
+  .resolutionWord {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    color: #fefffe !important;
   }
 
-  .line {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .ambientLight,
+  .resolutionGlow,
+  .resolutionGlowInner,
+  .topMask,
+  .bottomMask,
+  .grain,
+  .vignette,
+  .deepAmbientLight,
+  .warmthOverlay {
+    display: none;
+  }
+
+  /* Progress line: show static track + all nodes, hide animated elements */
+  .progressFill {
+    display: none;
+  }
+
+  .progressNode {
+    opacity: 0.4 !important;
+  }
+
+  .progressNodeGlow {
+    display: none;
+  }
+
+  .dividerDot {
+    opacity: 0.15 !important;
+  }
+
+  .dividerLine {
+    transform: none !important;
+    opacity: 0.08 !important;
   }
 }

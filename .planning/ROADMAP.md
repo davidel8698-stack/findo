@@ -153,7 +153,33 @@ Files created:
 - website/components/sections/logo-carousel/index.ts
 - website/public/assets/logos/ (15 PNG files)
 
-#### Phase 34+: Future Sections (TBD)
+#### Phase 34: Text Journey Section
+**Goal**: Build emotional scroll-driven text reveal section with cinematic atmosphere
+**Depends on**: Phase 33
+**Requirements**: SECTION-02 (emotional pain points → resolution)
+**Success Criteria** (what must be TRUE):
+  1. 7 narrative blocks with scroll-driven reveal
+  2. Word-level animation on resolution block
+  3. Progress line with node indicators (desktop)
+  4. Atmospheric effects (ambient glow, film grain, vignette, warmth)
+  5. RTL Hebrew support with proper typography
+  6. Reduced motion support (A11Y)
+**Plans**: 1 plan
+
+Plans:
+- [x] 34-01-PLAN.md — TextJourneySection with scroll-driven reveals
+
+Files created:
+- website/components/sections/text-journey/TextJourneySection.tsx
+- website/components/sections/text-journey/TextBlock.tsx
+- website/components/sections/text-journey/BlockDivider.tsx
+- website/components/sections/text-journey/JourneyLine.tsx
+- website/components/sections/text-journey/ProgressLine.tsx
+- website/components/sections/text-journey/text-journey.module.css
+- website/components/sections/text-journey/useBlockScroll.ts
+- website/components/sections/text-journey/index.ts
+
+#### Phase 35+: Future Sections (TBD)
 **Note**: Each section will be defined as a separate Phase when work begins.
 
 Remaining sections:
@@ -180,10 +206,11 @@ Remaining sections:
 | 31 - Motion & Accessibility | v3.0 | 5 | Complete | 2026-02-06 |
 | 32 - Autopilot Hero | v3.0 | 2 | Complete | 2026-02-10 |
 | 33 - Logo Carousel | v3.0 | 1 | Complete | 2026-02-10 |
-| 34+ - Sections (TBD) | v3.0 | TBD | Not started | - |
+| 34 - Text Journey | v3.0 | 1 | Complete | 2026-02-11 |
+| 35+ - Sections (TBD) | v3.0 | TBD | Not started | - |
 
-**Total:** 33 phases complete + TBD sections across 4 milestones
+**Total:** 34 phases complete + TBD sections across 4 milestones
 
 ---
 *Roadmap created: 2026-02-03*
-*Last updated: 2026-02-10 - Phase 33 complete (Logo Carousel Section)*
+*Last updated: 2026-02-11 - Phase 34 complete (Text Journey Section)*

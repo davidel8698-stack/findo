@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-05)
 
 ## Current Position
 
-Phase: 33 complete (Logo Carousel) - **Ready for Phase 34**
+Phase: 34 complete (Text Journey) - **Ready for Phase 35**
 Plan: Section-by-section approach (each section = one Phase)
-Status: Foundation + 2 sections complete (Hero + Logo Carousel), building sections incrementally
-Last activity: 2026-02-10 - Phase 33 complete (Premium logo carousel with infinite scroll)
+Status: Foundation + 3 sections complete (Hero + Logo Carousel + Text Journey), building sections incrementally
+Last activity: 2026-02-11 - Phase 34 complete (Apple-quality scroll-driven text reveals)
 
-Progress: [###########################] 33 phases complete + TBD sections (v1.0 + v1.1 + v2.0 + v3.0)
+Progress: [############################] 34 phases complete + TBD sections (v1.0 + v1.1 + v2.0 + v3.0)
 
 ## Milestone Summary
 
@@ -35,8 +35,9 @@ Progress: [###########################] 33 phases complete + TBD sections (v1.0 
 
 **v3.0 Linear Design System (in progress)**
 - Foundation complete (Phases 28-32): Design tokens, Layout, Components, Motion, Hero
+- Sections complete (Phases 33-34): Logo Carousel, Text Journey
 - Remaining: Build sections one-by-one to Linear-quality standard
-- Requirements: 62 total (51 complete, 11 remaining)
+- Requirements: 63 total (52 complete, 11 remaining)
 
 ## Performance Metrics
 
@@ -193,11 +194,25 @@ None - Phase 33 complete, ready for Phase 34.
 - Responsive sizes: 100px desktop, 70px tablet, 50px mobile
 - Fade edges with gradient for premium look
 
+**Phase 34 Decisions (2026-02-11):**
+- Framer Motion for scroll-driven reveals (not GSAP — better React integration)
+- useBlockScroll custom hook encapsulates scroll math for block-level animation
+- 7 narrative blocks: Hook → Pain → Confusion → Problem → Mismatch → Tease → Resolution
+- Word-level stagger only on resolution block (focus attention on climax)
+- Spring config: high damping (28-35) for Apple-level restraint (zero bounce)
+- Multi-layered atmospheric effects: ambient glow, film grain, vignette, warmth overlay
+- Atmospheric effects desktop-only (mobile GPU budget constraints)
+- Progress line with 7 nodes tracks scroll position (desktop only)
+- Block dividers with dot + extending line (mobile: dot only)
+- Module CSS for scoped styling (complex keyframes need CSS, not Tailwind)
+- RTL Hebrew with Heebo font, resolution uses weight 700 for emphasis
+- prefers-reduced-motion: all content visible immediately, no animations
+
 ## Session Continuity
 
-Last session: 2026-02-10
-Stopped at: Phase 33 complete - Logo Carousel section built
-Resume action: Define Phase 34 (third website section to build)
+Last session: 2026-02-11
+Stopped at: Phase 34 complete - Text Journey section built
+Resume action: Define Phase 35 (fourth website section to build)
 
 ---
-*Updated: 2026-02-10 - Phase 33 complete (Logo Carousel)*
+*Updated: 2026-02-11 - Phase 34 complete (Text Journey)*
