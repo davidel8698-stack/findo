@@ -68,6 +68,7 @@
 
 **Purpose:** Pain point acknowledgment, solution relief presentation
 **Rebuild Priority:** Medium
+**Status:** REBUILT as text-journey/ (Phase 34, 2026-02-11)
 
 ### 7. FooterCTA.tsx (standalone)
 **Purpose:** Final conversion opportunity at page bottom
@@ -86,6 +87,8 @@ The following were preserved as they meet quality standards or are utilities:
 | Component | Location | Reason |
 |-----------|----------|--------|
 | **hero/** | sections/hero/ | LinearHeroPanel achieved Linear-quality design |
+| **logo-carousel/** | sections/logo-carousel/ | Phase 33: Infinite scroll logos, grayscale filter, seamless bg |
+| **text-journey/** | sections/text-journey/ | Phase 34: Apple-quality scroll reveals, 7-block emotional narrative |
 | **motion/** | components/motion/ | FadeIn, ScrollReveal, StaggerContainer, SectionReveal, variants (reusable for future sections) |
 | **seo/** | components/seo/ | StructuredData utility component |
 | **background/** | components/background/ | BackgroundDepth layout component |
@@ -104,13 +107,25 @@ All code is preserved in git history for reference:
 
 ## Rebuild Plan
 
-Sections will be rebuilt in Phases 33-36 using the same Linear-quality design workflow:
+Sections are being rebuilt incrementally (each section = one Phase) using Linear-quality design workflow:
 1. Reference `design-bible/LINEAR-BLUEPRINT.md` for visual specs
 2. Follow `DESIGN-PHASE-WORKFLOW.md` process
 3. Compare against Linear website screenshots
 4. Pass design certification before shipping
 
+### Rebuild Progress
+
+| Original Section | Rebuilt As | Phase | Status |
+|------------------|------------|-------|--------|
+| emotional/ | text-journey/ | 34 | Complete |
+| social-proof/ | TBD | 35+ | Pending |
+| trust/ | TBD | TBD | Pending |
+| offer/ | TBD | TBD | Pending |
+| conversion/ | TBD | TBD | Pending |
+| demo/ | TBD | TBD | Pending |
+| FooterCTA.tsx | TBD | TBD | Pending |
+
 ---
 
 *Cleanup performed: 2026-02-10*
-*Performed by: User + Claude collaboration*
+*Last updated: 2026-02-11 - emotional/ rebuilt as text-journey/ (Phase 34)*
