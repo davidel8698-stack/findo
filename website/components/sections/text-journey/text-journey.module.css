@@ -95,6 +95,20 @@
   margin: 0;
   padding: 4px 0;
   display: block;
+
+  /* Per-line stagger: --line-index is set via inline style in TextBlock */
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+  transition-delay: calc(var(--line-index, 0) * 80ms);
+}
+
+/* Lines become visible when parent block is visible */
+.visible .line {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* --------------------------------------------------------------------------
@@ -238,5 +252,11 @@
     filter: none;
     transition: none;
     will-change: auto;
+  }
+
+  .line {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
