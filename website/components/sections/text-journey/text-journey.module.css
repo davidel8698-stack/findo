@@ -1,0 +1,102 @@
+/* Text Journey Section - Emotional Pain Points */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding: 120px 24px;
+  background: #050506;
+  direction: rtl;
+}
+
+/* Content Block */
+.block {
+  max-width: 900px;
+  margin: 0 auto 120px;
+  text-align: center;
+}
+
+.block:last-child {
+  margin-bottom: 0;
+}
+
+/* Text Line */
+.line {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 500;
+  color: var(--text-secondary, #949698);
+  line-height: 1.3;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+
+.line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Resolution variant - dramatic ending */
+.resolution {
+  margin-top: 160px;
+  margin-bottom: 80px;
+}
+
+.resolution .line {
+  font-size: clamp(36px, 8vw, 72px);
+  font-weight: 700;
+  color: var(--text-primary, #fefffe);
+  letter-spacing: -0.02em;
+}
+
+.resolution .line.visible {
+  text-shadow:
+    0 0 60px rgba(255, 255, 255, 0.15),
+    0 0 120px rgba(255, 255, 255, 0.05);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .line {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 20px;
+  }
+
+  .block {
+    margin-bottom: 80px;
+  }
+
+  .resolution {
+    margin-top: 100px;
+  }
+
+  .line {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+
+  .resolution .line {
+    font-size: clamp(32px, 10vw, 52px);
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 16px;
+  }
+
+  .block {
+    margin-bottom: 60px;
+  }
+
+  .resolution {
+    margin-top: 80px;
+  }
+}
