@@ -22,28 +22,25 @@ const journeyContent = [
     lines: [
       "לא תמיד ברור:",
       "מה באמת מביא לקוחות",
-      "על מה שווה להשקיע",
-      "ומה סתם רעש",
+      "ועל מה שווה להשקיע.",
     ],
   },
   {
     id: "problem",
-    lines: ["רוב הפתרונות דורשים", "הרבה כסף, ניהול שוטף וידע."],
-  },
-  {
-    id: "mismatch",
-    lines: ["וזה לא מותאם לאופן שבו", "עסק קטן באמת מתנהל."],
+    lines: [
+      "רוב הפתרונות דורשים הרבה כסף, ניהול שוטף וידע.",
+      "וזה לא מותאם לאופן שבו עסק קטן באמת מתנהל.",
+    ],
   },
   {
     id: "tease",
-    lines: ["אם אתם מחפשים שיווק", "שלא יצריך ממכם התעסקות בשוטף."],
+    lines: [
+      "אם אתם מחפשים שיווק",
+      "שמתאים לאופן שבו עסק קטן באמת מתנהל?",
+      "הגעתם למקום הנכון.",
+    ],
   },
 ];
-
-const resolution = {
-  id: "resolution",
-  lines: ["הגעתם למקום הנכון."],
-};
 
 export function TextJourneySection() {
   return (
@@ -53,12 +50,6 @@ export function TextJourneySection() {
         <JourneyBlock key={block.id} lines={block.lines} variant="normal" />
       ))}
 
-      {/* Resolution - dramatic ending */}
-      <JourneyBlock
-        key={resolution.id}
-        lines={resolution.lines}
-        variant="resolution"
-      />
     </section>
   );
 }
