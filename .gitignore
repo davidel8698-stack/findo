@@ -58,3 +58,10 @@ Videos-for-Findo/
 
 # Reference screenshots
 Screenshots*/
+*.png
+
+# Next.js build output
+.next/
+
+# Playwright MCP temp files
+.playwright-mcp/
