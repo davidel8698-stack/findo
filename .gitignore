@@ -58,7 +58,9 @@ Videos-for-Findo/
 
 # Reference screenshots
 Screenshots*/
-*.png
+
+# Temporary screenshots in root (not in subdirectories)
+/*.png
 
 # Next.js build output
 .next/
