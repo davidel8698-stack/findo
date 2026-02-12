@@ -4,6 +4,7 @@ import Hero from "@/components/sections/hero";
 import { StickyCtaBar } from "@/components/sections/hero";
 import { LogoCarousel } from "@/components/sections/logo-carousel";
 import { TextJourneySection } from "@/components/sections/text-journey";
+import { BigMistakeSection } from "@/components/sections/big-mistake";
 // Phase 19 - SEO structured data
 import { StructuredData } from "@/components/seo/StructuredData";
 
@@ -21,6 +22,9 @@ export default function HomePage() {
 
       {/* Text Journey - Phase 34 */}
       <TextJourneySection />
+
+      {/* Big Mistake Section - Premium Triptych */}
+      <BigMistakeSection />
 
       {/* Sticky CTA Bar - Phase 14 */}
       <StickyCtaBar />
